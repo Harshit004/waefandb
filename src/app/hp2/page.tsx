@@ -88,44 +88,70 @@ export default function Home() {
     return (
         <main className="relative w-full min-h-screen bg-black text-white overflow-x-hidden scroll-smooth">
             {/* SECTION 1: HERO */}
-            <section className="relative w-full h-screen overflow-hidden bg-black">
-                {/* Background Video */}
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover z-0"
-                >
-                    <source src="/13092632_1920_1080_25fps.mp4" type="video/mp4" />
-                </video>
+            <section className="relative w-full h-screen overflow-hidden bg-black flex">
+                {/* 3 Video Columns */}
+                {[
+                    {
+                        video: "/4974759-hd_1080_2048_25fps (Tea).mp4",
+                        title: "Nu Tea",
+                        desc: "Intelligent brewing architecture where precision engineering transforms water and leaves into consistent expression."
+                    },
+                    {
+                        video: "/Coffee_Animation.mp4",
+                        title: "Nu Coffee",
+                        desc: "A calibrated coffee philosophy balancing origin character, extraction science, and contemporary café ritual."
+                    },
+                    {
+                        video: "/freepik_camera-still-_kling_1080p_16-9_24fps_91974.mp4",
+                        title: "Nu Water",
+                        desc: "Water-conscious culinary pairings designed to harmonise hydration, mineral balance, and mindful nourishment."
+                    }
+                ].map((col, idx) => (
+                    <div 
+                        key={idx}
+                        className="relative flex-1 h-full border-r border-white/5 last:border-r-0 group cursor-pointer"
+                        onMouseEnter={(e) => {
+                            const vid = e.currentTarget.querySelector('video');
+                            if (vid) vid.play();
+                        }}
+                        onMouseLeave={(e) => {
+                            const vid = e.currentTarget.querySelector('video');
+                            if (vid) {
+                                vid.pause();
+                                vid.currentTime = 0;
+                            }
+                        }}
+                    >
+                        <video
+                            src={col.video}
+                            muted
+                            loop
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover z-0"
+                        />
+                        {/* Dark Overlay (disappears on hover) */}
+                        <div className="absolute inset-0 bg-black/60 transition-opacity duration-500 group-hover:opacity-0 z-10 pointer-events-none"></div>
 
-                {/* Flat Overlay */}
-                <div
-                    className="absolute inset-0 z-10 pointer-events-none"
-                    style={{
-                        background: "#00000080",
-                    }}
-                ></div>
+                        {/* Bottom Gradient for text readability */}
+                        <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none"></div>
 
-                {/* Gradient Overlay */}
-                <div
-                    className="absolute inset-0 z-10 pointer-events-none"
-                    style={{
-                        background: "radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.9) 100%)",
-                    }}
-                ></div>
+                        {/* Text Content */}
+                        <div className="absolute bottom-[5vw] left-[4.166vw] right-[4.166vw] flex flex-col z-20 pointer-events-none">
+                            <h2 className="font-monschone font-normal text-[2.8vw] text-white mb-[1.5vw]">
+                                {col.title}
+                            </h2>
+                            <p className="font-manrope font-normal text-[0.937vw] text-white/90 leading-[1.4] mb-[2vw] max-w-[85%]">
+                                {col.desc}
+                            </p>
+                            <div className="font-manrope font-bold text-[0.729vw] text-white flex items-center gap-[0.5vw]">
+                                See more <span className="text-[1vw]">›</span>
+                            </div>
+                        </div>
+                    </div>
+                ))}
 
-                {/* Bottom Linear Gradient */}
-                <div
-                    className="absolute bottom-0 left-0 w-full h-[40%] z-10 pointer-events-none"
-                    style={{
-                        background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
-                    }}
-                ></div>
-
-                {/* Navbar */}
-                <nav className="absolute top-[1.927vw] left-[4.166vw] right-[4.166vw] z-20 flex items-center justify-between font-manrope font-medium text-[0.729vw] leading-[120%] uppercase tracking-normal">
+                {/* Navbar overlaying all columns */}
+                <nav className="absolute top-[1.927vw] left-[4.166vw] right-[4.166vw] z-30 flex items-center justify-between font-manrope font-medium text-[0.729vw] leading-[120%] uppercase tracking-normal">
                     <div className="flex items-center gap-[3vw]">
                         <Link href="#" className="hover:opacity-70 transition-opacity">Solution</Link>
                         <Link href="#" className="hover:opacity-70 transition-opacity">Product</Link>
@@ -145,20 +171,16 @@ export default function Home() {
                     <div className="flex items-center gap-[2vw]">
                         <Link href="#" className="hover:opacity-70 transition-opacity">Get In Touch</Link>
                         <Link href="#" className="hover:opacity-70 transition-opacity">Menu</Link>
-                        {/* Using just a solid white dot at the end 22x23 px */}
                         <div className="w-[1.145vw] h-[1.197vw] bg-white rounded-[50%]"></div>
                     </div>
                 </nav>
-
-                {/* Hero Content */}
-
             </section>
 
             {/* SECTION 2: BELIEF */}
             <section className="relative w-full bg-black py-[8.8vw] px-[17.43vw] flex flex-col items-center justify-center text-center">
                 <div className="w-[65.27vw] flex flex-col items-center justify-center">
                     {/* Top category label */}
-                    <span className="font-manrope font-medium text-[0.729vw] leading-[120%] tracking-[0.2em] uppercase text-white/50 mb-[2vw]">
+                    <span className="font-manrope font-medium text-[0.729vw] leading-[120%] tracking-[0.2em] uppercase text-white mb-[2vw]">
                         An Exquisite Crafted Cafe
                     </span>
 
