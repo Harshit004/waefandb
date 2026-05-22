@@ -151,29 +151,7 @@ export default function Home() {
                 </nav>
 
                 {/* Hero Content */}
-                <div className="relative z-20 flex flex-col items-center w-full h-full pt-[20.77vw] text-center">
-                    {/* FOOTPRINT text */}
-                    <p className="font-manrope font-medium text-[1.145vw] leading-[1.302vw] tracking-normal uppercase">
-                        Footprint
-                    </p>
 
-                    {/* 23px Gap */}
-                    <div className="h-[1.197vw]"></div>
-
-                    {/* Headline */}
-                    <h1 className="font-monschone font-normal text-[3.333vw] leading-[3.854vw] tracking-normal w-[82.708vw] mx-auto capitalize">
-                        Where service meets provenance, every detail is intentional.
-                    </h1>
-
-                    {/* 44px Gap */}
-                    <div className="h-[2.291vw]"></div>
-
-                    {/* Sub-headline */}
-                    <p className="font-manrope font-normal text-[1.145vw] leading-[1.302vw] tracking-normal w-[36.458vw] mx-auto text-white/90">
-                        when beverages are treated with intelligence, people drink differently. This is a café where tea is approached with reverence,
-                    </p>
-
-                </div>
             </section>
 
             {/* SECTION 2: BELIEF */}
