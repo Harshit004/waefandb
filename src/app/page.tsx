@@ -217,7 +217,7 @@ export default function Home() {
       <section className="relative w-full bg-black py-[8.8vw] px-[17.43vw] flex flex-col items-center justify-center text-center">
         <div className="w-[65.27vw] flex flex-col items-center justify-center">
           {/* Top category label */}
-          <span className="font-manrope font-medium text-[0.729vw] leading-[120%] tracking-[0.2em] uppercase text-white/50 mb-[2vw]">
+          <span className="font-manrope font-medium text-[0.729vw] leading-[120%] tracking-[0.2em] uppercase text-white mb-[2vw]">
             An Exquisite Crafted Cafe
           </span>
 

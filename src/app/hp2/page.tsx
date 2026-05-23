@@ -127,16 +127,16 @@ export default function Home() {
                             muted
                             loop
                             playsInline
-                            className="absolute inset-0 w-full h-full object-cover z-0"
+                            className="absolute inset-0 w-full h-full object-cover z-0 object-top scale-[1.05]"
                         />
                         {/* Dark Overlay (disappears on hover) */}
-                        <div className="absolute inset-0 bg-black/60 transition-opacity duration-500 group-hover:opacity-0 z-10 pointer-events-none"></div>
+                        <div className="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:opacity-0 z-10 pointer-events-none"></div>
 
                         {/* Bottom Gradient for text readability */}
-                        <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none"></div>
+                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none"></div>
 
                         {/* Text Content */}
-                        <div className="absolute bottom-[5vw] left-[4.166vw] right-[4.166vw] flex flex-col z-20 pointer-events-none">
+                        <div className="absolute bottom-[4vw] left-[4.166vw] right-[4.166vw] flex flex-col z-20 pointer-events-none">
                             <h2 className="font-monschone font-normal text-[2.8vw] text-white mb-[1.5vw]">
                                 {col.title}
                             </h2>
