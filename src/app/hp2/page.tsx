@@ -107,7 +107,7 @@ export default function Home() {
                         desc: "Water-conscious culinary pairings designed to harmonise hydration, mineral balance, and mindful nourishment."
                     }
                 ].map((col, idx) => (
-                    <div 
+                    <div
                         key={idx}
                         className="relative flex-1 h-full border-r border-white/5 last:border-r-0 group cursor-pointer"
                         onMouseEnter={(e) => {
@@ -150,6 +150,22 @@ export default function Home() {
                     </div>
                 ))}
 
+                {/* Top Vignette Overlay */}
+                <div
+                    className="absolute top-0 left-0 w-full h-[20%] z-20 pointer-events-none"
+                    style={{
+                        background: "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+                    }}
+                ></div>
+
+                {/* Bottom Vignette Overlay */}
+                <div
+                    className="absolute bottom-0 left-0 w-full h-[30%] z-20 pointer-events-none"
+                    style={{
+                        background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
+                    }}
+                ></div>
+
                 {/* Navbar overlaying all columns */}
                 <nav className="absolute top-[1.927vw] left-[4.166vw] right-[4.166vw] z-30 flex items-center justify-between font-manrope font-medium text-[0.729vw] leading-[120%] uppercase tracking-normal">
                     <div className="flex items-center gap-[3vw]">
@@ -177,7 +193,7 @@ export default function Home() {
             </section>
 
             {/* SECTION 2: BELIEF */}
-            <section className="relative w-full bg-black py-[8.8vw] px-[17.43vw] flex flex-col items-center justify-center text-center">
+            <section className="relative w-full bg-black pt-[17vw] pb-[8.8vw] px-[17.43vw] flex flex-col items-center justify-center text-center">
                 <div className="w-[65.27vw] flex flex-col items-center justify-center">
                     {/* Top category label */}
                     <span className="font-manrope font-medium text-[0.729vw] leading-[120%] tracking-[0.2em] uppercase text-white mb-[2vw]">
