@@ -140,7 +140,7 @@ export default function Home() {
                             <h2 className="font-monschone font-normal text-[2.8vw] text-white mb-[1.5vw]">
                                 {col.title}
                             </h2>
-                            <p className="font-manrope font-normal text-[0.937vw] text-white/90 leading-[1.4] mb-[2vw] max-w-[85%]">
+                            <p className="font-manrope font-normal text-[0.937vw] text-white leading-[1.4] mb-[2vw] max-w-[85%]">
                                 {col.desc}
                             </p>
                             <div className="font-manrope font-bold text-[0.729vw] text-white flex items-center gap-[0.5vw]">
