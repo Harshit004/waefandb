@@ -63,7 +63,7 @@ export default function Home() {
     // 60/120fps direct hardware-accelerated pointer tracking
     const handleMouseMove = (e: MouseEvent) => {
       if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${e.clientX - 26.5}px, ${e.clientY - 26.5}px, 0)`;
+        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
       }
     };
     const handleMouseLeaveDoc = () => {
@@ -132,14 +132,14 @@ export default function Home() {
         strategy="afterInteractive"
       />
 
-      {/* Smooth 53x53 Custom Follow Cursor */}
+      {/* Smooth 53x53 Custom Follow Cursor (responsive 3.681vw) */}
       <div
         ref={cursorRef}
         className="fixed top-0 left-0 pointer-events-none z-50 will-change-transform hidden md:block"
         style={{
-          width: "53px",
-          height: "53px",
-          transform: "translate3d(-100px, -100px, 0)",
+          width: "3.681vw",
+          height: "3.681vw",
+          transform: "translate3d(-100px, -100px, 0) translate(-50%, -50%)",
         }}
       >
         <div
@@ -156,9 +156,7 @@ export default function Home() {
               key={idx}
               src={col.cursorIcon}
               alt=""
-              width={53}
-              height={53}
-              className="absolute inset-0 w-[53px] h-[53px] object-contain select-none pointer-events-none"
+              className="absolute inset-0 w-[3.681vw] h-[3.681vw] object-contain select-none pointer-events-none"
               style={{
                 opacity: activeCursor === idx ? 1 : 0,
                 transform: activeCursor === idx ? "scale(1)" : "scale(0.8)",
@@ -219,13 +217,13 @@ export default function Home() {
             {/* Text Content */}
             <div className="absolute bottom-[5vw] left-[4.166vw] right-[4.166vw] flex flex-col z-20 pointer-events-none">
               <span
-                className="font-monschone font-normal text-[24px] text-white leading-[48px] tracking-[0%] mb-[4px] block"
+                className="font-monschone font-normal text-[1.667vw] text-white leading-[3.333vw] tracking-[0%] mb-[0.278vw] block"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
                   fontWeight: 400,
                   fontStyle: "normal",
-                  fontSize: "24px",
-                  lineHeight: "48px",
+                  fontSize: "1.667vw",
+                  lineHeight: "3.333vw",
                   letterSpacing: "0%",
                   color: "#fff",
                 }}
@@ -239,12 +237,12 @@ export default function Home() {
                 {col.desc}
               </p>
               <div
-                className="font-manrope font-bold text-[14px] leading-[22px] tracking-[0%] pointer-events-auto cursor-pointer group/btn transition-opacity duration-300 hover:opacity-90 w-fit select-none"
+                className="font-manrope font-bold text-[0.972vw] leading-[1.528vw] tracking-[0%] pointer-events-auto cursor-pointer group/btn transition-opacity duration-300 hover:opacity-90 w-fit select-none"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 700,
-                  fontSize: "14px",
-                  lineHeight: "22px",
+                  fontSize: "0.972vw",
+                  lineHeight: "1.528vw",
                   letterSpacing: "0%",
                 }}
               >
