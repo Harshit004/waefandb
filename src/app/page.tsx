@@ -247,15 +247,7 @@ export default function Home() {
                   letterSpacing: "0%",
                 }}
               >
-                <span
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #DEE2C9 0%, #DEE2C9 12%, #365944 24%, #365944 76%, #DEE2C9 88%, #DEE2C9 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    display: "inline-block",
-                  }}
-                >
+                <span className="animate-enquire-shimmer">
                   Enquire now &gt;
                 </span>
               </div>
