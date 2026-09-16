@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
+import Header from "@/components/Header";
 
 export default function Home() {
   const iframeRefs = useRef<(HTMLIFrameElement | null)[]>([]);
@@ -174,6 +175,7 @@ export default function Home() {
         className="relative w-full h-screen overflow-hidden bg-black flex"
         onMouseLeave={() => setActiveCursor(null)}
       >
+        <Header />
         {/* 3 Video Columns */}
         {columns.map((col, idx) => (
           <div
