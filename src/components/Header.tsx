@@ -1,6 +1,14 @@
 import React from "react";
 
-export default function Header() {
+interface HeaderProps {
+  onMouseEnterElement?: () => void;
+  onMouseLeaveElement?: () => void;
+}
+
+export default function Header({
+  onMouseEnterElement,
+  onMouseLeaveElement,
+}: HeaderProps = {}) {
   return (
     <header
       className="absolute top-0 left-0 w-full h-[13.889vw] z-30 flex items-start justify-between pointer-events-none"
@@ -12,7 +20,11 @@ export default function Header() {
       }}
     >
       {/* Left Logo */}
-      <div className="flex items-center h-[3.4027vw] pointer-events-auto">
+      <div
+        className="flex items-center h-[3.4027vw] pointer-events-auto cursor-pointer"
+        onMouseEnter={onMouseEnterElement}
+        onMouseLeave={onMouseLeaveElement}
+      >
         <img
           src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/a408ada7-d032-418a-d952-f65e7548f800/public"
           alt="Logo"
@@ -25,12 +37,16 @@ export default function Header() {
       </div>
 
       {/* Right Navigation */}
-      <div className="flex items-center h-[3.4027vw] pointer-events-auto select-none">
+      <div
+        className="flex items-center h-[3.4027vw] pointer-events-auto select-none cursor-default"
+        onMouseEnter={onMouseEnterElement}
+        onMouseLeave={onMouseLeaveElement}
+      >
         {/* Circular Globe Icon */}
         <img
           src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d9b5adda-a339-430f-fef7-1ab710cc9800/public"
           alt="Globe"
-          className="object-contain"
+          className="object-contain cursor-default"
           style={{
             width: "1.042vw",
             height: "1.042vw",
@@ -73,6 +89,7 @@ export default function Header() {
 
         {/* 34px gap -> "By" */}
         <span
+          className="cursor-default"
           style={{
             marginLeft: "2.361vw",
             fontFamily: "var(--font-poly), 'Poly', serif",
@@ -89,6 +106,7 @@ export default function Header() {
 
         {/* 5px gap -> "WAE" */}
         <span
+          className="cursor-pointer transition-opacity duration-200 hover:opacity-80"
           style={{
             marginLeft: "0.347vw",
             fontFamily: "var(--font-manrope), sans-serif",

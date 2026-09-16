@@ -36,6 +36,7 @@ export default function Home() {
   };
 
   const handleMouseLeave = (idx: number) => {
+    setActiveCursor(null);
     const player = getPlayer(idx);
     if (player) {
       player.pause();
@@ -173,7 +174,7 @@ export default function Home() {
         className="relative w-full h-screen overflow-hidden bg-black flex"
         onMouseLeave={() => setActiveCursor(null)}
       >
-        <Header />
+        <Header onMouseEnterElement={() => setActiveCursor(null)} />
         {/* 3 Video Columns */}
         {columns.map((col, idx) => (
           <div
