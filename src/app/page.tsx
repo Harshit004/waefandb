@@ -8,43 +8,52 @@ export default function Home() {
         {/* 3 Video Columns */}
         {[
           {
-            video: "/4974759-hd_1080_2048_25fps (Tea).mp4",
             title: "Botanicals",
+            paddingTop: "177.77777777777777%",
+            videoSrc:
+              "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/5af2ef198ed6c47fdb0fe9ae934ff12b/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F5af2ef198ed6c47fdb0fe9ae934ff12b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600",
             desc: "Where Himalayan terroir meets the cup  L’ORIENTALIS brings extraordinary botanicals, origins and flavour into focus."
           },
           {
-            video: "/Coffee_Animation.mp4",
             title: "Essentials",
+            paddingTop: "66.81818181818183%",
+            videoSrc:
+              "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/06f1fd10797ff51f37e920d1fa3024c4/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F06f1fd10797ff51f37e920d1fa3024c4%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600",
             desc: "BREWMATIC turns precision into craft, giving every botanical the engineering control to reveal its fullest character."
           },
           {
-            video: "/freepik_camera-still-_kling_1080p_16-9_24fps_91974.mp4",
             title: "Experiences",
+            paddingTop: "177.77777777777777%",
+            videoSrc:
+              "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/a21247027c6b5e37d2ed35f814704c77/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Fa21247027c6b5e37d2ed35f814704c77%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600",
             desc: "PRÊT À BOIRE brings botanicals, precision and human craft together transforming every pour into an experience worth remembering."
           }
         ].map((col, idx) => (
           <div
             key={idx}
-            className="relative flex-1 h-full border-r border-white/5 last:border-r-0 group cursor-pointer"
-            onMouseEnter={(e) => {
-              const vid = e.currentTarget.querySelector('video');
-              if (vid) vid.play();
-            }}
-            onMouseLeave={(e) => {
-              const vid = e.currentTarget.querySelector('video');
-              if (vid) {
-                vid.pause();
-                vid.currentTime = 0;
-              }
-            }}
+            className="relative flex-1 h-full border-r border-white/5 last:border-r-0 group cursor-pointer overflow-hidden flex flex-col justify-center bg-black"
           >
-            <video
-              src={col.video}
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover z-0"
-            />
+            {/* Video embed */}
+            <div
+              className="w-full shrink-0"
+              style={{ position: "relative", paddingTop: col.paddingTop }}
+            >
+              <iframe
+                src={col.videoSrc}
+                loading="lazy"
+                style={{
+                  border: "none",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  height: "100%",
+                  width: "100%",
+                }}
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowFullScreen
+              />
+            </div>
+
             {/* Dark Overlay (disappears on hover) */}
             <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 group-hover:opacity-0 z-10 pointer-events-none"></div>
 
@@ -53,6 +62,20 @@ export default function Home() {
 
             {/* Text Content */}
             <div className="absolute bottom-[5vw] left-[4.166vw] right-[4.166vw] flex flex-col z-20 pointer-events-none">
+              <span
+                className="font-monschone font-normal text-[24px] text-white leading-[48px] tracking-[0%] mb-[4px] block"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                  fontSize: "24px",
+                  lineHeight: "48px",
+                  letterSpacing: "0%",
+                  color: "#fff",
+                }}
+              >
+                Brewing
+              </span>
               <h2 className="font-monschone font-normal text-[2.8vw] text-white mb-[1.5vw]">
                 {col.title}
               </h2>
