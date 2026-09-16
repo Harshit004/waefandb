@@ -213,7 +213,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 group-hover:opacity-0 z-10 pointer-events-none"></div>
 
             {/* Bottom Gradient for text readability */}
-            <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none"></div>
 
             {/* Text Content */}
             <div className="absolute bottom-[5vw] left-[4.166vw] right-[4.166vw] flex flex-col z-20 pointer-events-none">
@@ -265,7 +265,7 @@ export default function Home() {
 
         {/* Bottom Vignette Overlay */}
         <div
-          className="absolute bottom-0 left-0 w-full h-[30%] z-20 pointer-events-none"
+          className="absolute bottom-0 left-0 w-full h-[45%] z-20 pointer-events-none"
           style={{
             background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
           }}
