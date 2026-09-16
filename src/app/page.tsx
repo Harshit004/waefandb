@@ -166,8 +166,45 @@ export default function Home() {
               <p className="font-manrope font-normal text-[0.937vw] text-white leading-[1.4] mb-[2vw] max-w-[85%]">
                 {col.desc}
               </p>
-              <div className="font-manrope font-bold text-[0.729vw] text-white flex items-center gap-[0.5vw]">
-                Enquire Now <span className="text-[1vw]">›</span>
+              <div
+                className="font-manrope font-bold text-[14px] leading-[22px] tracking-[0%] flex items-center gap-[6px] pointer-events-auto cursor-pointer group/btn"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 700,
+                  fontSize: "14px",
+                  lineHeight: "22px",
+                  letterSpacing: "0%",
+                }}
+              >
+                <span className="inline-flex items-center">
+                  <span
+                    style={{
+                      backgroundImage: "linear-gradient(105deg, #FFFFFF 0%, #DEE2C9 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      display: "inline-block",
+                    }}
+                  >
+                    En
+                  </span>
+                  <span style={{ color: "#DEE2C9" }}>quire now</span>
+                </span>
+                <svg
+                  width="7"
+                  height="12"
+                  viewBox="0 0 7 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="shrink-0 transition-transform duration-300 group-hover/btn:translate-x-[2px]"
+                >
+                  <path
+                    d="M1.2 1.5L5.5 6L1.2 10.5"
+                    stroke="#FFFFFF"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
             </div>
           </div>
