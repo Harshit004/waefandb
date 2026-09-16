@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 
 export default function Home() {
   const iframeRefs = useRef<(HTMLIFrameElement | null)[]>([]);
   const playerRefs = useRef<(any | null)[]>([]);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const [activeCursor, setActiveCursor] = useState<number | null>(null);
 
   // Helper to get or initialize a Stream player instance
   const getPlayer = (idx: number) => {
@@ -19,6 +21,7 @@ export default function Home() {
   };
 
   const handleMouseEnter = (idx: number) => {
+    setActiveCursor(idx);
     const player = getPlayer(idx);
     if (player) {
       player.play().catch(() => {});
@@ -56,6 +59,25 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // 60/120fps direct hardware-accelerated pointer tracking
+    const handleMouseMove = (e: MouseEvent) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${e.clientX - 26.5}px, ${e.clientY - 26.5}px, 0)`;
+      }
+    };
+    const handleMouseLeaveDoc = () => {
+      setActiveCursor(null);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeaveDoc);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeaveDoc);
+    };
+  }, []);
+
+  useEffect(() => {
     // Attempt initialization once mounted and when Stream is available
     const init = () => {
       if (typeof window !== "undefined" && (window as any).Stream) {
@@ -76,6 +98,8 @@ export default function Home() {
       title: "Botanicals",
       videoSrc:
         "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/5af2ef198ed6c47fdb0fe9ae934ff12b/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F5af2ef198ed6c47fdb0fe9ae934ff12b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&muted=true&loop=true&controls=false&preload=auto",
+      cursorIcon:
+        "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/fef200f0-0314-4809-ee31-4e460271d000/public",
       desc: "Where Himalayan terroir meets the cup  L’ORIENTALIS brings extraordinary botanicals, origins and flavour into focus.",
       scale: undefined,
     },
@@ -84,6 +108,8 @@ export default function Home() {
       // Scaled by 2.66062 to crop landscape 3:2 video into uniform 9:16 portrait
       videoSrc:
         "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/06f1fd10797ff51f37e920d1fa3024c4/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F06f1fd10797ff51f37e920d1fa3024c4%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&muted=true&loop=true&controls=false&preload=auto",
+      cursorIcon:
+        "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/90634b6f-b31d-424e-7883-8fd6a4db1500/public",
       desc: "BREWMATIC turns precision into craft, giving every botanical the engineering control to reveal its fullest character.",
       scale: 2.66062,
     },
@@ -91,6 +117,8 @@ export default function Home() {
       title: "Experiences",
       videoSrc:
         "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/a21247027c6b5e37d2ed35f814704c77/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Fa21247027c6b5e37d2ed35f814704c77%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&muted=true&loop=true&controls=false&preload=auto",
+      cursorIcon:
+        "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e17c8663-c1a9-4c60-46b0-45186e10fd00/public",
       desc: "PRÊT À BOIRE brings botanicals, precision and human craft together transforming every pour into an experience worth remembering.",
       scale: undefined,
     },
@@ -102,13 +130,55 @@ export default function Home() {
         src="https://embed.cloudflarestream.com/embed/sdk.latest.js"
         strategy="afterInteractive"
       />
+
+      {/* Smooth 53x53 Custom Follow Cursor */}
+      <div
+        ref={cursorRef}
+        className="fixed top-0 left-0 pointer-events-none z-50 will-change-transform hidden md:block"
+        style={{
+          width: "53px",
+          height: "53px",
+          transform: "translate3d(-100px, -100px, 0)",
+        }}
+      >
+        <div
+          className="relative w-full h-full"
+          style={{
+            opacity: activeCursor !== null ? 1 : 0,
+            transform: `scale(${activeCursor !== null ? 1 : 0.4})`,
+            transition:
+              "opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+        >
+          {columns.map((col, idx) => (
+            <img
+              key={idx}
+              src={col.cursorIcon}
+              alt=""
+              width={53}
+              height={53}
+              className="absolute inset-0 w-[53px] h-[53px] object-contain select-none pointer-events-none"
+              style={{
+                opacity: activeCursor === idx ? 1 : 0,
+                transform: activeCursor === idx ? "scale(1)" : "scale(0.8)",
+                transition:
+                  "opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
       {/* SECTION 1: HERO */}
-      <section className="relative w-full h-screen overflow-hidden bg-black flex">
+      <section
+        className="relative w-full h-screen overflow-hidden bg-black flex"
+        onMouseLeave={() => setActiveCursor(null)}
+      >
         {/* 3 Video Columns */}
         {columns.map((col, idx) => (
           <div
             key={idx}
-            className="relative flex-1 h-full border-r border-white/5 last:border-r-0 group cursor-pointer overflow-hidden flex flex-col justify-center bg-black"
+            className="relative flex-1 h-full border-r border-white/5 last:border-r-0 group cursor-none overflow-hidden flex flex-col justify-center bg-black"
             onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={() => handleMouseLeave(idx)}
           >
