@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poly:ital@0;1&display=swap');
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Monschone";
+  src: url("/fonts/Monschone-Regular.woff2") format("woff2"),
+       url("/fonts/Monschone-Regular.woff") format("woff"),
+       url("/fonts/Monschone-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -11,8 +21,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-manrope: "Manrope", var(--font-manrope);
-  --font-monschone: var(--font-monschone), serif;
+  --font-manrope: var(--font-manrope-local), "Manrope", sans-serif;
+  --font-monschone: var(--font-monschone-local), "Monschone", serif;
   --font-poly: "Poly", serif;
 }
 

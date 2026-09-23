@@ -14,13 +14,29 @@ const geistMono = Geist_Mono({
 });
 
 const manrope = Manrope({
-  variable: "--font-manrope",
+  variable: "--font-manrope-local",
   subsets: ["latin"],
 });
 
 const monschone = localFont({
-  src: "./fonts/Monschone Regular/Monschone Regular.otf",
-  variable: "--font-monschone",
+  src: [
+    {
+      path: "./fonts/Monschone-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Monschone-Regular.woff",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Monschone Regular/Monschone Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-monschone-local",
   display: "swap",
 });
 

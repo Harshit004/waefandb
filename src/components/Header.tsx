@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 interface HeaderProps {
   onMouseEnterElement?: () => void;
@@ -20,7 +21,8 @@ export default function Header({
       }}
     >
       {/* Left Logo */}
-      <div
+      <Link
+        href="/"
         className="flex items-center h-[3.4027vw] pointer-events-auto cursor-pointer"
         onMouseEnter={onMouseEnterElement}
         onMouseLeave={onMouseLeaveElement}
@@ -34,7 +36,7 @@ export default function Header({
           }}
           className="object-contain cursor-pointer"
         />
-      </div>
+      </Link>
 
       {/* Right Navigation */}
       <div

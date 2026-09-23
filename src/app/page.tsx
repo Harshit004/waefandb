@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
+import Link from "next/link";
 import Header from "@/components/Header";
 
 export default function Home() {
@@ -104,6 +105,7 @@ export default function Home() {
         "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/fef200f0-0314-4809-ee31-4e460271d000/public",
       desc: "Where Himalayan terroir meets the cup  L’ORIENTALIS brings extraordinary botanicals, origins and flavour into focus.",
       scale: undefined,
+      href: "/lorientalis",
     },
     {
       title: "Essentials",
@@ -247,9 +249,17 @@ export default function Home() {
                   letterSpacing: "0%",
                 }}
               >
-                <span className="animate-enquire-shimmer">
-                  Enquire now &gt;
-                </span>
+                {col.href ? (
+                  <Link href={col.href} className="inline-block">
+                    <span className="animate-enquire-shimmer">
+                      Enquire now &gt;
+                    </span>
+                  </Link>
+                ) : (
+                  <span className="animate-enquire-shimmer">
+                    Enquire now &gt;
+                  </span>
+                )}
               </div>
             </div>
           </div>
