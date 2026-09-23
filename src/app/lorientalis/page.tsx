@@ -1,11 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import Script from "next/script";
 import Link from "next/link";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 
 export default function LOrientalisPage() {
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleSound = () => {
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+
+    if (typeof window !== "undefined" && (window as any).Stream && iframeRef.current) {
+      try {
+        const player = (window as any).Stream(iframeRef.current);
+        player.muted = nextMuted;
+      } catch {}
+    }
+
+    iframeRef.current?.contentWindow?.postMessage(
+      {
+        __privateUnstableMessageType: "setProperty",
+        property: "muted",
+        value: nextMuted,
+      },
+      "*"
+    );
+  };
+
   const handleScrollDown = () => {
     const nextSection = document.getElementById("sourcing");
     if (nextSection) {
@@ -28,9 +52,10 @@ export default function LOrientalisPage() {
           className="relative w-full overflow-hidden"
           style={{ position: "relative", paddingTop: "56.25%" }}
         >
-          {/* Cloudflare Stream Video Iframe */}
+          {/* Cloudflare Stream Video Iframe - Autoplay, Muted, Loop */}
           <iframe
-            src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/646c1e22d36d5dc9459d4080ac0e4508/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F646c1e22d36d5dc9459d4080ac0e4508%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+            ref={iframeRef}
+            src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/646c1e22d36d5dc9459d4080ac0e4508/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F646c1e22d36d5dc9459d4080ac0e4508%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&autoplay=true&muted=true&loop=true&controls=false&preload=auto"
             loading="lazy"
             style={{
               border: "none",
@@ -183,11 +208,58 @@ export default function LOrientalisPage() {
                 </div>
               </button>
 
-              {/* Balance spacer for 3-column bottom flex */}
-              <div
-                className="w-[18vw] hidden md:block pointer-events-none"
-                aria-hidden="true"
-              />
+              {/* Bottom Right: Sound Toggle (Muted by default) */}
+              <button
+                type="button"
+                onClick={toggleSound}
+                className="pointer-events-auto cursor-pointer group flex items-center justify-end gap-[0.556vw] text-white/60 hover:text-white transition-colors duration-200 select-none focus:outline-none w-[18vw]"
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              >
+                {isMuted ? (
+                  <svg
+                    className="w-[1.25vw] h-[1.25vw] transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-[1.25vw] h-[1.25vw] transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                    />
+                  </svg>
+                )}
+                <span
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontSize: "0.833vw", // 12px at 1440px
+                    fontWeight: 500,
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {isMuted ? "Sound Off" : "Sound On"}
+                </span>
+              </button>
             </div>
           </div>
         </div>
