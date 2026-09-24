@@ -2,8 +2,16 @@
 
 import React, { useRef, useState } from "react";
 import Script from "next/script";
+import Image from "next/image";
 import Link from "next/link";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
+
+interface StreamPlayer {
+  muted?: boolean;
+  play?: () => Promise<void>;
+  pause?: () => void;
+  currentTime?: number;
+}
 
 export default function LOrientalisPage() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -13,9 +21,16 @@ export default function LOrientalisPage() {
     const nextMuted = !isMuted;
     setIsMuted(nextMuted);
 
-    if (typeof window !== "undefined" && (window as any).Stream && iframeRef.current) {
+    if (
+      typeof window !== "undefined" &&
+      (window as unknown as { Stream?: (el: HTMLIFrameElement) => StreamPlayer }).Stream &&
+      iframeRef.current
+    ) {
       try {
-        const player = (window as any).Stream(iframeRef.current);
+        const streamFn = (
+          window as unknown as { Stream: (el: HTMLIFrameElement) => StreamPlayer }
+        ).Stream;
+        const player = streamFn(iframeRef.current);
         player.muted = nextMuted;
       } catch {}
     }
@@ -130,89 +145,20 @@ export default function LOrientalisPage() {
               </div>
             </div>
 
-            {/* BOTTOM AREA: Growing Regions + Center Scroll Arch */}
+            {/* BOTTOM AREA: Sound Toggle (Left) + The Growing Regions (Right) */}
             <div
-              className="relative w-full flex items-end justify-between"
+              className="relative w-full flex items-end justify-between pointer-events-none"
               style={{
                 paddingLeft: "2.778vw", // 40px at 1440px
                 paddingRight: "2.778vw", // 40px at 1440px
-                paddingBottom: "2.778vw", // 40px at 1440px
+                paddingBottom: "0px",
               }}
             >
-              {/* Bottom Left: The Growing Regions Above The Tropic Of Cancer */}
-              <div
-                className="flex flex-col select-none"
-                style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontWeight: 400,
-                  fontSize: "1.25vw", // 18px at 1440px
-                  lineHeight: "135%",
-                  letterSpacing: "0%",
-                  color: "#FFFFFF",
-                }}
-              >
-                <span>The Growing Regions</span>
-                <span>Above The Tropic Of Cancer</span>
-              </div>
-
-              {/* Bottom Center: Scroll Semi-Circle Arch */}
-              <button
-                type="button"
-                onClick={handleScrollDown}
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-auto cursor-pointer group flex flex-col items-center justify-end focus:outline-none"
-                style={{
-                  width: "16.667vw", // 240px at 1440px
-                  height: "8.333vw", // 120px at 1440px
-                }}
-                aria-label="Scroll down"
-              >
-                {/* Semi-Circle Border Line */}
-                <div
-                  className="absolute inset-0 rounded-t-full border-t border-l border-r border-white/20 transition-colors duration-300 group-hover:border-white/50"
-                  style={{
-                    borderBottom: "none",
-                  }}
-                />
-
-                {/* Chevron + Scroll text */}
-                <div className="relative z-10 flex flex-col items-center pb-[1.25vw] transition-transform duration-300 group-hover:translate-y-1">
-                  <svg
-                    className="text-white/70 group-hover:text-white transition-colors duration-200 mb-[0.347vw]"
-                    style={{
-                      width: "1.111vw", // 16px at 1440px
-                      height: "1.111vw",
-                    }}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                  <span
-                    className="text-white/60 group-hover:text-white transition-colors duration-200"
-                    style={{
-                      fontFamily: "var(--font-manrope), sans-serif",
-                      fontSize: "0.833vw", // 12px at 1440px
-                      fontWeight: 500,
-                      lineHeight: "100%",
-                      letterSpacing: "0.06em",
-                    }}
-                  >
-                    Scroll
-                  </span>
-                </div>
-              </button>
-
-              {/* Bottom Right: Sound Toggle (Muted by default) */}
+              {/* Bottom Left: Sound Toggle (Muted by default) */}
               <button
                 type="button"
                 onClick={toggleSound}
-                className="pointer-events-auto cursor-pointer group flex items-center justify-end gap-[0.556vw] text-white/60 hover:text-white transition-colors duration-200 select-none focus:outline-none w-[18vw]"
+                className="pointer-events-auto cursor-pointer group flex items-center justify-start gap-[0.556vw] text-white/60 hover:text-white transition-colors duration-200 select-none focus:outline-none w-[18vw]"
                 aria-label={isMuted ? "Unmute video" : "Mute video"}
               >
                 {isMuted ? (
@@ -260,10 +206,64 @@ export default function LOrientalisPage() {
                   {isMuted ? "Sound Off" : "Sound On"}
                 </span>
               </button>
+
+              {/* Bottom Right: The Growing Regions Above The Tropic Of Cancer */}
+              <div
+                className="flex flex-col text-right select-none pointer-events-auto"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  lineHeight: "130%",
+                  letterSpacing: "0%",
+                  color: "#FFFFFF",
+                }}
+              >
+                <span>The Growing Regions</span>
+                <span>Above The Tropic Of Cancer</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* GRADIENT SECTION UNDER HERO */}
+      <div
+        className="relative w-full flex items-center justify-center pointer-events-none z-20"
+        style={{
+          width: "100%",
+          height: "calc(214px + 46.8px)",
+          marginTop: "-46.8px",
+          background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 70.44%)",
+        }}
+      >
+        <button
+          type="button"
+          onClick={handleScrollDown}
+          className="pointer-events-auto cursor-pointer focus:outline-none transition-transform duration-300 hover:scale-105 active:scale-95"
+          style={{
+            width: "214px",
+            height: "214px",
+          }}
+          aria-label="Scroll down"
+        >
+          <Image
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d6afe7e6-daff-4bb6-60ef-d53bd6a88e00/public"
+            alt="Scroll down"
+            width={214}
+            height={214}
+            priority
+            unoptimized
+            className="w-[214px] h-[214px] object-contain select-none pointer-events-none animate-scroll-oscillate"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(180deg, #000000 0%, #000000 50%, transparent 50%, transparent 100%)",
+              maskImage:
+                "linear-gradient(180deg, #000000 0%, #000000 50%, transparent 50%, transparent 100%)",
+            }}
+          />
+        </button>
+      </div>
 
       {/* SOURCING & BOTANICALS STORY SECTION */}
       <section

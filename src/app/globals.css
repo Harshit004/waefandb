@@ -66,3 +66,17 @@ body {
   animation: text-shimmer 2.5s ease-in-out infinite alternate;
 }
 
+@keyframes scroll-oscillate {
+  0%, 100% {
+    transform: translateY(-10%);
+  }
+  50% {
+    transform: translateY(10%);
+  }
+}
+
+.animate-scroll-oscillate {
+  animation: scroll-oscillate 2.5s ease-in-out infinite;
+  will-change: transform;
+}
+
