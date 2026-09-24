@@ -168,9 +168,9 @@ export default function LOrientalisPage() {
             className="w-[214px] h-[214px] object-contain select-none pointer-events-none animate-scroll-oscillate"
             style={{
               WebkitMaskImage:
-                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%)",
+                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%)",
               maskImage:
-                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%)",
+                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%)",
             }}
           />
         </button>
