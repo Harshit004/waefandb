@@ -6,44 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 
-interface StreamPlayer {
-  muted?: boolean;
-  play?: () => Promise<void>;
-  pause?: () => void;
-  currentTime?: number;
-}
-
 export default function LOrientalisPage() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
-  const [isMuted, setIsMuted] = useState(true);
-
-  const toggleSound = () => {
-    const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
-
-    if (
-      typeof window !== "undefined" &&
-      (window as unknown as { Stream?: (el: HTMLIFrameElement) => StreamPlayer }).Stream &&
-      iframeRef.current
-    ) {
-      try {
-        const streamFn = (
-          window as unknown as { Stream: (el: HTMLIFrameElement) => StreamPlayer }
-        ).Stream;
-        const player = streamFn(iframeRef.current);
-        player.muted = nextMuted;
-      } catch {}
-    }
-
-    iframeRef.current?.contentWindow?.postMessage(
-      {
-        __privateUnstableMessageType: "setProperty",
-        property: "muted",
-        value: nextMuted,
-      },
-      "*"
-    );
-  };
 
   const handleScrollDown = () => {
     const nextSection = document.getElementById("sourcing");
@@ -145,71 +109,18 @@ export default function LOrientalisPage() {
               </div>
             </div>
 
-            {/* BOTTOM AREA: Sound Toggle (Left) + The Growing Regions (Right) */}
+            {/* BOTTOM AREA: The Growing Regions (Left Bottom) */}
             <div
-              className="relative w-full flex items-end justify-between pointer-events-none"
+              className="relative w-full flex items-end justify-start pointer-events-none"
               style={{
                 paddingLeft: "2.778vw", // 40px at 1440px
                 paddingRight: "2.778vw", // 40px at 1440px
                 paddingBottom: "0px",
               }}
             >
-              {/* Bottom Left: Sound Toggle (Muted by default) */}
-              <button
-                type="button"
-                onClick={toggleSound}
-                className="pointer-events-auto cursor-pointer group flex items-center justify-start gap-[0.556vw] text-white/60 hover:text-white transition-colors duration-200 select-none focus:outline-none w-[18vw]"
-                aria-label={isMuted ? "Unmute video" : "Mute video"}
-              >
-                {isMuted ? (
-                  <svg
-                    className="w-[1.25vw] h-[1.25vw] transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.75"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="w-[1.25vw] h-[1.25vw] transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.75"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                    />
-                  </svg>
-                )}
-                <span
-                  style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontSize: "0.833vw", // 12px at 1440px
-                    fontWeight: 500,
-                    letterSpacing: "0.04em",
-                  }}
-                >
-                  {isMuted ? "Sound Off" : "Sound On"}
-                </span>
-              </button>
-
-              {/* Bottom Right: The Growing Regions Above The Tropic Of Cancer */}
+              {/* Bottom Left: The Growing Regions Above The Tropic Of Cancer */}
               <div
-                className="flex flex-col text-right select-none pointer-events-auto"
+                className="flex flex-col text-left select-none pointer-events-auto"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 500,
@@ -229,10 +140,10 @@ export default function LOrientalisPage() {
 
       {/* GRADIENT SECTION UNDER HERO */}
       <div
-        className="relative w-full flex items-center justify-center pointer-events-none z-20"
+        className="relative w-full flex items-center justify-center z-20"
         style={{
           width: "100%",
-          height: "calc(214px + 46.8px)",
+          height: "calc(214px + 46.8px + 42.8px)",
           marginTop: "-46.8px",
           background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 70.44%)",
         }}
@@ -240,7 +151,7 @@ export default function LOrientalisPage() {
         <button
           type="button"
           onClick={handleScrollDown}
-          className="pointer-events-auto cursor-pointer focus:outline-none transition-transform duration-300 hover:scale-105 active:scale-95"
+          className="relative z-10 pointer-events-auto cursor-pointer focus:outline-none transition-transform duration-300 hover:scale-105 active:scale-95"
           style={{
             width: "214px",
             height: "214px",
@@ -257,12 +168,20 @@ export default function LOrientalisPage() {
             className="w-[214px] h-[214px] object-contain select-none pointer-events-none animate-scroll-oscillate"
             style={{
               WebkitMaskImage:
-                "linear-gradient(180deg, #000000 0%, #000000 50%, transparent 50%, transparent 100%)",
+                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%)",
               maskImage:
-                "linear-gradient(180deg, #000000 0%, #000000 50%, transparent 50%, transparent 100%)",
+                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%)",
             }}
           />
         </button>
+
+        {/* Overlaying gradient of black covering all of the oscillating area */}
+        <div
+          className="absolute inset-0 pointer-events-none z-20"
+          style={{
+            background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 70.44%)",
+          }}
+        />
       </div>
 
       {/* SOURCING & BOTANICALS STORY SECTION */}
