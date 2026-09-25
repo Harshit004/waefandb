@@ -568,7 +568,7 @@ export default function LOrientalisPage() {
           paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
           paddingRight: "2.778vw", // 40px at 1440px - consistent across page
           paddingTop: "106px", // 106px below the previous section
-          paddingBottom: "clamp(60px, 6.944vw, 100px)",
+          paddingBottom: "0px",
         }}
       >
         {/* ROW: LEFT VERTICALLY CENTERED CONTENT + RIGHT IMAGE (542x492) */}
@@ -663,6 +663,142 @@ export default function LOrientalisPage() {
               priority
               unoptimized
               className="w-full h-full object-cover select-none"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* THE GROWING CONDITIONS SECTION */}
+      <section
+        id="conditions"
+        className="relative w-full bg-black text-white overflow-hidden"
+        style={{
+          paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
+          paddingRight: "2.778vw", // 40px at 1440px - consistent across page
+          paddingTop: "140px", // 140px below previous section
+          paddingBottom: "clamp(60px, 6.944vw, 100px)",
+        }}
+      >
+        {/* SECTION HEADER: The Growing Conditions. (Text align right) */}
+        <div className="w-full flex justify-end">
+          <h2
+            style={{
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+              fontSize: "clamp(32px, 3.333vw, 48px)", // 48px at 1440px
+              lineHeight: "100%",
+              letterSpacing: "0%",
+              textAlign: "right",
+            }}
+          >
+            <span className="text-[#717171]">The </span>
+            <span className="text-white">Growing </span>
+            <span className="text-[#717171]">Conditions.</span>
+          </h2>
+        </div>
+
+        {/* 82px GAP */}
+        <div className="w-full h-[50px] md:h-[82px]" />
+
+        {/* 4-COLUMN IMAGE GRID (8px gap in between) */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[21fr_29fr_28fr_22fr] gap-[8px] items-stretch">
+          {/* COLUMN 1 */}
+          <div className="flex flex-col justify-between h-auto lg:h-[720px]">
+            {/* 1st image from left */}
+            <div className="relative w-full h-[320px] lg:h-[450px] overflow-hidden shrink-0">
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/be887867-48d0-4ce7-e871-5602ab391a00/public"
+                alt="Growing region atmospheric landscape"
+                fill
+                priority
+                unoptimized
+                className="object-cover select-none"
+              />
+            </div>
+
+            {/* Bottom text block */}
+            <div className="flex flex-col justify-between flex-1 pt-6 pb-1">
+              <h3
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(32px, 3.333vw, 48px)", // 48px at 1440px
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  color: "#FFFFFF",
+                }}
+              >
+                26°N 92°E
+              </h3>
+
+              <p
+                className="mt-6 lg:mt-0 text-white"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "14px",
+                  lineHeight: "24px",
+                  letterSpacing: "0%",
+                  verticalAlign: "bottom",
+                }}
+              >
+                The precise conditions where tea &amp; coffee thrive. .
+              </p>
+            </div>
+          </div>
+
+          {/* COLUMN 2 */}
+          <div className="relative w-full h-[480px] lg:h-[720px] overflow-hidden">
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/46f1a3e2-7611-4f35-e5c4-5b144f98aa00/public"
+              alt="Ripening coffee cherries on branch"
+              fill
+              priority
+              unoptimized
+              className="object-cover select-none"
+            />
+          </div>
+
+          {/* COLUMN 3 */}
+          <div className="flex flex-col justify-start h-auto lg:h-[720px]">
+            {/* 3rd image */}
+            <div className="relative w-full h-[380px] lg:h-[540px] overflow-hidden shrink-0">
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/c4dba0b5-c106-48c2-fa18-22e979ede500/public"
+                alt="Ripening botanicals branch"
+                fill
+                priority
+                unoptimized
+                className="object-cover select-none"
+              />
+            </div>
+
+            {/* Description below 3rd image */}
+            <p
+              className="mt-4 lg:mt-6 text-white"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "24px",
+                letterSpacing: "0%",
+                verticalAlign: "bottom",
+              }}
+            >
+              The eastern tea-growing corridor is one of the most complex and
+              nuanced environments for Camellia sinensis.
+            </p>
+          </div>
+
+          {/* COLUMN 4 */}
+          <div className="relative w-full h-[480px] lg:h-[720px] overflow-hidden">
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/31bed202-ecaa-478d-4275-033a8dcbda00/public"
+              alt="Tea foliage in morning mist"
+              fill
+              priority
+              unoptimized
+              className="object-cover select-none"
             />
           </div>
         </div>
