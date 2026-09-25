@@ -307,7 +307,7 @@ export default function LOrientalisPage() {
           paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
           paddingRight: "2.778vw", // 40px at 1440px - consistent across page
           paddingTop: "clamp(60px, 6.944vw, 100px)",
-          paddingBottom: "clamp(60px, 6.944vw, 100px)",
+          paddingBottom: "0px",
         }}
       >
         {/* TOP ROW: LEFT IMAGE (542x492) + RIGHT VERTICALLY CENTERED CONTENT */}
@@ -368,7 +368,7 @@ export default function LOrientalisPage() {
               </span>
             </div>
 
-            {/* Paragraph & Read more */}
+            {/* Paragraph & Read more without underline */}
             <p
               className="mt-8 md:mt-10 text-white"
               style={{
@@ -387,7 +387,7 @@ export default function LOrientalisPage() {
               origin stories stop at geography.{" "}
               <button
                 type="button"
-                className="inline font-semibold text-[#7CC055] underline hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
+                className="inline font-semibold text-[#7CC055] hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 600,
@@ -397,8 +397,6 @@ export default function LOrientalisPage() {
                   textAlign: "justify",
                   verticalAlign: "bottom",
                   textTransform: "capitalize",
-                  textDecoration: "underline",
-                  textDecorationStyle: "solid",
                   color: "#7CC055",
                 }}
               >
@@ -558,6 +556,114 @@ export default function LOrientalisPage() {
                 Fidelity
               </span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TEA: BORN IN THE EASTERN TEA BELT SECTION */}
+      <section
+        id="tea"
+        className="relative w-full bg-black text-white overflow-hidden"
+        style={{
+          paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
+          paddingRight: "2.778vw", // 40px at 1440px - consistent across page
+          paddingTop: "106px", // 106px below the previous section
+          paddingBottom: "clamp(60px, 6.944vw, 100px)",
+        }}
+      >
+        {/* ROW: LEFT VERTICALLY CENTERED CONTENT + RIGHT IMAGE (542x492) */}
+        <div className="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-[60px] xl:gap-[80px]">
+          {/* Left Content: Vertically centered relative to the image */}
+          <div className="flex flex-col justify-center flex-1 w-full max-w-[650px] lg:max-w-none">
+            {/* TEA label on left and Headline on right */}
+            <div className="flex items-start justify-between gap-6 w-full">
+              <span
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "left",
+                  color: "#FFFFFF",
+                }}
+                className="shrink-0 mt-1 select-none uppercase tracking-wider"
+              >
+                TEA
+              </span>
+
+              <h3
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(32px, 3.472vw, 50px)", // 50px at 1440px
+                  lineHeight: "clamp(38px, 4.028vw, 58px)", // 58px at 1440px
+                  letterSpacing: "0%",
+                  textAlign: "right",
+                  color: "#FFFFFF",
+                }}
+                className="text-right"
+              >
+                Born in the
+                <br />
+                Eastern Tea Belt
+              </h3>
+            </div>
+
+            {/* Paragraph & Read more without underline */}
+            <p
+              className="mt-8 md:mt-10 text-white"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "24px",
+                letterSpacing: "0%",
+                textAlign: "justify",
+                verticalAlign: "bottom",
+              }}
+            >
+              The eastern tea-growing corridor is one of the most complex and
+              nuanced environments for Camellia sinensis — fog-fed mornings,
+              sharp diurnal shifts, and soil chemistry that few other regions can
+              replicate.{" "}
+              <button
+                type="button"
+                className="inline font-semibold text-[#7CC055] hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  lineHeight: "24px",
+                  letterSpacing: "0%",
+                  textAlign: "justify",
+                  verticalAlign: "bottom",
+                  textTransform: "capitalize",
+                  color: "#7CC055",
+                }}
+              >
+                Read more
+              </button>
+            </p>
+          </div>
+
+          {/* Right Image: 542px x 492px */}
+          <div
+            className="relative w-full max-w-[542px] overflow-hidden shrink-0"
+            style={{
+              aspectRatio: "542 / 492",
+              maxHeight: "492px",
+            }}
+          >
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/db504952-404c-4e2a-b53b-ca641c861b00/public"
+              alt="Born in the Eastern Tea Belt"
+              width={542}
+              height={492}
+              priority
+              unoptimized
+              className="w-full h-full object-cover select-none"
+            />
           </div>
         </div>
       </section>
