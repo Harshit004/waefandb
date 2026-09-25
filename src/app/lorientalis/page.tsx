@@ -48,22 +48,22 @@ export default function LOrientalisPage() {
             allowFullScreen
           />
 
-          {/* Subtle Top & Bottom Cinematic Gradient for Readability */}
+          {/* Subtle Top Cinematic Gradient for Header/Title Readability */}
           <div
             className="absolute inset-0 pointer-events-none z-10"
             style={{
               background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.55) 100%)",
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 0) 100%)",
             }}
           />
 
-          {/* Bottom portion behind text: solid black with 30px gradual gradient above it */}
+          {/* Bottom portion behind text: black 60% opacity with 30px gradual gradient above it */}
           <div
             className="absolute inset-x-0 bottom-0 pointer-events-none z-10"
             style={{
               height: "calc(46.8px + 30px)",
               background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0) 0px, #000000 30px, #000000 100%)",
+                "linear-gradient(180deg, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0.6) 30px, rgba(0, 0, 0, 0.6) 100%)",
             }}
           />
 
