@@ -57,6 +57,16 @@ export default function LOrientalisPage() {
             }}
           />
 
+          {/* Bottom portion behind text: solid black with 30px gradual gradient above it */}
+          <div
+            className="absolute inset-x-0 bottom-0 pointer-events-none z-10"
+            style={{
+              height: "calc(46.8px + 30px)",
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0) 0px, #000000 30px, #000000 100%)",
+            }}
+          />
+
           {/* HERO OVERLAY CONTENT */}
           <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-between">
             {/* TOP AREA: Header + 96px Gap + Titles */}
