@@ -60,9 +60,6 @@ export default function LOrientalisPage() {
             }}
           />
 
-          {/* Custom Header overlay placed directly over hero video */}
-          <LOrientalisHeader />
-
           {/* GRADUAL GRADIENT & 60% BLACK BACKDROP FOR HERO BOTTOM TEXT */}
           <div
             className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
@@ -74,17 +71,21 @@ export default function LOrientalisPage() {
           />
 
           {/* HERO OVERLAY CONTENT */}
-          <div className="absolute inset-0 flex flex-col justify-between z-10 pointer-events-none">
-            {/* TOP AREA: Header spacer + Beverage Botanicals Title */}
-            <div
-              className="relative w-full"
-              style={{
-                paddingTop: "clamp(60px, 5.556vw, 80px)",
-                paddingLeft: "2.778vw", // 40px at 1440px
-                paddingRight: "2.778vw", // 40px at 1440px
-              }}
-            >
-              <div className="flex items-baseline justify-between w-full">
+          <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-between">
+            {/* TOP AREA: Header + 96px Gap + Titles */}
+            <div className="w-full flex flex-col">
+              {/* Lorientalis Header (53px from top, px-40px) */}
+              <LOrientalisHeader />
+
+              {/* 96px below header (96 / 1440 * 100vw = 6.667vw) */}
+              <div
+                className="w-full flex items-end justify-between"
+                style={{
+                  marginTop: "6.667vw", // 96px at 1440px
+                  paddingLeft: "2.778vw", // 40px at 1440px
+                  paddingRight: "2.778vw", // 40px at 1440px
+                }}
+              >
                 {/* Beverage Botanicals */}
                 <h1
                   className="select-none"
