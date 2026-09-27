@@ -39,6 +39,85 @@ const FARMER_STORIES = [
 const FARMERS_INTRO_IMAGE =
   "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d619873b-8dc9-4d33-383b-ab43e5558800/public";
 
+function getSlideVerticalStyles(t: number) {
+  const progress = Math.min(Math.max(t, 0), 1);
+
+  // --- TEXT 1 ---
+  // Starts from bottom, rises into mid-position, then gets pushed up off top by Image
+  let text1Y = 0;
+  let text1Opacity = 0;
+
+  if (progress < 0.15) {
+    const p = Math.max(0, progress / 0.15);
+    text1Opacity = p;
+    text1Y = 240 - p * 60; // 240px -> 180px
+  } else if (progress < 0.40) {
+    const p = (progress - 0.15) / 0.25;
+    text1Opacity = 1;
+    text1Y = 180 - p * 160; // 180px -> 20px
+  } else if (progress < 0.65) {
+    const p = (progress - 0.40) / 0.25;
+    text1Opacity = Math.max(0, 1 - p * 1.5);
+    text1Y = 20 - p * 90; // 20px -> -70px (pushed off top)
+  } else {
+    text1Opacity = 0;
+    text1Y = -70;
+  }
+
+  // --- SECONDARY IMAGE (3rd, 5th, last image) ---
+  // Starts below, appears underneath Text 1 at 85px, then moves up to 20px (pushing Text 1 out)
+  let imageY = 0;
+  let imageOpacity = 0;
+
+  if (progress < 0.15) {
+    imageOpacity = 0;
+    imageY = 380;
+  } else if (progress < 0.40) {
+    const p = (progress - 0.15) / 0.25;
+    imageOpacity = p;
+    imageY = 380 - p * 295; // 380px -> 85px
+  } else if (progress < 0.65) {
+    const p = (progress - 0.40) / 0.25;
+    imageOpacity = 1;
+    imageY = 85 - p * 65; // 85px -> 20px
+  } else {
+    imageOpacity = 1;
+    imageY = 20;
+  }
+
+  // --- TEXT 2 ---
+  // Slides in from bottom underneath the image to 316px
+  let text2Y = 0;
+  let text2Opacity = 0;
+
+  if (progress < 0.60) {
+    text2Opacity = 0;
+    text2Y = 440;
+  } else if (progress < 0.85) {
+    const p = (progress - 0.60) / 0.25;
+    text2Opacity = p;
+    text2Y = 440 - p * 124; // 440px -> 316px
+  } else {
+    text2Opacity = 1;
+    text2Y = 316;
+  }
+
+  return {
+    text1: {
+      transform: `translate3d(0, ${text1Y.toFixed(1)}px, 0)`,
+      opacity: text1Opacity,
+    },
+    image: {
+      transform: `translate3d(0, ${imageY.toFixed(1)}px, 0)`,
+      opacity: imageOpacity,
+    },
+    text2: {
+      transform: `translate3d(0, ${text2Y.toFixed(1)}px, 0)`,
+      opacity: text2Opacity,
+    },
+  };
+}
+
 export default function LOrientalisPage() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const carouselContainerRef = useRef<HTMLDivElement | null>(null);
@@ -92,16 +171,64 @@ export default function LOrientalisPage() {
     };
   }, []);
 
-  const introPhase = Math.min(scrollProgress / 0.16, 1);
+  const introPhase = Math.min(scrollProgress / 0.14, 1);
   const introScale = 0.65 + introPhase * 0.35;
   const introTextShift = introPhase * 240;
 
-  const horizontalPhase =
-    scrollProgress > 0.16 ? (scrollProgress - 0.16) / 0.84 : 0;
-  const trackTranslateX = horizontalPhase * 300;
+  // Track translation and individual slide choreography timers:
+  let trackTranslateX = 0;
+  let t0 = 0;
+  let t1 = 0;
+  let t2 = 0;
+
+  if (scrollProgress < 0.14) {
+    trackTranslateX = 0;
+    t0 = 0;
+    t1 = 0;
+    t2 = 0;
+  } else if (scrollProgress < 0.20) {
+    // Transition Slide 1 -> Slide 2 (0vw to 100vw)
+    const p = (scrollProgress - 0.14) / 0.06;
+    trackTranslateX = p * 100;
+    t0 = 0;
+    t1 = 0;
+    t2 = 0;
+  } else if (scrollProgress < 0.42) {
+    // Slide 2 Dwell & Story 1 Vertical Animation (Image 3)
+    trackTranslateX = 100;
+    t0 = (scrollProgress - 0.20) / 0.22;
+    t1 = 0;
+    t2 = 0;
+  } else if (scrollProgress < 0.48) {
+    // Transition Slide 2 -> Slide 3 (100vw to 200vw)
+    const p = (scrollProgress - 0.42) / 0.06;
+    trackTranslateX = 100 + p * 100;
+    t0 = 1;
+    t1 = 0;
+    t2 = 0;
+  } else if (scrollProgress < 0.70) {
+    // Slide 3 Dwell & Story 2 Vertical Animation (Image 5)
+    trackTranslateX = 200;
+    t0 = 1;
+    t1 = (scrollProgress - 0.48) / 0.22;
+    t2 = 0;
+  } else if (scrollProgress < 0.76) {
+    // Transition Slide 3 -> Slide 4 (200vw to 300vw)
+    const p = (scrollProgress - 0.70) / 0.06;
+    trackTranslateX = 200 + p * 100;
+    t0 = 1;
+    t1 = 1;
+    t2 = 0;
+  } else {
+    // Slide 4 Dwell & Story 3 Vertical Animation (Image 7 / last image)
+    trackTranslateX = 300;
+    t0 = 1;
+    t1 = 1;
+    t2 = Math.min((scrollProgress - 0.76) / 0.22, 1);
+  }
 
   const activeStoryIndex =
-    horizontalPhase < 0.38 ? 0 : horizontalPhase < 0.72 ? 1 : 2;
+    scrollProgress < 0.45 ? 0 : scrollProgress < 0.73 ? 1 : 2;
 
   const scrollToStory = (index: number) => {
     if (!carouselContainerRef.current) return;
@@ -111,8 +238,7 @@ export default function LOrientalisPage() {
       carouselContainerRef.current.offsetHeight - windowHeight;
     const containerTopOnPage = window.scrollY + rect.top;
 
-    const targetHori = [0.33, 0.66, 1.0][index];
-    const targetProgress = 0.16 + targetHori * 0.84;
+    const targetProgress = [0.20, 0.48, 0.76][index];
     const targetScrollY =
       containerTopOnPage + targetProgress * totalScrollDistance;
     window.scrollTo({ top: targetScrollY, behavior: "smooth" });
@@ -1109,19 +1235,21 @@ export default function LOrientalisPage() {
             </div>
 
             {/* SLIDES 2, 3, 4: FARMER STORIES */}
-            {FARMER_STORIES.map((story) => {
+            {FARMER_STORIES.map((story, sIdx) => {
+              const t = sIdx === 0 ? t0 : sIdx === 1 ? t1 : t2;
+              const anim = getSlideVerticalStyles(t);
               return (
                 <div
                   key={story.id}
-                  className="w-screen shrink-0 h-full flex items-center"
+                  className="w-screen shrink-0 h-full flex items-center justify-center overflow-hidden"
                   style={{
                     paddingLeft: "2.778vw",
                     paddingRight: "2.778vw",
                   }}
                 >
-                  <div className="w-full h-[72vh] lg:h-[768px] max-h-[768px] flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
-                    {/* LEFT COLUMN: Main Image (60% width) */}
-                    <div className="relative w-full lg:w-[60%] h-[380px] lg:h-full overflow-hidden shrink-0">
+                  <div className="w-full max-w-[1360px] h-[min(600px,78vh)] flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-12 my-auto">
+                    {/* LEFT COLUMN: Main Image (58% width) */}
+                    <div className="relative w-full lg:w-[58%] h-[320px] sm:h-[400px] lg:h-full max-h-[600px] overflow-hidden shrink-0 rounded-[2px]">
                       <Image
                         src={story.mainImage}
                         alt={story.altMain}
@@ -1159,52 +1287,76 @@ export default function LOrientalisPage() {
                       </div>
                     </div>
 
-                    {/* RIGHT COLUMN: 40% width (Top Text, Secondary Image, Bottom Text) */}
-                    <div className="relative w-full lg:w-[40%] flex flex-col justify-between py-2 lg:py-6 pl-0 lg:pl-6">
-                      {/* Top text */}
-                      <p
-                        className="text-white select-none"
-                        style={{
-                          fontFamily: "var(--font-manrope), sans-serif",
-                          fontWeight: 400,
-                          fontSize: "14px",
-                          lineHeight: "24px",
-                          letterSpacing: "0%",
-                          textAlign: "right",
-                          verticalAlign: "middle",
-                        }}
-                      >
-                        The eastern tea-growing corridor is one of the most
-                        complex and nuanced environments.
-                      </p>
+                    {/* RIGHT COLUMN: 40% width (Choreographed Vertical Sequence for 3rd, 5th, and last images) */}
+                    <div className="relative w-full lg:w-[40%] h-[440px] lg:h-full max-h-[600px] flex items-center justify-end pr-2 lg:pr-6 shrink-0">
+                      <div className="relative w-full max-w-[340px] h-[460px] lg:h-[480px] overflow-hidden">
+                        {/* Small Text 1 */}
+                        <div
+                          style={{
+                            transform: anim.text1.transform,
+                            opacity: anim.text1.opacity,
+                            willChange: "transform, opacity",
+                          }}
+                          className="absolute top-0 right-0 w-full pointer-events-none"
+                        >
+                          <p
+                            className="text-white select-none text-right"
+                            style={{
+                              fontFamily: "var(--font-manrope), sans-serif",
+                              fontWeight: 400,
+                              fontSize: "14px",
+                              lineHeight: "24px",
+                              letterSpacing: "0%",
+                            }}
+                          >
+                            The eastern tea-growing corridor is one of the most
+                            complex and nuanced environments.
+                          </p>
+                        </div>
 
-                      {/* Secondary Image: square aspect ratio */}
-                      <div className="relative w-[200px] sm:w-[240px] lg:w-[280px] xl:w-[320px] aspect-square ml-auto my-4 lg:my-auto overflow-hidden">
-                        <Image
-                          src={story.subImage}
-                          alt={story.altSub}
-                          fill
-                          unoptimized
-                          className="object-cover select-none"
-                        />
+                        {/* Secondary Image: square aspect ratio (3rd, 5th, last image) */}
+                        <div
+                          style={{
+                            transform: anim.image.transform,
+                            opacity: anim.image.opacity,
+                            willChange: "transform, opacity",
+                          }}
+                          className="absolute top-0 right-0 w-[240px] sm:w-[260px] lg:w-[280px] aspect-square overflow-hidden rounded-[2px] shadow-2xl"
+                        >
+                          <Image
+                            src={story.subImage}
+                            alt={story.altSub}
+                            fill
+                            unoptimized
+                            className="object-cover select-none"
+                          />
+                        </div>
+
+                        {/* Small Text 2 */}
+                        <div
+                          style={{
+                            transform: anim.text2.transform,
+                            opacity: anim.text2.opacity,
+                            willChange: "transform, opacity",
+                          }}
+                          className="absolute top-0 right-0 w-full pointer-events-none"
+                        >
+                          <p
+                            className="text-white select-none text-right"
+                            style={{
+                              fontFamily: "var(--font-manrope), sans-serif",
+                              fontWeight: 400,
+                              fontSize: "14px",
+                              lineHeight: "24px",
+                              letterSpacing: "0%",
+                            }}
+                          >
+                            The eastern tea-growing corridor is one of the most
+                            complex and nuanced environments for Camellia
+                            sinensis.
+                          </p>
+                        </div>
                       </div>
-
-                      {/* Bottom text */}
-                      <p
-                        className="text-white select-none"
-                        style={{
-                          fontFamily: "var(--font-manrope), sans-serif",
-                          fontWeight: 400,
-                          fontSize: "14px",
-                          lineHeight: "24px",
-                          letterSpacing: "0%",
-                          textAlign: "right",
-                          verticalAlign: "middle",
-                        }}
-                      >
-                        The eastern tea-growing corridor is one of the most
-                        complex and nuanced environments for Camellia sinensis.
-                      </p>
                     </div>
                   </div>
                 </div>
