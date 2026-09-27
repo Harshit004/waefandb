@@ -1372,13 +1372,7 @@ export default function LOrientalisPage() {
             })}
           </div>
 
-          {/* PROGRESS LINE AT BOTTOM OF STICKY CAROUSEL */}
-          <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/10 z-30 pointer-events-none">
-            <div
-              className="h-full bg-white/70 transition-all duration-75 ease-out"
-              style={{ width: `${scrollProgress * 100}%` }}
-            />
-          </div>
+
         </div>
       </section>
 
