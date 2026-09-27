@@ -1,13 +1,107 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Script from "next/script";
 import Image from "next/image";
 import Link from "next/link";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 
+const FARMER_STORIES = [
+  {
+    id: "farmer-1",
+    mainImage:
+      "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/bf664857-908e-4c4f-5b73-e0c73f466a00/public",
+    subImage:
+      "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1e743b2b-96c5-47aa-6e51-d5cfcf479500/public",
+    altMain: "Farmer sorting harvested tea leaves",
+    altSub: "Fresh green tea leaves in bamboo basket",
+  },
+  {
+    id: "farmer-2",
+    mainImage:
+      "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/83d42008-4488-4f9d-16a6-3feb024da200/public",
+    subImage:
+      "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/2af0ab00-9e88-4faf-76bd-9431b0ce5300/public",
+    altMain: "Tea estate workers with bicycles along harvest trail",
+    altSub: "Sunlit vibrant Camellia sinensis foliage",
+  },
+  {
+    id: "farmer-3",
+    mainImage:
+      "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/c9c90188-dd47-418a-e0f3-6c45c6ca8a00/public",
+    subImage:
+      "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d71b371c-884d-42db-40fe-3d35467cf100/public",
+    altMain: "Harvesting tea on steep eastern slope",
+    altSub: "Hands holding freshly harvested coffee cherries",
+  },
+];
+
+const FARMERS_INTRO_IMAGE =
+  "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d619873b-8dc9-4d33-383b-ab43e5558800/public";
+
 export default function LOrientalisPage() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const carouselContainerRef = useRef<HTMLDivElement | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const handleScroll = () => {
+      if (!carouselContainerRef.current) return;
+      const rect = carouselContainerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const totalScrollDistance = rect.height - windowHeight;
+      if (totalScrollDistance <= 0) return;
+
+      const currentScroll = -rect.top;
+      const rawProgress = currentScroll / totalScrollDistance;
+      const clampedProgress = Math.min(Math.max(rawProgress, 0), 1);
+
+      setScrollProgress(clampedProgress);
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  const introPhase = Math.min(scrollProgress / 0.16, 1);
+  const introScale = 0.65 + introPhase * 0.35;
+  const introTextShift = introPhase * 240;
+
+  const horizontalPhase =
+    scrollProgress > 0.16 ? (scrollProgress - 0.16) / 0.84 : 0;
+  const trackTranslateX = horizontalPhase * 300;
+
+  const activeStoryIndex =
+    horizontalPhase < 0.38 ? 0 : horizontalPhase < 0.72 ? 1 : 2;
+
+  const scrollToStory = (index: number) => {
+    if (!carouselContainerRef.current) return;
+    const rect = carouselContainerRef.current.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const totalScrollDistance =
+      carouselContainerRef.current.offsetHeight - windowHeight;
+    const containerTopOnPage = window.scrollY + rect.top;
+
+    const targetHori = [0.33, 0.66, 1.0][index];
+    const targetProgress = 0.16 + targetHori * 0.84;
+    const targetScrollY =
+      containerTopOnPage + targetProgress * totalScrollDistance;
+    window.scrollTo({ top: targetScrollY, behavior: "smooth" });
+  };
 
   const handleScrollDown = () => {
     const nextSection =
@@ -932,6 +1026,181 @@ export default function LOrientalisPage() {
           </div>
         </div>
       </section>
+
+      {/* 140PX GAP ABOVE */}
+      <div className="w-full h-[140px]" />
+
+      {/* FARMERS ANIMATED HORIZONTAL CAROUSEL SECTION */}
+      <section
+        id="farmers"
+        ref={carouselContainerRef}
+        className="relative w-full h-[450vh] bg-black text-white"
+      >
+        <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-black">
+          {/* HORIZONTAL CAROUSEL TRACK */}
+          <div
+            className="flex h-full will-change-transform"
+            style={{
+              width: "400vw",
+              transform: `translateX(-${trackTranslateX}vw)`,
+              transition: "transform 0.08s linear",
+            }}
+          >
+            {/* SLIDE 1: INTRO (FARMERS BIG TEXT + EXPANDING IMAGE) */}
+            <div
+              className="relative w-screen shrink-0 h-full flex items-center justify-center overflow-hidden"
+              style={{
+                paddingLeft: "2.778vw",
+                paddingRight: "2.778vw",
+              }}
+            >
+              {/* BIG TEXT: Farmers */}
+              <div className="absolute top-[8%] lg:top-[12%] left-[2.778vw] z-10 select-none pointer-events-none">
+                <h2
+                  className="text-white whitespace-nowrap"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(64px, 13.88vw, 200px)",
+                    lineHeight: "24px",
+                    letterSpacing: "0%",
+                    verticalAlign: "middle",
+                    transform: `translateX(-${introTextShift}px)`,
+                    transition: "transform 0.05s linear",
+                  }}
+                >
+                  Farmers
+                </h2>
+              </div>
+
+              {/* INTRO IMAGE: EXPANDING FROM CENTER */}
+              <div className="relative w-full max-w-[1158px] h-[60vh] lg:h-[768px] max-h-[768px] mx-auto overflow-hidden flex items-center justify-center">
+                <div
+                  className="relative w-full h-full transition-transform duration-100 ease-out"
+                  style={{
+                    transform: `scale(${introScale})`,
+                  }}
+                >
+                  <Image
+                    src={FARMERS_INTRO_IMAGE}
+                    alt="Farmers harvesting tea in the highlands"
+                    fill
+                    priority
+                    unoptimized
+                    className="object-cover select-none"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* SLIDES 2, 3, 4: FARMER STORIES */}
+            {FARMER_STORIES.map((story) => {
+              return (
+                <div
+                  key={story.id}
+                  className="w-screen shrink-0 h-full flex items-center"
+                  style={{
+                    paddingLeft: "2.778vw",
+                    paddingRight: "2.778vw",
+                  }}
+                >
+                  <div className="w-full h-[72vh] lg:h-[768px] max-h-[768px] flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
+                    {/* LEFT COLUMN: Main Image (60% width) */}
+                    <div className="relative w-full lg:w-[60%] h-[380px] lg:h-full overflow-hidden shrink-0">
+                      <Image
+                        src={story.mainImage}
+                        alt={story.altMain}
+                        fill
+                        unoptimized
+                        className="object-cover select-none"
+                      />
+
+                      {/* 3 THUMBNAILS AT BOTTOM-LEFT */}
+                      <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 flex items-center gap-2.5 z-20">
+                        {FARMER_STORIES.map((thumb, tIdx) => {
+                          const isActive = activeStoryIndex === tIdx;
+                          return (
+                            <button
+                              key={thumb.id}
+                              onClick={() => scrollToStory(tIdx)}
+                              className={`relative w-[36px] h-[44px] lg:w-[46px] lg:h-[54px] overflow-hidden transition-all duration-300 cursor-pointer ${
+                                isActive
+                                  ? "border-2 border-white scale-105 shadow-xl shadow-black/80"
+                                  : "border border-white/40 opacity-70 hover:opacity-100 hover:scale-102"
+                              }`}
+                              aria-label={`Jump to farmer story ${tIdx + 1}`}
+                            >
+                              <Image
+                                src={thumb.mainImage}
+                                alt={`Thumbnail ${tIdx + 1}`}
+                                fill
+                                sizes="54px"
+                                unoptimized
+                                className="object-cover select-none pointer-events-none"
+                              />
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* RIGHT COLUMN: 40% width (Top Text, Secondary Image, Bottom Text) */}
+                    <div className="relative w-full lg:w-[40%] flex flex-col justify-between py-2 lg:py-6 pl-0 lg:pl-6">
+                      {/* Top text */}
+                      <p
+                        className="text-white select-none"
+                        style={{
+                          fontFamily: "var(--font-manrope), sans-serif",
+                          fontWeight: 400,
+                          fontSize: "14px",
+                          lineHeight: "24px",
+                          letterSpacing: "0%",
+                          textAlign: "right",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        The eastern tea-growing corridor is one of the most
+                        complex and nuanced environments.
+                      </p>
+
+                      {/* Secondary Image: square aspect ratio */}
+                      <div className="relative w-[200px] sm:w-[240px] lg:w-[280px] xl:w-[320px] aspect-square ml-auto my-4 lg:my-auto overflow-hidden">
+                        <Image
+                          src={story.subImage}
+                          alt={story.altSub}
+                          fill
+                          unoptimized
+                          className="object-cover select-none"
+                        />
+                      </div>
+
+                      {/* Bottom text */}
+                      <p
+                        className="text-white select-none"
+                        style={{
+                          fontFamily: "var(--font-manrope), sans-serif",
+                          fontWeight: 400,
+                          fontSize: "14px",
+                          lineHeight: "24px",
+                          letterSpacing: "0%",
+                          textAlign: "right",
+                          verticalAlign: "middle",
+                        }}
+                      >
+                        The eastern tea-growing corridor is one of the most
+                        complex and nuanced environments for Camellia sinensis.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 140PX GAP BELOW */}
+      <div className="w-full h-[140px]" />
 
       {/* FOOTER & ENQUIRY SECTION */}
       <section
