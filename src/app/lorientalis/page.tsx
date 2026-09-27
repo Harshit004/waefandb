@@ -5,6 +5,7 @@ import Script from "next/script";
 import Image from "next/image";
 import Link from "next/link";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
+import LOrientalisFooter from "@/components/LOrientalisFooter";
 
 const FARMER_STORIES = [
   {
@@ -1572,83 +1573,8 @@ export default function LOrientalisPage() {
       {/* 140PX GAP BELOW */}
       <div className="w-full h-[140px]" />
 
-      {/* FOOTER & ENQUIRY SECTION */}
-      <section
-        className="relative w-full bg-black text-white"
-        style={{
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
-        }}
-      >
-        {/* Contact / Enquire Section */}
-        <div
-          id="contact"
-          className="w-full flex flex-col md:flex-row items-center justify-between py-[4vw] border-t border-b border-white/10 gap-6"
-        >
-          <div>
-            <h3
-              className="text-white mb-[0.5vw]"
-              style={{
-                fontFamily: "var(--font-monschone), serif",
-                fontSize: "1.806vw", // 26px at 1440px
-                fontWeight: 400,
-              }}
-            >
-              Enquire for Private Allocation
-            </h3>
-            <p
-              className="text-white/60"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "0.972vw", // 14px at 1440px
-              }}
-            >
-              Curated allocations for connoisseurs and bespoke hospitality programs.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-[2vw]">
-            <Link
-              href="/"
-              className="text-white/70 hover:text-white transition-colors duration-200"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "0.972vw",
-              }}
-            >
-              &larr; Back to Home
-            </Link>
-
-            <div
-              className="font-manrope font-bold text-[0.972vw] leading-[1.528vw] tracking-[0%] cursor-pointer group/btn transition-opacity duration-300 hover:opacity-90 select-none px-[1.5vw] py-[0.7vw] rounded-full border border-white/20 bg-white/5"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontWeight: 700,
-                fontSize: "0.972vw",
-              }}
-            >
-              <span className="animate-enquire-shimmer">
-                Enquire now &gt;
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Minimal Footer */}
-        <footer className="w-full pt-[4vw] pb-[2vw] flex flex-col md:flex-row items-center justify-between text-white/40 text-[0.833vw]">
-          <span style={{ fontFamily: "var(--font-manrope), sans-serif" }}>
-            PRÊT À BOIRE · All rights reserved
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-poly), 'Poly', serif",
-              fontStyle: "italic",
-            }}
-          >
-            By WAE
-          </span>
-        </footer>
-      </section>
+      {/* L'ORIENTALIS FOOTER COMPONENT */}
+      <LOrientalisFooter />
     </main>
   );
 }
