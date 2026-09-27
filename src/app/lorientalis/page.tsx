@@ -128,6 +128,10 @@ const BLENDS_OPTIONS = [
 export default function LOrientalisPage() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const carouselContainerRef = useRef<HTMLDivElement | null>(null);
+  const coffeeSectionRef = useRef<HTMLElement | null>(null);
+  const teaSectionRef = useRef<HTMLElement | null>(null);
+  const [coffeeInView, setCoffeeInView] = useState(false);
+  const [teaInView, setTeaInView] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const hasCompletedRef = useRef(false);
   const [hasCompleted, setHasCompleted] = useState(false);
@@ -173,10 +177,35 @@ export default function LOrientalisPage() {
     window.addEventListener("resize", onScroll, { passive: true });
     handleScroll();
 
+    // IntersectionObserver to zoom in 10% when Coffee & Tea sections come on screen and zoom out when leaving
+    const coffeeEl = coffeeSectionRef.current;
+    const teaEl = teaSectionRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === coffeeEl) {
+            setCoffeeInView(entry.isIntersecting);
+          } else if (entry.target === teaEl) {
+            setTeaInView(entry.isIntersecting);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    if (coffeeEl) observer.observe(coffeeEl);
+    if (teaEl) observer.observe(teaEl);
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(animationFrameId);
+      if (coffeeEl) observer.unobserve(coffeeEl);
+      if (teaEl) observer.unobserve(teaEl);
+      observer.disconnect();
     };
   }, []);
 
@@ -546,6 +575,7 @@ export default function LOrientalisPage() {
       {/* COFFEE: GROWN IN THE SHADOW OF THE EASTERN HILLS SECTION */}
       <section
         id="coffee"
+        ref={coffeeSectionRef}
         className="relative w-full bg-black text-white overflow-hidden"
         style={{
           paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
@@ -572,6 +602,11 @@ export default function LOrientalisPage() {
               priority
               unoptimized
               className="w-full h-full object-cover select-none"
+              style={{
+                transform: coffeeInView ? "scale(1.10)" : "scale(1.0)",
+                transition: "transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)",
+                willChange: "transform",
+              }}
             />
           </div>
 
@@ -807,6 +842,7 @@ export default function LOrientalisPage() {
       {/* TEA: BORN IN THE EASTERN TEA BELT SECTION */}
       <section
         id="tea"
+        ref={teaSectionRef}
         className="relative w-full bg-black text-white overflow-hidden"
         style={{
           paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
@@ -907,6 +943,11 @@ export default function LOrientalisPage() {
               priority
               unoptimized
               className="w-full h-full object-cover select-none"
+              style={{
+                transform: teaInView ? "scale(1.10)" : "scale(1.0)",
+                transition: "transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)",
+                willChange: "transform",
+              }}
             />
           </div>
         </div>
