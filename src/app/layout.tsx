@@ -59,9 +59,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} ${monschone.variable} ${judson.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} ${monschone.variable} ${judson.variable} min-h-full overflow-x-clip antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans overflow-x-clip">{children}</body>
     </html>
   );
 }

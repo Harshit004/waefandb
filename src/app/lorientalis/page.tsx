@@ -43,6 +43,8 @@ export default function LOrientalisPage() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const carouselContainerRef = useRef<HTMLDivElement | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const hasCompletedRef = useRef(false);
+  const [hasCompleted, setHasCompleted] = useState(false);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -59,6 +61,19 @@ export default function LOrientalisPage() {
       const clampedProgress = Math.min(Math.max(rawProgress, 0), 1);
 
       setScrollProgress(clampedProgress);
+
+      if (clampedProgress >= 0.98) {
+        hasCompletedRef.current = true;
+        setHasCompleted(true);
+      }
+
+      // Enforce: user cannot go below this section until they have scrolled through the carousel
+      if (!hasCompletedRef.current && currentScroll > totalScrollDistance) {
+        window.scrollTo({
+          top: window.scrollY + rect.top + totalScrollDistance,
+          behavior: "instant",
+        });
+      }
     };
 
     const onScroll = () => {
@@ -113,7 +128,7 @@ export default function LOrientalisPage() {
   };
 
   return (
-    <main className="relative w-full min-h-screen bg-black text-white overflow-x-hidden selection:bg-[#365944] selection:text-white">
+    <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-[#365944] selection:text-white">
       {/* Cloudflare Stream Player SDK */}
       <Script
         src="https://embed.cloudflarestream.com/embed/sdk.latest.js"
@@ -1195,6 +1210,14 @@ export default function LOrientalisPage() {
                 </div>
               );
             })}
+          </div>
+
+          {/* PROGRESS LINE AT BOTTOM OF STICKY CAROUSEL */}
+          <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/10 z-30 pointer-events-none">
+            <div
+              className="h-full bg-white/70 transition-all duration-75 ease-out"
+              style={{ width: `${scrollProgress * 100}%` }}
+            />
           </div>
         </div>
       </section>
