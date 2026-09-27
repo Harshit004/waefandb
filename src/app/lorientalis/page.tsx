@@ -16,6 +16,10 @@ const FARMER_STORIES = [
       "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1e743b2b-96c5-47aa-6e51-d5cfcf479500/public",
     altMain: "Farmer sorting harvested tea leaves",
     altSub: "Fresh green tea leaves in bamboo basket",
+    text1:
+      "We don't procure from this corridor. We partner with the communities who have worked these gardens for generations — whose generational mastery shapes every batch long before it reaches us.",
+    text2:
+      "From precision plucking at dawn to artisanal leaf selection, the hands behind each harvest carry traditions that give every cup its distinct character and origin fidelity.",
   },
   {
     id: "farmer-2",
@@ -25,6 +29,10 @@ const FARMER_STORIES = [
       "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/2af0ab00-9e88-4faf-76bd-9431b0ce5300/public",
     altMain: "Tea estate workers with bicycles along harvest trail",
     altSub: "Sunlit vibrant Camellia sinensis foliage",
+    text1:
+      "Every basket carried down these garden rows represents a relationship, not a transaction. The women who walk these paths at dawn — some on foot, some by bicycle, baskets balanced with practiced ease — are the reason our sourcing model exists at all: built on fair, direct engagement with the communities who grow what we sell.",
+    text2:
+      "This is what community-first procurement looks like in practice — long-term commitments to growers, transparent pricing, and sourcing decisions made with farming communities, not for them.",
   },
   {
     id: "farmer-3",
@@ -34,6 +42,10 @@ const FARMER_STORIES = [
       "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d71b371c-884d-42db-40fe-3d35467cf100/public",
     altMain: "Harvesting tea on steep eastern slope",
     altSub: "Hands holding freshly harvested coffee cherries",
+    text1:
+      "The same hills nurturing tea are now home to a new crop taking root — coffee. Smallholder farmers across the region are diversifying, and in each ripe cherry lies the same story: a community investing in quality, resilience and a future beyond a single harvest.",
+    text2:
+      "Supporting that shift — with fair procurement, consistent demand, and long-term partnership — is how we build a supply chain that grows stronger with the communities it depends on.",
   },
 ];
 
@@ -44,63 +56,55 @@ function getSlideVerticalStyles(t: number) {
   const progress = Math.min(Math.max(t, 0), 1);
 
   // --- TEXT 1 ---
-  // Starts from bottom, rises into mid-position, then gets pushed up off top by Image
+  // Initial state: resting at top position (y: 0px, opacity: 1)
+  // When progress goes from 0.15 to 0.50: Secondary image rises and pushes Text 1 upward off screen
   let text1Y = 0;
-  let text1Opacity = 0;
+  let text1Opacity = 1;
 
   if (progress < 0.15) {
-    const p = Math.max(0, progress / 0.15);
-    text1Opacity = p;
-    text1Y = 240 - p * 60; // 240px -> 180px
-  } else if (progress < 0.40) {
-    const p = (progress - 0.15) / 0.25;
+    text1Y = 0;
     text1Opacity = 1;
-    text1Y = 180 - p * 160; // 180px -> 20px
-  } else if (progress < 0.65) {
-    const p = (progress - 0.40) / 0.25;
-    text1Opacity = Math.max(0, 1 - p * 1.5);
-    text1Y = 20 - p * 90; // 20px -> -70px (pushed off top)
+  } else if (progress < 0.50) {
+    const p = (progress - 0.15) / 0.35;
+    text1Y = -p * 140; // 0px -> -140px (pushed up off top)
+    text1Opacity = Math.max(0, 1 - p * 1.4);
   } else {
+    text1Y = -140;
     text1Opacity = 0;
-    text1Y = -70;
   }
 
   // --- SECONDARY IMAGE (3rd, 5th, last image) ---
-  // Starts below, appears underneath Text 1 at 85px, then moves up to 20px (pushing Text 1 out)
+  // Starts below Text 1 (y: 320px, opacity: 0), then glides up to top position (y: 0px)
   let imageY = 0;
   let imageOpacity = 0;
 
-  if (progress < 0.15) {
+  if (progress < 0.12) {
+    imageY = 320;
     imageOpacity = 0;
-    imageY = 380;
-  } else if (progress < 0.40) {
-    const p = (progress - 0.15) / 0.25;
-    imageOpacity = p;
-    imageY = 380 - p * 295; // 380px -> 85px
-  } else if (progress < 0.65) {
-    const p = (progress - 0.40) / 0.25;
-    imageOpacity = 1;
-    imageY = 85 - p * 65; // 85px -> 20px
+  } else if (progress < 0.50) {
+    const p = (progress - 0.12) / 0.38;
+    imageY = 320 - p * 320; // 320px -> 0px
+    imageOpacity = Math.min(1, p * 2.5);
   } else {
+    imageY = 0;
     imageOpacity = 1;
-    imageY = 20;
   }
 
   // --- TEXT 2 ---
-  // Slides in from bottom underneath the image to 316px
+  // Rises from below the secondary image once image settles near top (progress 0.50 -> 0.85)
   let text2Y = 0;
   let text2Opacity = 0;
 
-  if (progress < 0.60) {
+  if (progress < 0.50) {
+    text2Y = 460;
     text2Opacity = 0;
-    text2Y = 440;
   } else if (progress < 0.85) {
-    const p = (progress - 0.60) / 0.25;
+    const p = (progress - 0.50) / 0.35;
+    text2Y = 460 - p * 156; // 460px -> 304px (below 280px image with 24px gap)
     text2Opacity = p;
-    text2Y = 440 - p * 124; // 440px -> 316px
   } else {
+    text2Y = 304;
     text2Opacity = 1;
-    text2Y = 316;
   }
 
   return {
@@ -185,52 +189,53 @@ export default function LOrientalisPage() {
   const introTextShift = introPhase * 240;
 
   // Track translation and individual slide choreography timers:
-  let trackTranslateX = 0;
+  // Using percentage translation: 0%, 25%, 50%, 75% for 4 slides in a 400% track
+  let trackTranslatePercent = 0;
   let t0 = 0;
   let t1 = 0;
   let t2 = 0;
 
   if (scrollProgress < 0.14) {
-    trackTranslateX = 0;
+    trackTranslatePercent = 0;
     t0 = 0;
     t1 = 0;
     t2 = 0;
   } else if (scrollProgress < 0.20) {
-    // Transition Slide 1 -> Slide 2 (0vw to 100vw)
+    // Transition Slide 0 (Intro) -> Slide 1 (Story 1) (0% to 25%)
     const p = (scrollProgress - 0.14) / 0.06;
-    trackTranslateX = p * 100;
+    trackTranslatePercent = p * 25;
     t0 = 0;
     t1 = 0;
     t2 = 0;
   } else if (scrollProgress < 0.42) {
-    // Slide 2 Dwell & Story 1 Vertical Animation (Image 3)
-    trackTranslateX = 100;
+    // Slide 1 Dwell & Story 1 Vertical Animation (Image 3)
+    trackTranslatePercent = 25;
     t0 = (scrollProgress - 0.20) / 0.22;
     t1 = 0;
     t2 = 0;
   } else if (scrollProgress < 0.48) {
-    // Transition Slide 2 -> Slide 3 (100vw to 200vw)
+    // Transition Slide 1 -> Slide 2 (25% to 50%)
     const p = (scrollProgress - 0.42) / 0.06;
-    trackTranslateX = 100 + p * 100;
+    trackTranslatePercent = 25 + p * 25;
     t0 = 1;
     t1 = 0;
     t2 = 0;
   } else if (scrollProgress < 0.70) {
-    // Slide 3 Dwell & Story 2 Vertical Animation (Image 5)
-    trackTranslateX = 200;
+    // Slide 2 Dwell & Story 2 Vertical Animation (Image 5)
+    trackTranslatePercent = 50;
     t0 = 1;
     t1 = (scrollProgress - 0.48) / 0.22;
     t2 = 0;
   } else if (scrollProgress < 0.76) {
-    // Transition Slide 3 -> Slide 4 (200vw to 300vw)
+    // Transition Slide 2 -> Slide 3 (50% to 75%)
     const p = (scrollProgress - 0.70) / 0.06;
-    trackTranslateX = 200 + p * 100;
+    trackTranslatePercent = 50 + p * 25;
     t0 = 1;
     t1 = 1;
     t2 = 0;
   } else {
-    // Slide 4 Dwell & Story 3 Vertical Animation (Image 7 / last image)
-    trackTranslateX = 300;
+    // Slide 3 Dwell & Story 3 Vertical Animation (Image 7 / last image)
+    trackTranslatePercent = 75;
     t0 = 1;
     t1 = 1;
     t2 = Math.min((scrollProgress - 0.76) / 0.22, 1);
@@ -1231,14 +1236,14 @@ export default function LOrientalisPage() {
           <div
             className="flex h-full will-change-transform"
             style={{
-              width: "400vw",
-              transform: `translateX(-${trackTranslateX}vw)`,
+              width: "400%",
+              transform: `translate3d(-${trackTranslatePercent}%, 0, 0)`,
               transition: "transform 0.08s linear",
             }}
           >
             {/* SLIDE 1: INTRO (FARMERS BIG TEXT + EXPANDING IMAGE) */}
             <div
-              className="relative w-screen shrink-0 h-full flex items-center justify-center overflow-hidden"
+              className="relative w-1/4 shrink-0 h-full flex items-center justify-center overflow-hidden"
               style={{
                 paddingLeft: "2.778vw",
                 paddingRight: "2.778vw",
@@ -1290,15 +1295,15 @@ export default function LOrientalisPage() {
               return (
                 <div
                   key={story.id}
-                  className="w-screen shrink-0 h-full flex items-center justify-center overflow-hidden"
+                  className="w-1/4 shrink-0 h-full flex items-center justify-center overflow-hidden"
                   style={{
                     paddingLeft: "2.778vw",
                     paddingRight: "2.778vw",
                   }}
                 >
-                  <div className="w-full max-w-[1360px] h-[min(600px,78vh)] flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-12 my-auto">
+                  <div className="w-full max-w-[1360px] h-[min(640px,78vh)] flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-12 my-auto">
                     {/* LEFT COLUMN: Main Image (58% width) */}
-                    <div className="relative w-full lg:w-[58%] h-[320px] sm:h-[400px] lg:h-full max-h-[600px] overflow-hidden shrink-0 rounded-[2px]">
+                    <div className="relative w-full lg:w-[58%] h-[340px] sm:h-[420px] lg:h-full max-h-[640px] overflow-hidden shrink-0 rounded-[2px]">
                       <Image
                         src={story.mainImage}
                         alt={story.altMain}
@@ -1336,9 +1341,9 @@ export default function LOrientalisPage() {
                       </div>
                     </div>
 
-                    {/* RIGHT COLUMN: 40% width (Choreographed Vertical Sequence for 3rd, 5th, and last images) */}
-                    <div className="relative w-full lg:w-[40%] h-[440px] lg:h-full max-h-[600px] flex items-center justify-end pr-2 lg:pr-6 shrink-0">
-                      <div className="relative w-full max-w-[340px] h-[460px] lg:h-[480px] overflow-hidden">
+                    {/* RIGHT COLUMN: 38% width (Choreographed Vertical Sequence for 3rd, 5th, and last images) */}
+                    <div className="relative w-full lg:w-[38%] h-[500px] lg:h-full max-h-[640px] flex items-center justify-end shrink-0">
+                      <div className="relative w-full max-w-[420px] h-[520px] lg:h-[560px] overflow-hidden">
                         {/* Small Text 1 */}
                         <div
                           style={{
@@ -1346,10 +1351,10 @@ export default function LOrientalisPage() {
                             opacity: anim.text1.opacity,
                             willChange: "transform, opacity",
                           }}
-                          className="absolute top-0 right-0 w-full pointer-events-none"
+                          className="absolute top-0 left-0 w-full pointer-events-none"
                         >
                           <p
-                            className="text-white select-none text-right"
+                            className="text-white select-none text-left"
                             style={{
                               fontFamily: "var(--font-manrope), sans-serif",
                               fontWeight: 400,
@@ -1358,8 +1363,7 @@ export default function LOrientalisPage() {
                               letterSpacing: "0%",
                             }}
                           >
-                            The eastern tea-growing corridor is one of the most
-                            complex and nuanced environments.
+                            {story.text1}
                           </p>
                         </div>
 
@@ -1370,7 +1374,7 @@ export default function LOrientalisPage() {
                             opacity: anim.image.opacity,
                             willChange: "transform, opacity",
                           }}
-                          className="absolute top-0 right-0 w-[240px] sm:w-[260px] lg:w-[280px] aspect-square overflow-hidden rounded-[2px] shadow-2xl"
+                          className="absolute top-0 left-0 w-[240px] sm:w-[260px] lg:w-[280px] aspect-square overflow-hidden rounded-[2px] shadow-2xl"
                         >
                           <Image
                             src={story.subImage}
@@ -1388,10 +1392,10 @@ export default function LOrientalisPage() {
                             opacity: anim.text2.opacity,
                             willChange: "transform, opacity",
                           }}
-                          className="absolute top-0 right-0 w-full pointer-events-none"
+                          className="absolute top-0 left-0 w-full pointer-events-none"
                         >
                           <p
-                            className="text-white select-none text-right"
+                            className="text-white select-none text-left"
                             style={{
                               fontFamily: "var(--font-manrope), sans-serif",
                               fontWeight: 400,
@@ -1400,9 +1404,7 @@ export default function LOrientalisPage() {
                               letterSpacing: "0%",
                             }}
                           >
-                            The eastern tea-growing corridor is one of the most
-                            complex and nuanced environments for Camellia
-                            sinensis.
+                            {story.text2}
                           </p>
                         </div>
                       </div>
