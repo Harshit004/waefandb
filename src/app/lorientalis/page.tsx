@@ -118,12 +118,20 @@ function getSlideVerticalStyles(t: number) {
   };
 }
 
+const BLENDS_OPTIONS = [
+  { id: "bombay-cutting-1", name: "Bombay Cutting" },
+  { id: "commercial-blends", name: "Commercial Blends" },
+  { id: "bombay-cutting-2", name: "Bombay Cutting" },
+];
+
 export default function LOrientalisPage() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const carouselContainerRef = useRef<HTMLDivElement | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const hasCompletedRef = useRef(false);
   const [hasCompleted, setHasCompleted] = useState(false);
+  const [activeBeverage, setActiveBeverage] = useState<"coffee" | "tea">("coffee");
+  const [selectedBlend, setSelectedBlend] = useState(1);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -1370,6 +1378,199 @@ export default function LOrientalisPage() {
               className="h-full bg-white/70 transition-all duration-75 ease-out"
               style={{ width: `${scrollProgress * 100}%` }}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* 140PX GAP BELOW CAROUSEL */}
+      <div className="w-full h-[140px]" />
+
+      {/* AS YOU LIKE IT SECTION */}
+      <section
+        id="as-you-like-it"
+        className="relative w-full bg-black text-white overflow-hidden py-[clamp(60px,5vw,90px)]"
+        style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        {/* Background image layover on top of black background (same as Our Story) */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0">
+          <Image
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3fc1344b-d12d-4975-b4f5-3862a4956400/public"
+            alt="As You Like It Background Overlay"
+            fill
+            unoptimized
+            className="object-cover object-center w-full h-full opacity-90"
+          />
+        </div>
+
+        {/* CONTENT WRAPPER */}
+        <div className="relative z-10 w-full flex flex-col">
+          {/* TOP ROW: Title & Description on Left, 3 Buttons on Right */}
+          <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-12">
+            {/* LEFT SIDE: Title & Description */}
+            <div className="flex flex-col items-start max-w-[540px]">
+              <h2
+                className="text-white select-none"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(36px, 3.472vw, 50px)",
+                  lineHeight: "clamp(44px, 4.028vw, 58px)",
+                  letterSpacing: "0%",
+                }}
+              >
+                As you like it
+              </h2>
+
+              {/* 46px gap */}
+              <div className="w-full h-[46px]" />
+
+              <p
+                className="text-white/90 select-none"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "14px",
+                  lineHeight: "24px",
+                  letterSpacing: "0%",
+                  maxWidth: "480px",
+                }}
+              >
+                Consistent, full-bodied profiles built for volume without compromising
+                on origin integrity. Roasted for reliability, cup after cup.
+              </p>
+            </div>
+
+            {/* RIGHT SIDE: 3 Buttons */}
+            <div className="flex flex-col items-end gap-6 sm:gap-7 self-start lg:self-auto mt-4 lg:mt-0">
+              {BLENDS_OPTIONS.map((item, idx) => {
+                const isSelected = selectedBlend === idx;
+                return (
+                  <button
+                    key={`${item.id}-${idx}`}
+                    onClick={() => setSelectedBlend(idx)}
+                    className="flex flex-col items-end group transition-all duration-200 cursor-pointer"
+                    style={{
+                      fontFamily: "var(--font-monschone), serif",
+                      fontWeight: 400,
+                      fontSize: "22px",
+                      lineHeight: "100%",
+                      letterSpacing: "0%",
+                      textTransform: "capitalize",
+                      color: isSelected ? "#FFFFFF" : "#F2DBB2",
+                    }}
+                  >
+                    <span>{item.name}</span>
+                    {/* 10px gap then underline for selected button */}
+                    {isSelected ? (
+                      <div className="mt-[10px] w-[205px] h-[1px] bg-white transition-all duration-300" />
+                    ) : (
+                      <div className="mt-[10px] w-0 h-[1px] bg-[#F2DBB2]/30 group-hover:w-full transition-all duration-300" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* 46px gap */}
+          <div className="w-full h-[46px]" />
+
+          {/* BUTTONS ROW: Coffee / Tea Buttons with Vertical Divider */}
+          <div className="relative flex items-center">
+            {/* Coffee Button */}
+            <button
+              onClick={() => setActiveBeverage("coffee")}
+              className={`w-[187px] h-[50px] flex items-center justify-center cursor-pointer transition-all duration-300 ${
+                activeBeverage === "coffee"
+                  ? "border border-white bg-white/5 text-white"
+                  : "border border-transparent text-white/60 hover:text-white"
+              }`}
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 500,
+                fontSize: "14px",
+                letterSpacing: "0%",
+              }}
+            >
+              Coffee
+            </button>
+
+            {/* Vertical Divider Between Buttons */}
+            <div
+              className="w-[1px] h-[50px] mx-3.5 shrink-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50.96%, rgba(255, 255, 255, 0.04) 100%)",
+              }}
+            />
+
+            {/* Tea Button */}
+            <button
+              onClick={() => setActiveBeverage("tea")}
+              className={`w-[187px] h-[50px] flex items-center justify-center cursor-pointer transition-all duration-300 ${
+                activeBeverage === "tea"
+                  ? "border border-white bg-white/5 text-white"
+                  : "border border-transparent text-white/60 hover:text-white"
+              }`}
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 500,
+                fontSize: "14px",
+                letterSpacing: "0%",
+              }}
+            >
+              Tea
+            </button>
+          </div>
+
+          {/* VERTICAL LINE BELOW THE BUTTON INTO START OF THE GRID */}
+          <div className="relative w-full h-[36px] lg:h-[46px]">
+            <div
+              className="absolute left-0 top-0 w-[1px] h-full"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
+              }}
+            />
+          </div>
+
+          {/* IMAGE GRID (3 Images) */}
+          <div className="w-full flex flex-col md:flex-row items-stretch gap-6 lg:gap-8">
+            {/* Image 1: Serra Verde (wider landscape, ~44% width) */}
+            <div className="relative w-full md:w-[44%] h-[340px] sm:h-[420px] lg:h-[480px] xl:h-[510px] overflow-hidden rounded-[2px] shrink-0">
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/04b81f3c-2946-4b36-e9d1-b48222b9be00/public"
+                alt="Serra Verde Brazilian Coffee"
+                fill
+                unoptimized
+                className="object-cover select-none"
+              />
+            </div>
+
+            {/* Image 2: Organic Coffee (~28% width) */}
+            <div className="relative w-full md:w-[28%] h-[340px] sm:h-[420px] lg:h-[480px] xl:h-[510px] overflow-hidden rounded-[2px] shrink-0">
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/2dac3f7e-da3d-4e83-d879-3e08eed0e400/public"
+                alt="Organic Coffee Beans"
+                fill
+                unoptimized
+                className="object-cover select-none"
+              />
+            </div>
+
+            {/* Image 3: Aura Artisan Coffee (~28% width) */}
+            <div className="relative w-full md:w-[28%] h-[340px] sm:h-[420px] lg:h-[480px] xl:h-[510px] overflow-hidden rounded-[2px] shrink-0">
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/10fa5249-0cfb-4da6-723c-a825cab9ca00/public"
+                alt="Aura Artisan Coffee Co."
+                fill
+                unoptimized
+                className="object-cover select-none"
+              />
+            </div>
           </div>
         </div>
       </section>
