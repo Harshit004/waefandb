@@ -804,6 +804,135 @@ export default function LOrientalisPage() {
         </div>
       </section>
 
+      {/* SINGLE ORIGIN / 3 STATE MAP SECTION */}
+      <section
+        id="single-origin"
+        className="relative w-full bg-black text-white overflow-hidden py-[80px] lg:py-[120px]"
+        style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        <div className="w-full max-w-[1440px] mx-auto flex flex-col">
+          {/* TOP LEFT: Coordinates & Subtitle */}
+          <div className="flex flex-col items-start z-10">
+            <h2
+              style={{
+                fontFamily: "var(--font-judson), Judson, serif",
+                fontWeight: 700,
+                fontSize: "clamp(48px, 5.857vw, 84.35px)",
+                lineHeight: "100%",
+                letterSpacing: "0%",
+                textTransform: "uppercase",
+                color: "#1F3D2B",
+              }}
+            >
+              26°N 92°E
+            </h2>
+            <span
+              className="mt-3 text-white"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 500,
+                fontSize: "14px",
+                lineHeight: "100%",
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+              }}
+            >
+              SINGLE ORIGIN – 3 State
+            </span>
+          </div>
+
+          {/* MAP GRAPHIC CONTAINER: 964px x 534px */}
+          <div className="relative w-full max-w-[964px] aspect-[964/534] mx-auto mt-4 lg:mt-[-30px]">
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f21b619f-d319-4d5a-ee4d-517eca07bb00/public"
+              alt="Northeast India single origin tea and coffee growing districts map"
+              fill
+              priority
+              unoptimized
+              className="object-contain select-none pointer-events-none"
+            />
+
+            {/* 3 INTERACTIVE PULSING DOTS */}
+            {[
+              {
+                name: "Meghalaya",
+                left: "23.86%",
+                top: "49.98%",
+                delay: "0s",
+              },
+              {
+                name: "Nagaland",
+                left: "54.80%",
+                top: "30.98%",
+                delay: "0.9s",
+              },
+              {
+                name: "Assam",
+                left: "73.84%",
+                top: "47.34%",
+                delay: "1.8s",
+              },
+            ].map((dot) => (
+              <div
+                key={dot.name}
+                className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center cursor-pointer group"
+                style={{
+                  left: dot.left,
+                  top: dot.top,
+                  width: "36.29px",
+                  height: "36.29px",
+                }}
+                aria-label={dot.name}
+              >
+                {/* Outer pulsing halo which appears and disappears gradually (#1F3D2B) */}
+                <div
+                  className="absolute rounded-full bg-[#1F3D2B] animate-dot-halo pointer-events-none"
+                  style={{
+                    width: "36.29px",
+                    height: "36.29px",
+                    animationDelay: dot.delay,
+                  }}
+                />
+
+                {/* The white circle (36.29px x 36.29px) */}
+                <div
+                  className="relative w-[36.29px] h-[36.29px] rounded-full bg-white flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110"
+                  style={{
+                    boxShadow: "0 0 20px rgba(0, 0, 0, 0.6)",
+                  }}
+                >
+                  {/* Circle inside the white circle is #1F3D2B */}
+                  <div className="w-[18px] h-[18px] rounded-full bg-[#1F3D2B]" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* BOTTOM RIGHT: Growing Districts description */}
+          <div className="w-full flex justify-end mt-4 lg:mt-6">
+            <p
+              className="text-white max-w-[460px]"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "24px",
+                letterSpacing: "0%",
+                textAlign: "right",
+                verticalAlign: "bottom",
+              }}
+            >
+              L&apos;ORIENTALIS sources exclusively from these growing<br />
+              districts — each district contributing a distinct altitude,<br />
+              microclimate and flavour signature.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER & ENQUIRY SECTION */}
       <section
         className="relative w-full bg-black text-white"

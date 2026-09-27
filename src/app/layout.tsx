@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Manrope } from "next/font/google";
+import { Geist, Geist_Mono, Manrope, Judson } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -15,6 +15,12 @@ const geistMono = Geist_Mono({
 
 const manrope = Manrope({
   variable: "--font-manrope-local",
+  subsets: ["latin"],
+});
+
+const judson = Judson({
+  variable: "--font-judson",
+  weight: ["700"],
   subsets: ["latin"],
 });
 
@@ -53,9 +59,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} ${monschone.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} ${monschone.variable} ${judson.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
 }
+

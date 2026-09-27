@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poly:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Judson:wght@700&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -24,6 +25,7 @@
   --font-manrope: var(--font-manrope-local), "Manrope", sans-serif;
   --font-monschone: var(--font-monschone-local), "Monschone", serif;
   --font-poly: "Poly", serif;
+  --font-judson: var(--font-judson), "Judson", serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -78,5 +80,21 @@ body {
 .animate-scroll-oscillate {
   animation: scroll-oscillate 2.5s ease-in-out infinite;
   will-change: transform;
+}
+
+@keyframes dot-halo-breathe {
+  0%, 100% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.9);
+    opacity: 0.85;
+  }
+}
+
+.animate-dot-halo {
+  animation: dot-halo-breathe 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, opacity;
 }
 
