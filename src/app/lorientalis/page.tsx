@@ -546,7 +546,7 @@ export default function LOrientalisPage() {
       {/* COFFEE: GROWN IN THE SHADOW OF THE EASTERN HILLS SECTION */}
       <section
         id="coffee"
-        className="relative w-full bg-black text-white overflow-hidden"
+        className="group/coffee relative w-full bg-black text-white overflow-hidden"
         style={{
           paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
           paddingRight: "2.778vw", // 40px at 1440px - consistent across page
@@ -558,21 +558,41 @@ export default function LOrientalisPage() {
         <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[60px] xl:gap-[80px]">
           {/* Left Image: 542px x 492px */}
           <div
-            className="relative w-full max-w-[542px] overflow-hidden shrink-0 group cursor-pointer"
+            className="relative w-full max-w-[542px] overflow-hidden shrink-0 rounded-[2px]"
             style={{
               aspectRatio: "542 / 492",
               maxHeight: "492px",
             }}
           >
-            <Image
-              src="/images/coffee-cherries.png"
-              alt="Coffee cherries grown in the shadow of the Eastern Hills"
-              width={542}
-              height={492}
-              priority
-              unoptimized
-              className="w-full h-full object-cover select-none transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform"
-            />
+            <div className="relative w-full h-full transition-transform duration-700 ease-out group-hover/coffee:scale-110">
+              <Image
+                src="/images/coffee-cherries.png"
+                alt="Coffee cherries grown in the shadow of the Eastern Hills"
+                width={542}
+                height={492}
+                priority
+                unoptimized
+                className="w-full h-full object-cover select-none"
+              />
+            </div>
+
+            {/* EXPLORE NOW Button on Hover */}
+            <div className="absolute inset-0 flex items-end justify-center pb-10 pointer-events-none z-10">
+              <Link
+                href="#contact"
+                className="pointer-events-auto px-8 py-3.5 border border-white bg-black/40 backdrop-blur-[2px] text-white hover:bg-white hover:text-black transition-all duration-300 opacity-0 group-hover/coffee:opacity-100 translate-y-2 group-hover/coffee:translate-y-0 cursor-pointer flex items-center justify-center select-none"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "100%",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                EXPLORE NOW
+              </Link>
+            </div>
           </div>
 
           {/* Right Content: Vertically centered relative to the image */}
@@ -807,7 +827,7 @@ export default function LOrientalisPage() {
       {/* TEA: BORN IN THE EASTERN TEA BELT SECTION */}
       <section
         id="tea"
-        className="relative w-full bg-black text-white overflow-hidden"
+        className="group/tea relative w-full bg-black text-white overflow-hidden"
         style={{
           paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
           paddingRight: "2.778vw", // 40px at 1440px - consistent across page
@@ -893,21 +913,41 @@ export default function LOrientalisPage() {
 
           {/* Right Image: 542px x 492px */}
           <div
-            className="relative w-full max-w-[542px] overflow-hidden shrink-0 group cursor-pointer"
+            className="relative w-full max-w-[542px] overflow-hidden shrink-0 rounded-[2px]"
             style={{
               aspectRatio: "542 / 492",
               maxHeight: "492px",
             }}
           >
-            <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/db504952-404c-4e2a-b53b-ca641c861b00/public"
-              alt="Born in the Eastern Tea Belt"
-              width={542}
-              height={492}
-              priority
-              unoptimized
-              className="w-full h-full object-cover select-none transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform"
-            />
+            <div className="relative w-full h-full transition-transform duration-700 ease-out group-hover/tea:scale-110">
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/db504952-404c-4e2a-b53b-ca641c861b00/public"
+                alt="Born in the Eastern Tea Belt"
+                width={542}
+                height={492}
+                priority
+                unoptimized
+                className="w-full h-full object-cover select-none"
+              />
+            </div>
+
+            {/* EXPLORE NOW Button on Hover */}
+            <div className="absolute inset-0 flex items-end justify-center pb-10 pointer-events-none z-10">
+              <Link
+                href="#contact"
+                className="pointer-events-auto px-8 py-3.5 border border-white bg-black/40 backdrop-blur-[2px] text-white hover:bg-white hover:text-black transition-all duration-300 opacity-0 group-hover/tea:opacity-100 translate-y-2 group-hover/tea:translate-y-0 cursor-pointer flex items-center justify-center select-none"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "100%",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                EXPLORE NOW
+              </Link>
+            </div>
           </div>
         </div>
       </section>
