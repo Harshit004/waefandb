@@ -218,35 +218,38 @@ export default function Home() {
             <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none"></div>
 
             {/* Text Content */}
-            <div className="absolute bottom-[5vw] left-[4.166vw] right-[4.166vw] flex flex-col z-20 pointer-events-none">
-              <span
-                className="font-monschone font-normal text-[1.667vw] text-white leading-[3.333vw] tracking-[0%] mb-[0.278vw] block"
-                style={{
-                  fontFamily: "var(--font-monschone), serif",
-                  fontWeight: 400,
-                  fontStyle: "normal",
-                  fontSize: "1.667vw",
-                  lineHeight: "3.333vw",
-                  letterSpacing: "0%",
-                  color: "#fff",
-                }}
-              >
-                Brewing
-              </span>
-              <h2 className="font-monschone font-normal text-[2.8vw] text-white mb-[1.5vw]">
-                {col.title}
-              </h2>
-              <p className="font-manrope font-normal text-[0.937vw] text-white leading-[1.4] mb-[2vw] max-w-[85%]">
-                {col.desc}
-              </p>
+            <div className="absolute bottom-[5vw] left-[4.166vw] right-[4.166vw] flex flex-col pointer-events-none">
+              <div className="relative z-20 flex flex-col">
+                <span
+                  className="font-monschone font-normal text-[1.667vw] text-white leading-[3.333vw] tracking-[0%] mb-[0.278vw] block"
+                  style={{
+                    fontFamily: "var(--font-monschone), serif",
+                    fontWeight: 400,
+                    fontStyle: "normal",
+                    fontSize: "1.667vw",
+                    lineHeight: "3.333vw",
+                    letterSpacing: "0%",
+                    color: "#fff",
+                  }}
+                >
+                  Brewing
+                </span>
+                <h2 className="font-monschone font-normal text-[2.8vw] text-white mb-[1.5vw]">
+                  {col.title}
+                </h2>
+                <p className="font-manrope font-normal text-[0.937vw] text-white leading-[1.4] mb-[2vw] max-w-[85%]">
+                  {col.desc}
+                </p>
+              </div>
               <div
-                className="font-manrope font-bold text-[0.972vw] leading-[1.528vw] tracking-[0%] pointer-events-auto cursor-pointer group/btn transition-opacity duration-300 hover:opacity-90 w-fit select-none"
+                className="relative z-30 font-manrope font-bold text-[0.972vw] leading-[1.528vw] tracking-[0%] opacity-100 pointer-events-auto cursor-pointer group/btn w-fit select-none"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 700,
                   fontSize: "0.972vw",
                   lineHeight: "1.528vw",
                   letterSpacing: "0%",
+                  opacity: 1,
                 }}
               >
                 {col.href ? (
