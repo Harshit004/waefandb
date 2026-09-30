@@ -408,11 +408,10 @@ export default function GetInTouchPage() {
                         onClick={() =>
                           setSelectedChannel(isSelected ? "" : channel)
                         }
-                        className={`h-[48px] px-5 rounded-full flex items-center gap-3 transition-colors text-left border cursor-pointer ${
-                          isSelected
+                        className={`h-[48px] px-5 rounded-full flex items-center gap-3 transition-colors text-left border cursor-pointer ${isSelected
                             ? "bg-[#383A38] border-white/40 text-white"
                             : "bg-[#2A2B2A] border-white/5 text-[#8E8E93] hover:text-white hover:bg-[#323332]"
-                        }`}
+                          }`}
                         style={{
                           fontFamily: "var(--font-manrope), sans-serif",
                           fontSize: "12px",
@@ -420,9 +419,8 @@ export default function GetInTouchPage() {
                         }}
                       >
                         <span
-                          className={`w-[14px] h-[14px] rounded-full border flex items-center justify-center shrink-0 transition-colors ${
-                            isSelected ? "border-white" : "border-[#7E7E7E]"
-                          }`}
+                          className={`w-[14px] h-[14px] rounded-full border flex items-center justify-center shrink-0 transition-colors ${isSelected ? "border-white" : "border-[#7E7E7E]"
+                            }`}
                         >
                           {isSelected && (
                             <span className="w-[6px] h-[6px] rounded-full bg-white" />
@@ -557,7 +555,7 @@ export default function GetInTouchPage() {
             fontWeight: 400,
             fontStyle: "normal",
             fontSize: "clamp(140px, 24vw, 360px)",
-            lineHeight: "122.89px",
+            // lineHeight: "122.89px",
             letterSpacing: "0%",
             textAlign: "center",
             backgroundImage:
