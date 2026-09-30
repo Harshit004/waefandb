@@ -409,8 +409,8 @@ export default function GetInTouchPage() {
                           setSelectedChannel(isSelected ? "" : channel)
                         }
                         className={`h-[48px] px-5 rounded-full flex items-center gap-3 transition-colors text-left border cursor-pointer ${isSelected
-                            ? "bg-[#383A38] border-white/40 text-white"
-                            : "bg-[#2A2B2A] border-white/5 text-[#8E8E93] hover:text-white hover:bg-[#323332]"
+                          ? "bg-[#383A38] border-white/40 text-white"
+                          : "bg-[#2A2B2A] border-white/5 text-[#8E8E93] hover:text-white hover:bg-[#323332]"
                           }`}
                         style={{
                           fontFamily: "var(--font-manrope), sans-serif",
@@ -547,7 +547,7 @@ export default function GetInTouchPage() {
       </div>
 
       {/* GIANT "Contact" WATERMARK BEFORE FOOTER */}
-      <div className="relative w-full overflow-visible select-none pointer-events-none flex justify-center items-center pt-20 md:pt-32 pb-16 md:pb-24 z-0">
+      <div className="relative w-full overflow-visible select-none pointer-events-none flex justify-center items-center z-0">
         <h2
           className="text-center font-normal tracking-normal select-none pointer-events-none"
           style={{
