@@ -574,7 +574,7 @@ export default function GetInTouchPage() {
       </div>
 
       {/* NEW FOOTER COMPONENT */}
-      <Footer className="relative z-10" paddingTop="0" />
+      <Footer className="relative z-30" paddingTop="0" showTopGradient />
     </main>
   );
 }

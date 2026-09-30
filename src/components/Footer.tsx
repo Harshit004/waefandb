@@ -7,12 +7,14 @@ interface FooterProps {
   className?: string;
   id?: string;
   paddingTop?: string | number;
+  showTopGradient?: boolean;
 }
 
 export default function Footer({
   className = "",
   id = "footer",
   paddingTop = "2.5vw",
+  showTopGradient = true,
 }: FooterProps) {
   const socialLinks = [
     {
@@ -43,6 +45,19 @@ export default function Footer({
         paddingBottom: "2.5vw",
       }}
     >
+      {/* 200px Gradient on top of the footer */}
+      {showTopGradient && (
+        <div
+          className="absolute top-0 left-0 right-0 w-full h-[200px] pointer-events-none z-10"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0) 10.41%, rgba(0, 0, 0, 0) 100%)",
+            backdropFilter: "blur(0px)",
+            WebkitBackdropFilter: "blur(0px)",
+          }}
+        />
+      )}
+
       {/* 3 Main Columns */}
       <div className="w-full flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-0">
         {/* COLUMN 1: INFO */}
