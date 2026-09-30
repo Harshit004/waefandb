@@ -52,8 +52,6 @@ export default function Footer({
           style={{
             background:
               "linear-gradient(180deg, rgba(0, 0, 0, 0) 10.41%, rgba(0, 0, 0, 0) 100%)",
-            backdropFilter: "blur(0px)",
-            WebkitBackdropFilter: "blur(0px)",
           }}
         />
       )}
