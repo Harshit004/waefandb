@@ -547,7 +547,7 @@ export default function GetInTouchPage() {
       </div>
 
       {/* GIANT "Contact" WATERMARK BEFORE FOOTER */}
-      <div className="relative w-full overflow-visible select-none pointer-events-none flex justify-center items-center z-0 pt-16 md:pt-24 pb-0 -mb-[16px] md:-mb-[28px]">
+      <div className="relative w-full overflow-visible select-none pointer-events-none flex justify-center items-center z-0 pt-16 md:pt-24 pb-0">
         <h2
           className="text-center font-normal tracking-normal select-none pointer-events-none block"
           style={{
@@ -555,7 +555,10 @@ export default function GetInTouchPage() {
             fontWeight: 400,
             fontStyle: "normal",
             fontSize: "clamp(140px, 24vw, 360px)",
-            lineHeight: "0.74",
+            lineHeight: "1",
+            paddingTop: "0.18em",
+            paddingBottom: "0px",
+            marginBottom: "clamp(-80px, -5.5vw, -30px)",
             letterSpacing: "0%",
             textAlign: "center",
             backgroundImage:
