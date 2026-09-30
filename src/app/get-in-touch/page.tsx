@@ -547,7 +547,7 @@ export default function GetInTouchPage() {
       </div>
 
       {/* GIANT "Contact" WATERMARK BEFORE FOOTER */}
-      <div className="relative w-full overflow-visible select-none pointer-events-none flex justify-center items-center z-0 pt-16 md:pt-24 pb-0">
+      <div className="relative w-full overflow-visible select-none pointer-events-none flex justify-center items-center z-0 pt-16 md:pt-20 pb-0">
         <h2
           className="text-center font-normal tracking-normal select-none pointer-events-none block"
           style={{
