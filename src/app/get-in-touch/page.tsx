@@ -547,15 +547,15 @@ export default function GetInTouchPage() {
       </div>
 
       {/* GIANT "Contact" WATERMARK BEFORE FOOTER */}
-      <div className="relative w-full overflow-visible select-none pointer-events-none flex justify-center items-center z-0">
+      <div className="relative w-full overflow-visible select-none pointer-events-none flex justify-center items-center z-0 pt-16 md:pt-24 pb-0 -mb-[16px] md:-mb-[28px]">
         <h2
-          className="text-center font-normal tracking-normal select-none pointer-events-none"
+          className="text-center font-normal tracking-normal select-none pointer-events-none block"
           style={{
             fontFamily: "var(--font-monschone), Monschone, serif",
             fontWeight: 400,
             fontStyle: "normal",
             fontSize: "clamp(140px, 24vw, 360px)",
-            // lineHeight: "122.89px",
+            lineHeight: "0.74",
             letterSpacing: "0%",
             textAlign: "center",
             backgroundImage:
@@ -571,7 +571,7 @@ export default function GetInTouchPage() {
       </div>
 
       {/* NEW FOOTER COMPONENT */}
-      <Footer className="relative z-10" />
+      <Footer className="relative z-10" paddingTop="0" />
     </main>
   );
 }

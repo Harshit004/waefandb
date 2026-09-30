@@ -6,11 +6,13 @@ import Link from "next/link";
 interface FooterProps {
   className?: string;
   id?: string;
+  paddingTop?: string | number;
 }
 
 export default function Footer({
   className = "",
   id = "footer",
+  paddingTop = "2.5vw",
 }: FooterProps) {
   const socialLinks = [
     {
@@ -37,7 +39,7 @@ export default function Footer({
       style={{
         paddingLeft: "4.166vw",
         paddingRight: "4.166vw",
-        paddingTop: "2.5vw",
+        paddingTop: paddingTop,
         paddingBottom: "2.5vw",
       }}
     >
