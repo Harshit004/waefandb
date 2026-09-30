@@ -181,7 +181,7 @@ export default function Home() {
         {columns.map((col, idx) => (
           <div
             key={idx}
-            className="relative flex-1 h-full border-r border-white/5 last:border-r-0 group cursor-none overflow-hidden flex flex-col justify-center bg-black"
+            className="relative flex-1 h-full group cursor-none overflow-hidden flex flex-col justify-center bg-black"
             onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={() => handleMouseLeave(idx)}
           >
