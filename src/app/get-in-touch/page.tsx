@@ -549,22 +549,28 @@ export default function GetInTouchPage() {
       </div>
 
       {/* GIANT "Contact" WATERMARK BEFORE FOOTER */}
-      <div className="relative w-full overflow-hidden select-none pointer-events-none -mb-[50px] md:-mb-[75px] lg:-mb-[100px] z-0 flex justify-center items-center">
+      <div className="relative w-full overflow-visible select-none pointer-events-none flex justify-center items-center pt-20 md:pt-32 pb-16 md:pb-24 z-0">
         <h2
           className="text-center font-normal tracking-normal select-none pointer-events-none"
           style={{
             fontFamily: "var(--font-monschone), Monschone, serif",
             fontWeight: 400,
             fontStyle: "normal",
-            fontSize: "clamp(120px, 24vw, 360px)",
+            fontSize: "clamp(140px, 24vw, 360px)",
             lineHeight: "122.89px",
             letterSpacing: "0%",
             textAlign: "center",
-            color: "rgba(255, 255, 255, 0.26)",
-            WebkitMaskImage:
-              "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)",
-            maskImage:
-              "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)",
+            backgroundImage:
+              "linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(147, 147, 147, 0.0728) 100%)",
+            WebkitBackgroundImage:
+              "linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(147, 147, 147, 0.0728) 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            color: "transparent",
+            paintOrder: "stroke fill",
+            WebkitTextStroke: "clamp(8px, 1.8vw, 29px) #000000",
+            filter: "drop-shadow(0px 0px 3.26px rgba(0, 0, 0, 0.41))",
           }}
         >
           Contact

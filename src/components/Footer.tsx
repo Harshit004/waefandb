@@ -33,7 +33,7 @@ export default function Footer({
   return (
     <footer
       id={id}
-      className={`relative w-full bg-black text-white ${className}`}
+      className={`relative w-full bg-transparent text-white ${className}`}
       style={{
         paddingLeft: "4.166vw",
         paddingRight: "4.166vw",
