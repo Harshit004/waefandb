@@ -49,7 +49,9 @@ export default function GetInTouchPage() {
   });
   const [selectedChannel, setSelectedChannel] = useState<string>("");
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
-  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState<string>("");
 
   // Layout alignment refs and states
   const gridSectionRef = useRef<HTMLElement>(null);
@@ -96,13 +98,63 @@ export default function GetInTouchPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!acceptedTerms) {
-      alert("Please accept the Privacy Policy and Terms and Conditions.");
+      setSubmitStatus("error");
+      setStatusMessage("Please accept the Privacy Policy and Terms and Conditions.");
       return;
     }
-    setIsSubmitted(true);
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setStatusMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          companyName: formData.companyName,
+          jobTitle: formData.jobTitle,
+          email: formData.email,
+          phone: formData.phone,
+          businessChannel: selectedChannel,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to submit enquiry. Please try again.");
+      }
+
+      setSubmitStatus("success");
+      setStatusMessage("Thank you! Your enquiry has been received. Our team will get back to you shortly.");
+      setFormData({
+        name: "",
+        companyName: "",
+        jobTitle: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      setSelectedChannel("");
+      setAcceptedTerms(false);
+    } catch (error: unknown) {
+      const errorText =
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred. Please try again.";
+      setSubmitStatus("error");
+      setStatusMessage(errorText);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -536,13 +588,115 @@ export default function GetInTouchPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={isSubmitted}
-              className="w-[160px] md:w-[170px] h-[48px] rounded-full bg-[#4E5250] hover:bg-[#5E6360] active:scale-[0.98] transition-all duration-200 text-white uppercase text-[13px] md:text-[14px] font-medium tracking-wider flex items-center justify-center cursor-pointer select-none shrink-0 self-end sm:self-center"
+              disabled={isSubmitting}
+              className={`w-[160px] md:w-[170px] h-[48px] rounded-full active:scale-[0.98] transition-all duration-200 text-white uppercase text-[13px] md:text-[14px] font-medium tracking-wider flex items-center justify-center cursor-pointer select-none shrink-0 self-end sm:self-center ${
+                isSubmitting
+                  ? "bg-[#383A38] opacity-80 cursor-not-allowed"
+                  : submitStatus === "success"
+                  ? "bg-[#254A36] hover:bg-[#2F5C43]"
+                  : "bg-[#4E5250] hover:bg-[#5E6360]"
+              }`}
               style={{ fontFamily: "var(--font-manrope), sans-serif" }}
             >
-              {isSubmitted ? "SENT" : "SUBMIT"}
+              {isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <svg
+                    className="animate-spin h-4 w-4 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    />
+                  </svg>
+                  <span>SENDING...</span>
+                </span>
+              ) : submitStatus === "success" ? (
+                <span className="flex items-center gap-1.5 text-emerald-300">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>SENT</span>
+                </span>
+              ) : (
+                "SUBMIT"
+              )}
             </button>
           </div>
+
+          {/* Status Feedback Notification */}
+          {submitStatus === "success" && (
+            <div
+              className="w-full mt-2 mb-10 p-4 rounded-2xl bg-[#14261C] border border-[#2D6A4F] text-[#74C69D] text-[13px] md:text-[14px] flex items-center gap-3 transition-all"
+              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+            >
+              <svg
+                className="w-5 h-5 shrink-0 text-[#52B788]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <div className="flex-1">{statusMessage}</div>
+            </div>
+          )}
+
+          {submitStatus === "error" && (
+            <div
+              className="w-full mt-2 mb-10 p-4 rounded-2xl bg-[#2A1515] border border-[#7F1D1D] text-[#FCA5A5] text-[13px] md:text-[14px] flex items-center justify-between gap-3 transition-all"
+              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+            >
+              <div className="flex items-center gap-3">
+                <svg
+                  className="w-5 h-5 shrink-0 text-[#EF4444]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>{statusMessage}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSubmitStatus("idle")}
+                className="text-white/60 hover:text-white text-xs underline cursor-pointer shrink-0"
+              >
+                Dismiss
+              </button>
+            </div>
+          )}
         </form>
       </div>
 

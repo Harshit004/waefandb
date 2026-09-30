@@ -16,11 +16,40 @@ export default function LOrientalisFooter({
   const [email, setEmail] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [newsletterError, setNewsletterError] = useState("");
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    setSubscribed(true);
+    if (!acceptedTerms) {
+      setNewsletterError("Please accept the terms of the privacy policy.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setNewsletterError("");
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Subscription failed.");
+      }
+
+      setSubscribed(true);
+      setEmail("");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Subscription failed. Please try again.";
+      setNewsletterError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -253,10 +282,25 @@ export default function LOrientalisFooter({
                   </span>
                 </label>
 
+                {/* Error message */}
+                {newsletterError && (
+                  <p className="mt-2 text-rose-400 text-xs text-center">
+                    {newsletterError}
+                  </p>
+                )}
+
+                {/* Success message */}
+                {subscribed && (
+                  <p className="mt-2 text-emerald-400 text-xs text-center">
+                    Thank you for subscribing!
+                  </p>
+                )}
+
                 {/* SIGN UP button */}
                 <button
                   type="submit"
-                  className="self-end mt-6 w-[140px] h-[44px] border border-white/80 bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200 cursor-pointer flex items-center justify-center uppercase"
+                  disabled={isSubmitting || subscribed}
+                  className="self-end mt-6 w-[140px] h-[44px] border border-white/80 bg-transparent text-white hover:bg-white hover:text-black disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer flex items-center justify-center uppercase"
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 500,
@@ -264,7 +308,7 @@ export default function LOrientalisFooter({
                     letterSpacing: "0.05em",
                   }}
                 >
-                  {subscribed ? "JOINED" : "SIGN UP"}
+                  {isSubmitting ? "JOINING..." : subscribed ? "JOINED ✓" : "SIGN UP"}
                 </button>
               </form>
             </div>
