@@ -252,17 +252,11 @@ export default function Home() {
                   opacity: 1,
                 }}
               >
-                {col.href ? (
-                  <Link href={col.href} className="inline-block">
-                    <span className="animate-enquire-shimmer">
-                      Enquire now &gt;
-                    </span>
-                  </Link>
-                ) : (
+                <Link href="/get-in-touch" className="inline-block">
                   <span className="animate-enquire-shimmer">
                     Enquire now &gt;
                   </span>
-                )}
+                </Link>
               </div>
             </div>
           </div>
