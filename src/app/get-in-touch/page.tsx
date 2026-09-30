@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -51,6 +51,44 @@ export default function GetInTouchPage() {
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
+  // Layout alignment refs and states
+  const gridSectionRef = useRef<HTMLElement>(null);
+  const image2Ref = useRef<HTMLDivElement>(null);
+  const getInTouchRef = useRef<HTMLDivElement>(null);
+  const [leftPadding, setLeftPadding] = useState<string>("6.65vw");
+  const [headlineMarginTop, setHeadlineMarginTop] = useState<number>(100);
+
+  useEffect(() => {
+    const updateLayout = () => {
+      // 1. Align horizontal left padding with Image 2's left boundary
+      if (image2Ref.current) {
+        const rect = image2Ref.current.getBoundingClientRect();
+        if (rect.left > 0) {
+          setLeftPadding(`${rect.left}px`);
+        }
+      }
+
+      // 2. Ensure headline starts exactly 152px below "GET IN TOUCH"
+      if (getInTouchRef.current && gridSectionRef.current) {
+        const gitRect = getInTouchRef.current.getBoundingClientRect();
+        const gridRect = gridSectionRef.current.getBoundingClientRect();
+        // Target top of headline is 152px below the bottom of GET IN TOUCH
+        const targetTop = gitRect.bottom + 152;
+        const spacingFromGridBottom = targetTop - gridRect.bottom;
+        setHeadlineMarginTop(Math.max(spacingFromGridBottom, 60));
+      }
+    };
+
+    updateLayout();
+    window.addEventListener("resize", updateLayout);
+    // Double check after images finish loading or rendering
+    const timer = setTimeout(updateLayout, 150);
+    return () => {
+      window.removeEventListener("resize", updateLayout);
+      clearTimeout(timer);
+    };
+  }, []);
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -73,55 +111,163 @@ export default function GetInTouchPage() {
       <Header />
 
       {/* TOP IMAGE GRID SECTION */}
-      <section className="relative w-full overflow-hidden bg-black pt-[3vw] pb-[2.5vw] flex items-center justify-center select-none">
+      <section
+        ref={gridSectionRef}
+        className="relative w-full overflow-hidden bg-black pt-[3vw] pb-[2.5vw] flex items-center justify-center select-none"
+      >
         <div className="flex items-center justify-center gap-[1.1vw] shrink-0 min-w-full">
           {/* Image 1: Leftmost (bleeds slightly off screen) */}
-          <div className="shrink-0 w-[27vw] h-[19vw] max-w-[420px] max-h-[300px] overflow-hidden bg-black">
+          <div className="relative shrink-0 w-[27vw] h-[19vw] max-w-[420px] max-h-[300px] overflow-hidden bg-black">
             <img
               src={GRID_IMAGES[0].src}
               alt={GRID_IMAGES[0].alt}
               className="w-full h-full object-cover"
               loading="eager"
             />
-          </div>
-
-          {/* Image 2: Hand holding glass of water */}
-          <div className="shrink-0 w-[27vw] h-[19vw] max-w-[420px] max-h-[300px] overflow-hidden bg-black">
-            <img
-              src={GRID_IMAGES[1].src}
-              alt={GRID_IMAGES[1].alt}
-              className="w-full h-full object-cover"
-              loading="eager"
+            {/* Top Black Gradient Blend */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+              }}
+            />
+            {/* Bottom Black Gradient Blend */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+              }}
             />
           </div>
 
+          {/* Image 2: Hand holding glass of water */}
+          <div
+            ref={image2Ref}
+            className="relative shrink-0 w-[27vw] max-w-[420px]"
+          >
+            <div className="relative w-full h-[19vw] max-h-[300px] overflow-hidden bg-black">
+              <img
+                src={GRID_IMAGES[1].src}
+                alt={GRID_IMAGES[1].alt}
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+              {/* Top Black Gradient Blend */}
+              <div
+                className="absolute top-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+                }}
+              />
+              {/* Bottom Black Gradient Blend */}
+              <div
+                className="absolute bottom-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+                style={{
+                  background:
+                    "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+                }}
+              />
+            </div>
+
+            {/* GET IN TOUCH: exactly 61px below the second image */}
+            <div
+              ref={getInTouchRef}
+              className="absolute left-0 pointer-events-auto select-none"
+              style={{
+                top: "calc(100% + 61px)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <span
+                className="block text-[14px] md:text-[0.972vw] text-white uppercase tracking-[0.04em]"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 500,
+                }}
+              >
+                GET IN TOUCH
+              </span>
+            </div>
+          </div>
+
           {/* Image 3: Center Taller Coffee Beans in Roaster */}
-          <div className="shrink-0 w-[30.5vw] h-[38vw] max-w-[480px] max-h-[580px] overflow-hidden bg-black z-10">
+          <div className="relative shrink-0 w-[30.5vw] h-[38vw] max-w-[480px] max-h-[580px] overflow-hidden bg-black z-10">
             <img
               src={GRID_IMAGES[2].src}
               alt={GRID_IMAGES[2].alt}
               className="w-full h-full object-cover"
               loading="eager"
             />
+            {/* Top Black Gradient Blend */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+              }}
+            />
+            {/* Bottom Black Gradient Blend */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+              }}
+            />
           </div>
 
           {/* Image 4: Hand with bamboo scoop & tea leaves */}
-          <div className="shrink-0 w-[27vw] h-[19vw] max-w-[420px] max-h-[300px] overflow-hidden bg-black">
+          <div className="relative shrink-0 w-[27vw] h-[19vw] max-w-[420px] max-h-[300px] overflow-hidden bg-black">
             <img
               src={GRID_IMAGES[3].src}
               alt={GRID_IMAGES[3].alt}
               className="w-full h-full object-cover"
               loading="eager"
             />
+            {/* Top Black Gradient Blend */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+              }}
+            />
+            {/* Bottom Black Gradient Blend */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+              }}
+            />
           </div>
 
           {/* Image 5: Rightmost (bleeds slightly off screen) */}
-          <div className="shrink-0 w-[27vw] h-[19vw] max-w-[420px] max-h-[300px] overflow-hidden bg-black">
+          <div className="relative shrink-0 w-[27vw] h-[19vw] max-w-[420px] max-h-[300px] overflow-hidden bg-black">
             <img
               src={GRID_IMAGES[4].src}
               alt={GRID_IMAGES[4].alt}
               className="w-full h-full object-cover"
               loading="eager"
+            />
+            {/* Top Black Gradient Blend */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+              }}
+            />
+            {/* Bottom Black Gradient Blend */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-[38%] pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
+              }}
             />
           </div>
         </div>
@@ -131,26 +277,15 @@ export default function GetInTouchPage() {
       <div
         className="w-full"
         style={{
-          paddingLeft: "4.166vw",
-          paddingRight: "4.166vw",
-          paddingTop: "2vw",
+          paddingLeft: leftPadding,
+          paddingRight: leftPadding,
         }}
       >
-        {/* SUBTITLE */}
-        <span
-          className="block text-[14px] md:text-[0.972vw] text-white uppercase mb-[2.5vw] tracking-[0.04em]"
-          style={{
-            fontFamily: "var(--font-manrope), sans-serif",
-            fontWeight: 500,
-          }}
-        >
-          GET IN TOUCH
-        </span>
-
-        {/* HEADLINE */}
+        {/* HEADLINE: exactly 152px below GET IN TOUCH */}
         <h1
-          className="text-white text-[32px] sm:text-[44px] md:text-[3.5vw] leading-[1.18] mb-[2vw]"
+          className="text-white text-[32px] sm:text-[44px] md:text-[3.5vw] leading-[1.18]"
           style={{
+            marginTop: `${headlineMarginTop}px`,
             fontFamily: "var(--font-monschone), serif",
             fontWeight: 400,
             letterSpacing: "0%",
@@ -165,10 +300,11 @@ export default function GetInTouchPage() {
           <span> one standard.</span>
         </h1>
 
-        {/* INTRO PARAGRAPH */}
+        {/* INTRO PARAGRAPH: exactly 104px below headline, spanning across the page width */}
         <p
-          className="text-white/80 text-[14px] md:text-[1.05vw] leading-[1.7] max-w-[920px] mb-[4.5vw]"
+          className="text-white/80 text-[14px] md:text-[1.05vw] leading-[1.7] w-full"
           style={{
+            marginTop: "104px",
             fontFamily: "var(--font-manrope), sans-serif",
             fontWeight: 400,
           }}
@@ -181,8 +317,12 @@ export default function GetInTouchPage() {
           experience tailored to your brand.
         </p>
 
-        {/* FORM SECTION WITH BESIDE IMAGE */}
-        <form onSubmit={handleSubmit} className="w-full">
+        {/* FORM SECTION: exactly 134px below content paragraph */}
+        <form
+          onSubmit={handleSubmit}
+          className="w-full"
+          style={{ marginTop: "134px" }}
+        >
           {/* TWO-COLUMN ROW: Form Inputs on Left, Tea Image on Right */}
           <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-14">
             {/* LEFT COLUMN: 5 Pill Inputs + Business Channels */}
@@ -296,10 +436,10 @@ export default function GetInTouchPage() {
               </div>
             </div>
 
-            {/* RIGHT COLUMN: TEA CUP IMAGE BESIDE THE FORM */}
+            {/* RIGHT COLUMN: TEA CUP IMAGE BESIDE THE FORM (NO ROUNDED CORNERS) */}
             <div className="w-full lg:w-[35vw] lg:max-w-[480px] xl:max-w-[520px] shrink-0 self-stretch flex justify-center lg:justify-end">
               <div
-                className="relative w-full max-w-[460px] h-[480px] sm:h-[560px] lg:h-[620px] rounded-2xl overflow-hidden bg-black"
+                className="relative w-full max-w-[460px] h-[480px] sm:h-[560px] lg:h-[620px] rounded-none overflow-hidden bg-black"
                 style={{
                   boxShadow: "0 20px 40px rgba(0, 0, 0, 0.6)",
                 }}
@@ -307,7 +447,7 @@ export default function GetInTouchPage() {
                 <img
                   src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/8e9abddf-cd49-40ba-a6a4-32f1bcf6eb00/public"
                   alt="Pretaboire Tea and Coffee"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-none"
                 />
                 {/* Soft gradient edge overlay */}
                 <div
