@@ -562,8 +562,6 @@ export default function GetInTouchPage() {
             textAlign: "center",
             backgroundImage:
               "linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(147, 147, 147, 0.0728) 100%)",
-            WebkitBackgroundImage:
-              "linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(147, 147, 147, 0.0728) 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             WebkitTextFillColor: "transparent",
