@@ -566,9 +566,6 @@ export default function GetInTouchPage() {
             backgroundClip: "text",
             WebkitTextFillColor: "transparent",
             color: "transparent",
-            paintOrder: "stroke fill",
-            WebkitTextStroke: "clamp(8px, 1.8vw, 29px) #000000",
-            filter: "drop-shadow(0px 0px 3.26px rgba(0, 0, 0, 0.41))",
           }}
         >
           Contact
