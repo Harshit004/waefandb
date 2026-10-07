@@ -222,12 +222,16 @@ export default function GetInTouchPage() {
         className="relative w-full overflow-hidden bg-black pt-[3vw] pb-[2.5vw] flex items-center justify-center select-none"
       >
         <div className="flex items-center justify-center gap-[1.1vw] shrink-0 min-w-full">
-          {/* Image 1: Leftmost (bleeds slightly off screen) */}
-          <div className="relative shrink-0 w-[27vw] h-[19vw] max-w-[420px] max-h-[300px] overflow-hidden bg-black">
+          {/* Image 1: Leftmost */}
+          <div
+            className="relative shrink-0 w-auto h-[19vw] max-h-[300px] overflow-hidden bg-black aspect-[167/768]"
+            style={{ aspectRatio: "167 / 768" }}
+          >
             <img
               src={GRID_IMAGES[0].src}
               alt={GRID_IMAGES[0].alt}
               className="w-full h-full object-cover"
+              style={{ aspectRatio: "167 / 768" }}
               loading="eager"
             />
             {/* Top Black Gradient Blend */}
@@ -331,12 +335,16 @@ export default function GetInTouchPage() {
             />
           </div>
 
-          {/* Image 5: Rightmost (bleeds slightly off screen) */}
-          <div className="relative shrink-0 w-[27vw] h-[19vw] max-w-[420px] max-h-[300px] overflow-hidden bg-black">
+          {/* Image 5: Rightmost */}
+          <div
+            className="relative shrink-0 w-auto h-[19vw] max-h-[300px] overflow-hidden bg-black aspect-[167/768]"
+            style={{ aspectRatio: "167 / 768" }}
+          >
             <img
               src={GRID_IMAGES[4].src}
               alt={GRID_IMAGES[4].alt}
               className="w-full h-full object-cover"
+              style={{ aspectRatio: "167 / 768" }}
               loading="eager"
             />
             {/* Top Black Gradient Blend */}
