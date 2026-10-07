@@ -69,11 +69,11 @@ export default function GetInTouchPage() {
     e.preventDefault();
     isResizingRef.current = true;
     const startY = e.clientY;
-    const startHeight = textareaRef.current?.getBoundingClientRect().height || 72;
+    const startHeight = textareaRef.current?.getBoundingClientRect().height || 49;
 
     const onMouseMove = (moveEvent: MouseEvent) => {
       if (!isResizingRef.current || !textareaRef.current) return;
-      const newHeight = Math.max(72, startHeight + (moveEvent.clientY - startY));
+      const newHeight = Math.max(49, startHeight + (moveEvent.clientY - startY));
       textareaRef.current.style.height = `${newHeight}px`;
     };
 
@@ -90,11 +90,11 @@ export default function GetInTouchPage() {
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length !== 1) return;
     const startY = e.touches[0].clientY;
-    const startHeight = textareaRef.current?.getBoundingClientRect().height || 72;
+    const startHeight = textareaRef.current?.getBoundingClientRect().height || 49;
 
     const onTouchMove = (moveEvent: TouchEvent) => {
       if (moveEvent.touches.length !== 1 || !textareaRef.current) return;
-      const newHeight = Math.max(72, startHeight + (moveEvent.touches[0].clientY - startY));
+      const newHeight = Math.max(49, startHeight + (moveEvent.touches[0].clientY - startY));
       textareaRef.current.style.height = `${newHeight}px`;
     };
 
@@ -585,7 +585,7 @@ export default function GetInTouchPage() {
                 onChange={handleInputChange}
                 rows={2}
                 placeholder="TELL US MORE ABOUT YOUR ENQUIRY"
-                className="w-full bg-transparent text-white placeholder-[#7C7C7C] text-[13px] md:text-[14px] uppercase tracking-wider focus:outline-none resize-none pb-[52px] min-h-[72px]"
+                className="w-full bg-transparent text-white placeholder-[#7C7C7C] text-[13px] md:text-[14px] uppercase tracking-wider focus:outline-none resize-none pb-[29px] min-h-[49px]"
                 style={{ fontFamily: "var(--font-manrope), sans-serif" }}
               />
 
