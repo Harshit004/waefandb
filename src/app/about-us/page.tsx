@@ -292,7 +292,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* 5. "FROM ORIGIN TO CUP" SAGE GREEN BENTO SECTION */}
-      <section className="relative w-full px-[4.166vw] pt-[6vw] pb-[12vw]">
+      <section className="relative w-full px-[4.166vw] pt-[6vw]">
         <div
           className="relative w-full overflow-visible"
           style={{
@@ -303,32 +303,60 @@ export default function AboutUsPage() {
             paddingBottom: "clamp(40px, 5vw, 70px)",
           }}
         >
-          {/* Top Section: Left Header Column & Right Image Column */}
-          <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-[clamp(24px,2.5vw,40px)]">
-            {/* Left Area: Title + Horizontal Divider + Item 1 Text */}
-            <div className="flex-1 w-full flex flex-col justify-between">
-              {/* Heading: "From Origin To Cup" */}
-              <h2
-                className="select-none m-0 p-0"
+          {/* Top Row: Title on Left + Origin Summary on Right */}
+          <div className="w-full flex flex-col md:flex-row items-start justify-between gap-6 md:gap-8">
+            {/* Heading: "From Origin To Cup" */}
+            <h2
+              className="select-none m-0 p-0"
+              style={{
+                fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                fontWeight: 600,
+                fontSize: "clamp(48px, 6.667vw, 96px)",
+                lineHeight: "clamp(55px, 7.639vw, 110px)",
+                letterSpacing: "0%",
+              }}
+            >
+              <span className="block text-[#FFFFFFC7]">From</span>
+              <span className="block text-[#213C19]">Origin</span>
+              <span className="block text-[#213C19]">To Cup</span>
+            </h2>
+
+            {/* Top-Right Summary Paragraph */}
+            <div
+              className="shrink-0 text-left md:text-right"
+              style={{
+                marginRight: "clamp(40px, 9.514vw, 137px)",
+              }}
+            >
+              <p
+                className="text-[#FFFFFFC7] select-none text-left md:text-right"
                 style={{
                   fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                  fontWeight: 600,
-                  fontSize: "clamp(48px, 6.667vw, 96px)",
-                  lineHeight: "clamp(55px, 7.639vw, 110px)",
+                  fontWeight: 400,
+                  fontSize: "clamp(13px, 1.111vw, 16px)",
+                  lineHeight: "1.35",
                   letterSpacing: "0%",
                 }}
               >
-                <span className="block text-[#FFFFFFC7]">From</span>
-                <span className="block text-[#213C19]">Origin</span>
-                <span className="block text-[#213C19]">To Cup</span>
-              </h2>
+                WAE traces every ingredient back to where it began - the
+                <br className="hidden md:inline" />
+                estates, growers and terrains that give tea and coffee their
+                <br className="hidden md:inline" />
+                character, held to the same standard WAE applies to water.
+              </p>
+            </div>
+          </div>
 
-              {/* Thin Horizontal Divider (stops before top-right image) */}
-              <div className="w-full h-[1px] bg-white/40 my-[clamp(24px,3.2vw,48px)]" />
+          {/* Middle Row: White Line touching the image + Item 1 Text & First Image */}
+          <div className="relative w-full mt-[clamp(20px, 2.5vw, 40px)]">
+            <div className="w-full flex items-start">
+              {/* Left Side: Divider line touches the image border directly */}
+              <div className="flex-1 flex flex-col items-end">
+                {/* Thin Horizontal Divider: Spans full width of left side, touching image */}
+                <div className="w-full h-[1px] bg-white/40" />
 
-              {/* Item 1 Text (right-aligned to sit adjacent to top-right image) */}
-              <div className="w-full flex justify-start md:justify-end">
-                <div className="text-left md:text-right max-w-[460px] lg:max-w-[32vw]">
+                {/* Item 1 Text (right-aligned to sit directly next to image) */}
+                <div className="text-left md:text-right mt-[clamp(32px, 4vw, 55px)] pr-[clamp(16px, 2vw, 32px)]">
                   <h3
                     className="text-[#213C19] select-none"
                     style={{
@@ -351,35 +379,21 @@ export default function AboutUsPage() {
                       letterSpacing: "0%",
                     }}
                   >
-                    Sourced from tea gardens selected for altitude, soil and
-                    season, not volume.
+                    Sourced from tea gardens selected for altitude,
+                    <br className="hidden md:inline" />
+                    soil and season, not volume.
                   </p>
                 </div>
               </div>
-            </div>
 
-            {/* Right Column: Top Summary Paragraph + Top-Right Image (323x429) */}
-            <div className="w-full lg:w-[22.431vw] max-w-[323px] shrink-0 flex flex-col items-end">
-              {/* Top-Right Summary Paragraph */}
-              <p
-                className="text-[#FFFFFFC7] select-none text-left lg:text-right mb-[clamp(24px,3.2vw,48px)]"
-                style={{
-                  fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                  fontWeight: 400,
-                  fontSize: "clamp(13px, 1.111vw, 16px)",
-                  lineHeight: "1.3",
-                  letterSpacing: "0%",
-                }}
-              >
-                WAE traces every ingredient back to where it began - the
-                estates, growers and terrains that give tea and coffee their
-                character, held to the same standard WAE applies to water.
-              </p>
-
-              {/* Top-Right Image: Tea Estate At Sunrise (323x429) */}
+              {/* First Image: Tea Estate At Sunrise (323x429) */}
+              {/* Negative margin elevates top edge so divider line touches it at ~18% from top */}
               <div
-                className="w-full overflow-hidden bg-[#2A3B22] shadow-xl"
-                style={{ aspectRatio: "323 / 429" }}
+                className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-xl -mt-[clamp(40px, 4.8vw, 72px)]"
+                style={{
+                  aspectRatio: "323 / 429",
+                  marginRight: "clamp(40px, 9.514vw, 137px)",
+                }}
               >
                 <img
                   src={ABOUT_PLACEHOLDERS.originTeaEstate}
@@ -396,8 +410,11 @@ export default function AboutUsPage() {
           <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-start gap-6 md:gap-[clamp(20px,2.5vw,40px)] mt-[clamp(32px,4vw,60px)] relative z-20">
             {/* Coffee Cherries Image: indented from left, overhanging bottom boundary */}
             <div
-              className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-2xl lg:ml-[clamp(60px,11.8vw,170px)] translate-y-[15%] lg:translate-y-[26%]"
-              style={{ aspectRatio: "323 / 383" }}
+              className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-2xl translate-y-[15%] lg:translate-y-[26%]"
+              style={{
+                aspectRatio: "323 / 383",
+                marginLeft: "clamp(40px, 9.514vw, 137px)",
+              }}
             >
               <img
                 src={ABOUT_PLACEHOLDERS.originCoffeeCherries}
@@ -432,16 +449,26 @@ export default function AboutUsPage() {
                   letterSpacing: "0%",
                 }}
               >
-                Harvested at peak ripeness, from growers WAE works with directly
-                and repeatedly.
+                Harvested at peak ripeness, from growers WAE
+                <br className="hidden md:inline" />
+                works with directly and repeatedly.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* 311px gap between Section 5 and Footer */}
+      <div
+        className="w-full"
+        style={{
+          height: "clamp(180px, 21.597vw, 311px)",
+        }}
+        aria-hidden="true"
+      />
+
       {/* 6. FOOTER COMPONENT */}
-      <Footer className="pt-[4vw]" />
+      <Footer className="pt-0" />
     </main>
   );
 }
