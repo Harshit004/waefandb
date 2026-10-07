@@ -320,7 +320,7 @@ export default function AboutUsPage() {
                 fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                 fontWeight: 600,
                 fontSize: "clamp(48px, 6.667vw, 96px)",
-                lineHeight: "clamp(48px, 6.111vw, 88px)",
+                lineHeight: "clamp(55px, 7.639vw, 110px)",
                 letterSpacing: "0%",
               }}
             >
