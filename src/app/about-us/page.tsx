@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -30,87 +31,107 @@ const ABOUT_PLACEHOLDERS = {
 export default function AboutUsPage() {
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-white/20 selection:text-white">
+      {/* Cloudflare Stream Player SDK */}
+      <Script
+        src="https://embed.cloudflarestream.com/embed/sdk.latest.js"
+        strategy="afterInteractive"
+      />
+
       {/* 1. MAIN HEADER COMPONENT */}
       <Header />
 
-      {/* 2. HERO SECTION */}
-      <section className="relative w-full pt-[9vw] md:pt-[10vw] pb-[6vw] px-[4.166vw]">
-        <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-[4vw]">
-          {/* Left Column: Tall Farmer Portrait with "WAE Beverage Initiative" overlay */}
-          <div className="relative w-full lg:w-[46vw] h-[75vw] sm:h-[65vw] lg:h-[60vw] max-h-[880px] overflow-hidden bg-[#111111] shrink-0">
-            <img
-              src={ABOUT_PLACEHOLDERS.heroFarmer}
-              alt="Farmer with coffee cherries"
-              className="w-full h-full object-cover select-none"
-              loading="eager"
-            />
+      {/* 2. HERO SECTION (Full-bleed from top: 0, Header laid over) */}
+      <section className="relative w-full flex flex-col lg:flex-row items-stretch bg-black overflow-hidden">
+        {/* Left Column (50vw): 720x844 Farmer Image starting from top: 0 and left: 0 */}
+        <div
+          className="relative w-full lg:w-[50vw] aspect-[720/844] overflow-hidden bg-[#111111] shrink-0"
+          style={{ aspectRatio: "720 / 844" }}
+        >
+          <img
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/fe1930f7-4232-426d-1d9c-fee4576a7a00/public"
+            alt="WAE Beverage Initiative"
+            className="w-full h-full object-cover select-none"
+            style={{ aspectRatio: "720 / 844" }}
+            loading="eager"
+          />
 
-            {/* Gradient shadow to guarantee legibility of title */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 30%, rgba(0,0,0,0) 60%)",
-              }}
-            />
+          {/* Smooth black gradient fade at the bottom of the photo */}
+          <div
+            className="absolute inset-0 pointer-events-none z-10"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(0,0,0,0) 45%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.95) 100%)",
+            }}
+          />
 
-            {/* Overlay Title: "WAE Beverage Initiative" */}
-            <div className="absolute bottom-[2.5vw] left-[2.5vw] z-10 select-none">
-              <h1 className="font-normal m-0 p-0">
-                <span
-                  className="block text-white uppercase"
-                  style={{
-                    fontFamily: "var(--font-monschone), serif",
-                    fontSize: "clamp(30px, 3.8vw, 56px)",
-                    lineHeight: "1.02",
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  WAE
-                </span>
-                <span
-                  className="block text-white mt-1"
-                  style={{
-                    fontFamily: "var(--font-monschone), serif",
-                    fontSize: "clamp(26px, 3.3vw, 48px)",
-                    lineHeight: "1.05",
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  Beverage Initiative
-                </span>
-              </h1>
-            </div>
-          </div>
-
-          {/* Right Column: Square Tea Leaves Image + Mission Statement */}
-          <div className="w-full lg:w-[40vw] flex flex-col items-start lg:items-end lg:pt-[5vw]">
-            <div className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[19vw]">
-              {/* Square Image Placeholder */}
-              <div className="w-full aspect-square overflow-hidden bg-[#111111] mb-[1.8vw]">
-                <img
-                  src={ABOUT_PLACEHOLDERS.heroTea}
-                  alt="Tea plantation leaves"
-                  className="w-full h-full object-cover select-none"
-                  loading="eager"
-                />
-              </div>
-
-              {/* Description Paragraph */}
-              <p
-                className="text-white/80 select-none"
+          {/* Overlay Title: "WAE Beverage Initiative" */}
+          <div className="absolute bottom-[3.5vw] left-[4.166vw] z-20 select-none">
+            <h1 className="font-normal m-0 p-0">
+              <span
+                className="block text-white uppercase"
                 style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontSize: "clamp(12px, 0.95vw, 14.5px)",
-                  lineHeight: "1.6",
+                  fontFamily: "var(--font-monschone), serif",
+                  fontSize: "clamp(32px, 4.2vw, 64px)",
+                  lineHeight: "1.0",
+                  letterSpacing: "-0.01em",
                 }}
               >
-                WAE&apos;s beverage initiative extends its engineering standard
-                beyond water — bringing tea and coffee into the same system of
-                quality, consistency and reliability, for premium spaces that
-                expect more from every serve.
-              </p>
+                WAE
+              </span>
+              <span
+                className="block text-white mt-1.5"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontSize: "clamp(28px, 3.7vw, 54px)",
+                  lineHeight: "1.05",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                Beverage Initiative
+              </span>
+            </h1>
+          </div>
+        </div>
+
+        {/* Right Column (50vw): Centered 248x257 Video + Mission Statement */}
+        <div className="w-full lg:w-[50vw] flex flex-col items-center justify-center px-6 lg:px-0 py-16 lg:py-0 bg-black shrink-0">
+          <div className="w-full max-w-[280px] lg:max-w-none lg:w-[17.222vw]">
+            {/* 248x257 Responsive Cloudflare Stream Video Container */}
+            <div
+              className="relative w-full overflow-hidden bg-black mb-6 lg:mb-[2.2vw] rounded-[2px]"
+              style={{
+                aspectRatio: "248 / 257",
+              }}
+            >
+              <iframe
+                src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/8171d0626305612ef00ab8ee1331b36d/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F8171d0626305612ef00ab8ee1331b36d%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&autoplay=true&muted=true&loop=true&controls=false&preload=auto"
+                loading="lazy"
+                className="border-0 absolute top-0 left-0 w-full h-full object-cover"
+                style={{
+                  border: "none",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  height: "100%",
+                  width: "100%",
+                }}
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowFullScreen
+              />
             </div>
+
+            {/* Description Paragraph */}
+            <p
+              className="text-white/80 select-none text-[13px] lg:text-[1.04vw] leading-[1.48]"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+              }}
+            >
+              WAE&apos;s beverage initiative extends its engineering standard
+              beyond water — bringing tea and coffee into the same system of
+              quality, consistency and reliability, for premium spaces that
+              expect more from every serve.
+            </p>
           </div>
         </div>
       </section>
