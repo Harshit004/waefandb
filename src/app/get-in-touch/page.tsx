@@ -53,6 +53,60 @@ export default function GetInTouchPage() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState<string>("");
 
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const isResizingRef = useRef(false);
+
+  const isFormFilled = Boolean(
+    formData.name.trim() &&
+    formData.companyName.trim() &&
+    formData.jobTitle.trim() &&
+    formData.email.trim() &&
+    formData.phone.trim() &&
+    acceptedTerms
+  );
+
+  const handleResizeStart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    isResizingRef.current = true;
+    const startY = e.clientY;
+    const startHeight = textareaRef.current?.getBoundingClientRect().height || 72;
+
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      if (!isResizingRef.current || !textareaRef.current) return;
+      const newHeight = Math.max(72, startHeight + (moveEvent.clientY - startY));
+      textareaRef.current.style.height = `${newHeight}px`;
+    };
+
+    const onMouseUp = () => {
+      isResizingRef.current = false;
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length !== 1) return;
+    const startY = e.touches[0].clientY;
+    const startHeight = textareaRef.current?.getBoundingClientRect().height || 72;
+
+    const onTouchMove = (moveEvent: TouchEvent) => {
+      if (moveEvent.touches.length !== 1 || !textareaRef.current) return;
+      const newHeight = Math.max(72, startHeight + (moveEvent.touches[0].clientY - startY));
+      textareaRef.current.style.height = `${newHeight}px`;
+    };
+
+    const onTouchEnd = () => {
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("touchend", onTouchEnd);
+  };
+
   // Layout alignment refs and states
   const gridSectionRef = useRef<HTMLElement>(null);
   const image2Ref = useRef<HTMLDivElement>(null);
@@ -523,16 +577,53 @@ export default function GetInTouchPage() {
               Message
             </h3>
 
-            <div className="relative w-full border-b border-white/40 focus-within:border-white transition-colors pb-3">
+            <div className="relative w-full border-b border-white/40 focus-within:border-white transition-colors">
               <textarea
+                ref={textareaRef}
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={2}
                 placeholder="TELL US MORE ABOUT YOUR ENQUIRY"
-                className="w-full bg-transparent text-white placeholder-[#7C7C7C] text-[13px] md:text-[14px] uppercase tracking-wider focus:outline-none resize-y min-h-[50px]"
+                className="w-full bg-transparent text-white placeholder-[#7C7C7C] text-[13px] md:text-[14px] uppercase tracking-wider focus:outline-none resize-none pb-[52px] min-h-[72px]"
                 style={{ fontFamily: "var(--font-manrope), sans-serif" }}
               />
+
+              {/* Resize Handle: 18x14px, 8px above the message line */}
+              <div
+                onMouseDown={handleResizeStart}
+                onTouchStart={handleTouchStart}
+                className="absolute right-0 bottom-[8px] w-[18px] h-[14px] cursor-ns-resize flex items-center justify-center select-none z-10 group"
+                title="Resize message field"
+              >
+                <svg
+                  width="18"
+                  height="14"
+                  viewBox="0 0 18 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-[18px] h-[14px] text-white/40 group-hover:text-white transition-colors pointer-events-none"
+                >
+                  <line
+                    x1="16"
+                    y1="3"
+                    x2="6"
+                    y2="13"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="16"
+                    y1="8"
+                    x2="11"
+                    y2="13"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
 
@@ -588,13 +679,15 @@ export default function GetInTouchPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={isSubmitting}
-              className={`w-[160px] md:w-[170px] h-[48px] rounded-full active:scale-[0.98] transition-all duration-200 text-white uppercase text-[13px] md:text-[14px] font-medium tracking-wider flex items-center justify-center cursor-pointer select-none shrink-0 self-end sm:self-center ${
+              disabled={isSubmitting || !isFormFilled}
+              className={`w-[160px] md:w-[170px] h-[48px] rounded-full active:scale-[0.98] transition-all duration-200 uppercase text-[13px] md:text-[14px] font-medium tracking-wider flex items-center justify-center select-none shrink-0 self-end sm:self-center ${
                 isSubmitting
-                  ? "bg-[#383A38] opacity-80 cursor-not-allowed"
+                  ? "bg-[#383A38] text-white opacity-80 cursor-not-allowed"
                   : submitStatus === "success"
-                  ? "bg-[#254A36] hover:bg-[#2F5C43]"
-                  : "bg-[#4E5250] hover:bg-[#5E6360]"
+                  ? "bg-[#254A36] hover:bg-[#2F5C43] text-white cursor-pointer"
+                  : !isFormFilled
+                  ? "bg-[#2A2B2A] text-white/30 border border-white/5 cursor-not-allowed"
+                  : "bg-[#4E5250] hover:bg-[#5E6360] text-white cursor-pointer"
               }`}
               style={{ fontFamily: "var(--font-manrope), sans-serif" }}
             >
