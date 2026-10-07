@@ -292,7 +292,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* 5. "FROM ORIGIN TO CUP" SAGE GREEN BENTO SECTION */}
-      <section className="relative w-full px-[4.166vw] pt-[6vw]">
+      <section id="origin-section" className="relative w-full px-[4.166vw] pt-[6vw]">
         <div
           className="relative w-full overflow-visible"
           style={{
@@ -348,7 +348,10 @@ export default function AboutUsPage() {
           </div>
 
           {/* Middle Row: White Line touching the image + Item 1 Text & First Image */}
-          <div className="relative w-full mt-[clamp(35px, 5.2vw, 75px)]">
+          <div
+            className="relative w-full"
+            style={{ marginTop: "clamp(35px, 5.2vw, 75px)" }}
+          >
             <div className="w-full flex items-start">
               {/* Left Side: Divider line touches the image border directly */}
               <div className="flex-1 flex flex-col items-end">
@@ -356,7 +359,13 @@ export default function AboutUsPage() {
                 <div className="w-full h-[1px] bg-white/40" />
 
                 {/* Item 1 Text (right-aligned to sit directly next to lower half of image) */}
-                <div className="text-left md:text-right mt-[clamp(75px, 10.5vw, 150px)] pr-[clamp(14px, 1.4vw, 20px)]">
+                <div
+                  className="text-left md:text-right"
+                  style={{
+                    marginTop: "clamp(50px, 7.5vw, 110px)",
+                    paddingRight: "clamp(14px, 1.4vw, 20px)",
+                  }}
+                >
                   <h3
                     className="text-[#213C19] select-none"
                     style={{
@@ -373,9 +382,9 @@ export default function AboutUsPage() {
                     className="text-[#213C19] select-none mt-2 sm:mt-3"
                     style={{
                       fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                      fontWeight: 600,
-                      fontSize: "clamp(16px, 1.667vw, 24px)",
-                      lineHeight: "1.2",
+                      fontWeight: 400,
+                      fontSize: "clamp(13px, 1.111vw, 16px)",
+                      lineHeight: "1.35",
                       letterSpacing: "0%",
                     }}
                   >
@@ -387,11 +396,12 @@ export default function AboutUsPage() {
               </div>
 
               {/* First Image: Tea Estate At Sunrise (323x429) */}
-              {/* Top edge elevated ~105px above divider line, so line touches left edge at ~24% from top */}
+              {/* Elevated ~105px above divider line, so line touches left edge at ~24% from top */}
               <div
-                className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-xl -mt-[clamp(60px, 7.3vw, 105px)]"
+                className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-xl"
                 style={{
                   aspectRatio: "323 / 429",
+                  marginTop: "calc(-1 * clamp(50px, 7.3vw, 105px))",
                   marginRight: "clamp(40px, 9.514vw, 137px)",
                 }}
               >
@@ -407,13 +417,17 @@ export default function AboutUsPage() {
           </div>
 
           {/* Bottom Area: Item 2 (Coffee Cherries 323x383 Image + Text) */}
-          <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-start gap-6 md:gap-[clamp(20px,2.5vw,40px)] mt-[clamp(32px,4vw,60px)] relative z-20">
+          <div
+            className="w-full flex flex-col md:flex-row items-start md:items-start justify-start gap-6 md:gap-[clamp(20px,2.5vw,40px)] relative z-20"
+            style={{ marginTop: "clamp(24px, 3.5vw, 50px)" }}
+          >
             {/* Coffee Cherries Image: indented from left, overhanging bottom boundary */}
             <div
-              className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-2xl translate-y-[15%] lg:translate-y-[26%]"
+              className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-2xl"
               style={{
                 aspectRatio: "323 / 383",
                 marginLeft: "clamp(40px, 9.514vw, 137px)",
+                transform: "translateY(clamp(40px, 5.5vw, 85px))",
               }}
             >
               <img
@@ -426,7 +440,12 @@ export default function AboutUsPage() {
             </div>
 
             {/* Item 2 Text (right of coffee cherries image) */}
-            <div className="max-w-[460px] lg:max-w-[32vw] text-left">
+            <div
+              className="max-w-[460px] lg:max-w-[36vw] text-left"
+              style={{
+                transform: "translateY(clamp(30px, 4vw, 55px))",
+              }}
+            >
               <h3
                 className="text-[#213C19] select-none"
                 style={{
@@ -443,9 +462,9 @@ export default function AboutUsPage() {
                 className="text-[#213C19] select-none mt-2 sm:mt-3"
                 style={{
                   fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                  fontWeight: 600,
-                  fontSize: "clamp(16px, 1.667vw, 24px)",
-                  lineHeight: "1.2",
+                  fontWeight: 400,
+                  fontSize: "clamp(13px, 1.111vw, 16px)",
+                  lineHeight: "1.35",
                   letterSpacing: "0%",
                 }}
               >
