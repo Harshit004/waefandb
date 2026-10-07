@@ -348,15 +348,15 @@ export default function AboutUsPage() {
           </div>
 
           {/* Middle Row: White Line touching the image + Item 1 Text & First Image */}
-          <div className="relative w-full mt-[clamp(20px, 2.5vw, 40px)]">
+          <div className="relative w-full mt-[clamp(35px, 5.2vw, 75px)]">
             <div className="w-full flex items-start">
               {/* Left Side: Divider line touches the image border directly */}
               <div className="flex-1 flex flex-col items-end">
                 {/* Thin Horizontal Divider: Spans full width of left side, touching image */}
                 <div className="w-full h-[1px] bg-white/40" />
 
-                {/* Item 1 Text (right-aligned to sit directly next to image) */}
-                <div className="text-left md:text-right mt-[clamp(32px, 4vw, 55px)] pr-[clamp(16px, 2vw, 32px)]">
+                {/* Item 1 Text (right-aligned to sit directly next to lower half of image) */}
+                <div className="text-left md:text-right mt-[clamp(75px, 10.5vw, 150px)] pr-[clamp(14px, 1.4vw, 20px)]">
                   <h3
                     className="text-[#213C19] select-none"
                     style={{
@@ -387,9 +387,9 @@ export default function AboutUsPage() {
               </div>
 
               {/* First Image: Tea Estate At Sunrise (323x429) */}
-              {/* Negative margin elevates top edge so divider line touches it at ~18% from top */}
+              {/* Top edge elevated ~105px above divider line, so line touches left edge at ~24% from top */}
               <div
-                className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-xl -mt-[clamp(40px, 4.8vw, 72px)]"
+                className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-xl -mt-[clamp(60px, 7.3vw, 105px)]"
                 style={{
                   aspectRatio: "323 / 429",
                   marginRight: "clamp(40px, 9.514vw, 137px)",
