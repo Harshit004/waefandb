@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import Header from "@/components/Header";
+import GetInTouchHeader from "@/components/GetInTouchHeader";
 import Footer from "@/components/Footer";
 
 const GRID_IMAGES = [
@@ -214,7 +214,7 @@ export default function GetInTouchPage() {
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-white/20 selection:text-white">
       {/* HEADER COMPONENT */}
-      <Header />
+      <GetInTouchHeader />
 
       {/* TOP IMAGE GRID SECTION */}
       <section
