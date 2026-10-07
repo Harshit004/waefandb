@@ -232,8 +232,9 @@ export default function GetInTouchPage() {
             />
             {/* Top Black Gradient Blend */}
             <div
-              className="absolute top-0 left-0 right-0 h-[19%] pointer-events-none z-10"
+              className="absolute top-0 left-0 right-0 h-[3.8%] pointer-events-none z-10"
               style={{
+                height: "3.8%",
                 background:
                   "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
               }}
@@ -254,8 +255,9 @@ export default function GetInTouchPage() {
               />
               {/* Top Black Gradient Blend */}
               <div
-                className="absolute top-0 left-0 right-0 h-[19%] pointer-events-none z-10"
+                className="absolute top-0 left-0 right-0 h-[3.8%] pointer-events-none z-10"
                 style={{
+                  height: "3.8%",
                   background:
                     "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
                 }}
@@ -293,8 +295,9 @@ export default function GetInTouchPage() {
             />
             {/* Top Black Gradient Blend */}
             <div
-              className="absolute top-0 left-0 right-0 h-[19%] pointer-events-none z-10"
+              className="absolute top-0 left-0 right-0 h-[3.8%] pointer-events-none z-10"
               style={{
+                height: "3.8%",
                 background:
                   "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
               }}
@@ -319,8 +322,9 @@ export default function GetInTouchPage() {
             />
             {/* Top Black Gradient Blend */}
             <div
-              className="absolute top-0 left-0 right-0 h-[19%] pointer-events-none z-10"
+              className="absolute top-0 left-0 right-0 h-[3.8%] pointer-events-none z-10"
               style={{
+                height: "3.8%",
                 background:
                   "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
               }}
@@ -337,8 +341,9 @@ export default function GetInTouchPage() {
             />
             {/* Top Black Gradient Blend */}
             <div
-              className="absolute top-0 left-0 right-0 h-[19%] pointer-events-none z-10"
+              className="absolute top-0 left-0 right-0 h-[3.8%] pointer-events-none z-10"
               style={{
+                height: "3.8%",
                 background:
                   "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 35%, rgba(0, 0, 0, 0) 100%)",
               }}
