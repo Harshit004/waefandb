@@ -5,9 +5,15 @@ import Script from "next/script";
 import Link from "next/link";
 import Header from "@/components/Header";
 
+interface StreamPlayer {
+  play: () => Promise<void>;
+  pause: () => void;
+  currentTime: number;
+}
+
 export default function Home() {
   const iframeRefs = useRef<(HTMLIFrameElement | null)[]>([]);
-  const playerRefs = useRef<(any | null)[]>([]);
+  const playerRefs = useRef<(StreamPlayer | null)[]>([]);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [activeCursor, setActiveCursor] = useState<number | null>(null);
 
@@ -15,8 +21,9 @@ export default function Home() {
   const getPlayer = (idx: number) => {
     if (!playerRefs.current[idx]) {
       const iframe = iframeRefs.current[idx];
-      if (iframe && typeof window !== "undefined" && (window as any).Stream) {
-        playerRefs.current[idx] = (window as any).Stream(iframe);
+      const win = typeof window !== "undefined" ? (window as unknown as { Stream?: (el: HTMLIFrameElement) => StreamPlayer }) : null;
+      if (iframe && win?.Stream) {
+        playerRefs.current[idx] = win.Stream(iframe);
       }
     }
     return playerRefs.current[idx];
@@ -83,10 +90,11 @@ export default function Home() {
   useEffect(() => {
     // Attempt initialization once mounted and when Stream is available
     const init = () => {
-      if (typeof window !== "undefined" && (window as any).Stream) {
+      const win = typeof window !== "undefined" ? (window as unknown as { Stream?: (el: HTMLIFrameElement) => StreamPlayer }) : null;
+      if (win?.Stream) {
         iframeRefs.current.forEach((iframe, idx) => {
           if (iframe && !playerRefs.current[idx]) {
-            playerRefs.current[idx] = (window as any).Stream(iframe);
+            playerRefs.current[idx] = win.Stream!(iframe);
           }
         });
       }
@@ -218,8 +226,8 @@ export default function Home() {
             <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none"></div>
 
             {/* Text Content */}
-            <div className="absolute bottom-[5vw] left-[4.166vw] right-[4.166vw] flex flex-col pointer-events-none">
-              <div className="relative z-20 flex flex-col">
+            <div className="absolute bottom-[5vw] left-[4.166vw] right-[4.166vw] flex flex-col pointer-events-none z-30">
+              <div className="relative z-30 flex flex-col">
                 <span
                   className="font-monschone font-normal text-[1.667vw] text-white leading-[3.333vw] tracking-[0%] mb-[0.278vw] block"
                   style={{
@@ -237,7 +245,17 @@ export default function Home() {
                 <h2 className="font-monschone font-normal text-[2.8vw] text-white mb-[1.5vw]">
                   {col.title}
                 </h2>
-                <p className="font-manrope font-normal text-[0.937vw] text-white leading-[1.4] mb-[2vw] max-w-[85%]">
+                <p
+                  className="font-manrope font-normal text-[0.937vw] text-white opacity-100 leading-[1.4] mb-[2vw] max-w-[85%]"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 400,
+                    fontSize: "0.937vw",
+                    lineHeight: 1.4,
+                    color: "#fff",
+                    opacity: 1,
+                  }}
+                >
                   {col.desc}
                 </p>
               </div>
@@ -264,7 +282,7 @@ export default function Home() {
 
         {/* Top Vignette Overlay */}
         <div
-          className="absolute top-0 left-0 w-full h-[20%] z-20 pointer-events-none"
+          className="absolute top-0 left-0 w-full h-[20%] z-10 pointer-events-none"
           style={{
             background: "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
           }}
@@ -272,7 +290,7 @@ export default function Home() {
 
         {/* Bottom Vignette Overlay */}
         <div
-          className="absolute bottom-0 left-0 w-full h-[45%] z-20 pointer-events-none"
+          className="absolute bottom-0 left-0 w-full h-[45%] z-10 pointer-events-none"
           style={{
             background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)",
           }}
