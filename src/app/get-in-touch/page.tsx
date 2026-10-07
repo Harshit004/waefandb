@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 
 const GRID_IMAGES = [
   {
-    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/4dee6347-42a5-4afb-e2d6-832ed22fdc00/public",
+    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/2d6abffd-1d24-4a4f-536e-08b06f454c00/public",
     alt: "Artisan preparation",
   },
   {
@@ -23,7 +23,7 @@ const GRID_IMAGES = [
     alt: "Finest green tea selection",
   },
   {
-    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f17a37d5-9a00-450a-3c33-456c34cc6400/public",
+    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/b8607562-b41c-4ea9-ee14-6cc8d2c50700/public",
     alt: "Tasting vessel",
   },
 ];
@@ -653,15 +653,14 @@ export default function GetInTouchPage() {
             <button
               type="submit"
               disabled={isSubmitting || !isFormFilled}
-              className={`w-[160px] md:w-[170px] h-[48px] rounded-full active:scale-[0.98] transition-all duration-200 uppercase text-[13px] md:text-[14px] font-medium tracking-wider flex items-center justify-center select-none shrink-0 self-end sm:self-center ${
-                isSubmitting
-                  ? "bg-[#383A38] text-white opacity-80 cursor-not-allowed"
-                  : submitStatus === "success"
+              className={`w-[160px] md:w-[170px] h-[48px] rounded-full active:scale-[0.98] transition-all duration-200 uppercase text-[13px] md:text-[14px] font-medium tracking-wider flex items-center justify-center select-none shrink-0 self-end sm:self-center ${isSubmitting
+                ? "bg-[#383A38] text-white opacity-80 cursor-not-allowed"
+                : submitStatus === "success"
                   ? "bg-[#254A36] hover:bg-[#2F5C43] text-white cursor-pointer"
                   : !isFormFilled
-                  ? "bg-[#2A2B2A] text-white/30 border border-white/5 cursor-not-allowed"
-                  : "bg-[#4E5250] hover:bg-[#5E6360] text-white cursor-pointer"
-              }`}
+                    ? "bg-[#2A2B2A] text-white/30 border border-white/5 cursor-not-allowed"
+                    : "bg-[#4E5250] hover:bg-[#5E6360] text-white cursor-pointer"
+                }`}
               style={{ fontFamily: "var(--font-manrope), sans-serif" }}
             >
               {isSubmitting ? (
