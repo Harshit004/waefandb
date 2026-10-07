@@ -15,11 +15,11 @@ const ABOUT_PLACEHOLDERS = {
 
   // Craft & apparatus 3-column collage assets
   craftPourOver:
-    "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80",
-  craftBeansRoaster:
-    "https://images.unsplash.com/photo-1518832553480-cd0e625ed3e6?auto=format&fit=crop&w=1200&q=80",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e550a81e-cc7a-492c-287c-d7e5b8cf0500/public",
+  craftBeansRoasterVideo:
+    "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/fa25d432e73f3fd10080fc5dfee0e634/iframe",
   craftEspresso:
-    "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=800&q=80",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/a83659a4-e5bb-423b-24e9-903afe8f6700/public",
 
   // "From Origin To Cup" section assets
   originTeaEstate:
@@ -95,7 +95,7 @@ export default function AboutUsPage() {
 
         {/* Right Column (50vw): Centered 248x257 Video + Mission Statement */}
         <div className="w-full lg:w-[50vw] flex flex-col items-center justify-center px-6 lg:px-0 py-16 lg:py-0 bg-black shrink-0">
-          <div className="w-full max-w-[280px] lg:max-w-none lg:w-[17.222vw]">
+          <div className="w-full max-w-[248px] lg:max-w-none lg:w-[17.222vw]">
             {/* 248x257 Responsive Cloudflare Stream Video Container */}
             <div
               className="relative w-full overflow-hidden bg-black mb-6 lg:mb-[2.2vw] rounded-[2px]"
@@ -122,9 +122,15 @@ export default function AboutUsPage() {
 
             {/* Description Paragraph */}
             <p
-              className="text-white/80 select-none text-[13px] lg:text-[1.04vw] leading-[1.48]"
+              className="text-white select-none"
               style={{
-                fontFamily: "var(--font-manrope), sans-serif",
+                fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                fontWeight: 400,
+                fontStyle: "normal",
+                fontSize: "clamp(13px, 1.111vw, 16px)",
+                lineHeight: "100%",
+                letterSpacing: "0%",
+                textAlign: "justify",
               }}
             >
               WAE&apos;s beverage initiative extends its engineering standard
@@ -137,24 +143,38 @@ export default function AboutUsPage() {
       </section>
 
       {/* 3. PHILOSOPHY / STATEMENT QUOTE SECTION */}
-      <section className="relative w-full py-[8vw] lg:py-[10vw] px-[4.166vw]">
-        <div className="w-full max-w-[1080px] lg:max-w-[72vw] mx-auto text-center">
+      <section
+        className="relative w-full px-[4.166vw] select-none"
+        style={{
+          paddingTop: "clamp(120px, 18.403vw, 265px)",
+          paddingBottom: "clamp(120px, 18.403vw, 265px)",
+        }}
+      >
+        <div className="w-full max-w-[1042px] lg:max-w-[72.5vw] mx-auto text-center">
           <h2
-            className="font-normal select-none"
+            className="font-normal select-none m-0 p-0"
             style={{
               fontFamily: "var(--font-monschone), serif",
-              fontSize: "clamp(22px, 2.35vw, 38px)",
-              lineHeight: "1.38",
-              letterSpacing: "0.01em",
+              fontWeight: 400,
+              fontStyle: "normal",
+              fontSize: "clamp(24px, 2.778vw, 40px)",
+              lineHeight: "100%",
+              letterSpacing: "0%",
+              textAlign: "center",
+              textTransform: "capitalize",
             }}
           >
             <span className="text-white/40">Years Of </span>
             <span className="text-white">Field Knowledge</span>
             <span className="text-white/40">. Trusted Local </span>
             <span className="text-white">Relationships</span>
-            <span className="text-white/40">. An Understanding Of Origin, </span>
+            <span className="text-white/40">. An </span>
+            <br className="hidden md:inline" />
+            <span className="text-white/40">Understanding Of Origin, </span>
             <span className="text-white">Earned Over Time</span>
-            <span className="text-white/40">. This Is What </span>
+            <span className="text-white/40">. </span>
+            <br className="hidden md:inline" />
+            <span className="text-white/40">This Is What </span>
             <span className="text-white">WAE</span>
             <span className="text-white/40"> Brings To Every </span>
             <span className="text-white">Beverage</span>
@@ -164,27 +184,36 @@ export default function AboutUsPage() {
       </section>
 
       {/* 4. THREE-COLUMN CRAFT & APPARATUS COLLAGE SECTION */}
-      <section className="relative w-full py-[4vw] lg:py-[6vw] px-[4.166vw]">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-[1fr_1.8fr_1fr] items-stretch gap-8 lg:gap-[2.5vw]">
-          {/* Column 1 (Left): Top Pour-over Image + Bottom Narrative */}
-          <div className="flex flex-col justify-between gap-8 lg:gap-0">
-            {/* Top Pour-over Image */}
-            <div className="w-full aspect-[3/4] max-h-[380px] lg:max-h-none overflow-hidden bg-[#111111]">
+      <section className="relative w-full pt-0 pb-[8vw] lg:pb-[10vw] px-[4.166vw]">
+        <div className="w-full flex flex-col lg:flex-row items-stretch justify-between gap-8 lg:gap-[0.625vw]">
+          {/* Column 1 (Left): Top Pour-over Image (308x428) + Bottom Narrative */}
+          <div className="w-full lg:w-[21.389vw] flex flex-col justify-between shrink-0">
+            {/* Top Pour-over Image (308x428) */}
+            <div
+              className="relative w-full overflow-hidden bg-[#111111]"
+              style={{
+                aspectRatio: "308 / 428",
+              }}
+            >
               <img
-                src={ABOUT_PLACEHOLDERS.craftPourOver}
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e550a81e-cc7a-492c-287c-d7e5b8cf0500/public"
                 alt="Barista brewing pour-over coffee"
                 className="w-full h-full object-cover select-none"
+                style={{ aspectRatio: "308 / 428" }}
                 loading="lazy"
               />
             </div>
 
             {/* Bottom Narrative Text */}
             <p
-              className="text-white/75 select-none lg:pt-[4vw]"
+              className="text-white select-none pt-6 lg:pt-0"
               style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(12px, 0.9vw, 13.5px)",
-                lineHeight: "1.6",
+                fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                fontWeight: 400,
+                fontStyle: "normal",
+                fontSize: "clamp(13px, 1.111vw, 16px)",
+                lineHeight: "100%",
+                letterSpacing: "0%",
               }}
             >
               sourcing, brewing and serving them with the same rigour applied to
@@ -195,37 +224,62 @@ export default function AboutUsPage() {
             </p>
           </div>
 
-          {/* Column 2 (Center): Dominant Roasted Coffee Beans Roaster Image */}
-          <div className="w-full h-[65vw] sm:h-[55vw] lg:h-[54vw] max-h-[820px] overflow-hidden bg-[#111111]">
-            <img
-              src={ABOUT_PLACEHOLDERS.craftBeansRoaster}
-              alt="Freshly roasted coffee beans cooling in roaster"
-              className="w-full h-full object-cover select-none"
-              loading="lazy"
-            />
+          {/* Column 2 (Center): 691x867 Cloudflare Stream Video */}
+          <div className="w-full lg:w-[47.986vw] shrink-0 overflow-hidden bg-black">
+            <div
+              className="relative w-full overflow-hidden bg-black"
+              style={{
+                aspectRatio: "691 / 867",
+              }}
+            >
+              <iframe
+                src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/fa25d432e73f3fd10080fc5dfee0e634/iframe?muted=true&loop=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Ffa25d432e73f3fd10080fc5dfee0e634%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&autoplay=true&controls=false&preload=auto"
+                loading="lazy"
+                className="border-0 absolute top-0 left-0 w-full h-full object-cover"
+                style={{
+                  border: "none",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  height: "100%",
+                  width: "100%",
+                }}
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowFullScreen
+              />
+            </div>
           </div>
 
-          {/* Column 3 (Right): Top Narrative + Bottom Espresso Extraction Image */}
-          <div className="flex flex-col justify-between gap-8 lg:gap-0">
+          {/* Column 3 (Right): Top Narrative + Bottom Espresso Extraction Image (303x428) */}
+          <div className="w-full lg:w-[21.042vw] flex flex-col justify-between shrink-0">
             {/* Top Narrative Text */}
             <p
-              className="text-white/75 select-none lg:pb-[4vw]"
+              className="text-white select-none pb-6 lg:pb-0"
               style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(12px, 0.9vw, 13.5px)",
-                lineHeight: "1.6",
+                fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                fontWeight: 400,
+                fontStyle: "normal",
+                fontSize: "clamp(13px, 1.111vw, 16px)",
+                lineHeight: "100%",
+                letterSpacing: "0%",
               }}
             >
               Having built its reputation on water infrastructure, WAE now
-              extends that same discipline to tea and coffee —
+              extends that same discipline to tea and coffee -
             </p>
 
-            {/* Bottom Espresso Machine Image */}
-            <div className="w-full aspect-[3/4] max-h-[380px] lg:max-h-none overflow-hidden bg-[#111111]">
+            {/* Bottom Espresso Machine Image (303x428) */}
+            <div
+              className="relative w-full overflow-hidden bg-[#111111]"
+              style={{
+                aspectRatio: "303 / 428",
+              }}
+            >
               <img
-                src={ABOUT_PLACEHOLDERS.craftEspresso}
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/a83659a4-e5bb-423b-24e9-903afe8f6700/public"
                 alt="Espresso shot pulling into cup"
                 className="w-full h-full object-cover select-none"
+                style={{ aspectRatio: "303 / 428" }}
                 loading="lazy"
               />
             </div>
