@@ -195,30 +195,32 @@ export default function CareersPage() {
       </section>
 
       {/* 6. SAGE GREEN BENTO SECTION */}
-      <section className="relative w-full px-[4.166vw] pt-[5vw] pb-[8vw]">
+      <section className="relative w-full px-[4.166vw] pt-[5vw] pb-[8vw] overflow-visible">
         <div
           className="relative w-full overflow-visible"
           style={{
             backgroundColor: "#5B734C",
-            paddingTop: "clamp(45px, 5.2vw, 75px)",
-            paddingBottom: "clamp(45px, 5.2vw, 75px)",
-            paddingLeft: "clamp(25px, 3.8vw, 55px)",
-            paddingRight: "clamp(25px, 3.8vw, 55px)",
+            paddingTop: "clamp(60px, 8.5vw, 130px)",
+            paddingBottom: "clamp(45px, 6vw, 90px)",
+            paddingLeft: "clamp(20px, 3.5vw, 55px)",
+            paddingRight: "clamp(20px, 3.5vw, 55px)",
           }}
         >
-          <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-10">
-            {/* Left Block: Elevated/Overhanging Placeholder + Category Tabs */}
-            <div className="w-full lg:w-[28%] flex flex-col shrink-0">
-              {/* Barista placeholder div with top overhang */}
+          <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-6 relative overflow-visible">
+            {/* Left Block: Overhangs LEFT edge of green box into outer black margin */}
+            <div
+              className="w-full lg:w-[38%] flex flex-col shrink-0 relative z-20"
+              style={{
+                marginLeft: "calc(-1 * clamp(25px, 4.166vw, 65px))",
+              }}
+            >
+              {/* Barista placeholder div: overhangs left boundary, starts below green top header */}
               <div
-                className="w-full aspect-[300/420] bg-[#3E5133] shadow-2xl relative overflow-hidden rounded-[2px]"
-                style={{
-                  marginTop: "calc(-1 * clamp(35px, 4.8vw, 70px))",
-                }}
+                className="w-full aspect-[405/365] bg-[#3E5133] shadow-2xl relative overflow-hidden rounded-[2px]"
                 aria-label="Barista placeholder"
               />
-              {/* Category labels: Tea, Coffee, Machine */}
-              <div className="flex items-center justify-between pt-5 px-3">
+              {/* Category labels: Tea, Coffee, Machine spread below the image */}
+              <div className="flex items-center justify-between w-full pt-4 md:pt-6 px-4 md:px-8">
                 <span
                   className="text-[#98AD8D] text-[13px] md:text-[14px] select-none"
                   style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
@@ -241,12 +243,12 @@ export default function CareersPage() {
             </div>
 
             {/* Middle Block: "Better Beverages Begin With..." Heading & Description */}
-            <div className="w-full lg:w-[42%] flex flex-col justify-start">
+            <div className="w-full lg:w-[35%] flex flex-col justify-start pt-2 md:pt-6 lg:pt-8 px-2 md:px-0">
               <h3
                 className="select-none m-0 p-0"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
-                  fontSize: "clamp(30px, 3.611vw, 52px)",
+                  fontSize: "clamp(28px, 3.472vw, 50px)",
                   lineHeight: "1.12",
                   letterSpacing: "0%",
                 }}
@@ -284,13 +286,15 @@ export default function CareersPage() {
               </p>
             </div>
 
-            {/* Right Block: Cup / Serve Placeholder with slight top overhang */}
-            <div className="w-full lg:w-[26%] flex justify-end shrink-0">
+            {/* Right Block: Cup / Serve Placeholder overhanging RIGHT edge of green box */}
+            <div
+              className="w-full lg:w-[23%] flex justify-end shrink-0 relative z-20"
+              style={{
+                marginRight: "calc(-1 * clamp(25px, 4.166vw, 65px))",
+              }}
+            >
               <div
                 className="w-full aspect-[4/5] bg-[#3E5133] shadow-2xl relative overflow-hidden rounded-[2px]"
-                style={{
-                  marginTop: "calc(-1 * clamp(25px, 3.5vw, 50px))",
-                }}
                 aria-label="Cup placeholder"
               />
             </div>
