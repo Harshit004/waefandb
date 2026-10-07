@@ -219,9 +219,9 @@ export default function GetInTouchPage() {
       {/* TOP IMAGE GRID SECTION */}
       <section
         ref={gridSectionRef}
-        className="relative w-full overflow-hidden bg-black pt-[3vw] pb-[2.5vw] flex items-center justify-center select-none"
+        className="relative w-full overflow-hidden bg-black pt-[3vw] pb-[2.5vw] select-none"
       >
-        <div className="flex items-center justify-center gap-[1.1vw] shrink-0 min-w-full">
+        <div className="w-full flex items-center justify-between select-none">
           {/* Image 1: Leftmost */}
           <div
             className="relative shrink-0 w-auto h-[19vw] max-h-[300px] overflow-hidden bg-black aspect-[167/768]"
