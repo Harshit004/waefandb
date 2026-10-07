@@ -716,15 +716,11 @@ export default function GetInTouchPage() {
             letterSpacing: "0%",
             textAlign: "center",
             backgroundImage:
-              "linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.28) 65%, rgba(255, 255, 255, 0) 100%)",
+              "linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.28) 55%, rgba(255, 255, 255, 0) 78%, rgba(255, 255, 255, 0) 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             WebkitTextFillColor: "transparent",
             color: "transparent",
-            maskImage:
-              "linear-gradient(180deg, #000 0%, #000 65%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(180deg, #000 0%, #000 65%, transparent 100%)",
           }}
         >
           Contact
