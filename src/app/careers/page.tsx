@@ -67,34 +67,39 @@ export default function CareersPage() {
 
       {/* 3. STATEMENT / MANIFESTO SECTION */}
       <section className="relative w-full py-[8vw] md:py-[6vw] px-[4.166vw]">
-        <div className="max-w-[1100px] mx-auto text-center">
+        <div className="w-full max-w-[1360px] mx-auto flex justify-end">
           <h2
-            className="text-center select-none m-0 p-0"
+            className="text-right select-none m-0 p-0"
             style={{
               fontFamily: "var(--font-monschone), serif",
-              fontSize: "clamp(22px, 2.778vw, 42px)",
-              lineHeight: "1.32",
-              letterSpacing: "0%",
+              fontSize: "clamp(20px, 2.778vw, 40px)",
+              lineHeight: "1.35",
+              letterSpacing: "-0.01em",
             }}
           >
-            <span className="text-[#7A7A7A]">From </span>
-            <span className="text-white">Water </span>
-            <span className="text-[#7A7A7A]">To </span>
-            <span className="text-white">Tea </span>
-            <span className="text-[#7A7A7A]">To </span>
-            <span className="text-white">Coffee</span>
-            <span className="text-[#7A7A7A]">, We&apos;re Rethinking How The</span>
-            <br className="hidden md:inline" />
-            <span className="text-[#7A7A7A]">World&apos;s Best Spaces </span>
-            <span className="text-white">Hydrate, Refresh And Connect. </span>
-            <span className="text-[#7A7A7A]">It Takes</span>
-            <br className="hidden md:inline" />
-            <span className="text-white">People Who Care About The Source, </span>
-            <span className="text-[#7A7A7A]">Obsess Over </span>
-            <span className="text-white">The Craft,</span>
-            <br className="hidden md:inline" />
-            <span className="text-[#7A7A7A]">And Believe </span>
-            <span className="text-white">Sustainability Belongs In Every Cup.</span>
+            <span className="block text-right">
+              <span className="text-[#7A7A7A]">From </span>
+              <span className="text-white">Water </span>
+              <span className="text-[#7A7A7A]">To </span>
+              <span className="text-white">Tea </span>
+              <span className="text-[#7A7A7A]">To </span>
+              <span className="text-white">Coffee, </span>
+              <span className="text-[#7A7A7A]">We&apos;re Rethinking How The</span>
+            </span>
+            <span className="block text-right">
+              <span className="text-[#7A7A7A]">World&apos;s Best Spaces </span>
+              <span className="text-white">Hydrate, Refresh And Connect. </span>
+              <span className="text-[#7A7A7A]">It Takes</span>
+            </span>
+            <span className="block text-right">
+              <span className="text-white">People Who Care About The Source, </span>
+              <span className="text-[#7A7A7A]">Obsess Over </span>
+              <span className="text-white">The Craft,</span>
+            </span>
+            <span className="block text-right">
+              <span className="text-[#7A7A7A]">And Believe </span>
+              <span className="text-white">Sustainability Belongs In Every Cup.</span>
+            </span>
           </h2>
         </div>
       </section>
@@ -159,22 +164,34 @@ export default function CareersPage() {
       </section>
 
       {/* 5. QUOTE SECTION */}
-      <section className="relative w-full py-[8vw] md:py-[6vw] px-[4.166vw] text-center">
-        <h2
-          className="select-none inline-block max-w-[1050px] m-0 p-0 text-center"
-          style={{
-            fontFamily: "var(--font-monschone), serif",
-            fontSize: "clamp(24px, 2.778vw, 42px)",
-            lineHeight: "1.32",
-            letterSpacing: "0%",
-          }}
-        >
-          <span className="text-white">&ldquo;Rooted In Sustainability. </span>
-          <span className="text-[#7A7A7A]">Driven By Craft</span>
-          <br />
-          <span className="text-white">Built For Premium Spaces. </span>
-          <span className="text-[#7A7A7A]">Powered By People&rdquo;</span>
-        </h2>
+      <section className="relative w-full py-[8vw] md:py-[6vw] px-[4.166vw]">
+        <div className="w-full max-w-[1360px] mx-auto flex justify-end">
+          <h2
+            className="select-none m-0 p-0 flex flex-col items-end"
+            style={{
+              fontFamily: "var(--font-monschone), serif",
+              fontSize: "clamp(22px, 2.778vw, 42px)",
+              lineHeight: "1.32",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {/* Line 1: Right-aligned flush with right margin */}
+            <div className="text-right">
+              <span className="text-white">&ldquo;Rooted In Sustainability. </span>
+              <span className="text-[#7A7A7A]">Driven By Craft</span>
+            </div>
+            {/* Line 2: Offset to the left */}
+            <div
+              className="text-right"
+              style={{
+                marginRight: "clamp(20px, 14vw, 210px)",
+              }}
+            >
+              <span className="text-white">Built For Premium Spaces. </span>
+              <span className="text-[#7A7A7A]">Powered By People&rdquo;</span>
+            </div>
+          </h2>
+        </div>
       </section>
 
       {/* 6. SAGE GREEN BENTO SECTION */}
