@@ -144,7 +144,10 @@ export default function Footer({
         </div>
 
         {/* VERTICAL DIVIDER 1 */}
-        <div className="hidden lg:block w-[1px] bg-white/15 self-stretch shrink-0" />
+        <div
+          className="hidden lg:block w-[1px] bg-[#ffffff] self-stretch shrink-0 opacity-100"
+          style={{ width: "1px", backgroundColor: "#ffffff", opacity: 1 }}
+        />
 
         {/* COLUMN 2: FOLLOW US */}
         <div className="flex-1 lg:max-w-[280px] lg:px-8 flex flex-col justify-start">
@@ -196,7 +199,10 @@ export default function Footer({
         </div>
 
         {/* VERTICAL DIVIDER 2 */}
-        <div className="hidden lg:block w-[1px] bg-white/15 self-stretch shrink-0" />
+        <div
+          className="hidden lg:block w-[1px] bg-[#ffffff] self-stretch shrink-0 opacity-100"
+          style={{ width: "1px", backgroundColor: "#ffffff", opacity: 1 }}
+        />
 
         {/* COLUMN 3: WAE F&B */}
         <div className="flex-[2.5] lg:pl-10 flex flex-col justify-start">
