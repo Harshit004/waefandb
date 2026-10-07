@@ -98,7 +98,7 @@ export default function AboutUsPage() {
           <div className="w-full max-w-[248px] lg:max-w-none lg:w-[17.222vw]">
             {/* 248x257 Responsive Cloudflare Stream Video Container */}
             <div
-              className="relative w-full overflow-hidden bg-black mb-6 lg:mb-[2.2vw] rounded-[2px]"
+              className="relative w-full overflow-hidden bg-black mb-6 lg:mb-[2.2vw] rounded-[2px] pointer-events-none"
               style={{
                 aspectRatio: "248 / 257",
               }}
@@ -106,7 +106,7 @@ export default function AboutUsPage() {
               <iframe
                 src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/8171d0626305612ef00ab8ee1331b36d/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F8171d0626305612ef00ab8ee1331b36d%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&autoplay=true&muted=true&loop=true&controls=false&preload=auto"
                 loading="lazy"
-                className="border-0 absolute top-0 left-0 w-full h-full object-cover"
+                className="border-0 absolute top-0 left-0 w-full h-full"
                 style={{
                   border: "none",
                   position: "absolute",
@@ -114,6 +114,8 @@ export default function AboutUsPage() {
                   left: 0,
                   height: "100%",
                   width: "100%",
+                  transform: "scale(1.8423)",
+                  transformOrigin: "center center",
                 }}
                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                 allowFullScreen
@@ -227,7 +229,7 @@ export default function AboutUsPage() {
           {/* Column 2 (Center): 691x867 Cloudflare Stream Video */}
           <div className="w-full lg:w-[47.986vw] shrink-0 overflow-hidden bg-black">
             <div
-              className="relative w-full overflow-hidden bg-black"
+              className="relative w-full overflow-hidden bg-black pointer-events-none"
               style={{
                 aspectRatio: "691 / 867",
               }}
@@ -235,7 +237,7 @@ export default function AboutUsPage() {
               <iframe
                 src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/fa25d432e73f3fd10080fc5dfee0e634/iframe?muted=true&loop=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Ffa25d432e73f3fd10080fc5dfee0e634%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&autoplay=true&controls=false&preload=auto"
                 loading="lazy"
-                className="border-0 absolute top-0 left-0 w-full h-full object-cover"
+                className="border-0 absolute top-0 left-0 w-full h-full"
                 style={{
                   border: "none",
                   position: "absolute",
@@ -243,6 +245,8 @@ export default function AboutUsPage() {
                   left: 0,
                   height: "100%",
                   width: "100%",
+                  transform: "scale(2.38)",
+                  transformOrigin: "center center",
                 }}
                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                 allowFullScreen
