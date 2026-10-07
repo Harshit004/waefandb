@@ -296,7 +296,7 @@ export default function AboutUsPage() {
         <style>{`
           @media (min-width: 768px) {
             #origin-green-box {
-              height: clamp(680px, 59.167vw, 852px) !important;
+              height: clamp(790px, 66.806vw, 962px) !important;
             }
           }
         `}</style>
