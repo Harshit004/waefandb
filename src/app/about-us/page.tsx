@@ -293,14 +293,22 @@ export default function AboutUsPage() {
 
       {/* 5. "FROM ORIGIN TO CUP" SAGE GREEN BENTO SECTION */}
       <section id="origin-section" className="relative w-full px-[4.166vw] pt-[6vw]">
+        <style>{`
+          @media (min-width: 768px) {
+            #origin-green-box {
+              height: clamp(680px, 59.167vw, 852px) !important;
+            }
+          }
+        `}</style>
         <div
-          className="relative w-full overflow-visible"
+          id="origin-green-box"
+          className="relative w-full overflow-visible origin-green-box"
           style={{
             backgroundColor: "#5B734C",
-            paddingTop: "clamp(35px, 3.68vw, 53px)",
+            paddingTop: "clamp(30px, 2.78vw, 40px)",
             paddingLeft: "clamp(20px, 2.43vw, 35px)",
             paddingRight: "clamp(20px, 2.43vw, 35px)",
-            paddingBottom: "clamp(40px, 5vw, 70px)",
+            paddingBottom: "clamp(25px, 2.78vw, 40px)",
           }}
         >
           {/* Top Row: Title on Left + Origin Summary on Right */}
@@ -312,7 +320,7 @@ export default function AboutUsPage() {
                 fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                 fontWeight: 600,
                 fontSize: "clamp(48px, 6.667vw, 96px)",
-                lineHeight: "clamp(55px, 7.639vw, 110px)",
+                lineHeight: "clamp(48px, 6.111vw, 88px)",
                 letterSpacing: "0%",
               }}
             >
@@ -350,7 +358,7 @@ export default function AboutUsPage() {
           {/* Middle Row: White Line touching the image + Item 1 Text & First Image */}
           <div
             className="relative w-full"
-            style={{ marginTop: "clamp(35px, 5.2vw, 75px)" }}
+            style={{ marginTop: "clamp(24px, 2.78vw, 40px)" }}
           >
             <div className="w-full flex items-start">
               {/* Left Side: Divider line touches the image border directly */}
@@ -362,7 +370,7 @@ export default function AboutUsPage() {
                 <div
                   className="text-left md:text-right"
                   style={{
-                    marginTop: "clamp(50px, 7.5vw, 110px)",
+                    marginTop: "clamp(30px, 3.5vw, 50px)",
                     paddingRight: "clamp(14px, 1.4vw, 20px)",
                   }}
                 >
@@ -418,8 +426,11 @@ export default function AboutUsPage() {
 
           {/* Bottom Area: Item 2 (Coffee Cherries 323x383 Image + Text) */}
           <div
-            className="w-full flex flex-col md:flex-row items-start md:items-start justify-start gap-6 md:gap-[clamp(20px,2.5vw,40px)] relative z-20"
-            style={{ marginTop: "clamp(24px, 3.5vw, 50px)" }}
+            id="origin-bottom-row"
+            className="w-full flex flex-col md:flex-row items-start md:items-start justify-start gap-6 md:gap-[clamp(20px,2.5vw,40px)] relative z-20 origin-bottom-row"
+            style={{
+              marginTop: "clamp(20px, 2.8vw, 40px)",
+            }}
           >
             {/* Coffee Cherries Image: indented from left, overhanging bottom boundary */}
             <div
@@ -427,7 +438,6 @@ export default function AboutUsPage() {
               style={{
                 aspectRatio: "323 / 383",
                 marginLeft: "clamp(40px, 9.514vw, 137px)",
-                transform: "translateY(clamp(40px, 5.5vw, 85px))",
               }}
             >
               <img
@@ -439,20 +449,15 @@ export default function AboutUsPage() {
               />
             </div>
 
-            {/* Item 2 Text (right of coffee cherries image) */}
-            <div
-              className="max-w-[460px] lg:max-w-[36vw] text-left"
-              style={{
-                transform: "translateY(clamp(30px, 4vw, 55px))",
-              }}
-            >
+            {/* Item 2 Text (right of coffee cherries image, aligned with image top) */}
+            <div className="max-w-[460px] lg:max-w-[36vw] text-left">
               <h3
-                className="text-[#213C19] select-none"
+                className="text-[#213C19] select-none m-0 p-0 leading-none"
                 style={{
                   fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                   fontWeight: 700,
                   fontSize: "clamp(18px, 1.806vw, 26px)",
-                  lineHeight: "1.15",
+                  lineHeight: "1.0",
                   letterSpacing: "0%",
                 }}
               >
