@@ -145,8 +145,8 @@ export default function Footer({
 
         {/* VERTICAL DIVIDER 1 */}
         <div
-          className="hidden lg:block w-[1px] bg-[#ffffff] self-stretch shrink-0 opacity-100"
-          style={{ width: "1px", backgroundColor: "#ffffff", opacity: 1 }}
+          className="hidden lg:block w-[0.5px] bg-[#ffffff] self-stretch shrink-0 opacity-100"
+          style={{ width: "0.5px", backgroundColor: "#ffffff", opacity: 1 }}
         />
 
         {/* COLUMN 2: FOLLOW US */}
@@ -200,8 +200,8 @@ export default function Footer({
 
         {/* VERTICAL DIVIDER 2 */}
         <div
-          className="hidden lg:block w-[1px] bg-[#ffffff] self-stretch shrink-0 opacity-100"
-          style={{ width: "1px", backgroundColor: "#ffffff", opacity: 1 }}
+          className="hidden lg:block w-[0.5px] bg-[#ffffff] self-stretch shrink-0 opacity-100"
+          style={{ width: "0.5px", backgroundColor: "#ffffff", opacity: 1 }}
         />
 
         {/* COLUMN 3: WAE F&B */}
