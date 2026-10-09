@@ -69,7 +69,7 @@ export default function CareersPage() {
           style={{ position: "relative", paddingTop: "56.25%" }}
         >
           <iframe
-            src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/ea476f8b02a53580ea70a7d08ff52f3a/iframe?muted=true&loop=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Fea476f8b02a53580ea70a7d08ff52f3a%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
+            src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/ea476f8b02a53580ea70a7d08ff52f3a/iframe?muted=true&loop=true&autoplay=true&preload=auto&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Fea476f8b02a53580ea70a7d08ff52f3a%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
             loading="lazy"
             style={{
               border: "none",
@@ -130,11 +130,14 @@ export default function CareersPage() {
       {/* 4. VISUAL GRID / COLLAGE SECTION */}
       <section className="relative w-full px-[4.166vw] pb-[6vw]">
         <div className="w-full max-w-[1360px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-stretch">
-            {/* Column 1: Two stacked images */}
-            <div className="md:col-span-3 flex flex-col gap-3 md:gap-4">
-              {/* Top: Tall image with top gradient */}
-              <div className="relative w-full aspect-[3/4] bg-[#161616] overflow-hidden rounded-[2px]">
+          <div className="grid grid-cols-1 md:grid-cols-[342fr_342fr_624fr] gap-3 md:gap-4 items-stretch">
+            {/* Column 1: Two stacked 342x575 images */}
+            <div className="flex flex-col gap-3 md:gap-4">
+              {/* Top: 342x575 image with top gradient */}
+              <div
+                className="relative w-full overflow-hidden rounded-[2px] bg-[#161616]"
+                style={{ aspectRatio: "342 / 575" }}
+              >
                 <img
                   src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/eed6a255-a2ed-407a-040a-54bb6806c300/public"
                   alt="Beverage specialists craft and ingredients"
@@ -143,8 +146,11 @@ export default function CareersPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent pointer-events-none z-10" />
               </div>
-              {/* Bottom: Square image with bottom gradient */}
-              <div className="relative w-full aspect-[1/1] bg-[#131313] overflow-hidden rounded-[2px]">
+              {/* Bottom: 342x575 image with bottom gradient */}
+              <div
+                className="relative w-full overflow-hidden rounded-[2px] bg-[#131313]"
+                style={{ aspectRatio: "342 / 575" }}
+              >
                 <img
                   src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9e635e1f-d4e8-47ef-429a-3ba76e5ef800/public"
                   alt="Coffee bean craft and sourcing"
@@ -155,10 +161,13 @@ export default function CareersPage() {
               </div>
             </div>
 
-            {/* Column 2: One tall image + Text block */}
-            <div className="md:col-span-3 flex flex-col gap-3 md:gap-4">
-              {/* Top: Tall image with top gradient */}
-              <div className="relative w-full aspect-[3/4] bg-[#181818] overflow-hidden rounded-[2px]">
+            {/* Column 2: One 342x575 image + 342x575 Text block */}
+            <div className="flex flex-col gap-3 md:gap-4">
+              {/* Top: 342x575 image with top gradient */}
+              <div
+                className="relative w-full overflow-hidden rounded-[2px] bg-[#181818]"
+                style={{ aspectRatio: "342 / 575" }}
+              >
                 <img
                   src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/17a7d7c7-9132-4e53-e6ff-0f3f95ba7600/public"
                   alt="Hospitality and café service"
@@ -167,33 +176,53 @@ export default function CareersPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent pointer-events-none z-10" />
               </div>
-              {/* Bottom: Text block starting at 50% height of image left to it */}
-              <div className="w-full aspect-[1/1] flex flex-col justify-start pt-[50%] bg-black">
-                <p
-                  className="text-white select-none text-left m-0 p-0"
-                  style={{
-                    fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                    fontWeight: 700,
-                    fontStyle: "normal",
-                    fontSize: "16px",
-                    lineHeight: "120%",
-                    letterSpacing: "0%",
-                  }}
+              {/* Bottom: 342x575 Text block starting at 50% height of image left to it */}
+              <div
+                className="relative w-full bg-black overflow-hidden"
+                style={{ aspectRatio: "342 / 575" }}
+              >
+                <div
+                  className="absolute left-0 right-0"
+                  style={{ top: "50%" }}
                 >
-                  Beverage specialists, Café operators, innovators and hospitality professionals: build the future of beverages with us.
-                </p>
+                  <p
+                    className="text-white select-none text-left m-0 p-0"
+                    style={{
+                      fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                      fontWeight: 700,
+                      fontStyle: "normal",
+                      fontSize: "16px",
+                      lineHeight: "120%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Beverage specialists, Café operators, innovators and hospitality professionals: build the future of beverages with us.
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Column 3: Large feature image spanning full height with gradient on both top and bottom */}
-            <div className="md:col-span-6 flex flex-col">
-              <div className="relative w-full h-full min-h-[380px] md:min-h-full aspect-[3/4] md:aspect-auto bg-[#1a1a1a] overflow-hidden rounded-[2px]">
-                <img
-                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/b3cb9e94-43b8-4ae3-442c-7a54b8b14c00/public"
-                  alt="Feature beverage craft showcase"
-                  className="w-full h-full object-cover select-none"
+            {/* Column 3: 624x1170 Feature Video */}
+            <div className="flex flex-col">
+              <div
+                className="relative w-full overflow-hidden rounded-[2px] bg-[#1a1a1a]"
+                style={{ position: "relative", paddingTop: "177.77777777777777%" }}
+              >
+                <iframe
+                  src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/f6ec6d41f7c7fd406464557990c571ff/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Ff6ec6d41f7c7fd406464557990c571ff%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
                   loading="lazy"
+                  style={{
+                    border: "none",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    height: "100%",
+                    width: "100%",
+                  }}
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                  allowFullScreen
                 />
+                {/* Dual top and bottom gradients */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none z-10" />
               </div>
             </div>
