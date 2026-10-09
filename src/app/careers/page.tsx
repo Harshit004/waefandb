@@ -1,12 +1,19 @@
 "use client";
 
 import React from "react";
+import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function CareersPage() {
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-white/20 selection:text-white">
+      {/* Cloudflare Stream Player SDK */}
+      <Script
+        src="https://embed.cloudflarestream.com/embed/sdk.latest.js"
+        strategy="afterInteractive"
+      />
+
       {/* 1. HEADER */}
       <Header />
 
@@ -56,12 +63,28 @@ export default function CareersPage() {
           </div>
         </div>
 
-        {/* Hero Image: Placeholder empty div with cinematic gradient overlay */}
+        {/* Hero Video Asset */}
         <div
-          className="relative w-full aspect-[16/9] md:aspect-[2.1/1] max-h-[620px] bg-[#141414] overflow-hidden rounded-[2px]"
+          className="relative w-full overflow-hidden rounded-[2px] bg-black"
+          style={{ position: "relative", paddingTop: "56.25%" }}
         >
-          {/* Subtle gradient vignette to blend into black background */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30 pointer-events-none" />
+          <iframe
+            src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/ea476f8b02a53580ea70a7d08ff52f3a/iframe?muted=true&loop=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Fea476f8b02a53580ea70a7d08ff52f3a%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
+            loading="lazy"
+            style={{
+              border: "none",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              height: "100%",
+              width: "100%",
+            }}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+            allowFullScreen
+          />
+
+          {/* Subtle gradient vignette on both top and bottom to blend into black background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none z-10" />
         </div>
       </section>
 
@@ -108,56 +131,71 @@ export default function CareersPage() {
       <section className="relative w-full px-[4.166vw] pb-[6vw]">
         <div className="w-full max-w-[1360px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-stretch">
-            {/* Column 1: Two stacked placeholders */}
+            {/* Column 1: Two stacked images */}
             <div className="md:col-span-3 flex flex-col gap-3 md:gap-4">
-              {/* Top: Tall placeholder */}
-              <div
-                className="w-full aspect-[3/4] bg-[#161616] overflow-hidden rounded-[2px]"
-                aria-label="Image placeholder"
-              />
-              {/* Bottom: Square placeholder */}
-              <div
-                className="w-full aspect-[1/1] bg-[#131313] overflow-hidden rounded-[2px]"
-                aria-label="Image placeholder"
-              />
+              {/* Top: Tall image with top gradient */}
+              <div className="relative w-full aspect-[3/4] bg-[#161616] overflow-hidden rounded-[2px]">
+                <img
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/eed6a255-a2ed-407a-040a-54bb6806c300/public"
+                  alt="Beverage specialists craft and ingredients"
+                  className="w-full h-full object-cover select-none"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent pointer-events-none z-10" />
+              </div>
+              {/* Bottom: Square image with bottom gradient */}
+              <div className="relative w-full aspect-[1/1] bg-[#131313] overflow-hidden rounded-[2px]">
+                <img
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9e635e1f-d4e8-47ef-429a-3ba76e5ef800/public"
+                  alt="Coffee bean craft and sourcing"
+                  className="w-full h-full object-cover select-none"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none z-10" />
+              </div>
             </div>
 
-            {/* Column 2: One tall placeholder + Text block */}
+            {/* Column 2: One tall image + Text block */}
             <div className="md:col-span-3 flex flex-col gap-3 md:gap-4">
-              {/* Top: Tall placeholder (matches Column 1 top) */}
-              <div
-                className="w-full aspect-[3/4] bg-[#181818] overflow-hidden rounded-[2px]"
-                aria-label="Image placeholder"
-              />
-              {/* Bottom: Text block */}
-              <div className="w-full aspect-[1/1] flex flex-col justify-end p-4 md:p-6 bg-black">
+              {/* Top: Tall image with top gradient */}
+              <div className="relative w-full aspect-[3/4] bg-[#181818] overflow-hidden rounded-[2px]">
+                <img
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/17a7d7c7-9132-4e53-e6ff-0f3f95ba7600/public"
+                  alt="Hospitality and café service"
+                  className="w-full h-full object-cover select-none"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent pointer-events-none z-10" />
+              </div>
+              {/* Bottom: Text block starting at 50% height of image left to it */}
+              <div className="w-full aspect-[1/1] flex flex-col justify-start pt-[50%] bg-black">
                 <p
-                  className="text-white select-none text-left"
+                  className="text-white select-none text-left m-0 p-0"
                   style={{
                     fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                    fontSize: "clamp(12px, 0.972vw, 14px)",
-                    lineHeight: "1.45",
+                    fontWeight: 700,
+                    fontStyle: "normal",
+                    fontSize: "16px",
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
                   }}
                 >
-                  Beverage specialists, Café
-                  <br />
-                  operators, innovators and
-                  <br />
-                  hospitality professionals
-                  <br />
-                  build the future of
-                  <br />
-                  beverages with us.
+                  Beverage specialists, Café operators, innovators and hospitality professionals: build the future of beverages with us.
                 </p>
               </div>
             </div>
 
-            {/* Column 3: Large feature placeholder spanning full height */}
+            {/* Column 3: Large feature image spanning full height with gradient on both top and bottom */}
             <div className="md:col-span-6 flex flex-col">
-              <div
-                className="w-full h-full min-h-[380px] md:min-h-full aspect-[3/4] md:aspect-auto bg-[#1a1a1a] overflow-hidden rounded-[2px]"
-                aria-label="Feature image placeholder"
-              />
+              <div className="relative w-full h-full min-h-[380px] md:min-h-full aspect-[3/4] md:aspect-auto bg-[#1a1a1a] overflow-hidden rounded-[2px]">
+                <img
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/b3cb9e94-43b8-4ae3-442c-7a54b8b14c00/public"
+                  alt="Feature beverage craft showcase"
+                  className="w-full h-full object-cover select-none"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none z-10" />
+              </div>
             </div>
           </div>
         </div>
