@@ -269,25 +269,33 @@ export default function CareersPage() {
             backgroundColor: "#5B734C",
             paddingTop: "clamp(60px, 8.5vw, 130px)",
             paddingBottom: "clamp(45px, 6vw, 90px)",
-            paddingLeft: "clamp(20px, 3.5vw, 55px)",
-            paddingRight: "clamp(20px, 3.5vw, 55px)",
           }}
         >
-          <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-6 relative overflow-visible">
-            {/* Left Block: Overhangs LEFT edge of green box into outer black margin */}
+          <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-4 xl:gap-6 relative overflow-visible">
+            {/* Left Block: 576x600 image touching the left edge of the screen */}
             <div
-              className="w-full lg:w-[38%] flex flex-col shrink-0 relative z-20"
+              className="w-full lg:w-[40vw] max-w-[576px] flex flex-col shrink-0 relative z-20"
               style={{
-                marginLeft: "calc(-1 * clamp(25px, 4.166vw, 65px))",
+                marginLeft: "-4.166vw",
               }}
             >
-              {/* Barista placeholder div: overhangs left boundary, starts below green top header */}
               <div
-                className="w-full aspect-[405/365] bg-[#3E5133] shadow-2xl relative overflow-hidden rounded-[2px]"
-                aria-label="Barista placeholder"
-              />
-              {/* Category labels: Tea, Coffee, Machine spread below the image */}
-              <div className="flex items-center justify-between w-full pt-4 md:pt-6 px-4 md:px-8">
+                className="w-full relative overflow-hidden rounded-[2px] shadow-2xl"
+                style={{ aspectRatio: "576 / 600" }}
+              >
+                <img
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/daeec183-d23d-47cc-43fc-159ea5504b00/public"
+                  alt="WAE barista crafting espresso"
+                  className="w-full h-full object-cover select-none"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Category labels: Tea, Coffee, Machine spread below the image, inset to match green box */}
+              <div
+                className="flex items-center justify-between w-full pt-4 md:pt-6 pr-4 md:pr-8"
+                style={{ paddingLeft: "4.166vw" }}
+              >
                 <span
                   className="text-[#98AD8D] text-[13px] md:text-[14px] select-none"
                   style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
@@ -310,7 +318,7 @@ export default function CareersPage() {
             </div>
 
             {/* Middle Block: "Better Beverages Begin With..." Heading & Description */}
-            <div className="w-full lg:w-[35%] flex flex-col justify-start pt-2 md:pt-6 lg:pt-8 px-2 md:px-0">
+            <div className="w-full lg:flex-1 flex flex-col justify-start pt-2 md:pt-4 lg:pt-6 px-4 lg:px-6 xl:px-10 max-w-[500px]">
               <h3
                 className="select-none m-0 p-0"
                 style={{
@@ -353,17 +361,24 @@ export default function CareersPage() {
               </p>
             </div>
 
-            {/* Right Block: Cup / Serve Placeholder overhanging RIGHT edge of green box */}
+            {/* Right Block: 331x474 image touching the right edge of the screen */}
             <div
-              className="w-full lg:w-[23%] flex justify-end shrink-0 relative z-20"
+              className="w-full lg:w-[22.986vw] max-w-[331px] flex justify-end shrink-0 relative z-20"
               style={{
-                marginRight: "calc(-1 * clamp(25px, 4.166vw, 65px))",
+                marginRight: "-4.166vw",
               }}
             >
               <div
-                className="w-full aspect-[4/5] bg-[#3E5133] shadow-2xl relative overflow-hidden rounded-[2px]"
-                aria-label="Cup placeholder"
-              />
+                className="w-full relative overflow-hidden rounded-[2px] shadow-2xl"
+                style={{ aspectRatio: "331 / 474" }}
+              >
+                <img
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/18344f40-842c-4e06-518f-870f79719500/public"
+                  alt="Crafted tea cup and teapot serve"
+                  className="w-full h-full object-cover select-none"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </div>
