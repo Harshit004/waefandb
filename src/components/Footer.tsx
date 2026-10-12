@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 interface FooterProps {
@@ -13,9 +13,51 @@ interface FooterProps {
 export default function Footer({
   className = "",
   id = "footer",
-  paddingTop = "2.5vw",
+  paddingTop,
   showTopGradient = true,
 }: FooterProps) {
+  const [email, setEmail] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [newsletterError, setNewsletterError] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    if (!acceptedTerms) {
+      setNewsletterError("Please accept the terms of the privacy policy.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setNewsletterError("");
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Subscription failed.");
+      }
+
+      setSubscribed(true);
+      setEmail("");
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Subscription failed. Please try again.";
+      setNewsletterError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const socialLinks = [
     {
       name: "LinkedIn",
@@ -23,9 +65,19 @@ export default function Footer({
       href: "https://linkedin.com",
     },
     {
+      name: "Instagram",
+      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1c0755e5-5c07-4e1c-31f7-066dde50cb00/public",
+      href: "https://instagram.com",
+    },
+    {
       name: "Facebook",
       icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3f100468-318f-4c5c-b006-b304966d4100/public",
       href: "https://facebook.com",
+    },
+    {
+      name: "X",
+      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/abb4c68a-3cf5-425e-f2d9-62cb73630100/public",
+      href: "https://x.com",
     },
     {
       name: "YouTube",
@@ -37,287 +89,269 @@ export default function Footer({
   return (
     <footer
       id={id}
-      className={`relative w-full bg-transparent text-white ${className}`}
-      style={{
-        paddingLeft: "4.166vw",
-        paddingRight: "4.166vw",
-        paddingTop: paddingTop,
-        paddingBottom: "2.5vw",
-      }}
+      className={`relative w-full bg-black text-white overflow-hidden ${className}`}
     >
-      {/* 200px Gradient on top of the footer */}
+      {/* TOP BORDER WITH SPECIFIED GRADIENT */}
       {showTopGradient && (
         <div
-          className="absolute top-0 left-0 right-0 w-full h-[200px] pointer-events-none z-10"
+          className="w-full h-[1px]"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 0) 10.41%, rgba(0, 0, 0, 0) 100%)",
+              "linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 52.12%, rgba(255, 255, 255, 0) 98.55%)",
           }}
         />
       )}
 
-      {/* 3 Main Columns */}
-      <div className="w-full flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-0">
-        {/* COLUMN 1: INFO */}
-        <div className="flex-1 lg:max-w-[240px] lg:pr-8 flex flex-col justify-start">
-          <h3
-            className="text-white select-none uppercase"
-            style={{
-              fontFamily: "var(--font-monschone), serif",
-              fontWeight: 400,
-              fontSize: "17px",
-              lineHeight: "140%",
-              letterSpacing: "0%",
-            }}
-          >
-            INFO
-          </h3>
-          <div className="w-[20px] h-[1px] bg-white/70 mt-2 mb-6" />
+      {/* UPPER FOOTER CONTENT */}
+      <div
+        className="w-full pt-[clamp(44px,4vw,64px)] pb-[clamp(40px,3.5vw,56px)]"
+        style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+          ...(paddingTop !== undefined ? { paddingTop } : {}),
+        }}
+      >
+        <div className="w-full flex flex-col lg:flex-row items-stretch justify-between gap-8 lg:gap-0">
+          {/* COLUMN 1: INFO */}
+          <div className="flex-1 lg:max-w-[280px] lg:pr-8 flex flex-col justify-start">
+            <h3
+              className="text-white select-none uppercase"
+              style={{
+                fontFamily: "var(--font-monschone), serif",
+                fontWeight: 400,
+                fontSize: "18px",
+                lineHeight: "140%",
+                letterSpacing: "0%",
+              }}
+            >
+              INFO
+            </h3>
+            {/* Small horizontal dash */}
+            <div className="w-[20px] h-[1px] bg-white/70 mt-2 mb-6" />
 
-          <ul
-            className="space-y-3.5 select-none"
-            style={{
-              fontFamily: "var(--font-manrope), sans-serif",
-              fontWeight: 400,
-              fontSize: "14px",
-              lineHeight: "140%",
-              letterSpacing: "0%",
-            }}
-          >
-            <li>
-              <Link
-                href="/cookies"
-                className="text-white/80 hover:text-white transition-colors duration-200"
-              >
-                Cookies
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/privacy-policy"
-                className="text-white/80 hover:text-white transition-colors duration-200"
-              >
-                Privacy policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/terms-of-use"
-                className="text-white/80 hover:text-white transition-colors duration-200"
-              >
-                Term of use
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/accessibility"
-                className="text-white/80 hover:text-white transition-colors duration-200"
-              >
-                Accessibility
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/sitemap"
-                className="text-white/80 hover:text-white transition-colors duration-200"
-              >
-                Sitemap
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/wae-professional"
-                className="text-white/80 hover:text-white transition-colors duration-200"
-              >
-                WAE Professional
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/solution"
-                className="text-white/80 hover:text-white transition-colors duration-200"
-              >
-                Solution
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* VERTICAL DIVIDER 1 */}
-        <div
-          className="hidden lg:block w-[0.5px] bg-[#ffffff] self-stretch shrink-0 opacity-100"
-          style={{ width: "0.5px", backgroundColor: "#ffffff", opacity: 1 }}
-        />
-
-        {/* COLUMN 2: FOLLOW US */}
-        <div className="flex-1 lg:max-w-[280px] lg:px-8 flex flex-col justify-start">
-          <h3
-            className="text-white select-none uppercase"
-            style={{
-              fontFamily: "var(--font-monschone), serif",
-              fontWeight: 400,
-              fontSize: "17px",
-              lineHeight: "140%",
-              letterSpacing: "0%",
-            }}
-          >
-            FOLLOW US
-          </h3>
-          <div className="w-[20px] h-[1px] bg-white/70 mt-2 mb-6" />
-
-          {/* 3 Social Media Icons: LinkedIn, Facebook, YouTube */}
-          <div className="flex items-center gap-[16px] mb-8">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-200 hover:scale-110 opacity-90 hover:opacity-100"
-                aria-label={social.name}
-              >
-                <img
-                  src={social.icon}
-                  alt={social.name}
-                  width={20}
-                  height={20}
-                  className="w-[20px] h-[20px] object-contain"
-                />
-              </a>
-            ))}
+            <ul
+              className="space-y-3.5 select-none"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 400,
+                fontSize: "16px",
+                lineHeight: "140%",
+                letterSpacing: "0%",
+              }}
+            >
+              <li>
+                <Link
+                  href="/cookies"
+                  className="text-white/80 hover:text-white transition-colors duration-200"
+                >
+                  Cookies
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-white/80 hover:text-white transition-colors duration-200"
+                >
+                  Privacy policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms-of-use"
+                  className="text-white/80 hover:text-white transition-colors duration-200"
+                >
+                  Term of use
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/accessibility"
+                  className="text-white/80 hover:text-white transition-colors duration-200"
+                >
+                  Accessibility
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/sitemap"
+                  className="text-white/80 hover:text-white transition-colors duration-200"
+                >
+                  Sitemap
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          <p
-            className="text-white/80 hover:text-white transition-colors cursor-pointer text-[14px]"
-            style={{
-              fontFamily: "var(--font-manrope), sans-serif",
-              fontWeight: 400,
-            }}
-          >
-            Sign up to our newsletter
-          </p>
-        </div>
+          {/* VERTICAL DIVIDER 1 */}
+          <div className="hidden lg:block w-[1px] bg-white/15 self-stretch shrink-0" />
 
-        {/* VERTICAL DIVIDER 2 */}
-        <div
-          className="hidden lg:block w-[0.5px] bg-[#ffffff] self-stretch shrink-0 opacity-100"
-          style={{ width: "0.5px", backgroundColor: "#ffffff", opacity: 1 }}
-        />
-
-        {/* COLUMN 3: WAE F&B */}
-        <div className="flex-[2.5] lg:pl-10 flex flex-col justify-start">
-          <h3
-            className="text-white select-none uppercase"
-            style={{
-              fontFamily: "var(--font-monschone), serif",
-              fontWeight: 400,
-              fontSize: "17px",
-              lineHeight: "140%",
-              letterSpacing: "0%",
-            }}
-          >
-            WAE F&amp;B
-          </h3>
-          <div className="w-[20px] h-[1px] bg-white/70 mt-2 mb-6" />
-
-          {/* 3 Location Cards in Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-12">
-            {/* Card 1: Office */}
-            <div
-              className="flex flex-col space-y-4"
+          {/* COLUMN 2: FOLLOW US */}
+          <div className="flex-1 lg:max-w-[340px] lg:px-10 flex flex-col justify-start">
+            <h3
+              className="text-white select-none uppercase"
               style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "14px",
-                lineHeight: "150%",
+                fontFamily: "var(--font-monschone), serif",
+                fontWeight: 400,
+                fontSize: "18px",
+                lineHeight: "140%",
+                letterSpacing: "0%",
               }}
             >
-              <div>
-                <h4 className="text-white font-medium mb-1">Office</h4>
-                <p className="text-white/75 text-[13px] leading-relaxed">
-                  H - 18, H Block, Sector 63,<br />
-                  Noida, Uttar Pradesh 201309
-                </p>
-              </div>
+              FOLLOW US
+            </h3>
+            {/* Small horizontal dash */}
+            <div className="w-[20px] h-[1px] bg-white/70 mt-2 mb-6" />
 
-              <div>
-                <h4 className="text-white font-medium mb-1">Contact</h4>
-                <p className="text-white/75 text-[13px] leading-relaxed">
-                  Phone - +91 1204069800,<br />
-                  Email - info@waecrop.com<br />
-                  marketing@waecrop.com
-                </p>
-              </div>
+            {/* Social media icons with 15px gap, 24x24 size */}
+            <div className="flex items-center gap-[15px]">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-transform duration-200 hover:scale-110 opacity-90 hover:opacity-100"
+                  aria-label={social.name}
+                >
+                  <img
+                    src={social.icon}
+                    alt={social.name}
+                    width={24}
+                    height={24}
+                    className="w-[24px] h-[24px] object-contain"
+                  />
+                </a>
+              ))}
             </div>
+          </div>
 
-            {/* Card 2: Cafe - 1 */}
-            <div
-              className="flex flex-col space-y-4"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "14px",
-                lineHeight: "150%",
-              }}
-            >
-              <div>
-                <h4 className="text-white font-medium mb-1">Cafe - 1</h4>
-                <p className="text-white/75 text-[13px] leading-relaxed">
-                  H - 18, H Block, Sector 63,<br />
-                  Noida, Uttar Pradesh 201309
-                </p>
-              </div>
+          {/* VERTICAL DIVIDER 2 */}
+          <div className="hidden lg:block w-[1px] bg-white/15 self-stretch shrink-0" />
 
-              <div>
-                <h4 className="text-white font-medium mb-1">Contact</h4>
-                <p className="text-white/75 text-[13px] leading-relaxed">
-                  Phone - +91 1204069800,<br />
-                  Email - info@waecrop.com<br />
-                  marketing@waecrop.com
-                </p>
-              </div>
-            </div>
+          {/* COLUMN 3: NEWSLETTER */}
+          <div className="flex-1 lg:pl-12 flex flex-col items-start lg:items-end justify-start">
+            <div className="w-full max-w-[440px] flex flex-col">
+              <h3
+                className="text-white select-none mb-6"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "18px",
+                  lineHeight: "140%",
+                }}
+              >
+                Subscribe to our newsletter
+              </h3>
 
-            {/* Card 3: Cafe - 1 */}
-            <div
-              className="flex flex-col space-y-4"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "14px",
-                lineHeight: "150%",
-              }}
-            >
-              <div>
-                <h4 className="text-white font-medium mb-1">Cafe - 1</h4>
-                <p className="text-white/75 text-[13px] leading-relaxed">
-                  H - 18, H Block, Sector 63,<br />
-                  Noida, Uttar Pradesh 201309
-                </p>
-              </div>
+              <form onSubmit={handleSubscribe} className="w-full flex flex-col">
+                {/* Input box */}
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your Email"
+                  required
+                  className="w-full h-[48px] px-4 bg-transparent border border-white/80 text-center text-white placeholder-white/50 text-[14px] focus:outline-none focus:border-white transition-colors"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 400,
+                  }}
+                />
 
-              <div>
-                <h4 className="text-white font-medium mb-1">Contact</h4>
-                <p className="text-white/75 text-[13px] leading-relaxed">
-                  Phone - +91 1204069800,<br />
-                  Email - info@waecrop.com<br />
-                  marketing@waecrop.com
-                </p>
-              </div>
+                {/* Checkbox row */}
+                <label className="flex items-center gap-2.5 mt-4 cursor-pointer select-none group">
+                  <input
+                    type="checkbox"
+                    checked={acceptedTerms}
+                    onChange={(e) => setAcceptedTerms(e.target.checked)}
+                    className="sr-only peer"
+                    required
+                  />
+                  <div className="w-[14px] h-[14px] border border-white/80 bg-transparent flex items-center justify-center peer-checked:bg-white peer-checked:text-black transition-colors shrink-0">
+                    {acceptedTerms && (
+                      <svg
+                        className="w-2.5 h-2.5 text-black stroke-[3]"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                  <span
+                    className="text-white/80 group-hover:text-white text-[13px] leading-[18px] transition-colors"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 400,
+                    }}
+                  >
+                    i have read and accept the tearms of the privacy polocy
+                  </span>
+                </label>
+
+                {/* Error message */}
+                {newsletterError && (
+                  <p className="mt-2 text-rose-400 text-xs text-center">
+                    {newsletterError}
+                  </p>
+                )}
+
+                {/* Success message */}
+                {subscribed && (
+                  <p className="mt-2 text-emerald-400 text-xs text-center">
+                    Thank you for subscribing!
+                  </p>
+                )}
+
+                {/* SIGN UP button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting || subscribed}
+                  className="self-end mt-6 w-[140px] h-[44px] border border-white/80 bg-transparent text-white hover:bg-white hover:text-black disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer flex items-center justify-center uppercase"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  {isSubmitting
+                    ? "JOINING..."
+                    : subscribed
+                    ? "JOINED ✓"
+                    : "SIGN UP"}
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
 
       {/* HORIZONTAL FULL-WIDTH DIVIDER */}
-      <div className="w-full h-[1px] bg-white/20 mt-14 mb-8" />
+      <div className="w-full h-[1px] bg-white/20" />
 
-      {/* COPYRIGHT ROW */}
+      {/* COPYRIGHT ROW WITHOUT BACKGROUND IMAGE */}
       <div
-        className="w-full flex items-center text-white/75 text-[14px]"
+        className="w-full flex items-center text-white/90 py-6"
         style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
           fontFamily: "var(--font-manrope), sans-serif",
           fontWeight: 400,
+          fontSize: "14px",
+          lineHeight: "140%",
+          letterSpacing: "0%",
         }}
       >
-        <span>&copy; 2026 WAE F&amp;B. All rights reserved.</span>
+        <span className="inline-flex items-center justify-center w-[16px] h-[16px] rounded-full border border-white text-[10px] mr-2.5 font-sans leading-none">
+          c
+        </span>
+        <span>Copy Right WAE F&amp;B (P) Ltd. 2026</span>
       </div>
     </footer>
   );
