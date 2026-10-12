@@ -2,7 +2,7 @@
 
 import React from "react";
 import Script from "next/script";
-import Header from "@/components/Header";
+import GetInTouchHeader from "@/components/GetInTouchHeader";
 import Footer from "@/components/Footer";
 
 export default function CareersPage() {
@@ -15,7 +15,7 @@ export default function CareersPage() {
       />
 
       {/* 1. HEADER */}
-      <Header />
+      <GetInTouchHeader />
 
       {/* 2. HERO SECTION */}
       <section className="relative w-full pt-[16vw] md:pt-[10vw] px-[4.166vw]">

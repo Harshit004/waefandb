@@ -2,7 +2,7 @@
 
 import React from "react";
 import Script from "next/script";
-import Header from "@/components/Header";
+import GetInTouchHeader from "@/components/GetInTouchHeader";
 import Footer from "@/components/Footer";
 
 // Easily replaceable asset placeholders - swap with real URLs when provided
@@ -38,7 +38,7 @@ export default function AboutUsPage() {
       />
 
       {/* 1. MAIN HEADER COMPONENT */}
-      <Header />
+      <GetInTouchHeader />
 
       {/* 2. HERO SECTION (Full-bleed from top: 0, Header laid over) */}
       <section className="relative w-full flex flex-col lg:flex-row items-stretch bg-black overflow-hidden">
