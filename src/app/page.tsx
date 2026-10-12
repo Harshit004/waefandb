@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import Link from "next/link";
-import Header from "@/components/Header";
+import GetInTouchHeader from "@/components/GetInTouchHeader";
 
 interface StreamPlayer {
   play: () => Promise<void>;
@@ -184,7 +184,7 @@ export default function Home() {
         className="relative w-full h-screen overflow-hidden bg-black flex"
         onMouseLeave={() => setActiveCursor(null)}
       >
-        <Header onMouseEnterElement={() => setActiveCursor(null)} />
+        <GetInTouchHeader onMouseEnterElement={() => setActiveCursor(null)} />
         {/* 3 Video Columns */}
         {columns.map((col, idx) => (
           <div
