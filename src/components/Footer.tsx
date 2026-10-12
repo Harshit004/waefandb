@@ -104,7 +104,7 @@ export default function Footer({
 
       {/* UPPER FOOTER CONTENT */}
       <div
-        className="w-full pt-[clamp(44px,4vw,64px)] pb-[clamp(40px,3.5vw,56px)]"
+        className="w-full pt-[clamp(44px,4vw,64px)] pb-0"
         style={{
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
@@ -333,11 +333,17 @@ export default function Footer({
       </div>
 
       {/* HORIZONTAL FULL-WIDTH DIVIDER */}
-      <div className="w-full h-[1px] bg-white/20" />
+      <div
+        className="w-full h-[1px] bg-white/20"
+        style={{
+          marginTop: "10px",
+          marginBottom: "73px",
+        }}
+      />
 
       {/* COPYRIGHT ROW WITHOUT BACKGROUND IMAGE */}
       <div
-        className="w-full flex items-center text-white/90 py-6"
+        className="w-full flex items-center text-white/90 pb-8"
         style={{
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
