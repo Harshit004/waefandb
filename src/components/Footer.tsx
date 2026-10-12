@@ -94,22 +94,17 @@ export default function Footer({
       {/* 10px GAP ABOVE TOP DIVIDER */}
       <div className="w-full h-[10px]" aria-hidden="true" />
 
-      {/* TOP BORDER WITH SPECIFIED GRADIENT */}
+      {/* TOP HORIZONTAL DIVIDER - SOLID #FFF FULL OPACITY */}
       {showTopGradient && (
-        <div
-          className="w-full h-[1px]"
-          style={{
-            background:
-              "linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 52.12%, rgba(255, 255, 255, 0) 98.55%)",
-          }}
-        />
+        <div className="w-full h-[1px] bg-[#ffffff]" />
       )}
 
-      {/* UPPER FOOTER CONTENT: 73px GAP UNDER TOP DIVIDER */}
+      {/* UPPER FOOTER CONTENT: 73px GAP UNDER TOP DIVIDER, 69px GAP ABOVE BOTTOM DIVIDER */}
       <div
-        className="w-full pb-[clamp(40px,3.5vw,56px)]"
+        className="w-full"
         style={{
           paddingTop: paddingTop,
+          paddingBottom: "69px",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
@@ -130,7 +125,7 @@ export default function Footer({
               INFO
             </h3>
             {/* Small horizontal dash */}
-            <div className="w-[20px] h-[1px] bg-white/70 mt-2 mb-6" />
+            <div className="w-[20px] h-[1px] bg-[#ffffff] mt-2 mb-6" />
 
             <ul
               className="space-y-3.5 select-none"
@@ -185,8 +180,8 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* VERTICAL DIVIDER 1 */}
-          <div className="hidden lg:block w-[1px] bg-white/15 self-stretch shrink-0" />
+          {/* VERTICAL DIVIDER 1 - SOLID #FFF FULL OPACITY */}
+          <div className="hidden lg:block w-[1px] bg-[#ffffff] self-stretch shrink-0" />
 
           {/* COLUMN 2: FOLLOW US */}
           <div className="flex-1 lg:max-w-[340px] lg:px-10 flex flex-col justify-start">
@@ -203,7 +198,7 @@ export default function Footer({
               FOLLOW US
             </h3>
             {/* Small horizontal dash */}
-            <div className="w-[20px] h-[1px] bg-white/70 mt-2 mb-6" />
+            <div className="w-[20px] h-[1px] bg-[#ffffff] mt-2 mb-6" />
 
             {/* Social media icons with 15px gap, 24x24 size */}
             <div className="flex items-center gap-[15px]">
@@ -228,8 +223,8 @@ export default function Footer({
             </div>
           </div>
 
-          {/* VERTICAL DIVIDER 2 */}
-          <div className="hidden lg:block w-[1px] bg-white/15 self-stretch shrink-0" />
+          {/* VERTICAL DIVIDER 2 - SOLID #FFF FULL OPACITY */}
+          <div className="hidden lg:block w-[1px] bg-[#ffffff] self-stretch shrink-0" />
 
           {/* COLUMN 3: NEWSLETTER */}
           <div className="flex-1 lg:pl-12 flex flex-col items-start lg:items-end justify-start">
@@ -335,8 +330,8 @@ export default function Footer({
         </div>
       </div>
 
-      {/* HORIZONTAL FULL-WIDTH DIVIDER */}
-      <div className="w-full h-[1px] bg-white/20" />
+      {/* HORIZONTAL FULL-WIDTH DIVIDER - SOLID #FFF FULL OPACITY */}
+      <div className="w-full h-[1px] bg-[#ffffff]" />
 
       {/* COPYRIGHT ROW WITHOUT BACKGROUND IMAGE */}
       <div
