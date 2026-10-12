@@ -13,7 +13,7 @@ interface FooterProps {
 export default function Footer({
   className = "",
   id = "footer",
-  paddingTop,
+  paddingTop = "73px",
   showTopGradient = true,
 }: FooterProps) {
   const [email, setEmail] = useState("");
@@ -91,6 +91,9 @@ export default function Footer({
       id={id}
       className={`relative w-full bg-black text-white overflow-hidden ${className}`}
     >
+      {/* 10px GAP ABOVE TOP DIVIDER */}
+      <div className="w-full h-[10px]" aria-hidden="true" />
+
       {/* TOP BORDER WITH SPECIFIED GRADIENT */}
       {showTopGradient && (
         <div
@@ -102,13 +105,13 @@ export default function Footer({
         />
       )}
 
-      {/* UPPER FOOTER CONTENT */}
+      {/* UPPER FOOTER CONTENT: 73px GAP UNDER TOP DIVIDER */}
       <div
-        className="w-full pt-[clamp(44px,4vw,64px)] pb-0"
+        className="w-full pb-[clamp(40px,3.5vw,56px)]"
         style={{
+          paddingTop: paddingTop,
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
-          ...(paddingTop !== undefined ? { paddingTop } : {}),
         }}
       >
         <div className="w-full flex flex-col lg:flex-row items-stretch justify-between gap-8 lg:gap-0">
@@ -333,17 +336,11 @@ export default function Footer({
       </div>
 
       {/* HORIZONTAL FULL-WIDTH DIVIDER */}
-      <div
-        className="w-full h-[1px] bg-white/20"
-        style={{
-          marginTop: "10px",
-          marginBottom: "73px",
-        }}
-      />
+      <div className="w-full h-[1px] bg-white/20" />
 
       {/* COPYRIGHT ROW WITHOUT BACKGROUND IMAGE */}
       <div
-        className="w-full flex items-center text-white/90 pb-8"
+        className="w-full flex items-center text-white/90 py-6"
         style={{
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
