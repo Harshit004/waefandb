@@ -1049,7 +1049,7 @@ export default function LOrientalisPage() {
                   </h3>
 
                   <p
-                    className="mt-6 lg:mt-0 mb-[20px] text-white relative z-30 transition-transform duration-700 ease-out group-hover:-translate-y-[40px]"
+                    className="mt-6 lg:mt-0 mb-[40px] text-white relative z-30 transition-transform duration-700 ease-out group-hover:-translate-y-[40px]"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 400,
