@@ -258,12 +258,12 @@ export default function LOrientalisPage() {
       />
 
       {/* HERO SECTION WITH VIDEO & OVERLAY */}
-      <section className="relative w-full bg-black overflow-hidden" id="hero">
-        {/* 16:9 Video Canvas (paddingTop: 56.25% based on 1440px wide reference) */}
-        <div
-          className="relative w-full overflow-hidden"
-          style={{ position: "relative", paddingTop: "56.25%" }}
-        >
+      <section
+        id="hero"
+        className="relative w-full h-[100dvh] min-h-[620px] bg-black overflow-hidden flex flex-col justify-between"
+      >
+        {/* Background Video Canvas covering viewport */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Cloudflare Stream Video Iframe - Autoplay, Muted, Loop */}
           <iframe
             ref={iframeRef}
@@ -272,10 +272,13 @@ export default function LOrientalisPage() {
             style={{
               border: "none",
               position: "absolute",
-              top: 0,
-              left: 0,
-              height: "100%",
-              width: "100%",
+              top: "50%",
+              left: "50%",
+              width: "max(100vw, 177.78dvh)",
+              height: "max(56.25vw, 100dvh)",
+              minWidth: "100%",
+              minHeight: "100%",
+              transform: "translate(-50%, -50%)",
               pointerEvents: "none",
             }}
             allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
@@ -287,146 +290,130 @@ export default function LOrientalisPage() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%)",
+                "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.25) 100%)",
             }}
           />
+        </div>
 
-          {/* GRADUAL GRADIENT & 60% BLACK BACKDROP FOR HERO BOTTOM TEXT */}
-          <div
-            className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
-            style={{
-              height: "calc(46.8px + 30px)",
-              background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 38.96%, #000000 100%)",
-            }}
-          />
+        {/* BOTTOM GRADIENT BLENDING HERO INTO BLACK & MATCHING BOTTOM ELEMENTS */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
+          style={{
+            height: "clamp(220px, 32vh, 360px)",
+            background:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.85) 65%, #000000 100%)",
+          }}
+        />
 
-          {/* HERO OVERLAY CONTENT */}
-          <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-between">
-            {/* TOP AREA: Header + 96px Gap + Titles */}
-            <div className="w-full flex flex-col">
-              {/* Lorientalis Header (53px from top, px-40px) */}
-              <LOrientalisHeader />
+        {/* HERO OVERLAY CONTENT */}
+        <div className="relative z-20 w-full h-full pointer-events-none flex flex-col justify-between">
+          {/* TOP AREA: Header + Titles */}
+          <div className="w-full flex flex-col">
+            {/* Lorientalis Header (53px from top, px-40px) */}
+            <LOrientalisHeader />
 
-              {/* 96px below header (96 / 1440 * 100vw = 6.667vw) */}
-              <div
-                className="w-full flex items-end justify-between"
-                style={{
-                  marginTop: "6.667vw", // 96px at 1440px
-                  paddingLeft: "2.778vw", // 40px at 1440px
-                  paddingRight: "2.778vw", // 40px at 1440px
-                }}
-              >
-                {/* Beverage Botanicals */}
-                <h1
-                  className="select-none"
-                  style={{
-                    fontFamily: "var(--font-monschone), serif",
-                    fontWeight: 400,
-                    fontStyle: "normal",
-                    fontSize: "3.889vw", // 56px at 1440px (56 / 1440 * 100vw)
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  Beverage Botanicals
-                </h1>
-
-                {/* On right: L’orientalis Tea & Coffee */}
-                <span
-                  className="select-none"
-                  style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 500,
-                    fontStyle: "normal",
-                    fontSize: "1.25vw", // 18px at 1440px (18 / 1440 * 100vw)
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                    textAlign: "center",
-                    verticalAlign: "bottom",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  L’orientalis Tea &amp; Coffee
-                </span>
-              </div>
-            </div>
-
-            {/* BOTTOM AREA: The Growing Regions (Left Bottom) */}
+            {/* Titles Row */}
             <div
-              className="relative w-full flex items-end justify-start pointer-events-none"
+              className="w-full flex items-end justify-between"
               style={{
-                paddingLeft: "2.778vw", // 40px at 1440px
-                paddingRight: "2.778vw", // 40px at 1440px
-                paddingBottom: "clamp(56px, 5.5vw, 96px)",
+                marginTop: "clamp(32px, 5.5vw, 84px)",
+                paddingLeft: "2.778vw",
+                paddingRight: "2.778vw",
               }}
             >
-              {/* Bottom Left: The Growing Regions Above The Tropic Of Cancer */}
-              <div
-                className="flex flex-col text-left select-none pointer-events-auto"
+              {/* Beverage Botanicals */}
+              <h1
+                className="select-none"
                 style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontWeight: 500,
-                  fontSize: "18px",
-                  lineHeight: "130%",
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                  fontSize: "clamp(32px, 3.889vw, 56px)",
+                  lineHeight: "100%",
                   letterSpacing: "0%",
                   color: "#FFFFFF",
                 }}
               >
-                <span>The Growing Regions</span>
-                <span>Above The Tropic Of Cancer</span>
-              </div>
+                Beverage Botanicals
+              </h1>
+
+              {/* On right: L’orientalis Tea & Coffee */}
+              <span
+                className="select-none"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 500,
+                  fontStyle: "normal",
+                  fontSize: "clamp(14px, 1.25vw, 18px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "center",
+                  verticalAlign: "bottom",
+                  color: "#FFFFFF",
+                }}
+              >
+                L’orientalis Tea &amp; Coffee
+              </span>
+            </div>
+          </div>
+
+          {/* BOTTOM AREA: The Growing Regions (Left) + Scroll Button (Center) */}
+          <div
+            className="relative w-full flex items-end justify-between pointer-events-none"
+            style={{
+              paddingLeft: "2.778vw",
+              paddingRight: "2.778vw",
+              paddingBottom: "clamp(24px, 4vh, 48px)",
+            }}
+          >
+            {/* Bottom Left: The Growing Regions Above The Tropic Of Cancer */}
+            <div
+              className="flex flex-col text-left select-none pointer-events-auto z-20"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(15px, 1.25vw, 18px)",
+                lineHeight: "130%",
+                letterSpacing: "0%",
+                color: "#FFFFFF",
+              }}
+            >
+              <span>The Growing Regions</span>
+              <span>Above The Tropic Of Cancer</span>
+            </div>
+
+            {/* Bottom Center: Scroll Button */}
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-[-10px] md:bottom-[-20px] flex items-center justify-center pointer-events-none z-20">
+              <button
+                type="button"
+                onClick={handleScrollDown}
+                className="pointer-events-auto cursor-pointer focus:outline-none transition-transform duration-300 hover:scale-105 active:scale-95"
+                style={{
+                  width: "clamp(140px, 14.86vw, 214px)",
+                  height: "clamp(140px, 14.86vw, 214px)",
+                }}
+                aria-label="Scroll down"
+              >
+                <Image
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d6afe7e6-daff-4bb6-60ef-d53bd6a88e00/public"
+                  alt="Scroll down"
+                  width={214}
+                  height={214}
+                  priority
+                  unoptimized
+                  className="w-full h-full object-contain select-none pointer-events-none animate-scroll-oscillate"
+                  style={{
+                    WebkitMaskImage:
+                      "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%)",
+                    maskImage:
+                      "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%)",
+                  }}
+                />
+              </button>
             </div>
           </div>
         </div>
       </section>
-
-      {/* GRADIENT SECTION UNDER HERO */}
-      <div
-        className="relative w-full flex items-center justify-center z-20"
-        style={{
-          width: "100%",
-          height: "calc(214px + 46.8px + 42.8px)",
-          marginTop: "-46.8px",
-          background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 70.44%)",
-        }}
-      >
-        <button
-          type="button"
-          onClick={handleScrollDown}
-          className="relative z-10 pointer-events-auto cursor-pointer focus:outline-none transition-transform duration-300 hover:scale-105 active:scale-95"
-          style={{
-            width: "214px",
-            height: "214px",
-          }}
-          aria-label="Scroll down"
-        >
-          <Image
-            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d6afe7e6-daff-4bb6-60ef-d53bd6a88e00/public"
-            alt="Scroll down"
-            width={214}
-            height={214}
-            priority
-            unoptimized
-            className="w-[214px] h-[214px] object-contain select-none pointer-events-none animate-scroll-oscillate"
-            style={{
-              WebkitMaskImage:
-                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%)",
-              maskImage:
-                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%)",
-            }}
-          />
-        </button>
-
-        {/* Overlaying gradient of black covering all of the oscillating area */}
-        <div
-          className="absolute inset-0 pointer-events-none z-20"
-          style={{
-            background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 70.44%)",
-          }}
-        />
-      </div>
 
       {/* OUR STORY SECTION */}
       <section
