@@ -171,7 +171,7 @@ export default function LOrientalisFooter({
           </div>
 
           {/* VERTICAL DIVIDER 1 */}
-          <div className="hidden lg:block w-[1px] bg-white/15 self-stretch shrink-0" />
+          <div className="hidden lg:block w-[1px] bg-white self-stretch shrink-0" />
 
           {/* COLUMN 2: FOLLOW US */}
           <div className="flex-1 lg:max-w-[340px] lg:px-10 flex flex-col justify-start">
@@ -214,7 +214,7 @@ export default function LOrientalisFooter({
           </div>
 
           {/* VERTICAL DIVIDER 2 */}
-          <div className="hidden lg:block w-[1px] bg-white/15 self-stretch shrink-0" />
+          <div className="hidden lg:block w-[1px] bg-white self-stretch shrink-0" />
 
           {/* COLUMN 3: NEWSLETTER */}
           <div className="flex-1 lg:pl-12 flex flex-col items-start lg:items-end justify-start">
@@ -330,11 +330,11 @@ export default function LOrientalisFooter({
         {/* Content over the leaves: hairline divider & copyright positioned across leaves */}
         <div className="absolute inset-0 flex flex-col justify-start pt-[clamp(60px,6vw,95px)] pointer-events-none z-10">
           {/* Horizontal line running across the screen */}
-          <div className="w-full h-[1px] bg-white/20 mb-4 sm:mb-6" />
+          <div className="w-full h-[1px] bg-white mb-4 sm:mb-6" />
 
           {/* Copyright text aligned to the left */}
           <div
-            className="w-full flex items-center text-white/90"
+            className="w-full flex items-center text-white"
             style={{
               paddingLeft: "2.778vw",
               paddingRight: "2.778vw",
@@ -345,10 +345,10 @@ export default function LOrientalisFooter({
               letterSpacing: "0%",
             }}
           >
-            <span className="inline-flex items-center justify-center w-[16px] h-[16px] rounded-full border border-white text-[10px] mr-2.5 font-sans leading-none">
+            <span className="inline-flex items-center justify-center w-[16px] h-[16px] rounded-full border border-white text-white text-[10px] mr-2.5 font-sans leading-none">
               c
             </span>
-            <span>Copy Right WAE F&amp;B (P) Ltd. 2026</span>
+            <span className="text-white">Copy Right WAE F&amp;B (P) Ltd. 2026</span>
           </div>
         </div>
       </div>
