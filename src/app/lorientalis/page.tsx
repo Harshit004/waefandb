@@ -1059,7 +1059,7 @@ export default function LOrientalisPage() {
                   </h3>
 
                   <p
-                    className="mt-6 lg:mt-0 text-white"
+                    className="mt-6 lg:mt-0 text-white transition-transform duration-700 ease-out group-hover:-translate-y-[40px]"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 400,
@@ -1100,7 +1100,7 @@ export default function LOrientalisPage() {
                 {/* Description on black background below 3rd window */}
                 <div className="w-full flex-1 bg-black pt-4 lg:pt-6 px-1">
                   <p
-                    className="text-white"
+                    className="text-white transition-transform duration-700 ease-out group-hover:-translate-y-[10px]"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 400,
