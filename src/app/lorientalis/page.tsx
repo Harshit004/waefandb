@@ -1502,65 +1502,68 @@ export default function LOrientalisPage() {
             </button>
           </div>
 
-          {/* VERTICAL LINE BELOW THE BUTTON INTO START OF THE GRID */}
-          <div className="relative w-full h-[36px] lg:h-[44px]">
-            <div
-              className="absolute left-0 top-0 w-[1px] h-full"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 100%)",
-              }}
-            />
-          </div>
-
-          {/* IMAGE GRID (3 Images: 511x304, 274x304, 274x304) */}
-          <div className="w-full flex flex-col md:flex-row items-center md:items-stretch gap-6 lg:gap-8">
-            {/* Image 1: 511x304 ratio */}
-            <div
-              className="relative w-full max-w-[511px] md:max-w-none md:flex-[511_511_0%] overflow-hidden rounded-[2px] bg-neutral-900"
-              style={{ aspectRatio: "511 / 304" }}
-            >
-              <Image
-                key={`img-0-${activeBeverage}`}
-                src={currentImages[0].src}
-                alt={currentImages[0].alt}
-                fill
-                unoptimized
-                className="object-cover select-none transition-opacity duration-300"
-                sizes="(max-width: 768px) 100vw, 50vw"
+          {/* GALLERY AREA: VERTICAL DIVIDER LINE ON LEFT + IMAGES BESIDE IT */}
+          <div className="relative w-full flex items-stretch">
+            {/* CONTINUOUS VERTICAL DIVIDER LINE ALIGNED WITH LEFT EDGE OF ACTIVE BUTTON */}
+            <div className="relative shrink-0 w-[1px] self-stretch">
+              <div
+                className="w-[1px] h-full"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 75%, rgba(255, 255, 255, 0.1) 100%)",
+                }}
               />
             </div>
 
-            {/* Image 2: 274x304 ratio */}
-            <div
-              className="relative w-full max-w-[274px] md:max-w-none md:flex-[274_274_0%] overflow-hidden rounded-[2px] bg-neutral-900"
-              style={{ aspectRatio: "274 / 304" }}
-            >
-              <Image
-                key={`img-1-${activeBeverage}`}
-                src={currentImages[1].src}
-                alt={currentImages[1].alt}
-                fill
-                unoptimized
-                className="object-cover select-none transition-opacity duration-300"
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
-            </div>
+            {/* IMAGE GRID BESIDE THE VERTICAL DIVIDER */}
+            <div className="w-full pt-[36px] lg:pt-[42px] pl-6 sm:pl-7 lg:pl-8 flex flex-col md:flex-row items-center md:items-stretch gap-6 lg:gap-8">
+              {/* Image 1: 511x304 ratio */}
+              <div
+                className="relative w-full max-w-[511px] md:max-w-none md:flex-[511_511_0%] overflow-hidden rounded-[2px] bg-neutral-900"
+                style={{ aspectRatio: "511 / 304" }}
+              >
+                <Image
+                  key={`img-0-${activeBeverage}`}
+                  src={currentImages[0].src}
+                  alt={currentImages[0].alt}
+                  fill
+                  unoptimized
+                  className="object-cover select-none transition-opacity duration-300"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
 
-            {/* Image 3: 274x304 ratio */}
-            <div
-              className="relative w-full max-w-[274px] md:max-w-none md:flex-[274_274_0%] overflow-hidden rounded-[2px] bg-neutral-900"
-              style={{ aspectRatio: "274 / 304" }}
-            >
-              <Image
-                key={`img-2-${activeBeverage}`}
-                src={currentImages[2].src}
-                alt={currentImages[2].alt}
-                fill
-                unoptimized
-                className="object-cover select-none transition-opacity duration-300"
-                sizes="(max-width: 768px) 100vw, 25vw"
-              />
+              {/* Image 2: 274x304 ratio */}
+              <div
+                className="relative w-full max-w-[274px] md:max-w-none md:flex-[274_274_0%] overflow-hidden rounded-[2px] bg-neutral-900"
+                style={{ aspectRatio: "274 / 304" }}
+              >
+                <Image
+                  key={`img-1-${activeBeverage}`}
+                  src={currentImages[1].src}
+                  alt={currentImages[1].alt}
+                  fill
+                  unoptimized
+                  className="object-cover select-none transition-opacity duration-300"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                />
+              </div>
+
+              {/* Image 3: 274x304 ratio */}
+              <div
+                className="relative w-full max-w-[274px] md:max-w-none md:flex-[274_274_0%] overflow-hidden rounded-[2px] bg-neutral-900"
+                style={{ aspectRatio: "274 / 304" }}
+              >
+                <Image
+                  key={`img-2-${activeBeverage}`}
+                  src={currentImages[2].src}
+                  alt={currentImages[2].alt}
+                  fill
+                  unoptimized
+                  className="object-cover select-none transition-opacity duration-300"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                />
+              </div>
             </div>
           </div>
         </div>
