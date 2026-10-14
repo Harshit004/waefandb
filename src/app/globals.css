@@ -70,10 +70,10 @@ body {
 
 @keyframes scroll-oscillate {
   0%, 100% {
-    transform: translateY(-10%);
+    transform: translateY(-4%);
   }
   50% {
-    transform: translateY(10%);
+    transform: translateY(4%);
   }
 }
 

@@ -386,7 +386,7 @@ export default function LOrientalisPage() {
             </div>
 
             {/* Bottom Center: Scroll Button */}
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-[-10px] md:bottom-[-20px] flex items-center justify-center pointer-events-none z-20">
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-[54%] flex items-center justify-center pointer-events-none z-20">
               <button
                 type="button"
                 onClick={handleScrollDown}
@@ -407,9 +407,9 @@ export default function LOrientalisPage() {
                   className="w-full h-full object-contain select-none pointer-events-none animate-scroll-oscillate"
                   style={{
                     WebkitMaskImage:
-                      "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%)",
+                      "linear-gradient(180deg, #000000 0%, #000000 48%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%)",
                     maskImage:
-                      "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%)",
+                      "linear-gradient(180deg, #000000 0%, #000000 48%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 100%)",
                   }}
                 />
               </button>
