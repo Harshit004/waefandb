@@ -1119,15 +1119,29 @@ export default function LOrientalisPage() {
       {/* SINGLE ORIGIN / 3 STATE MAP SECTION */}
       <section
         id="single-origin"
-        className="relative w-full bg-black text-white overflow-hidden py-[80px] lg:py-[120px]"
+        className="relative w-full bg-black text-white overflow-hidden py-[60px] md:py-[80px] lg:py-[100px]"
         style={{
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
-        <div className="w-full max-w-[1440px] mx-auto flex flex-col">
+        <div className="relative w-full max-w-[1440px] mx-auto min-h-[460px] sm:min-h-[520px] md:min-h-[580px] lg:min-h-[640px] flex flex-col justify-between">
+          {/* MAP GRAPHIC: Cropped to remove black space, increased size by 50%, z-0 behind text */}
+          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+            <div className="relative w-full max-w-[1400px] aspect-[1147/481]">
+              <Image
+                src="/images/northeast-map.png"
+                alt="Northeast India single origin tea and coffee growing districts map"
+                fill
+                priority
+                unoptimized
+                className="object-contain object-center select-none"
+              />
+            </div>
+          </div>
+
           {/* TOP LEFT: Coordinates & Subtitle */}
-          <div className="flex flex-col items-start z-10">
+          <div className="relative z-10 flex flex-col items-start select-none">
             <h2
               style={{
                 fontFamily: "var(--font-judson), Judson, serif",
@@ -1156,20 +1170,8 @@ export default function LOrientalisPage() {
             </span>
           </div>
 
-          {/* MAP GRAPHIC CONTAINER: 964px x 534px */}
-          <div className="relative w-full max-w-[964px] aspect-[964/534] mx-auto mt-4 lg:mt-[-30px]">
-            <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e07c8e4c-3d68-41df-3bf4-c9807631ab00/public"
-              alt="Northeast India single origin tea and coffee growing districts map"
-              fill
-              priority
-              unoptimized
-              className="object-contain select-none pointer-events-none"
-            />
-          </div>
-
           {/* BOTTOM RIGHT: Growing Districts description */}
-          <div className="w-full flex justify-end mt-4 lg:mt-6">
+          <div className="relative z-10 w-full flex justify-end select-none pt-8 md:pt-0">
             <p
               className="text-white max-w-[460px]"
               style={{
