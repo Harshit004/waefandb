@@ -991,15 +991,35 @@ export default function LOrientalisPage() {
 
         {/* 4-COLUMN IMAGE GRID WITH SINGLE BACKGROUND IMAGE & BLACK MASKING OVERLAY */}
         <div className="w-full overflow-x-auto lg:overflow-visible scrollbar-none">
-          <div className="min-w-[700px] md:min-w-0 w-full relative h-[560px] md:h-[640px] lg:h-[720px] overflow-hidden">
-            {/* Single continuous background image */}
-            <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3989527c-0b2d-46b1-fe4b-a5891c0ff400/public"
-              alt="The Growing Conditions botanicals and coffee cherries"
-              fill
-              priority
-              unoptimized
-              className="object-cover object-center select-none"
+          <div className="min-w-[700px] md:min-w-0 w-full relative h-[560px] md:h-[640px] lg:h-[720px] overflow-hidden group cursor-pointer">
+            {/* Single continuous background image with smooth hover zoom */}
+            <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-108 origin-center">
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3989527c-0b2d-46b1-fe4b-a5891c0ff400/public"
+                alt="The Growing Conditions botanicals and coffee cherries"
+                fill
+                priority
+                unoptimized
+                className="object-cover object-center select-none"
+              />
+            </div>
+
+            {/* Overall top edge blended gradient */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[60px] lg:h-[80px] pointer-events-none z-20"
+              style={{
+                background:
+                  "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+              }}
+            />
+
+            {/* Overall bottom edge blended gradient */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-[60px] lg:h-[80px] pointer-events-none z-20"
+              style={{
+                background:
+                  "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+              }}
             />
 
             {/* Black Masking Grid Overlay: 4 Windows with 8px Black Dividers & Black Text Cards */}
@@ -1012,7 +1032,16 @@ export default function LOrientalisPage() {
               {/* COLUMN 1: Top window (450px) + Bottom black card (270px) */}
               <div className="flex flex-col justify-between h-full">
                 {/* 1st image window (transparent, reveals underlying image) */}
-                <div className="w-full h-[320px] lg:h-[450px] shrink-0" />
+                <div className="relative w-full h-[320px] lg:h-[450px] shrink-0 pointer-events-none">
+                  {/* Blended gradient on bottom edge into the black card below */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-[50px] lg:h-[60px] pointer-events-none"
+                    style={{
+                      background:
+                        "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+                    }}
+                  />
+                </div>
 
                 {/* Bottom black text card */}
                 <div className="w-full flex-1 bg-black flex flex-col justify-between pt-6 pb-2 px-1">
@@ -1046,18 +1075,27 @@ export default function LOrientalisPage() {
               </div>
 
               {/* 8px BLACK DIVIDER 1 */}
-              <div className="w-[8px] h-full bg-black shrink-0" />
+              <div className="w-[8px] h-full bg-black shrink-0 pointer-events-none" />
 
               {/* COLUMN 2: Full height transparent window (reveals underlying image) */}
-              <div className="w-full h-full" />
+              <div className="w-full h-full pointer-events-none" />
 
               {/* 8px BLACK DIVIDER 2 */}
-              <div className="w-[8px] h-full bg-black shrink-0" />
+              <div className="w-[8px] h-full bg-black shrink-0 pointer-events-none" />
 
               {/* COLUMN 3: Top window (540px) + Bottom black card (180px) */}
               <div className="flex flex-col justify-between h-full">
                 {/* 3rd image window (transparent, reveals underlying image) */}
-                <div className="w-full h-[380px] lg:h-[540px] shrink-0" />
+                <div className="relative w-full h-[380px] lg:h-[540px] shrink-0 pointer-events-none">
+                  {/* Blended gradient on bottom edge into the black card below */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-[50px] lg:h-[60px] pointer-events-none"
+                    style={{
+                      background:
+                        "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+                    }}
+                  />
+                </div>
 
                 {/* Description on black background below 3rd window */}
                 <div className="w-full flex-1 bg-black pt-4 lg:pt-6 px-1">
@@ -1079,10 +1117,10 @@ export default function LOrientalisPage() {
               </div>
 
               {/* 8px BLACK DIVIDER 3 */}
-              <div className="w-[8px] h-full bg-black shrink-0" />
+              <div className="w-[8px] h-full bg-black shrink-0 pointer-events-none" />
 
               {/* COLUMN 4: Full height transparent window (reveals underlying image) */}
-              <div className="w-full h-full" />
+              <div className="w-full h-full pointer-events-none" />
             </div>
           </div>
         </div>
