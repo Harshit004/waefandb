@@ -93,7 +93,7 @@ export default function LOrientalisFooter({
 
       {/* UPPER FOOTER CONTENT */}
       <div
-        className="w-full pt-[clamp(44px,4vw,64px)] pb-[clamp(20px,1.75vw,28px)]"
+        className="relative z-20 w-full pt-[clamp(44px,4vw,64px)] pb-[clamp(44px,4vw,64px)]"
         style={{
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
@@ -316,30 +316,39 @@ export default function LOrientalisFooter({
         </div>
       </div>
 
-      {/* LOWER FOOTER: TEA LEAVES IMAGE WITH GRADIENT OVERLAY & COPYRIGHT */}
-      <div className="relative w-full h-[220px] sm:h-[260px] lg:h-[300px] overflow-hidden select-none">
-        {/* Bottom background image */}
+      {/* LOWER FOOTER: TEA LEAVES IMAGE (UNCROPPED) WITH GRADIENT OVERLAY & COPYRIGHT */}
+      <div className="relative z-10 w-full aspect-[1366/715] max-h-[560px] min-h-[340px] overflow-hidden select-none -mt-8 sm:-mt-12 lg:-mt-16">
+        {/* Full uncropped foliage background image */}
         <Image
           src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e1c525de-5d53-4a6d-24e8-7f7405a6d100/public"
           alt="Tea leaves foliage"
           fill
           unoptimized
-          className="object-cover object-bottom w-full h-full"
+          className="object-contain object-bottom w-full h-full"
         />
 
-        {/* Gradient overlay: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 112.97%) */}
+        {/* Soft top gradient to blend smoothly under the upper footer text */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-x-0 top-0 h-24 sm:h-36 pointer-events-none z-10"
           style={{
             background:
-              "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 112.97%)",
+              "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+          }}
+        />
+
+        {/* Bottom subtle dark gradient */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-10"
+          style={{
+            background:
+              "linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%)",
           }}
         />
 
         {/* CONTENT OVER THE LEAVES */}
-        <div className="absolute inset-0 flex flex-col justify-center pointer-events-none z-10">
+        <div className="absolute inset-0 flex flex-col justify-end pb-6 sm:pb-10 pointer-events-none z-20">
           {/* Horizontal line running across the screen */}
-          <div className="w-full h-[1px] bg-white/20 mb-8" />
+          <div className="w-full h-[1px] bg-white/20 mb-6 sm:mb-8" />
 
           {/* Copyright text aligned to the left */}
           <div

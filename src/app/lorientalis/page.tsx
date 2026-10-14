@@ -61,21 +61,23 @@ function getSlideVerticalStyles(t: number) {
   const progress = Math.min(Math.max(t, 0), 1);
 
   // --- TEXT 1 ---
-  // Smoothly fades out and shifts up
-  const text1Phase = smoothstep(0.08, 0.48, progress);
-  const text1Y = -text1Phase * 130;
-  const text1Opacity = Math.max(0, 1 - text1Phase * 1.4);
+  // Gently fades out and floats slightly up (just 40px)
+  const text1Phase = smoothstep(0.06, 0.40, progress);
+  const text1Y = -text1Phase * 40;
+  const text1Opacity = Math.max(0, 1 - text1Phase * 1.5);
 
   // --- SECONDARY IMAGE ---
-  // Starts below Text 1 and glides smoothly up to top position
-  const imgPhase = smoothstep(0.12, 0.52, progress);
-  const imageY = 320 * (1 - imgPhase);
-  const imageOpacity = Math.min(1, imgPhase * 2.2);
+  // Starts with gentle offset (y: 60px, opacity: 0, scale: 0.95)
+  // Glides up smoothly to y: 0px, opacity: 1, scale: 1
+  const imgPhase = smoothstep(0.12, 0.58, progress);
+  const imageY = 60 * (1 - imgPhase);
+  const imageScale = 0.95 + imgPhase * 0.05;
+  const imageOpacity = imgPhase;
 
   // --- TEXT 2 ---
-  // Rises smoothly from below the secondary image
-  const text2Phase = smoothstep(0.48, 0.88, progress);
-  const text2Y = 460 - text2Phase * 156;
+  // Gently floats in (36px) and fades in
+  const text2Phase = smoothstep(0.50, 0.90, progress);
+  const text2Y = 340 - text2Phase * 36;
   const text2Opacity = text2Phase;
 
   return {
@@ -84,7 +86,7 @@ function getSlideVerticalStyles(t: number) {
       opacity: text1Opacity,
     },
     image: {
-      transform: `translate3d(0, ${imageY.toFixed(2)}px, 0)`,
+      transform: `translate3d(0, ${imageY.toFixed(2)}px, 0) scale(${imageScale.toFixed(3)})`,
       opacity: imageOpacity,
     },
     text2: {
@@ -103,16 +105,16 @@ const BLENDS_OPTIONS = [
 export default function LOrientalisPage() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const carouselContainerRef = useRef<HTMLDivElement | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const hasCompletedRef = useRef(false);
-  const [hasCompleted, setHasCompleted] = useState(false);
+  const currentProgressRef = useRef(0);
+  const targetProgressRef = useRef(0);
+  const [smoothProgress, setSmoothProgress] = useState(0);
   const [activeBeverage, setActiveBeverage] = useState<"coffee" | "tea">("coffee");
   const [selectedBlend, setSelectedBlend] = useState(1);
 
   useEffect(() => {
     let animationFrameId: number;
 
-    const handleScroll = () => {
+    const updateTarget = () => {
       if (!carouselContainerRef.current) return;
       const rect = carouselContainerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
@@ -120,25 +122,42 @@ export default function LOrientalisPage() {
       if (totalScrollDistance <= 0) return;
 
       const currentScroll = -rect.top;
-      const rawProgress = currentScroll / totalScrollDistance;
-      const clampedProgress = Math.min(Math.max(rawProgress, 0), 1);
-
-      setScrollProgress(clampedProgress);
-
-      if (clampedProgress >= 0.98) {
-        hasCompletedRef.current = true;
-        setHasCompleted(true);
-      }
+      const raw = currentScroll / totalScrollDistance;
+      targetProgressRef.current = Math.min(Math.max(raw, 0), 1);
     };
 
     const onScroll = () => {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = requestAnimationFrame(handleScroll);
+      updateTarget();
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
-    handleScroll();
+    updateTarget();
+
+    // Smooth continuous exponential interpolation loop
+    let lastTime = performance.now();
+    const tick = (now: number) => {
+      const dt = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+
+      const lambda = 9;
+      const factor = 1 - Math.exp(-lambda * dt);
+      const target = targetProgressRef.current;
+      const current = currentProgressRef.current;
+      const diff = target - current;
+
+      if (Math.abs(diff) > 0.00005) {
+        currentProgressRef.current = current + diff * factor;
+        setSmoothProgress(currentProgressRef.current);
+      } else if (current !== target) {
+        currentProgressRef.current = target;
+        setSmoothProgress(target);
+      }
+
+      animationFrameId = requestAnimationFrame(tick);
+    };
+
+    animationFrameId = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -147,23 +166,23 @@ export default function LOrientalisPage() {
     };
   }, []);
 
-  const introPhase = smoothstep(0.0, 0.16, scrollProgress);
-  const introScale = 0.70 + introPhase * 0.30;
-  const introTextShift = introPhase * 220;
+  const introPhase = smoothstep(0.0, 0.15, smoothProgress);
+  const introScale = 0.80 + introPhase * 0.20;
+  const introTextShift = introPhase * 180;
 
-  // Track translation using continuous smoothstep transitions without harsh snapping
-  const p0 = smoothstep(0.14, 0.28, scrollProgress);
-  const p1 = smoothstep(0.44, 0.58, scrollProgress);
-  const p2 = smoothstep(0.70, 0.84, scrollProgress);
+  // Track translation using continuous smoothstep transitions without overlap
+  const p0 = smoothstep(0.15, 0.32, smoothProgress);
+  const p1 = smoothstep(0.48, 0.65, smoothProgress);
+  const p2 = smoothstep(0.80, 0.94, smoothProgress);
   const trackTranslatePercent = (p0 + p1 + p2) * 25;
 
-  // Story vertical choreography timers:
-  const t0 = smoothstep(0.24, 0.46, scrollProgress);
-  const t1 = smoothstep(0.54, 0.72, scrollProgress);
-  const t2 = smoothstep(0.80, 0.98, scrollProgress);
+  // Story vertical choreography timers (trigger only when slide is safely settled):
+  const t0 = smoothstep(0.32, 0.47, smoothProgress);
+  const t1 = smoothstep(0.65, 0.79, smoothProgress);
+  const t2 = smoothstep(0.94, 0.99, smoothProgress);
 
   const activeStoryIndex =
-    scrollProgress < 0.44 ? 0 : scrollProgress < 0.70 ? 1 : 2;
+    smoothProgress < 0.50 ? 0 : smoothProgress < 0.80 ? 1 : 2;
 
   const scrollToStory = (index: number) => {
     if (!carouselContainerRef.current) return;
@@ -173,7 +192,7 @@ export default function LOrientalisPage() {
       carouselContainerRef.current.offsetHeight - windowHeight;
     const containerTopOnPage = window.scrollY + rect.top;
 
-    const targetProgress = [0.35, 0.63, 0.89][index];
+    const targetProgress = [0.40, 0.72, 0.97][index];
     const targetScrollY =
       containerTopOnPage + targetProgress * totalScrollDistance;
     window.scrollTo({ top: targetScrollY, behavior: "smooth" });
@@ -1168,7 +1187,7 @@ export default function LOrientalisPage() {
       <section
         id="farmers"
         ref={carouselContainerRef}
-        className="relative w-full h-[450vh] bg-black text-white"
+        className="relative w-full h-[675vh] bg-black text-white"
       >
         <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-black">
           {/* HORIZONTAL CAROUSEL TRACK */}
