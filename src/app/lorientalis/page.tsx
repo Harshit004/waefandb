@@ -418,6 +418,9 @@ export default function LOrientalisPage() {
         </div>
       </section>
 
+      {/* 200PX GAP BETWEEN HERO AND OUR STORY */}
+      <div className="w-full h-[200px]" />
+
       {/* OUR STORY SECTION */}
       <section
         id="sourcing"
