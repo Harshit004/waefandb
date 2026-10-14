@@ -52,72 +52,43 @@ const FARMER_STORIES = [
 const FARMERS_INTRO_IMAGE =
   "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d619873b-8dc9-4d33-383b-ab43e5558800/public";
 
+function smoothstep(edge0: number, edge1: number, x: number) {
+  const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+  return t * t * (3 - 2 * t);
+}
+
 function getSlideVerticalStyles(t: number) {
   const progress = Math.min(Math.max(t, 0), 1);
 
   // --- TEXT 1 ---
-  // Initial state: resting at top position (y: 0px, opacity: 1)
-  // When progress goes from 0.15 to 0.50: Secondary image rises and pushes Text 1 upward off screen
-  let text1Y = 0;
-  let text1Opacity = 1;
+  // Smoothly fades out and shifts up
+  const text1Phase = smoothstep(0.08, 0.48, progress);
+  const text1Y = -text1Phase * 130;
+  const text1Opacity = Math.max(0, 1 - text1Phase * 1.4);
 
-  if (progress < 0.15) {
-    text1Y = 0;
-    text1Opacity = 1;
-  } else if (progress < 0.50) {
-    const p = (progress - 0.15) / 0.35;
-    text1Y = -p * 140; // 0px -> -140px (pushed up off top)
-    text1Opacity = Math.max(0, 1 - p * 1.4);
-  } else {
-    text1Y = -140;
-    text1Opacity = 0;
-  }
-
-  // --- SECONDARY IMAGE (3rd, 5th, last image) ---
-  // Starts below Text 1 (y: 320px, opacity: 0), then glides up to top position (y: 0px)
-  let imageY = 0;
-  let imageOpacity = 0;
-
-  if (progress < 0.12) {
-    imageY = 320;
-    imageOpacity = 0;
-  } else if (progress < 0.50) {
-    const p = (progress - 0.12) / 0.38;
-    imageY = 320 - p * 320; // 320px -> 0px
-    imageOpacity = Math.min(1, p * 2.5);
-  } else {
-    imageY = 0;
-    imageOpacity = 1;
-  }
+  // --- SECONDARY IMAGE ---
+  // Starts below Text 1 and glides smoothly up to top position
+  const imgPhase = smoothstep(0.12, 0.52, progress);
+  const imageY = 320 * (1 - imgPhase);
+  const imageOpacity = Math.min(1, imgPhase * 2.2);
 
   // --- TEXT 2 ---
-  // Rises from below the secondary image once image settles near top (progress 0.50 -> 0.85)
-  let text2Y = 0;
-  let text2Opacity = 0;
-
-  if (progress < 0.50) {
-    text2Y = 460;
-    text2Opacity = 0;
-  } else if (progress < 0.85) {
-    const p = (progress - 0.50) / 0.35;
-    text2Y = 460 - p * 156; // 460px -> 304px (below 280px image with 24px gap)
-    text2Opacity = p;
-  } else {
-    text2Y = 304;
-    text2Opacity = 1;
-  }
+  // Rises smoothly from below the secondary image
+  const text2Phase = smoothstep(0.48, 0.88, progress);
+  const text2Y = 460 - text2Phase * 156;
+  const text2Opacity = text2Phase;
 
   return {
     text1: {
-      transform: `translate3d(0, ${text1Y.toFixed(1)}px, 0)`,
+      transform: `translate3d(0, ${text1Y.toFixed(2)}px, 0)`,
       opacity: text1Opacity,
     },
     image: {
-      transform: `translate3d(0, ${imageY.toFixed(1)}px, 0)`,
+      transform: `translate3d(0, ${imageY.toFixed(2)}px, 0)`,
       opacity: imageOpacity,
     },
     text2: {
-      transform: `translate3d(0, ${text2Y.toFixed(1)}px, 0)`,
+      transform: `translate3d(0, ${text2Y.toFixed(2)}px, 0)`,
       opacity: text2Opacity,
     },
   };
@@ -158,14 +129,6 @@ export default function LOrientalisPage() {
         hasCompletedRef.current = true;
         setHasCompleted(true);
       }
-
-      // Enforce: user cannot go below this section until they have scrolled through the carousel
-      if (!hasCompletedRef.current && currentScroll > totalScrollDistance) {
-        window.scrollTo({
-          top: window.scrollY + rect.top + totalScrollDistance,
-          behavior: "instant",
-        });
-      }
     };
 
     const onScroll = () => {
@@ -184,65 +147,23 @@ export default function LOrientalisPage() {
     };
   }, []);
 
-  const introPhase = Math.min(scrollProgress / 0.14, 1);
-  const introScale = 0.65 + introPhase * 0.35;
-  const introTextShift = introPhase * 240;
+  const introPhase = smoothstep(0.0, 0.16, scrollProgress);
+  const introScale = 0.70 + introPhase * 0.30;
+  const introTextShift = introPhase * 220;
 
-  // Track translation and individual slide choreography timers:
-  // Using percentage translation: 0%, 25%, 50%, 75% for 4 slides in a 400% track
-  let trackTranslatePercent = 0;
-  let t0 = 0;
-  let t1 = 0;
-  let t2 = 0;
+  // Track translation using continuous smoothstep transitions without harsh snapping
+  const p0 = smoothstep(0.14, 0.28, scrollProgress);
+  const p1 = smoothstep(0.44, 0.58, scrollProgress);
+  const p2 = smoothstep(0.70, 0.84, scrollProgress);
+  const trackTranslatePercent = (p0 + p1 + p2) * 25;
 
-  if (scrollProgress < 0.14) {
-    trackTranslatePercent = 0;
-    t0 = 0;
-    t1 = 0;
-    t2 = 0;
-  } else if (scrollProgress < 0.20) {
-    // Transition Slide 0 (Intro) -> Slide 1 (Story 1) (0% to 25%)
-    const p = (scrollProgress - 0.14) / 0.06;
-    trackTranslatePercent = p * 25;
-    t0 = 0;
-    t1 = 0;
-    t2 = 0;
-  } else if (scrollProgress < 0.42) {
-    // Slide 1 Dwell & Story 1 Vertical Animation (Image 3)
-    trackTranslatePercent = 25;
-    t0 = (scrollProgress - 0.20) / 0.22;
-    t1 = 0;
-    t2 = 0;
-  } else if (scrollProgress < 0.48) {
-    // Transition Slide 1 -> Slide 2 (25% to 50%)
-    const p = (scrollProgress - 0.42) / 0.06;
-    trackTranslatePercent = 25 + p * 25;
-    t0 = 1;
-    t1 = 0;
-    t2 = 0;
-  } else if (scrollProgress < 0.70) {
-    // Slide 2 Dwell & Story 2 Vertical Animation (Image 5)
-    trackTranslatePercent = 50;
-    t0 = 1;
-    t1 = (scrollProgress - 0.48) / 0.22;
-    t2 = 0;
-  } else if (scrollProgress < 0.76) {
-    // Transition Slide 2 -> Slide 3 (50% to 75%)
-    const p = (scrollProgress - 0.70) / 0.06;
-    trackTranslatePercent = 50 + p * 25;
-    t0 = 1;
-    t1 = 1;
-    t2 = 0;
-  } else {
-    // Slide 3 Dwell & Story 3 Vertical Animation (Image 7 / last image)
-    trackTranslatePercent = 75;
-    t0 = 1;
-    t1 = 1;
-    t2 = Math.min((scrollProgress - 0.76) / 0.22, 1);
-  }
+  // Story vertical choreography timers:
+  const t0 = smoothstep(0.24, 0.46, scrollProgress);
+  const t1 = smoothstep(0.54, 0.72, scrollProgress);
+  const t2 = smoothstep(0.80, 0.98, scrollProgress);
 
   const activeStoryIndex =
-    scrollProgress < 0.45 ? 0 : scrollProgress < 0.73 ? 1 : 2;
+    scrollProgress < 0.44 ? 0 : scrollProgress < 0.70 ? 1 : 2;
 
   const scrollToStory = (index: number) => {
     if (!carouselContainerRef.current) return;
@@ -252,7 +173,7 @@ export default function LOrientalisPage() {
       carouselContainerRef.current.offsetHeight - windowHeight;
     const containerTopOnPage = window.scrollY + rect.top;
 
-    const targetProgress = [0.20, 0.48, 0.76][index];
+    const targetProgress = [0.35, 0.63, 0.89][index];
     const targetScrollY =
       containerTopOnPage + targetProgress * totalScrollDistance;
     window.scrollTo({ top: targetScrollY, behavior: "smooth" });
@@ -377,7 +298,7 @@ export default function LOrientalisPage() {
               style={{
                 paddingLeft: "2.778vw", // 40px at 1440px
                 paddingRight: "2.778vw", // 40px at 1440px
-                paddingBottom: "0px",
+                paddingBottom: "clamp(56px, 5.5vw, 96px)",
               }}
             >
               {/* Bottom Left: The Growing Regions Above The Tropic Of Cancer */}
@@ -470,6 +391,24 @@ export default function LOrientalisPage() {
             unoptimized
             className="object-cover object-center w-full h-full"
           />
+
+          {/* Top edge gradient to blend seamlessly with black above */}
+          <div
+            className="absolute top-0 left-0 right-0 h-[60px] sm:h-[90px] pointer-events-none z-[1]"
+            style={{
+              background:
+                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+            }}
+          />
+
+          {/* Bottom edge gradient to blend seamlessly with black below */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[60px] sm:h-[90px] pointer-events-none z-[1]"
+            style={{
+              background:
+                "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+            }}
+          />
         </div>
 
         {/* TOP ROW: OUR STORY (Left) & HEADLINE (Right) */}
@@ -533,7 +472,7 @@ export default function LOrientalisPage() {
               fontWeight: 400,
               fontStyle: "normal",
               fontSize: "14px",
-              lineHeight: "100%",
+              lineHeight: "130%",
               letterSpacing: "0%",
               color: "#FFFFFF",
             }}
@@ -551,7 +490,7 @@ export default function LOrientalisPage() {
       {/* COFFEE: GROWN IN THE SHADOW OF THE EASTERN HILLS SECTION */}
       <section
         id="coffee"
-        className="group/coffee relative w-full bg-black text-white overflow-hidden"
+        className="relative w-full bg-black text-white overflow-hidden"
         style={{
           paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
           paddingRight: "2.778vw", // 40px at 1440px - consistent across page
@@ -560,7 +499,7 @@ export default function LOrientalisPage() {
         }}
       >
         {/* TOP ROW: LEFT IMAGE (542x492) + RIGHT VERTICALLY CENTERED CONTENT */}
-        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[60px] xl:gap-[80px]">
+        <div className="group/coffee w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[60px] xl:gap-[80px]">
           {/* Left Image: 542px x 492px */}
           <div
             className="relative w-full max-w-[542px] overflow-hidden shrink-0 rounded-[2px]"
@@ -832,7 +771,7 @@ export default function LOrientalisPage() {
       {/* TEA: BORN IN THE EASTERN TEA BELT SECTION */}
       <section
         id="tea"
-        className="group/tea relative w-full bg-black text-white overflow-hidden"
+        className="relative w-full bg-black text-white overflow-hidden"
         style={{
           paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
           paddingRight: "2.778vw", // 40px at 1440px - consistent across page
@@ -841,7 +780,7 @@ export default function LOrientalisPage() {
         }}
       >
         {/* ROW: LEFT VERTICALLY CENTERED CONTENT + RIGHT IMAGE (542x492) */}
-        <div className="w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-[60px] xl:gap-[80px]">
+        <div className="group/tea w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-[60px] xl:gap-[80px]">
           {/* Left Content: Vertically centered relative to the image */}
           <div className="flex flex-col justify-center flex-1 w-full max-w-[650px] lg:max-w-none">
             {/* TEA label on left and Headline on right */}
@@ -1136,7 +1075,7 @@ export default function LOrientalisPage() {
           {/* MAP GRAPHIC CONTAINER: 964px x 534px */}
           <div className="relative w-full max-w-[964px] aspect-[964/534] mx-auto mt-4 lg:mt-[-30px]">
             <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f21b619f-d319-4d5a-ee4d-517eca07bb00/public"
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e07c8e4c-3d68-41df-3bf4-c9807631ab00/public"
               alt="Northeast India single origin tea and coffee growing districts map"
               fill
               priority
@@ -1238,7 +1177,6 @@ export default function LOrientalisPage() {
             style={{
               width: "400%",
               transform: `translate3d(-${trackTranslatePercent}%, 0, 0)`,
-              transition: "transform 0.08s linear",
             }}
           >
             {/* SLIDE 1: INTRO (FARMERS BIG TEXT + EXPANDING IMAGE) */}
@@ -1261,7 +1199,6 @@ export default function LOrientalisPage() {
                     letterSpacing: "0%",
                     verticalAlign: "middle",
                     transform: `translateX(-${introTextShift}px)`,
-                    transition: "transform 0.05s linear",
                   }}
                 >
                   Farmers
@@ -1271,7 +1208,7 @@ export default function LOrientalisPage() {
               {/* INTRO IMAGE: EXPANDING FROM CENTER */}
               <div className="relative w-full max-w-[1158px] h-[60vh] lg:h-[768px] max-h-[768px] mx-auto overflow-hidden flex items-center justify-center">
                 <div
-                  className="relative w-full h-full transition-transform duration-100 ease-out"
+                  className="relative w-full h-full"
                   style={{
                     transform: `scale(${introScale})`,
                   }}

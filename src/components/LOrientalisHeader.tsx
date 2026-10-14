@@ -21,6 +21,17 @@ export default function LOrientalisHeader({
         paddingRight: "2.778vw", // 40px at 1440px wide (40 / 1440 * 100vw)
       }}
     >
+      {/* Background gradient for enhanced contrast & readability */}
+      <div
+        className="absolute inset-x-0 top-0 pointer-events-none -z-10"
+        style={{
+          height: "calc(100% + 50px)",
+          minHeight: "120px",
+          background:
+            "linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0) 100%)",
+        }}
+      />
+
       {/* Left Navigation: "Sourcing" */}
       <Link
         href="#sourcing"

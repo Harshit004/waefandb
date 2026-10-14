@@ -93,7 +93,7 @@ export default function LOrientalisFooter({
 
       {/* UPPER FOOTER CONTENT */}
       <div
-        className="w-full pt-[clamp(44px,4vw,64px)] pb-[clamp(40px,3.5vw,56px)]"
+        className="w-full pt-[clamp(44px,4vw,64px)] pb-[clamp(20px,1.75vw,28px)]"
         style={{
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
@@ -317,7 +317,7 @@ export default function LOrientalisFooter({
       </div>
 
       {/* LOWER FOOTER: TEA LEAVES IMAGE WITH GRADIENT OVERLAY & COPYRIGHT */}
-      <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[440px] overflow-hidden select-none">
+      <div className="relative w-full h-[220px] sm:h-[260px] lg:h-[300px] overflow-hidden select-none">
         {/* Bottom background image */}
         <Image
           src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e1c525de-5d53-4a6d-24e8-7f7405a6d100/public"
