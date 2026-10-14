@@ -93,7 +93,7 @@ export default function LOrientalisFooter({
 
       {/* UPPER FOOTER CONTENT */}
       <div
-        className="relative z-20 w-full pt-[clamp(44px,4vw,64px)] pb-[clamp(44px,4vw,64px)]"
+        className="relative z-20 w-full pt-[clamp(44px,4vw,64px)] pb-[clamp(36px,3.5vw,50px)]"
         style={{
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
@@ -278,7 +278,7 @@ export default function LOrientalisFooter({
                       fontWeight: 400,
                     }}
                   >
-                    i have read and accept the tearms of the privacy polocy
+                    i have read and accept the terms of the  privacy policy
                   </span>
                 </label>
 
@@ -316,39 +316,21 @@ export default function LOrientalisFooter({
         </div>
       </div>
 
-      {/* LOWER FOOTER: TEA LEAVES IMAGE (UNCROPPED) WITH GRADIENT OVERLAY & COPYRIGHT */}
-      <div className="relative z-10 w-full aspect-[1366/715] max-h-[560px] min-h-[340px] overflow-hidden select-none -mt-8 sm:-mt-12 lg:-mt-16">
-        {/* Full uncropped foliage background image */}
+      {/* LOWER FOOTER: TEA LEAVES IMAGE SPANNING ACROSS THE SCREEN */}
+      <div className="relative w-full h-[clamp(280px,28vw,460px)] overflow-hidden select-none">
+        {/* Full width edge-to-edge tea leaves background image */}
         <Image
           src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e1c525de-5d53-4a6d-24e8-7f7405a6d100/public"
           alt="Tea leaves foliage"
           fill
           unoptimized
-          className="object-contain object-bottom w-full h-full"
+          className="w-full h-full object-cover object-bottom select-none pointer-events-none"
         />
 
-        {/* Soft top gradient to blend smoothly under the upper footer text */}
-        <div
-          className="absolute inset-x-0 top-0 h-24 sm:h-36 pointer-events-none z-10"
-          style={{
-            background:
-              "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
-          }}
-        />
-
-        {/* Bottom subtle dark gradient */}
-        <div
-          className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-10"
-          style={{
-            background:
-              "linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%)",
-          }}
-        />
-
-        {/* CONTENT OVER THE LEAVES */}
-        <div className="absolute inset-0 flex flex-col justify-end pb-6 sm:pb-10 pointer-events-none z-20">
+        {/* Content over the leaves: hairline divider & copyright positioned across leaves */}
+        <div className="absolute inset-0 flex flex-col justify-start pt-[clamp(60px,6vw,95px)] pointer-events-none z-10">
           {/* Horizontal line running across the screen */}
-          <div className="w-full h-[1px] bg-white/20 mb-6 sm:mb-8" />
+          <div className="w-full h-[1px] bg-white/20 mb-4 sm:mb-6" />
 
           {/* Copyright text aligned to the left */}
           <div
