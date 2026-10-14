@@ -992,8 +992,8 @@ export default function LOrientalisPage() {
         {/* 4-COLUMN IMAGE GRID WITH SINGLE BACKGROUND IMAGE & BLACK MASKING OVERLAY */}
         <div className="w-full overflow-x-auto lg:overflow-visible scrollbar-none">
           <div className="min-w-[700px] md:min-w-0 w-full relative h-[560px] md:h-[640px] lg:h-[720px] overflow-hidden group cursor-pointer">
-            {/* Single continuous background image with smooth hover zoom */}
-            <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-108 origin-center">
+            {/* Single continuous background image with smooth hover zoom & shift right */}
+            <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110 group-hover:translate-x-6 origin-center">
               <Image
                 src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3989527c-0b2d-46b1-fe4b-a5891c0ff400/public"
                 alt="The Growing Conditions botanicals and coffee cherries"
