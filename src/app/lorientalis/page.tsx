@@ -550,12 +550,12 @@ export default function LOrientalisPage() {
         }}
       >
         {/* TOP ROW: LEFT IMAGE (596x541) + RIGHT VERTICALLY CENTERED CONTENT */}
-        <div className="group/coffee w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-[40px] xl:gap-[50px]">
+        <div className="group/coffee w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-[32px] xl:gap-[40px]">
           {/* Left Image: 596px x 541px (+10% width & height) */}
           <div
             className="relative w-full max-w-[596px] overflow-hidden shrink-0 rounded-[2px]"
             style={{
-              aspectRatio: "542 / 492",
+              aspectRatio: "522 / 492",
               maxHeight: "541px",
             }}
           >
@@ -688,7 +688,7 @@ export default function LOrientalisPage() {
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 700,
                   fontSize: "14px",
-                  lineHeight: "10px",
+                  lineHeight: "14px",
                   letterSpacing: "0%",
                   textTransform: "uppercase",
                   color: "#5C605E",
@@ -697,12 +697,12 @@ export default function LOrientalisPage() {
                 Origin
               </span>
               <span
-                className="mt-[6px]"
+                className="mt-[14px]"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 600,
-                  fontSize: "14px",
-                  lineHeight: "10px",
+                  fontSize: "16px",
+                  lineHeight: "16px",
                   letterSpacing: "0%",
                   textTransform: "uppercase",
                   color: "#FFFFFF",
@@ -740,7 +740,7 @@ export default function LOrientalisPage() {
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 700,
                   fontSize: "14px",
-                  lineHeight: "10px",
+                  lineHeight: "14px",
                   letterSpacing: "0%",
                   textTransform: "uppercase",
                   color: "#5C605E",
@@ -749,12 +749,12 @@ export default function LOrientalisPage() {
                 Craft
               </span>
               <span
-                className="mt-[6px]"
+                className="mt-[14px]"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 600,
-                  fontSize: "14px",
-                  lineHeight: "10px",
+                  fontSize: "16px",
+                  lineHeight: "16px",
                   letterSpacing: "0%",
                   textTransform: "uppercase",
                   color: "#FFFFFF",
@@ -792,7 +792,7 @@ export default function LOrientalisPage() {
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 700,
                   fontSize: "14px",
-                  lineHeight: "10px",
+                  lineHeight: "14px",
                   letterSpacing: "0%",
                   textTransform: "uppercase",
                   color: "#5C605E",
@@ -801,12 +801,12 @@ export default function LOrientalisPage() {
                 Aroma
               </span>
               <span
-                className="mt-[6px]"
+                className="mt-[14px]"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 600,
-                  fontSize: "14px",
-                  lineHeight: "10px",
+                  fontSize: "16px",
+                  lineHeight: "16px",
                   letterSpacing: "0%",
                   textTransform: "uppercase",
                   color: "#FFFFFF",
