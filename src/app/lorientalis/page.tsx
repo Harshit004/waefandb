@@ -52,32 +52,35 @@ const FARMER_STORIES = [
 const FARMERS_INTRO_IMAGE =
   "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d619873b-8dc9-4d33-383b-ab43e5558800/public";
 
+function clamp01(x: number) {
+  return Math.max(0, Math.min(1, x));
+}
+
 function smoothstep(edge0: number, edge1: number, x: number) {
   const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
   return t * t * (3 - 2 * t);
 }
 
-function getSlideVerticalStyles(t: number) {
-  const progress = Math.min(Math.max(t, 0), 1);
+function getSlideVerticalStyles(progress: number) {
+  const p = clamp01(progress);
 
   // --- TEXT 1 ---
-  // Gently fades out and floats slightly up (just 40px)
-  const text1Phase = smoothstep(0.06, 0.40, progress);
-  const text1Y = -text1Phase * 40;
-  const text1Opacity = Math.max(0, 1 - text1Phase * 1.5);
+  // Glides up smoothly and dissolves across the first 35% of the slide dwell
+  const text1Phase = clamp01(p / 0.35);
+  const text1Y = -text1Phase * 30;
+  const text1Opacity = Math.max(0, 1 - text1Phase);
 
-  // --- SECONDARY IMAGE ---
-  // Starts with gentle offset (y: 60px, opacity: 0, scale: 0.95)
-  // Glides up smoothly to y: 0px, opacity: 1, scale: 1
-  const imgPhase = smoothstep(0.12, 0.58, progress);
-  const imageY = 60 * (1 - imgPhase);
-  const imageScale = 0.95 + imgPhase * 0.05;
+  // --- SECONDARY IMAGE ("THE NEW IMAGE") ---
+  // Glides steadily upward in direct 1:1 proportion with the scroll across a wide 75% span of the dwell
+  const imgPhase = clamp01((p - 0.10) / 0.75);
+  const imageY = 70 * (1 - imgPhase);
+  const imageScale = 0.96 + imgPhase * 0.04;
   const imageOpacity = imgPhase;
 
   // --- TEXT 2 ---
-  // Gently floats in (36px) and fades in
-  const text2Phase = smoothstep(0.50, 0.90, progress);
-  const text2Y = 340 - text2Phase * 36;
+  // Reveals steadily beneath the secondary image
+  const text2Phase = clamp01((p - 0.45) / 0.50);
+  const text2Y = 320 - text2Phase * 24;
   const text2Opacity = text2Phase;
 
   return {
@@ -182,13 +185,13 @@ export default function LOrientalisPage() {
       const dt = Math.min((now - lastTime) / 1000, 0.1);
       lastTime = now;
 
-      const lambda = 9;
+      const lambda = 12;
       const factor = 1 - Math.exp(-lambda * dt);
       const target = targetProgressRef.current;
       const current = currentProgressRef.current;
       const diff = target - current;
 
-      if (Math.abs(diff) > 0.00005) {
+      if (Math.abs(diff) > 0.00002) {
         currentProgressRef.current = current + diff * factor;
         setSmoothProgress(currentProgressRef.current);
       } else if (current !== target) {
@@ -208,23 +211,23 @@ export default function LOrientalisPage() {
     };
   }, []);
 
-  const introPhase = smoothstep(0.0, 0.15, smoothProgress);
-  const introScale = 0.80 + introPhase * 0.20;
-  const introTextShift = introPhase * 180;
+  const introPhase = clamp01(smoothProgress / 0.14);
+  const introScale = 0.85 + introPhase * 0.15;
+  const introTextShift = introPhase * 160;
 
-  // Track translation using continuous smoothstep transitions without overlap
-  const p0 = smoothstep(0.15, 0.32, smoothProgress);
-  const p1 = smoothstep(0.48, 0.65, smoothProgress);
-  const p2 = smoothstep(0.80, 0.94, smoothProgress);
+  // Track translation using continuous, generous transitions in direct proportion with scroll
+  const p0 = smoothstep(0.14, 0.28, smoothProgress);
+  const p1 = smoothstep(0.44, 0.58, smoothProgress);
+  const p2 = smoothstep(0.74, 0.88, smoothProgress);
   const trackTranslatePercent = (p0 + p1 + p2) * 25;
 
-  // Story vertical choreography timers (trigger only when slide is safely settled):
-  const t0 = smoothstep(0.32, 0.47, smoothProgress);
-  const t1 = smoothstep(0.65, 0.79, smoothProgress);
-  const t2 = smoothstep(0.94, 0.99, smoothProgress);
+  // Story vertical choreography timers: generous dwell windows directly aligned with scroll speed
+  const t0 = clamp01((smoothProgress - 0.28) / 0.16);
+  const t1 = clamp01((smoothProgress - 0.58) / 0.16);
+  const t2 = clamp01((smoothProgress - 0.88) / 0.12);
 
   const activeStoryIndex =
-    smoothProgress < 0.50 ? 0 : smoothProgress < 0.80 ? 1 : 2;
+    smoothProgress < 0.51 ? 0 : smoothProgress < 0.81 ? 1 : 2;
 
   const scrollToStory = (index: number) => {
     if (!carouselContainerRef.current) return;
@@ -234,7 +237,7 @@ export default function LOrientalisPage() {
       carouselContainerRef.current.offsetHeight - windowHeight;
     const containerTopOnPage = window.scrollY + rect.top;
 
-    const targetProgress = [0.40, 0.72, 0.97][index];
+    const targetProgress = [0.36, 0.66, 0.94][index];
     const targetScrollY =
       containerTopOnPage + targetProgress * totalScrollDistance;
     window.scrollTo({ top: targetScrollY, behavior: "smooth" });
