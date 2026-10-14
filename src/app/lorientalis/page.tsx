@@ -96,10 +96,46 @@ function getSlideVerticalStyles(t: number) {
   };
 }
 
-const BLENDS_OPTIONS = [
+const COFFEE_BLENDS = [
   { id: "bombay-cutting-1", name: "Bombay Cutting" },
   { id: "commercial-blends", name: "Commercial Blends" },
   { id: "bombay-cutting-2", name: "Bombay Cutting" },
+];
+
+const TEA_BLENDS = [
+  { id: "orthodox-tea", name: "Orthodox Tea" },
+  { id: "green-tea", name: "Green Tea" },
+  { id: "ctc-tea", name: "CTC Tea" },
+];
+
+const COFFEE_AS_YOU_LIKE_IMAGES = [
+  {
+    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/04b81f3c-2946-4b36-e9d1-b48222b9be00/public",
+    alt: "Serra Verde Brazilian Coffee",
+  },
+  {
+    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/2dac3f7e-da3d-4e83-d879-3e08eed0e400/public",
+    alt: "Organic Coffee Beans",
+  },
+  {
+    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/10fa5249-0cfb-4da6-723c-a825cab9ca00/public",
+    alt: "Aura Artisan Coffee Co.",
+  },
+];
+
+const TEA_AS_YOU_LIKE_IMAGES = [
+  {
+    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/4c92b166-f3ad-4966-8cda-8a406153fe00/public",
+    alt: "Tea leaves scoop",
+  },
+  {
+    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e6a884e8-92fb-49da-8ea7-c0d5fec00300/public",
+    alt: "Greenfield Fine Ceylon",
+  },
+  {
+    src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/bf224e84-b26f-491f-c499-bb6d47faa600/public",
+    alt: "Selfie Tea Green Tea",
+  },
 ];
 
 export default function LOrientalisPage() {
@@ -110,6 +146,12 @@ export default function LOrientalisPage() {
   const [smoothProgress, setSmoothProgress] = useState(0);
   const [activeBeverage, setActiveBeverage] = useState<"coffee" | "tea">("coffee");
   const [selectedBlend, setSelectedBlend] = useState(1);
+
+  const currentBlends = activeBeverage === "coffee" ? COFFEE_BLENDS : TEA_BLENDS;
+  const currentImages =
+    activeBeverage === "coffee"
+      ? COFFEE_AS_YOU_LIKE_IMAGES
+      : TEA_AS_YOU_LIKE_IMAGES;
 
   useEffect(() => {
     let animationFrameId: number;
@@ -1101,61 +1143,6 @@ export default function LOrientalisPage() {
               unoptimized
               className="object-contain select-none pointer-events-none"
             />
-
-            {/* 3 INTERACTIVE PULSING DOTS */}
-            {[
-              {
-                name: "Meghalaya",
-                left: "23.86%",
-                top: "49.98%",
-                delay: "0s",
-              },
-              {
-                name: "Nagaland",
-                left: "54.80%",
-                top: "30.98%",
-                delay: "0.9s",
-              },
-              {
-                name: "Assam",
-                left: "73.84%",
-                top: "47.34%",
-                delay: "1.8s",
-              },
-            ].map((dot) => (
-              <div
-                key={dot.name}
-                className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center cursor-pointer group"
-                style={{
-                  left: dot.left,
-                  top: dot.top,
-                  width: "36.29px",
-                  height: "36.29px",
-                }}
-                aria-label={dot.name}
-              >
-                {/* Outer pulsing halo which appears and disappears gradually (#1F3D2B) */}
-                <div
-                  className="absolute rounded-full bg-[#1F3D2B] animate-dot-halo pointer-events-none"
-                  style={{
-                    width: "36.29px",
-                    height: "36.29px",
-                    animationDelay: dot.delay,
-                  }}
-                />
-
-                {/* The white circle (36.29px x 36.29px) */}
-                <div
-                  className="relative w-[36.29px] h-[36.29px] rounded-full bg-white flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110"
-                  style={{
-                    boxShadow: "0 0 20px rgba(0, 0, 0, 0.6)",
-                  }}
-                >
-                  {/* Circle inside the white circle is #1F3D2B */}
-                  <div className="w-[18px] h-[18px] rounded-full bg-[#1F3D2B]" />
-                </div>
-              </div>
-            ))}
           </div>
 
           {/* BOTTOM RIGHT: Growing Districts description */}
@@ -1438,13 +1425,13 @@ export default function LOrientalisPage() {
 
             {/* RIGHT SIDE: 3 Buttons */}
             <div className="flex flex-col items-end gap-6 sm:gap-7 self-start lg:self-auto mt-4 lg:mt-0">
-              {BLENDS_OPTIONS.map((item, idx) => {
+              {currentBlends.map((item, idx) => {
                 const isSelected = selectedBlend === idx;
                 return (
                   <button
                     key={`${item.id}-${idx}`}
                     onClick={() => setSelectedBlend(idx)}
-                    className="flex flex-col items-end group transition-all duration-200 cursor-pointer"
+                    className="flex flex-col items-end group transition-all duration-200 cursor-pointer text-right"
                     style={{
                       fontFamily: "var(--font-monschone), serif",
                       fontWeight: 400,
@@ -1456,9 +1443,9 @@ export default function LOrientalisPage() {
                     }}
                   >
                     <span>{item.name}</span>
-                    {/* 10px gap then underline for selected button */}
+                    {/* underline for selected button */}
                     {isSelected ? (
-                      <div className="mt-[10px] w-[205px] h-[1px] bg-white transition-all duration-300" />
+                      <div className="mt-[10px] w-[210px] sm:w-[240px] h-[1px] bg-white transition-all duration-300" />
                     ) : (
                       <div className="mt-[10px] w-0 h-[1px] bg-[#F2DBB2]/30 group-hover:w-full transition-all duration-300" />
                     )}
@@ -1471,16 +1458,12 @@ export default function LOrientalisPage() {
           {/* 46px gap */}
           <div className="w-full h-[46px]" />
 
-          {/* BUTTONS ROW: Coffee / Tea Buttons with Vertical Divider */}
+          {/* BUTTONS ROW: Active on Left (Boxed) | Inactive on Right (Text) */}
           <div className="relative flex items-center">
-            {/* Coffee Button */}
+            {/* Active Beverage Button (Boxed) */}
             <button
-              onClick={() => setActiveBeverage("coffee")}
-              className={`w-[187px] h-[50px] flex items-center justify-center cursor-pointer transition-all duration-300 ${
-                activeBeverage === "coffee"
-                  ? "border border-white bg-white/5 text-white"
-                  : "border border-transparent text-white/60 hover:text-white"
-              }`}
+              type="button"
+              className="w-[148px] h-[44px] flex items-center justify-center cursor-default border border-white/80 bg-white/10 text-white transition-all duration-300 select-none"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 500,
@@ -1488,26 +1471,26 @@ export default function LOrientalisPage() {
                 letterSpacing: "0%",
               }}
             >
-              Coffee
+              {activeBeverage === "coffee" ? "Coffee" : "Tea"}
             </button>
 
             {/* Vertical Divider Between Buttons */}
             <div
-              className="w-[1px] h-[50px] mx-3.5 shrink-0"
+              className="w-[1px] h-[32px] mx-6 sm:mx-8 shrink-0"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50.96%, rgba(255, 255, 255, 0.04) 100%)",
+                  "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%)",
               }}
             />
 
-            {/* Tea Button */}
+            {/* Inactive Beverage Button (Unboxed) */}
             <button
-              onClick={() => setActiveBeverage("tea")}
-              className={`w-[187px] h-[50px] flex items-center justify-center cursor-pointer transition-all duration-300 ${
-                activeBeverage === "tea"
-                  ? "border border-white bg-white/5 text-white"
-                  : "border border-transparent text-white/60 hover:text-white"
-              }`}
+              type="button"
+              onClick={() => {
+                setActiveBeverage(activeBeverage === "coffee" ? "tea" : "coffee");
+                setSelectedBlend(1);
+              }}
+              className="h-[44px] flex items-center justify-center cursor-pointer text-white/60 hover:text-white transition-colors duration-200 select-none"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 500,
@@ -1515,53 +1498,68 @@ export default function LOrientalisPage() {
                 letterSpacing: "0%",
               }}
             >
-              Tea
+              {activeBeverage === "coffee" ? "Tea" : "Coffee"}
             </button>
           </div>
 
           {/* VERTICAL LINE BELOW THE BUTTON INTO START OF THE GRID */}
-          <div className="relative w-full h-[36px] lg:h-[46px]">
+          <div className="relative w-full h-[36px] lg:h-[44px]">
             <div
               className="absolute left-0 top-0 w-[1px] h-full"
               style={{
                 background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
+                  "linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 100%)",
               }}
             />
           </div>
 
-          {/* IMAGE GRID (3 Images) */}
-          <div className="w-full flex flex-col md:flex-row items-stretch gap-6 lg:gap-8">
-            {/* Image 1: Serra Verde (wider landscape, ~44% width) */}
-            <div className="relative w-full md:w-[44%] h-[340px] sm:h-[420px] lg:h-[480px] xl:h-[510px] overflow-hidden rounded-[2px] shrink-0">
+          {/* IMAGE GRID (3 Images: 511x304, 274x304, 274x304) */}
+          <div className="w-full flex flex-col md:flex-row items-center md:items-stretch gap-6 lg:gap-8">
+            {/* Image 1: 511x304 ratio */}
+            <div
+              className="relative w-full max-w-[511px] md:max-w-none md:flex-[511_511_0%] overflow-hidden rounded-[2px] bg-neutral-900"
+              style={{ aspectRatio: "511 / 304" }}
+            >
               <Image
-                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/04b81f3c-2946-4b36-e9d1-b48222b9be00/public"
-                alt="Serra Verde Brazilian Coffee"
+                key={`img-0-${activeBeverage}`}
+                src={currentImages[0].src}
+                alt={currentImages[0].alt}
                 fill
                 unoptimized
-                className="object-cover select-none"
+                className="object-cover select-none transition-opacity duration-300"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
 
-            {/* Image 2: Organic Coffee (~28% width) */}
-            <div className="relative w-full md:w-[28%] h-[340px] sm:h-[420px] lg:h-[480px] xl:h-[510px] overflow-hidden rounded-[2px] shrink-0">
+            {/* Image 2: 274x304 ratio */}
+            <div
+              className="relative w-full max-w-[274px] md:max-w-none md:flex-[274_274_0%] overflow-hidden rounded-[2px] bg-neutral-900"
+              style={{ aspectRatio: "274 / 304" }}
+            >
               <Image
-                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/2dac3f7e-da3d-4e83-d879-3e08eed0e400/public"
-                alt="Organic Coffee Beans"
+                key={`img-1-${activeBeverage}`}
+                src={currentImages[1].src}
+                alt={currentImages[1].alt}
                 fill
                 unoptimized
-                className="object-cover select-none"
+                className="object-cover select-none transition-opacity duration-300"
+                sizes="(max-width: 768px) 100vw, 25vw"
               />
             </div>
 
-            {/* Image 3: Aura Artisan Coffee (~28% width) */}
-            <div className="relative w-full md:w-[28%] h-[340px] sm:h-[420px] lg:h-[480px] xl:h-[510px] overflow-hidden rounded-[2px] shrink-0">
+            {/* Image 3: 274x304 ratio */}
+            <div
+              className="relative w-full max-w-[274px] md:max-w-none md:flex-[274_274_0%] overflow-hidden rounded-[2px] bg-neutral-900"
+              style={{ aspectRatio: "274 / 304" }}
+            >
               <Image
-                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/10fa5249-0cfb-4da6-723c-a825cab9ca00/public"
-                alt="Aura Artisan Coffee Co."
+                key={`img-2-${activeBeverage}`}
+                src={currentImages[2].src}
+                alt={currentImages[2].alt}
                 fill
                 unoptimized
-                className="object-cover select-none"
+                className="object-cover select-none transition-opacity duration-300"
+                sizes="(max-width: 768px) 100vw, 25vw"
               />
             </div>
           </div>
