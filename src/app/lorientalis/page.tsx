@@ -989,106 +989,101 @@ export default function LOrientalisPage() {
         {/* 82px GAP */}
         <div className="w-full h-[50px] md:h-[82px]" />
 
-        {/* 4-COLUMN IMAGE GRID (8px gap in between) */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[21fr_29fr_28fr_22fr] gap-[8px] items-stretch">
-          {/* COLUMN 1 */}
-          <div className="flex flex-col justify-between h-auto lg:h-[720px]">
-            {/* 1st image from left */}
-            <div className="relative w-full h-[320px] lg:h-[450px] overflow-hidden shrink-0">
-              <Image
-                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/be887867-48d0-4ce7-e871-5602ab391a00/public"
-                alt="Growing region atmospheric landscape"
-                fill
-                priority
-                unoptimized
-                className="object-cover select-none"
-              />
-            </div>
-
-            {/* Bottom text block */}
-            <div className="flex flex-col justify-between flex-1 pt-6 pb-1">
-              <h3
-                style={{
-                  fontFamily: "var(--font-monschone), serif",
-                  fontWeight: 400,
-                  fontSize: "clamp(32px, 3.333vw, 48px)", // 48px at 1440px
-                  lineHeight: "100%",
-                  letterSpacing: "0%",
-                  color: "#FFFFFF",
-                }}
-              >
-                26°N 92°E
-              </h3>
-
-              <p
-                className="mt-6 lg:mt-0 text-white"
-                style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontWeight: 400,
-                  fontSize: "14px",
-                  lineHeight: "24px",
-                  letterSpacing: "0%",
-                  verticalAlign: "bottom",
-                }}
-              >
-                The precise conditions where tea &amp; coffee thrive. .
-              </p>
-            </div>
-          </div>
-
-          {/* COLUMN 2 */}
-          <div className="relative w-full h-[480px] lg:h-[720px] overflow-hidden">
+        {/* 4-COLUMN IMAGE GRID WITH SINGLE BACKGROUND IMAGE & BLACK MASKING OVERLAY */}
+        <div className="w-full overflow-x-auto lg:overflow-visible scrollbar-none">
+          <div className="min-w-[700px] md:min-w-0 w-full relative h-[560px] md:h-[640px] lg:h-[720px] overflow-hidden">
+            {/* Single continuous background image */}
             <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/46f1a3e2-7611-4f35-e5c4-5b144f98aa00/public"
-              alt="Ripening coffee cherries on branch"
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3989527c-0b2d-46b1-fe4b-a5891c0ff400/public"
+              alt="The Growing Conditions botanicals and coffee cherries"
               fill
               priority
               unoptimized
-              className="object-cover select-none"
+              className="object-cover object-center select-none"
             />
-          </div>
 
-          {/* COLUMN 3 */}
-          <div className="flex flex-col justify-start h-auto lg:h-[720px]">
-            {/* 3rd image */}
-            <div className="relative w-full h-[380px] lg:h-[540px] overflow-hidden shrink-0">
-              <Image
-                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/c4dba0b5-c106-48c2-fa18-22e979ede500/public"
-                alt="Ripening botanicals branch"
-                fill
-                priority
-                unoptimized
-                className="object-cover select-none"
-              />
-            </div>
-
-            {/* Description below 3rd image */}
-            <p
-              className="mt-4 lg:mt-6 text-white"
+            {/* Black Masking Grid Overlay: 4 Windows with 8px Black Dividers & Black Text Cards */}
+            <div
+              className="relative z-10 w-full h-full grid"
               style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontWeight: 400,
-                fontSize: "14px",
-                lineHeight: "24px",
-                letterSpacing: "0%",
-                verticalAlign: "bottom",
+                gridTemplateColumns: "21fr 8px 29fr 8px 28fr 8px 22fr",
               }}
             >
-              The eastern tea-growing corridor is one of the most complex and
-              nuanced environments for Camellia sinensis.
-            </p>
-          </div>
+              {/* COLUMN 1: Top window (450px) + Bottom black card (270px) */}
+              <div className="flex flex-col justify-between h-full">
+                {/* 1st image window (transparent, reveals underlying image) */}
+                <div className="w-full h-[320px] lg:h-[450px] shrink-0" />
 
-          {/* COLUMN 4 */}
-          <div className="relative w-full h-[480px] lg:h-[720px] overflow-hidden">
-            <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/31bed202-ecaa-478d-4275-033a8dcbda00/public"
-              alt="Tea foliage in morning mist"
-              fill
-              priority
-              unoptimized
-              className="object-cover select-none"
-            />
+                {/* Bottom black text card */}
+                <div className="w-full flex-1 bg-black flex flex-col justify-between pt-6 pb-2 px-1">
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-monschone), serif",
+                      fontWeight: 400,
+                      fontSize: "clamp(32px, 3.333vw, 48px)", // 48px at 1440px
+                      lineHeight: "100%",
+                      letterSpacing: "0%",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    26°N 92°E
+                  </h3>
+
+                  <p
+                    className="mt-6 lg:mt-0 text-white"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 400,
+                      fontSize: "14px",
+                      lineHeight: "24px",
+                      letterSpacing: "0%",
+                      verticalAlign: "bottom",
+                    }}
+                  >
+                    The precise conditions where tea &amp; coffee thrive. .
+                  </p>
+                </div>
+              </div>
+
+              {/* 8px BLACK DIVIDER 1 */}
+              <div className="w-[8px] h-full bg-black shrink-0" />
+
+              {/* COLUMN 2: Full height transparent window (reveals underlying image) */}
+              <div className="w-full h-full" />
+
+              {/* 8px BLACK DIVIDER 2 */}
+              <div className="w-[8px] h-full bg-black shrink-0" />
+
+              {/* COLUMN 3: Top window (540px) + Bottom black card (180px) */}
+              <div className="flex flex-col justify-between h-full">
+                {/* 3rd image window (transparent, reveals underlying image) */}
+                <div className="w-full h-[380px] lg:h-[540px] shrink-0" />
+
+                {/* Description on black background below 3rd window */}
+                <div className="w-full flex-1 bg-black pt-4 lg:pt-6 px-1">
+                  <p
+                    className="text-white"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 400,
+                      fontSize: "14px",
+                      lineHeight: "24px",
+                      letterSpacing: "0%",
+                      verticalAlign: "bottom",
+                    }}
+                  >
+                    The eastern tea-growing corridor is one of the most complex and
+                    nuanced environments for Camellia sinensis.
+                  </p>
+                </div>
+              </div>
+
+              {/* 8px BLACK DIVIDER 3 */}
+              <div className="w-[8px] h-full bg-black shrink-0" />
+
+              {/* COLUMN 4: Full height transparent window (reveals underlying image) */}
+              <div className="w-full h-full" />
+            </div>
           </div>
         </div>
       </section>
