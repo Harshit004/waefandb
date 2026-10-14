@@ -1404,7 +1404,26 @@ export default function LOrientalisPage() {
             alt="As You Like It Background Overlay"
             fill
             unoptimized
-            className="object-cover object-center w-full h-full opacity-90"
+            className="object-cover object-center w-full h-full opacity-50"
+            style={{ opacity: 0.5 }}
+          />
+
+          {/* Top edge gradient to blend seamlessly into black above (100px) */}
+          <div
+            className="absolute top-0 left-0 right-0 h-[100px] pointer-events-none z-[1]"
+            style={{
+              background:
+                "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+            }}
+          />
+
+          {/* Bottom edge gradient to blend seamlessly into black below (200px) */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[200px] pointer-events-none z-[1]"
+            style={{
+              background:
+                "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
+            }}
           />
         </div>
 
