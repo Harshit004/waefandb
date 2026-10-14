@@ -549,22 +549,22 @@ export default function LOrientalisPage() {
           paddingBottom: "0px",
         }}
       >
-        {/* TOP ROW: LEFT IMAGE (542x492) + RIGHT VERTICALLY CENTERED CONTENT */}
-        <div className="group/coffee w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[60px] xl:gap-[80px]">
-          {/* Left Image: 542px x 492px */}
+        {/* TOP ROW: LEFT IMAGE (596x541) + RIGHT VERTICALLY CENTERED CONTENT */}
+        <div className="group/coffee w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-[40px] xl:gap-[50px]">
+          {/* Left Image: 596px x 541px (+10% width & height) */}
           <div
-            className="relative w-full max-w-[542px] overflow-hidden shrink-0 rounded-[2px]"
+            className="relative w-full max-w-[596px] overflow-hidden shrink-0 rounded-[2px]"
             style={{
               aspectRatio: "542 / 492",
-              maxHeight: "492px",
+              maxHeight: "541px",
             }}
           >
             <div className="relative w-full h-full transition-transform duration-700 ease-out group-hover/coffee:scale-110">
               <Image
                 src="/images/coffee-cherries.png"
                 alt="Coffee cherries grown in the shadow of the Eastern Hills"
-                width={542}
-                height={492}
+                width={596}
+                height={541}
                 priority
                 unoptimized
                 className="w-full h-full object-cover select-none"
@@ -830,8 +830,8 @@ export default function LOrientalisPage() {
           paddingBottom: "0px",
         }}
       >
-        {/* ROW: LEFT VERTICALLY CENTERED CONTENT + RIGHT IMAGE (542x492) */}
-        <div className="group/tea w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-[60px] xl:gap-[80px]">
+        {/* ROW: LEFT VERTICALLY CENTERED CONTENT + RIGHT IMAGE (596x541) */}
+        <div className="group/tea w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-[40px] xl:gap-[50px]">
           {/* Left Content: Vertically centered relative to the image */}
           <div className="flex flex-col justify-center flex-1 w-full max-w-[650px] lg:max-w-none">
             {/* TEA label on left and Headline on right */}
@@ -906,20 +906,20 @@ export default function LOrientalisPage() {
             </p>
           </div>
 
-          {/* Right Image: 542px x 492px */}
+          {/* Right Image: 596px x 541px (+10% width & height) */}
           <div
-            className="relative w-full max-w-[542px] overflow-hidden shrink-0 rounded-[2px]"
+            className="relative w-full max-w-[596px] overflow-hidden shrink-0 rounded-[2px]"
             style={{
               aspectRatio: "542 / 492",
-              maxHeight: "492px",
+              maxHeight: "541px",
             }}
           >
             <div className="relative w-full h-full transition-transform duration-700 ease-out group-hover/tea:scale-110">
               <Image
                 src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/db504952-404c-4e2a-b53b-ca641c861b00/public"
                 alt="Born in the Eastern Tea Belt"
-                width={542}
-                height={492}
+                width={596}
+                height={541}
                 priority
                 unoptimized
                 className="w-full h-full object-cover select-none"
@@ -1197,7 +1197,7 @@ export default function LOrientalisPage() {
       <section
         id="farmers"
         ref={carouselContainerRef}
-        className="relative w-full h-[675vh] bg-black text-white"
+        className="relative w-full h-[1250vh] bg-black text-white"
       >
         <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-black">
           {/* HORIZONTAL CAROUSEL TRACK */}
