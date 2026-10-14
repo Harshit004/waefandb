@@ -212,8 +212,8 @@ export default function LOrientalisPage() {
   }, []);
 
   const introPhase = clamp01(smoothProgress / 0.14);
-  const introScale = 0.85 + introPhase * 0.15;
-  const introTextShift = introPhase * 160;
+  const introScale = 0.78 + introPhase * 0.22;
+  const introTextShift = introPhase * 44;
 
   // Track translation using continuous, generous transitions in direct proportion with scroll
   const p0 = smoothstep(0.14, 0.28, smoothProgress);
@@ -1216,18 +1216,19 @@ export default function LOrientalisPage() {
                 paddingRight: "2.778vw",
               }}
             >
-              {/* BIG TEXT: Farmers */}
-              <div className="absolute top-[8%] lg:top-[12%] left-[2.778vw] z-10 select-none pointer-events-none">
+              {/* BIG TEXT: Farmers (starts on the right, glides left on scroll as center image expands) */}
+              <div className="absolute top-[12%] md:top-[14%] lg:top-[14%] left-[48%] sm:left-[50%] md:left-[52%] z-20 select-none pointer-events-none">
                 <h2
                   className="text-white whitespace-nowrap"
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 400,
-                    fontSize: "clamp(64px, 13.88vw, 200px)",
-                    lineHeight: "24px",
+                    fontSize: "clamp(56px, 13.88vw, 200px)",
+                    lineHeight: "0.95",
                     letterSpacing: "0%",
                     verticalAlign: "middle",
-                    transform: `translateX(-${introTextShift}px)`,
+                    transform: `translate3d(-${introTextShift}vw, 0, 0)`,
+                    willChange: "transform",
                   }}
                 >
                   Farmers
@@ -1240,6 +1241,7 @@ export default function LOrientalisPage() {
                   className="relative w-full h-full"
                   style={{
                     transform: `scale(${introScale})`,
+                    willChange: "transform",
                   }}
                 >
                   <Image
