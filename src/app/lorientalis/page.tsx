@@ -1125,10 +1125,10 @@ export default function LOrientalisPage() {
           paddingRight: "2.778vw",
         }}
       >
-        <div className="relative w-full max-w-[1440px] mx-auto min-h-[460px] sm:min-h-[520px] md:min-h-[580px] lg:min-h-[640px] flex flex-col justify-between">
-          {/* MAP GRAPHIC: Cropped to remove black space, increased size by 50%, z-0 behind text */}
+        <div className="relative w-full max-w-[1440px] mx-auto min-h-[420px] sm:min-h-[470px] md:min-h-[520px] lg:min-h-[576px] flex flex-col justify-between">
+          {/* MAP GRAPHIC: Cropped to remove black space, 10% smaller (max-w-[1260px]), z-0 behind text */}
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-            <div className="relative w-full max-w-[1400px] aspect-[1147/481]">
+            <div className="relative w-full max-w-[1260px] aspect-[1147/481]">
               <Image
                 src="/images/northeast-map.png"
                 alt="Northeast India single origin tea and coffee growing districts map"
