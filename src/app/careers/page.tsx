@@ -18,9 +18,15 @@ export default function CareersPage() {
       <GetInTouchHeader />
 
       {/* 2. HERO SECTION */}
-      <section className="relative w-full pt-[16vw] md:pt-[10vw] px-[4.166vw]">
+      <section className="relative w-full pt-[16vw] md:pt-[10vw]">
         {/* Top Header Row: Left Title + Right Description & CTA */}
-        <div className="w-full flex flex-col md:flex-row items-start justify-between gap-6 md:gap-8 pb-[3vw]">
+        <div
+          className="w-full flex flex-col md:flex-row items-start justify-between gap-6 md:gap-8 pb-[3vw]"
+          style={{
+            paddingLeft: "2.778vw",
+            paddingRight: "2.778vw",
+          }}
+        >
           {/* Main Hero Title */}
           <h1
             className="text-white select-none m-0 p-0"
@@ -63,9 +69,9 @@ export default function CareersPage() {
           </div>
         </div>
 
-        {/* Hero Video Asset */}
+        {/* Hero Video Asset - spans across the screen with no margins */}
         <div
-          className="relative w-full overflow-hidden rounded-[2px] bg-black"
+          className="relative w-full overflow-hidden rounded-none bg-black"
           style={{ position: "relative", paddingTop: "56.25%" }}
         >
           <iframe
@@ -89,8 +95,14 @@ export default function CareersPage() {
       </section>
 
       {/* 3. STATEMENT / MANIFESTO SECTION */}
-      <section className="relative w-full py-[8vw] md:py-[6vw] px-[4.166vw]">
-        <div className="w-full max-w-[1360px] mx-auto flex justify-end">
+      <section
+        className="relative w-full py-[8vw] md:py-[6vw]"
+        style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        <div className="w-full flex justify-end">
           <h2
             className="text-right select-none m-0 p-0"
             style={{
@@ -128,8 +140,14 @@ export default function CareersPage() {
       </section>
 
       {/* 4. VISUAL GRID / COLLAGE SECTION */}
-      <section className="relative w-full px-[4.166vw] pb-[6vw]">
-        <div className="w-full max-w-[1360px] mx-auto">
+      <section
+        className="relative w-full pb-[6vw]"
+        style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        <div className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-[342fr_342fr_624fr] gap-3 md:gap-4 items-stretch">
             {/* Column 1: Two stacked 342x575 images */}
             <div className="flex flex-col gap-3 md:gap-4">
@@ -207,8 +225,14 @@ export default function CareersPage() {
       </section>
 
       {/* 5. QUOTE SECTION */}
-      <section className="relative w-full py-[8vw] md:py-[6vw] px-[4.166vw]">
-        <div className="w-full max-w-[1360px] mx-auto flex justify-end">
+      <section
+        className="relative w-full py-[8vw] md:py-[6vw]"
+        style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        <div className="w-full flex justify-end">
           <h2
             className="select-none m-0 p-0 flex flex-col items-end"
             style={{
@@ -238,7 +262,13 @@ export default function CareersPage() {
       </section>
 
       {/* 6. SAGE GREEN BENTO SECTION */}
-      <section className="relative w-full px-[4.166vw] pt-[5vw] pb-[8vw] overflow-visible">
+      <section
+        className="relative w-full pt-[5vw] pb-[8vw] overflow-visible"
+        style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
         <div
           className="relative w-full overflow-visible"
           style={{
@@ -252,7 +282,7 @@ export default function CareersPage() {
             <div
               className="w-full lg:w-[40vw] max-w-[576px] flex flex-col shrink-0 relative z-20"
               style={{
-                marginLeft: "-4.166vw",
+                marginLeft: "-2.778vw",
               }}
             >
               <div
@@ -300,7 +330,7 @@ export default function CareersPage() {
             <div
               className="w-full lg:w-[22.986vw] max-w-[331px] flex justify-end shrink-0 relative z-20 mt-4 md:mt-8 lg:mt-12"
               style={{
-                marginRight: "-4.166vw",
+                marginRight: "-2.778vw",
               }}
             >
               <div
