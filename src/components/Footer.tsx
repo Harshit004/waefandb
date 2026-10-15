@@ -61,27 +61,27 @@ export default function Footer({
   const socialLinks = [
     {
       name: "LinkedIn",
-      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f944e769-4d53-4737-1415-e379403c6900/public",
+      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/23b79a40-ec93-45c2-f1b5-7e5496787d00/public",
       href: "https://linkedin.com",
     },
     {
+      name: "X",
+      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9dee8e42-d3de-4a01-1d59-451a77300b00/public",
+      href: "https://x.com",
+    },
+    {
       name: "Instagram",
-      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1c0755e5-5c07-4e1c-31f7-066dde50cb00/public",
+      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/70e70a24-b6a3-4bf6-9497-e4c1f502ec00/public",
       href: "https://instagram.com",
     },
     {
       name: "Facebook",
-      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3f100468-318f-4c5c-b006-b304966d4100/public",
+      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/19d631fd-de2d-4089-189a-5aeda387cc00/public",
       href: "https://facebook.com",
     },
     {
-      name: "X",
-      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/abb4c68a-3cf5-425e-f2d9-62cb73630100/public",
-      href: "https://x.com",
-    },
-    {
       name: "YouTube",
-      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/5e07270e-f6f2-466a-0a14-316b9a397000/public",
+      icon: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1361fbd6-47e0-4958-5422-b3ee04533400/public",
       href: "https://youtube.com",
     },
   ];
@@ -203,8 +203,8 @@ export default function Footer({
             {/* Small horizontal dash */}
             <div className="w-[20px] h-[1px] bg-[#ffffff] mt-2 mb-6" />
 
-            {/* Social media icons with 15px gap, 24x24 size */}
-            <div className="flex items-center gap-[15px]">
+            {/* Social media icons with 12px gap, 24x24 size */}
+            <div className="flex items-center gap-[12px]">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
@@ -291,7 +291,7 @@ export default function Footer({
                       fontWeight: 400,
                     }}
                   >
-                    i have read and accept the tearms of the privacy polocy
+                    I accept the terms and conditions and privacy policy
                   </span>
                 </label>
 

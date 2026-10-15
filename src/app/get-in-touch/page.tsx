@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 import GetInTouchHeader from "@/components/GetInTouchHeader";
 import Footer from "@/components/Footer";
 
@@ -69,11 +68,11 @@ export default function GetInTouchPage() {
     e.preventDefault();
     isResizingRef.current = true;
     const startY = e.clientY;
-    const startHeight = textareaRef.current?.getBoundingClientRect().height || 49;
+    const startHeight = textareaRef.current?.getBoundingClientRect().height || 38;
 
     const onMouseMove = (moveEvent: MouseEvent) => {
       if (!isResizingRef.current || !textareaRef.current) return;
-      const newHeight = Math.max(49, startHeight + (moveEvent.clientY - startY));
+      const newHeight = Math.max(38, startHeight + (moveEvent.clientY - startY));
       textareaRef.current.style.height = `${newHeight}px`;
     };
 
@@ -90,11 +89,11 @@ export default function GetInTouchPage() {
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length !== 1) return;
     const startY = e.touches[0].clientY;
-    const startHeight = textareaRef.current?.getBoundingClientRect().height || 49;
+    const startHeight = textareaRef.current?.getBoundingClientRect().height || 38;
 
     const onTouchMove = (moveEvent: TouchEvent) => {
       if (moveEvent.touches.length !== 1 || !textareaRef.current) return;
-      const newHeight = Math.max(49, startHeight + (moveEvent.touches[0].clientY - startY));
+      const newHeight = Math.max(38, startHeight + (moveEvent.touches[0].clientY - startY));
       textareaRef.current.style.height = `${newHeight}px`;
     };
 
@@ -549,10 +548,15 @@ export default function GetInTouchPage() {
           {/* MESSAGE SECTION (Spanning Full Width) */}
           <div className="mt-12 md:mt-[3.5vw] w-full">
             <h3
-              className="text-white text-[24px] md:text-[1.8vw] mb-6"
+              className="text-white"
               style={{
-                fontFamily: "var(--font-monschone), serif",
+                fontFamily: "var(--font-monschone), Monschone, serif",
                 fontWeight: 400,
+                fontStyle: "normal",
+                fontSize: "39px",
+                lineHeight: "100%",
+                letterSpacing: "0%",
+                marginBottom: "79px",
               }}
             >
               Message
@@ -566,15 +570,15 @@ export default function GetInTouchPage() {
                 onChange={handleInputChange}
                 rows={2}
                 placeholder="TELL US MORE ABOUT YOUR ENQUIRY"
-                className="w-full bg-transparent text-white placeholder-[#7C7C7C] text-[13px] md:text-[14px] uppercase tracking-wider focus:outline-none resize-none pb-[29px] min-h-[49px]"
+                className="w-full bg-transparent text-white placeholder-[#7C7C7C] text-[13px] md:text-[14px] uppercase tracking-wider focus:outline-none resize-none pb-[18px] min-h-[38px]"
                 style={{ fontFamily: "var(--font-manrope), sans-serif" }}
               />
 
-              {/* Resize Handle: 18x14px, 8px above the message line */}
+              {/* Resize Handle: 18x14px, 2px above the message line */}
               <div
                 onMouseDown={handleResizeStart}
                 onTouchStart={handleTouchStart}
-                className="absolute right-0 bottom-[8px] w-[18px] h-[14px] cursor-ns-resize flex items-center justify-center select-none z-10 group"
+                className="absolute right-0 bottom-[2px] w-[18px] h-[14px] cursor-ns-resize flex items-center justify-center select-none z-10 group"
                 title="Resize message field"
               >
                 <svg
@@ -639,21 +643,7 @@ export default function GetInTouchPage() {
                 className="text-white/70 group-hover:text-white/90 text-[12px] md:text-[13px] leading-relaxed transition-colors"
                 style={{ fontFamily: "var(--font-manrope), sans-serif" }}
               >
-                By submitting this form I have read and understand the{" "}
-                <Link
-                  href="/privacy-policy"
-                  className="underline underline-offset-2 hover:text-white"
-                >
-                  Privacy Policy
-                </Link>{" "}
-                and{" "}
-                <Link
-                  href="/terms-of-use"
-                  className="underline underline-offset-2 hover:text-white"
-                >
-                  Terms and Conditions
-                </Link>
-                . *
+                By submitting this form, I accept the terms and conditions and privacy policy
               </span>
             </label>
 
