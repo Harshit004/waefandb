@@ -91,12 +91,15 @@ export default function Footer({
       id={id}
       className={`relative w-full bg-black text-white overflow-hidden ${className}`}
     >
-      {/* 10px GAP ABOVE TOP DIVIDER */}
-      <div className="w-full h-[10px]" aria-hidden="true" />
-
-      {/* TOP HORIZONTAL DIVIDER - SOLID #FFF FULL OPACITY */}
+      {/* TOP BORDER WITH SPECIFIED GRADIENT */}
       {showTopGradient && (
-        <div className="w-full h-[1px] bg-[#ffffff]" />
+        <div
+          className="w-full h-[1px]"
+          style={{
+            background:
+              "linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 52.12%, rgba(255, 255, 255, 0) 98.55%)",
+          }}
+        />
       )}
 
       {/* UPPER FOOTER CONTENT: 73px GAP UNDER TOP DIVIDER, 69px GAP ABOVE BOTTOM DIVIDER */}

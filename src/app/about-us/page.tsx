@@ -96,16 +96,17 @@ export default function AboutUsPage() {
         {/* Right Column (50vw): Centered 248x257 Video + Mission Statement */}
         <div className="w-full lg:w-[50vw] flex flex-col items-center justify-center px-6 lg:px-0 py-16 lg:py-0 bg-black shrink-0">
           <div className="w-full max-w-[248px] lg:max-w-none lg:w-[17.222vw]">
-            {/* Responsive Cloudflare Stream Video Container */}
+            {/* 248x257 Responsive Cloudflare Stream Video Container */}
             <div
               className="relative w-full overflow-hidden bg-black mb-6 lg:mb-[2.2vw] rounded-[2px]"
               style={{
-                position: "relative",
-                paddingTop: "52.734375%",
+                aspectRatio: "248 / 257",
               }}
             >
               <iframe
                 src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/1e6a8cb22a643cdf4df1cf08c79a375f/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F1e6a8cb22a643cdf4df1cf08c79a375f%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
+                loading="lazy"
+                className="border-0 absolute top-0 left-0 w-full h-full"
                 style={{
                   border: "none",
                   position: "absolute",
@@ -113,6 +114,8 @@ export default function AboutUsPage() {
                   left: 0,
                   height: "100%",
                   width: "100%",
+                  transform: "scale(1.98)",
+                  transformOrigin: "center center",
                 }}
                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                 allowFullScreen
@@ -149,35 +152,39 @@ export default function AboutUsPage() {
           paddingBottom: "clamp(120px, 18.403vw, 265px)",
         }}
       >
-        <div className="w-full max-w-[1042px] lg:max-w-[72.5vw] mx-auto text-center">
+        <div className="w-full max-w-[1400px] lg:max-w-[92vw] mx-auto text-center">
           <h2
             className="font-normal select-none m-0 p-0"
             style={{
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
               fontStyle: "normal",
-              fontSize: "clamp(28px, 3.472vw, 50px)",
+              fontSize: "clamp(26px, 3.472vw, 50px)",
               lineHeight: "115%",
               letterSpacing: "0%",
               textAlign: "center",
               textTransform: "capitalize",
             }}
           >
-            <span className="text-white/40">Years Of </span>
-            <span className="text-white">Field Knowledge</span>
-            <span className="text-white/40">. Trusted Local </span>
-            <span className="text-white">Relationships</span>
-            <span className="text-white/40">. An </span>
-            <br className="hidden md:inline" />
-            <span className="text-white/40">Understanding Of Origin, </span>
-            <span className="text-white">Earned Over Time</span>
-            <span className="text-white/40">. </span>
-            <br className="hidden md:inline" />
-            <span className="text-white/40">This Is What </span>
-            <span className="text-white">WAE</span>
-            <span className="text-white/40"> Brings To Every </span>
-            <span className="text-white">Beverage</span>
-            <span className="text-white/40"> It Serves.</span>
+            <span className="block md:whitespace-nowrap">
+              <span className="text-white/40">Years Of </span>
+              <span className="text-white">Field Knowledge</span>
+              <span className="text-white/40">. Trusted Local </span>
+              <span className="text-white">Relationships</span>
+              <span className="text-white/40">. An</span>
+            </span>
+            <span className="block md:whitespace-nowrap">
+              <span className="text-white/40">Understanding Of Origin, </span>
+              <span className="text-white">Earned Over Time</span>
+              <span className="text-white/40">.</span>
+            </span>
+            <span className="block md:whitespace-nowrap">
+              <span className="text-white/40">This Is What </span>
+              <span className="text-white">WAE</span>
+              <span className="text-white/40"> Brings To Every </span>
+              <span className="text-white">Beverage</span>
+              <span className="text-white/40"> It Serves.</span>
+            </span>
           </h2>
         </div>
       </section>
