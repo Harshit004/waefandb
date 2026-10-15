@@ -6,6 +6,8 @@ interface GetInTouchHeaderProps {
   onMouseEnterElement?: () => void;
   onMouseLeaveElement?: () => void;
   onMenuClick?: () => void;
+  paddingLeft?: string;
+  paddingRight?: string;
 }
 
 export default function GetInTouchHeader({
@@ -13,6 +15,8 @@ export default function GetInTouchHeader({
   onMouseEnterElement,
   onMouseLeaveElement,
   onMenuClick,
+  paddingLeft = "2.778vw",
+  paddingRight = "2.778vw",
 }: GetInTouchHeaderProps = {}) {
   return (
     <header
@@ -20,8 +24,8 @@ export default function GetInTouchHeader({
       style={{
         background: "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)",
         paddingTop: "2.153vw",
-        paddingLeft: "4.166vw",
-        paddingRight: "4.166vw",
+        paddingLeft,
+        paddingRight,
       }}
     >
       {/* Left Logo */}
