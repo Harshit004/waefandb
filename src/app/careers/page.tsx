@@ -290,34 +290,9 @@ export default function CareersPage() {
                   loading="lazy"
                 />
               </div>
-
-              {/* Category labels: Tea, Coffee, Machine spread below the image, inset to match green box */}
-              <div
-                className="flex items-center justify-between w-full pt-4 md:pt-6 pr-4 md:pr-8"
-                style={{ paddingLeft: "4.166vw" }}
-              >
-                <span
-                  className="text-[#98AD8D] text-[13px] md:text-[14px] select-none"
-                  style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
-                >
-                  Tea
-                </span>
-                <span
-                  className="text-[#98AD8D] text-[13px] md:text-[14px] select-none"
-                  style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
-                >
-                  Coffee
-                </span>
-                <span
-                  className="text-[#98AD8D] text-[13px] md:text-[14px] select-none"
-                  style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
-                >
-                  Machine
-                </span>
-              </div>
             </div>
 
-            {/* Middle Block: "Better Beverages Begin With..." Heading & Description */}
+            {/* Middle Block: "Better Beverages Begin With..." Heading & White Divider */}
             <div className="w-full lg:flex-1 flex flex-col justify-start pt-2 md:pt-4 lg:pt-6 px-4 lg:px-6 xl:px-10 max-w-[500px]">
               <h3
                 className="select-none m-0 p-0"
@@ -328,8 +303,7 @@ export default function CareersPage() {
                   letterSpacing: "0%",
                 }}
               >
-                <span className="block text-white">Better</span>
-                <span className="block text-white">Beverages</span>
+                <span className="block text-white">Better Beverages</span>
                 <span className="block text-[#213C19]">Begin With</span>
                 <span className="block">
                   <span className="text-white">People </span>
@@ -337,33 +311,18 @@ export default function CareersPage() {
                 </span>
                 <span className="block">
                   <span className="text-white">Grow </span>
-                  <span className="text-[#213C19]">With</span>
+                  <span className="text-[#213C19]">With Every</span>
                 </span>
-                <span className="block text-[#213C19]">Every Serve.</span>
+                <span className="block text-[#213C19]">Serve.</span>
               </h3>
 
-              {/* Thin Divider Line */}
-              <div className="w-[70px] h-[1px] bg-[#213C19]/35 my-6" />
-
-              {/* Description Paragraph */}
-              <p
-                className="text-[#213C19] max-w-[440px] select-none"
-                style={{
-                  fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                  fontSize: "clamp(12px, 0.972vw, 14px)",
-                  lineHeight: "1.5",
-                }}
-              >
-                At WAE F&B, you&apos;ll work across the full beverage journey, from responsible
-                water sourcing to crafted tea and coffee experiences. You&apos;ll learn from
-                experienced teams, work with leading brands and premium clients, and grow
-                into roles that shape how people pause, perform and connect every day.
-              </p>
+              {/* White Thin Divider Line */}
+              <div className="w-[70px] md:w-[85px] h-[1px] bg-white/45 my-6" />
             </div>
 
             {/* Right Block: 331x474 image touching the right edge of the screen */}
             <div
-              className="w-full lg:w-[22.986vw] max-w-[331px] flex justify-end shrink-0 relative z-20"
+              className="w-full lg:w-[22.986vw] max-w-[331px] flex justify-end shrink-0 relative z-20 mt-4 md:mt-8 lg:mt-12"
               style={{
                 marginRight: "-4.166vw",
               }}
@@ -380,6 +339,23 @@ export default function CareersPage() {
                 />
               </div>
             </div>
+          </div>
+
+          {/* Bottom Area: Description Paragraph positioned towards the right */}
+          <div className="w-full flex justify-end pt-6 md:pt-10 lg:pt-14 pr-[clamp(16px,5vw,90px)] px-4">
+            <p
+              className="text-[#213C19] max-w-[420px] select-none text-left"
+              style={{
+                fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                fontSize: "clamp(12px, 0.972vw, 14px)",
+                lineHeight: "1.55",
+              }}
+            >
+              At WAE F&B, you&apos;ll work across the full beverage journey, from responsible
+              water sourcing to crafted tea and coffee experiences. You&apos;ll learn from
+              experienced teams, work with leading brands and premium clients, and grow
+              into roles that shape how people pause, perform and connect every day.
+            </p>
           </div>
         </div>
       </section>
