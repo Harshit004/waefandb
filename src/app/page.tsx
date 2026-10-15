@@ -122,7 +122,7 @@ export default function Home() {
         "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/06f1fd10797ff51f37e920d1fa3024c4/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F06f1fd10797ff51f37e920d1fa3024c4%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&muted=true&loop=true&controls=false&preload=auto",
       cursorIcon:
         "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/90634b6f-b31d-424e-7883-8fd6a4db1500/public",
-      desc: "BREWMATIC turns precision into craft, giving every botanical the engineering control to reveal its fullest character.",
+      desc: "Brumatic turns precision into craft, giving every botanical the engineering control to reveal its fullest character.",
       scale: 2.66062,
     },
     {
