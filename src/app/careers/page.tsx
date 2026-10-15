@@ -37,9 +37,9 @@ export default function CareersPage() {
           </h1>
 
           {/* Right Column: Paragraph + "View open roles" Button */}
-          <div className="flex flex-col items-start md:items-start shrink-0">
+          <div className="flex flex-col items-start text-left shrink-0">
             <p
-              className="text-[#FFFFFFB3] max-w-[340px] select-none"
+              className="text-[#FFFFFFB3] max-w-[480px] text-left select-none m-0 p-0"
               style={{
                 fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                 fontSize: "clamp(12px, 0.972vw, 14px)",
@@ -47,13 +47,13 @@ export default function CareersPage() {
               }}
             >
               Join WAE and help shape future-ready beverage solutions
-              <br className="hidden md:inline" />
+              <br />
               for premium workplaces, hospitality and lifestyle spaces...
             </p>
 
             <button
               type="button"
-              className="mt-5 px-6 py-2.5 border border-white/40 hover:border-white text-white transition-colors duration-200 text-[12px] md:text-[13px] tracking-wide select-none cursor-pointer"
+              className="mt-5 self-start px-6 py-2.5 border border-white/40 hover:border-white text-white transition-colors duration-200 text-[12px] md:text-[13px] tracking-wide select-none cursor-pointer"
               style={{
                 fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
               }}
