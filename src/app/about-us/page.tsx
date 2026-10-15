@@ -71,7 +71,7 @@ export default function AboutUsPage() {
                 className="block text-white uppercase"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
-                  fontSize: "clamp(32px, 4.2vw, 64px)",
+                  fontSize: "clamp(35.2px, 4.62vw, 70.4px)",
                   lineHeight: "1.0",
                   letterSpacing: "-0.01em",
                 }}
@@ -82,7 +82,7 @@ export default function AboutUsPage() {
                 className="block text-white mt-1.5"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
-                  fontSize: "clamp(28px, 3.7vw, 54px)",
+                  fontSize: "clamp(30.8px, 4.07vw, 59.4px)",
                   lineHeight: "1.05",
                   letterSpacing: "-0.01em",
                 }}
@@ -96,17 +96,16 @@ export default function AboutUsPage() {
         {/* Right Column (50vw): Centered 248x257 Video + Mission Statement */}
         <div className="w-full lg:w-[50vw] flex flex-col items-center justify-center px-6 lg:px-0 py-16 lg:py-0 bg-black shrink-0">
           <div className="w-full max-w-[248px] lg:max-w-none lg:w-[17.222vw]">
-            {/* 248x257 Responsive Cloudflare Stream Video Container */}
+            {/* Responsive Cloudflare Stream Video Container */}
             <div
-              className="relative w-full overflow-hidden bg-black mb-6 lg:mb-[2.2vw] rounded-[2px] pointer-events-none"
+              className="relative w-full overflow-hidden bg-black mb-6 lg:mb-[2.2vw] rounded-[2px]"
               style={{
-                aspectRatio: "248 / 257",
+                position: "relative",
+                paddingTop: "52.734375%",
               }}
             >
               <iframe
-                src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/8171d0626305612ef00ab8ee1331b36d/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F8171d0626305612ef00ab8ee1331b36d%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&autoplay=true&muted=true&loop=true&controls=false&preload=auto"
-                loading="lazy"
-                className="border-0 absolute top-0 left-0 w-full h-full"
+                src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/1e6a8cb22a643cdf4df1cf08c79a375f/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F1e6a8cb22a643cdf4df1cf08c79a375f%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
                 style={{
                   border: "none",
                   position: "absolute",
@@ -114,8 +113,6 @@ export default function AboutUsPage() {
                   left: 0,
                   height: "100%",
                   width: "100%",
-                  transform: "scale(1.8423)",
-                  transformOrigin: "center center",
                 }}
                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                 allowFullScreen
@@ -130,7 +127,7 @@ export default function AboutUsPage() {
                 fontWeight: 400,
                 fontStyle: "normal",
                 fontSize: "clamp(13px, 1.111vw, 16px)",
-                lineHeight: "100%",
+                lineHeight: "130%",
                 letterSpacing: "0%",
                 textAlign: "justify",
               }}
@@ -159,8 +156,8 @@ export default function AboutUsPage() {
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
               fontStyle: "normal",
-              fontSize: "clamp(24px, 2.778vw, 40px)",
-              lineHeight: "100%",
+              fontSize: "clamp(28px, 3.472vw, 50px)",
+              lineHeight: "115%",
               letterSpacing: "0%",
               textAlign: "center",
               textTransform: "capitalize",
@@ -214,7 +211,7 @@ export default function AboutUsPage() {
                 fontWeight: 400,
                 fontStyle: "normal",
                 fontSize: "clamp(13px, 1.111vw, 16px)",
-                lineHeight: "100%",
+                lineHeight: "130%",
                 letterSpacing: "0%",
               }}
             >
@@ -264,7 +261,7 @@ export default function AboutUsPage() {
                 fontWeight: 400,
                 fontStyle: "normal",
                 fontSize: "clamp(13px, 1.111vw, 16px)",
-                lineHeight: "100%",
+                lineHeight: "130%",
                 letterSpacing: "0%",
               }}
             >

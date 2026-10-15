@@ -161,7 +161,7 @@ export default function CareersPage() {
               </div>
             </div>
 
-            {/* Column 2: One 342x575 image + 342x575 Text block */}
+            {/* Column 2: One 342x575 image */}
             <div className="flex flex-col gap-3 md:gap-4">
               {/* Top: 342x575 image with top gradient */}
               <div
@@ -175,30 +175,6 @@ export default function CareersPage() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent pointer-events-none z-10" />
-              </div>
-              {/* Bottom: 342x575 Text block starting at 50% height of image left to it */}
-              <div
-                className="relative w-full bg-black overflow-hidden"
-                style={{ aspectRatio: "342 / 575" }}
-              >
-                <div
-                  className="absolute left-0 right-0"
-                  style={{ top: "50%" }}
-                >
-                  <p
-                    className="text-white select-none text-left m-0 p-0"
-                    style={{
-                      fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                      fontWeight: 700,
-                      fontStyle: "normal",
-                      fontSize: "16px",
-                      lineHeight: "120%",
-                      letterSpacing: "0%",
-                    }}
-                  >
-                    Beverage specialists, Café operators, innovators and hospitality professionals: build the future of beverages with us.
-                  </p>
-                </div>
               </div>
             </div>
 
