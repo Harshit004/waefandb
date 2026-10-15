@@ -54,6 +54,7 @@ export default function GetInTouchPage() {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const isResizingRef = useRef(false);
+  const hasUserResizedRef = useRef(false);
 
   const isFormFilled = Boolean(
     formData.name.trim() &&
@@ -68,16 +69,17 @@ export default function GetInTouchPage() {
     e.preventDefault();
     isResizingRef.current = true;
     const startY = e.clientY;
-    const startHeight = textareaRef.current?.getBoundingClientRect().height || 38;
+    const startHeight = textareaRef.current?.getBoundingClientRect().height || 14;
 
     const onMouseMove = (moveEvent: MouseEvent) => {
       if (!isResizingRef.current || !textareaRef.current) return;
-      const newHeight = Math.max(38, startHeight + (moveEvent.clientY - startY));
+      const newHeight = Math.max(14, startHeight + (moveEvent.clientY - startY));
       textareaRef.current.style.height = `${newHeight}px`;
     };
 
     const onMouseUp = () => {
       isResizingRef.current = false;
+      hasUserResizedRef.current = true;
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
     };
@@ -89,15 +91,16 @@ export default function GetInTouchPage() {
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length !== 1) return;
     const startY = e.touches[0].clientY;
-    const startHeight = textareaRef.current?.getBoundingClientRect().height || 38;
+    const startHeight = textareaRef.current?.getBoundingClientRect().height || 14;
 
     const onTouchMove = (moveEvent: TouchEvent) => {
       if (moveEvent.touches.length !== 1 || !textareaRef.current) return;
-      const newHeight = Math.max(38, startHeight + (moveEvent.touches[0].clientY - startY));
+      const newHeight = Math.max(14, startHeight + (moveEvent.touches[0].clientY - startY));
       textareaRef.current.style.height = `${newHeight}px`;
     };
 
     const onTouchEnd = () => {
+      hasUserResizedRef.current = true;
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onTouchEnd);
     };
@@ -149,6 +152,12 @@ export default function GetInTouchPage() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "message" && textareaRef.current && !hasUserResizedRef.current) {
+      textareaRef.current.style.height = "14px";
+      if (value.trim().length > 0 && textareaRef.current.scrollHeight > 14) {
+        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      }
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -562,16 +571,19 @@ export default function GetInTouchPage() {
               Message
             </h3>
 
-            <div className="relative w-full border-b border-white/40 focus-within:border-white transition-colors">
+            <div className="relative w-full border-b border-white/40 focus-within:border-white transition-colors pb-[18px]">
               <textarea
                 ref={textareaRef}
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                rows={2}
+                rows={1}
                 placeholder="TELL US MORE ABOUT YOUR ENQUIRY"
-                className="w-full bg-transparent text-white placeholder-[#7C7C7C] text-[13px] md:text-[14px] uppercase tracking-wider focus:outline-none resize-none pb-[18px] min-h-[38px]"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+                className="w-full bg-transparent text-white placeholder-[#7C7C7C] text-[14px] leading-[14px] uppercase tracking-wider focus:outline-none resize-none p-0 h-[14px] min-h-[14px] border-none block"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  lineHeight: "14px",
+                }}
               />
 
               {/* Resize Handle: 18x14px, 2px above the message line */}
