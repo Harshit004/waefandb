@@ -297,57 +297,51 @@ export default function AboutUsPage() {
 
       {/* 5. "FROM ORIGIN TO CUP" SAGE GREEN BENTO SECTION */}
       <section id="origin-section" className="relative w-full px-[4.166vw] pt-[6vw]">
-        <style>{`
-          @media (min-width: 768px) {
-            #origin-green-box {
-              height: clamp(880px, 73.056vw, 1052px) !important;
-            }
-          }
-        `}</style>
         <div
           id="origin-green-box"
-          className="relative w-full overflow-visible origin-green-box"
+          className="relative w-full overflow-visible rounded-none"
           style={{
             backgroundColor: "#5B734C",
             paddingTop: "clamp(30px, 2.78vw, 40px)",
-            paddingLeft: "clamp(20px, 2.43vw, 35px)",
-            paddingRight: "clamp(20px, 2.43vw, 35px)",
-            paddingBottom: "clamp(25px, 2.78vw, 40px)",
+            paddingLeft: "clamp(20px, 3.6vw, 55px)",
+            paddingRight: "clamp(20px, 3.6vw, 55px)",
+            paddingBottom: "clamp(35px, 4vw, 60px)",
           }}
         >
-          {/* Top Row: Title on Left + Origin Summary on Right */}
+          {/* Top Row: Title & Divider on Left + Origin Summary on Right */}
           <div className="w-full flex flex-col md:flex-row items-start justify-between gap-6 md:gap-8">
-            {/* Heading: "From Origin To Cup" */}
-            <h2
-              className="select-none m-0 p-0"
-              style={{
-                fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                fontWeight: 600,
-                fontSize: "clamp(48px, 6.667vw, 96px)",
-                lineHeight: "clamp(55px, 7.639vw, 110px)",
-                letterSpacing: "0%",
-              }}
-            >
-              <span className="block text-[#FFFFFFC7]">From</span>
-              <span className="block text-[#213C19]">Origin</span>
-              <span className="block text-[#213C19]">To Cup</span>
-            </h2>
+            {/* Heading: "From origin to cup" */}
+            <div className="flex flex-col items-start">
+              <h2
+                className="select-none m-0 p-0"
+                style={{
+                  fontFamily: "var(--font-monschone), 'Monschone', serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(48px, 6.667vw, 96px)",
+                  lineHeight: "clamp(52px, 6.944vw, 100px)",
+                  letterSpacing: "0%",
+                }}
+              >
+                <span className="block text-white">From</span>
+                <span className="block text-[#213C19]">origin</span>
+                <span className="block text-[#213C19]">to cup</span>
+              </h2>
+
+              {/* Thin Divider Line below heading */}
+              <div className="w-[180px] sm:w-[220px] md:w-[250px] h-[1px] bg-white/40 mt-5 md:mt-6" />
+            </div>
 
             {/* Top-Right Summary Paragraph */}
-            <div
-              className="shrink-0 text-left md:text-right"
-              style={{
-                marginRight: "clamp(40px, 9.514vw, 137px)",
-              }}
-            >
+            <div className="shrink-0 text-left md:text-right max-w-[430px]">
               <p
-                className="text-[#FFFFFFC7] select-none text-left md:text-right"
+                className="text-white select-none text-left md:text-right m-0 p-0"
                 style={{
                   fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                   fontWeight: 400,
-                  fontSize: "clamp(13px, 1.111vw, 16px)",
-                  lineHeight: "1.35",
+                  fontSize: "16px",
+                  lineHeight: "130%",
                   letterSpacing: "0%",
+                  textAlign: "right",
                 }}
               >
                 WAE traces every ingredient back to where it began - the
@@ -359,122 +353,103 @@ export default function AboutUsPage() {
             </div>
           </div>
 
-          {/* Middle Row: White Line touching the image + Item 1 Text & First Image */}
-          <div
-            className="relative w-full"
-            style={{ marginTop: "clamp(24px, 2.78vw, 40px)" }}
-          >
-            <div className="w-full flex items-start">
-              {/* Left Side: Divider line touches the image border directly */}
-              <div className="flex-1 flex flex-col items-end">
-                {/* Thin Horizontal Divider: Spans full width of left side, touching image */}
-                <div className="w-full h-[1px] bg-white/40" />
-
-                {/* Item 1 Text (right-aligned to sit directly next to lower half of image) */}
-                <div
-                  className="text-left md:text-right"
-                  style={{
-                    marginTop: "clamp(30px, 3.5vw, 50px)",
-                    paddingRight: "clamp(14px, 1.4vw, 20px)",
-                  }}
-                >
-                  <h3
-                    className="text-[#213C19] select-none"
-                    style={{
-                      fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                      fontWeight: 700,
-                      fontSize: "clamp(18px, 1.806vw, 26px)",
-                      lineHeight: "1.15",
-                      letterSpacing: "0%",
-                    }}
-                  >
-                    1. Tea Estate At Sunrise
-                  </h3>
-                  <p
-                    className="text-[#213C19] select-none mt-2 sm:mt-3"
-                    style={{
-                      fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                      fontWeight: 400,
-                      fontSize: "clamp(13px, 1.111vw, 16px)",
-                      lineHeight: "1.35",
-                      letterSpacing: "0%",
-                    }}
-                  >
-                    Sourced from tea gardens selected for altitude,
-                    <br className="hidden md:inline" />
-                    soil and season, not volume.
-                  </p>
-                </div>
-              </div>
-
-              {/* First Image: Tea Estate At Sunrise (323x429) */}
-              {/* Elevated ~105px above divider line, so line touches left edge at ~24% from top */}
-              <div
-                className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-xl"
+          {/* Middle Row: Item 1 (Text on Left + Tea Estate Image on Right) */}
+          <div className="w-full flex flex-col-reverse md:flex-row items-start md:items-end justify-end gap-5 md:gap-6 lg:gap-8 mt-6 md:-mt-14 lg:-mt-20">
+            {/* Item 1 Text (right-aligned, aligned with bottom of image) */}
+            <div className="flex flex-col items-start md:items-end text-left md:text-right max-w-[400px] lg:max-w-[28vw] pb-1">
+              <h3
+                className="text-[#213C19] select-none text-left md:text-right m-0 p-0"
                 style={{
-                  aspectRatio: "323 / 429",
-                  marginTop: "calc(-1 * clamp(50px, 7.3vw, 105px))",
-                  marginRight: "clamp(40px, 9.514vw, 137px)",
+                  fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "clamp(20px, 1.806vw, 26px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "right",
                 }}
               >
-                <img
-                  src={ABOUT_PLACEHOLDERS.originTeaEstate}
-                  alt="Tea estate at sunrise"
-                  className="w-full h-full object-cover select-none"
-                  style={{ aspectRatio: "323 / 429" }}
-                  loading="lazy"
-                />
-              </div>
+                1. Tea Estate At Sunrise
+              </h3>
+              <p
+                className="text-white select-none text-left md:text-right mt-3 m-0 p-0"
+                style={{
+                  fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(15px, 1.25vw, 18px)",
+                  lineHeight: "130%",
+                  letterSpacing: "0%",
+                  textAlign: "right",
+                }}
+              >
+                Sourced from tea gardens selected for altitude,
+                <br className="hidden md:inline" />
+                soil and season, not volume.
+              </p>
+            </div>
+
+            {/* First Image: Tea Estate At Sunrise (323x429) */}
+            <div
+              className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden shadow-xl rounded-none"
+              style={{
+                aspectRatio: "323 / 429",
+              }}
+            >
+              <img
+                src={ABOUT_PLACEHOLDERS.originTeaEstate}
+                alt="Tea estate at sunrise"
+                className="w-full h-full object-cover select-none"
+                style={{ aspectRatio: "323 / 429" }}
+                loading="lazy"
+              />
             </div>
           </div>
 
-          {/* Bottom Area: Item 2 (Coffee Cherries 323x383 Image + Text) */}
+          {/* Bottom Area: Item 2 (Coffee Cherries Image on Left + Text on Right) */}
           <div
             id="origin-bottom-row"
-            className="w-full flex flex-col md:flex-row items-start md:items-start justify-start gap-6 md:gap-[clamp(20px,2.5vw,40px)] relative z-20 origin-bottom-row"
-            style={{
-              marginTop: "clamp(20px, 2.8vw, 40px)",
-            }}
+            className="w-full flex flex-col md:flex-row items-start justify-start gap-5 md:gap-6 lg:gap-8 mt-12 md:mt-16 lg:mt-20 relative z-20 origin-bottom-row"
           >
-            {/* Coffee Cherries Image: indented from left, overhanging bottom boundary */}
+            {/* Coffee Cherries Image: flush with heading left, overhanging bottom boundary */}
             <div
-              className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden bg-[#2A3B22] shadow-2xl"
+              className="w-full sm:w-[280px] lg:w-[22.431vw] max-w-[323px] shrink-0 overflow-hidden shadow-2xl rounded-none relative z-20"
               style={{
-                aspectRatio: "323 / 383",
-                marginLeft: "clamp(40px, 9.514vw, 137px)",
+                aspectRatio: "323 / 429",
+                marginBottom: "calc(-1 * clamp(50px, 6.5vw, 110px))",
               }}
             >
               <img
                 src={ABOUT_PLACEHOLDERS.originCoffeeCherries}
                 alt="Coffee cherries, hand-picked"
                 className="w-full h-full object-cover select-none"
-                style={{ aspectRatio: "323 / 383" }}
+                style={{ aspectRatio: "323 / 429" }}
                 loading="lazy"
               />
             </div>
 
             {/* Item 2 Text (right of coffee cherries image, aligned with image top) */}
-            <div className="max-w-[460px] lg:max-w-[36vw] text-left">
+            <div className="flex flex-col items-start text-left max-w-[460px] lg:max-w-[36vw] pt-1">
               <h3
-                className="text-[#213C19] select-none m-0 p-0 leading-none"
+                className="text-[#213C19] select-none text-left m-0 p-0"
                 style={{
                   fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                   fontWeight: 700,
-                  fontSize: "clamp(18px, 1.806vw, 26px)",
-                  lineHeight: "1.0",
+                  fontSize: "clamp(20px, 1.806vw, 26px)",
+                  lineHeight: "100%",
                   letterSpacing: "0%",
+                  textAlign: "left",
                 }}
               >
                 2. Coffee cherries, hand-picked
               </h3>
               <p
-                className="text-[#213C19] select-none mt-2 sm:mt-3"
+                className="text-white select-none text-left mt-3 m-0 p-0"
                 style={{
                   fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                   fontWeight: 400,
-                  fontSize: "clamp(13px, 1.111vw, 16px)",
-                  lineHeight: "1.35",
+                  fontSize: "clamp(15px, 1.25vw, 18px)",
+                  lineHeight: "130%",
                   letterSpacing: "0%",
+                  textAlign: "left",
                 }}
               >
                 Harvested at peak ripeness, from growers WAE
