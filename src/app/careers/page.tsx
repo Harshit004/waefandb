@@ -272,6 +272,11 @@ export default function CareersPage() {
         <div
           className="relative w-full overflow-visible"
           style={{
+            backgroundImage:
+              "url('https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d01a5267-20eb-4f94-c863-ca3bbbbfe600/public')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
             backgroundColor: "#5B734C",
             paddingTop: "clamp(60px, 8.5vw, 130px)",
             paddingBottom: "clamp(45px, 6vw, 90px)",

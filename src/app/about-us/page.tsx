@@ -301,6 +301,11 @@ export default function AboutUsPage() {
           id="origin-green-box"
           className="relative w-full overflow-visible rounded-none"
           style={{
+            backgroundImage:
+              "url('https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/d01a5267-20eb-4f94-c863-ca3bbbbfe600/public')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
             backgroundColor: "#5B734C",
             paddingTop: "clamp(30px, 2.78vw, 40px)",
             paddingLeft: "clamp(20px, 3.6vw, 55px)",
