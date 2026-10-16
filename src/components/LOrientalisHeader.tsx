@@ -34,7 +34,7 @@ export default function LOrientalisHeader({
 
       {/* Left Navigation: "Sourcing" */}
       <Link
-        href="#sourcing"
+        href="/lorientalis/sourcing"
         className="pointer-events-auto cursor-pointer transition-opacity duration-200 hover:opacity-75 inline-flex items-center"
         onMouseEnter={onMouseEnterElement}
         onMouseLeave={onMouseLeaveElement}
