@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface LOrientalisHeaderProps {
   className?: string;
@@ -12,6 +15,9 @@ export default function LOrientalisHeader({
   onMouseEnterElement,
   onMouseLeaveElement,
 }: LOrientalisHeaderProps) {
+  const pathname = usePathname();
+  const isSourcing = pathname?.includes("/sourcing");
+
   return (
     <header
       className={`relative w-full z-30 flex items-center justify-between pointer-events-none select-none ${className}`}
@@ -33,24 +39,32 @@ export default function LOrientalisHeader({
       />
 
       {/* Left Navigation: "Sourcing" */}
-      <Link
-        href="/lorientalis/sourcing"
-        className="pointer-events-auto cursor-pointer transition-opacity duration-200 hover:opacity-75 inline-flex items-center"
-        onMouseEnter={onMouseEnterElement}
-        onMouseLeave={onMouseLeaveElement}
-        style={{
-          fontFamily: "var(--font-manrope), sans-serif",
-          fontWeight: 600,
-          fontStyle: "normal",
-          fontSize: "0.972vw", // 14px at 1440px (14 / 1440 * 100vw)
-          lineHeight: "0.875vw", // 12.6px at 1440px (12.6 / 1440 * 100vw)
-          letterSpacing: "-0.035vw", // -0.5px at 1440px (-0.5 / 1440 * 100vw)
-          verticalAlign: "middle",
-          color: "#FFFFFF",
-        }}
-      >
-        Sourcing
-      </Link>
+      <div className="relative inline-flex flex-col items-start">
+        <Link
+          href="/lorientalis/sourcing"
+          className="pointer-events-auto cursor-pointer transition-opacity duration-200 hover:opacity-75 inline-flex items-center"
+          onMouseEnter={onMouseEnterElement}
+          onMouseLeave={onMouseLeaveElement}
+          style={{
+            fontFamily: "var(--font-manrope), sans-serif",
+            fontWeight: 600,
+            fontStyle: "normal",
+            fontSize: "0.972vw", // 14px at 1440px (14 / 1440 * 100vw)
+            lineHeight: "0.875vw", // 12.6px at 1440px (12.6 / 1440 * 100vw)
+            letterSpacing: "-0.035vw", // -0.5px at 1440px (-0.5 / 1440 * 100vw)
+            verticalAlign: "middle",
+            color: "#FFFFFF",
+          }}
+        >
+          Sourcing
+        </Link>
+        {isSourcing && (
+          <div
+            className="absolute left-[-2.778vw] -bottom-3 sm:-bottom-4 h-[1px] bg-white pointer-events-none"
+            style={{ width: "calc(100% + 2.778vw + 24px)" }}
+          />
+        )}
+      </div>
 
       {/* Middle: Logo (213 x 20.78) */}
       <Link
