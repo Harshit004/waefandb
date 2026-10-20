@@ -87,7 +87,7 @@ export default function LOrientalisHeader({
 
       {/* Right Navigation: "Contact" */}
       <Link
-        href="#contact"
+        href="/lorientalis/contact"
         className="pointer-events-auto cursor-pointer transition-opacity duration-200 hover:opacity-75 inline-flex items-center"
         onMouseEnter={onMouseEnterElement}
         onMouseLeave={onMouseLeaveElement}
