@@ -1,48 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
 
 export default function LorientalisSourcingPage() {
-  // State for Growers Gallery interactive spotlight
-  const [activeGrowerIndex, setActiveGrowerIndex] = useState<number>(3); // Center focal default
-
-  // State for Coffee Processing Horizontal Slider
-  const [activeCoffeeStep, setActiveCoffeeStep] = useState<number>(0);
-  const coffeeSectionRef = useRef<HTMLDivElement>(null);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-
-  // Keyboard navigation for coffee slider
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        setActiveCoffeeStep((prev) => Math.max(0, prev - 1));
-      } else if (e.key === "ArrowRight") {
-        setActiveCoffeeStep((prev) => Math.min(2, prev + 1));
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStart === null) return;
-    const touchEnd = e.changedTouches[0].clientX;
-    const diff = touchStart - touchEnd;
-    if (diff > 50) {
-      setActiveCoffeeStep((prev) => Math.min(2, prev + 1));
-    } else if (diff < -50) {
-      setActiveCoffeeStep((prev) => Math.max(0, prev - 1));
-    }
-    setTouchStart(null);
-  };
 
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-[#365944] selection:text-white">
@@ -494,173 +457,114 @@ export default function LorientalisSourcingPage() {
           </p>
         </div>
 
-        {/* Multi-Photo Collage / Interactive Focal Gallery (Screenshot 3 & Video) */}
-        <div className="w-full max-w-[1360px] mt-[clamp(36px,4.5vw,72px)] flex items-center justify-center gap-2 sm:gap-3 md:gap-4 overflow-hidden select-none">
+        {/* Multi-Photo Collage / Growers Gallery (Screenshot 1) */}
+        <div className="w-full max-w-[1440px] mt-[clamp(36px,4.5vw,72px)] flex items-center justify-center gap-2 sm:gap-3 md:gap-4 overflow-hidden select-none">
           {/* Peeking Far-Left Thumbnail */}
-          <div
-            className={`hidden xl:block w-[7vw] max-w-[90px] aspect-[3/4] rounded-[2px] border border-white/10 bg-neutral-950 shrink-0 cursor-pointer overflow-hidden transition-all duration-500 ease-out ${
-              activeGrowerIndex === 0 ? "opacity-100 scale-105 border-white/40" : "opacity-40 hover:opacity-75"
-            }`}
-            onMouseEnter={() => setActiveGrowerIndex(0)}
-          >
+          <div className="hidden xl:block w-[7vw] max-w-[85px] aspect-[3/4] bg-neutral-950 shrink-0 overflow-hidden">
             <div className="relative w-full h-full">
               <Image
                 src="/lorientalis/sourcing/grower-drying-bed.jpg"
                 alt="Estate Preview"
                 fill
-                sizes="100px"
-                className="object-cover filter grayscale contrast-125"
+                sizes="85px"
+                className="object-cover"
               />
             </div>
           </div>
 
-          {/* Left Stack (2 Small Stacked Photos) */}
+          {/* Left Stack (2 Small Stacked Square Photos) */}
           <div className="flex flex-col gap-2 sm:gap-3 shrink-0">
-            {/* Top: Drying cherries on tarp */}
-            <div
-              className={`relative w-[85px] sm:w-[110px] md:w-[130px] aspect-[4/3] rounded-[2px] border bg-neutral-900/60 overflow-hidden cursor-pointer transition-all duration-500 ease-out ${
-                activeGrowerIndex === 1
-                  ? "border-[#DEE2C9] scale-[1.04] shadow-lg shadow-black/60 z-10"
-                  : "border-white/10 hover:border-white/30"
-              }`}
-              onMouseEnter={() => setActiveGrowerIndex(1)}
-            >
+            {/* Top: Drying cherries on burlap */}
+            <div className="relative w-[85px] sm:w-[110px] md:w-[130px] aspect-square bg-neutral-900 overflow-hidden group">
               <Image
                 src="/lorientalis/sourcing/grower-drying-bed.jpg"
                 alt="Drying Bed on Burlap"
                 fill
                 sizes="140px"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
 
             {/* Bottom: Harvesting basket */}
-            <div
-              className={`relative w-[85px] sm:w-[110px] md:w-[130px] aspect-[4/3] rounded-[2px] border bg-neutral-900/60 overflow-hidden cursor-pointer transition-all duration-500 ease-out ${
-                activeGrowerIndex === 2
-                  ? "border-[#DEE2C9] scale-[1.04] shadow-lg shadow-black/60 z-10"
-                  : "border-white/10 hover:border-white/30"
-              }`}
-              onMouseEnter={() => setActiveGrowerIndex(2)}
-            >
+            <div className="relative w-[85px] sm:w-[110px] md:w-[130px] aspect-square bg-neutral-900 overflow-hidden group">
               <Image
                 src="/lorientalis/sourcing/grower-harvest-basket.jpg"
                 alt="Ripe Harvest Cherries Basket"
                 fill
                 sizes="140px"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
           </div>
 
           {/* Left Medium Portrait (Farmer sorting beans) */}
-          <div
-            className={`relative w-[110px] sm:w-[150px] md:w-[190px] aspect-[3/4] rounded-[2px] border bg-neutral-900/80 overflow-hidden cursor-pointer shrink-0 transition-all duration-500 ease-out ${
-              activeGrowerIndex === 2
-                ? "border-white/40 scale-[1.02] shadow-xl z-10"
-                : "border-white/10 hover:border-white/30"
-            }`}
-            onMouseEnter={() => setActiveGrowerIndex(2)}
-          >
+          <div className="relative w-[110px] sm:w-[150px] md:w-[180px] lg:w-[200px] aspect-[3/4] bg-neutral-900 overflow-hidden shrink-0 group">
             <Image
               src="/lorientalis/sourcing/grower-sorting-beans.jpg"
               alt="Farmer Sorting Cherries"
               fill
               sizes="200px"
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
 
-          {/* Focal Center Large Portrait (Woman with woven bamboo tea basket) */}
-          <div
-            className={`relative w-[200px] sm:w-[280px] md:w-[360px] lg:w-[420px] aspect-[4/5] rounded-[2px] border bg-neutral-900 overflow-hidden cursor-pointer shrink-0 shadow-2xl transition-all duration-500 ease-out ${
-              activeGrowerIndex === 3
-                ? "border-white/40 scale-[1.01] shadow-2xl z-20"
-                : "border-white/20 hover:border-white/30"
-            }`}
-            onMouseEnter={() => setActiveGrowerIndex(3)}
-          >
+          {/* Focal Center Large Square Photo (Woman with woven bamboo tea basket) */}
+          <div className="relative w-[220px] sm:w-[300px] md:w-[360px] lg:w-[420px] aspect-square bg-neutral-900 overflow-hidden shrink-0 group">
             <Image
               src="/lorientalis/sourcing/grower-focal-portrait.jpg"
               alt="Community Tea Harvester"
               fill
               priority
               sizes="420px"
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
 
           {/* Right Medium Portrait (Grower portrait with foliage) */}
-          <div
-            className={`relative w-[110px] sm:w-[150px] md:w-[190px] aspect-[3/4] rounded-[2px] border bg-neutral-900/80 overflow-hidden cursor-pointer shrink-0 transition-all duration-500 ease-out ${
-              activeGrowerIndex === 4
-                ? "border-white/40 scale-[1.02] shadow-xl z-10"
-                : "border-white/10 hover:border-white/30"
-            }`}
-            onMouseEnter={() => setActiveGrowerIndex(4)}
-          >
+          <div className="relative w-[110px] sm:w-[150px] md:w-[180px] lg:w-[200px] aspect-[3/4] bg-neutral-900 overflow-hidden shrink-0 group">
             <Image
               src="/lorientalis/sourcing/grower-smiling-foliage.jpg"
               alt="Estate Worker in Coffee Foliage"
               fill
               sizes="200px"
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
 
-          {/* Right Stack (2 Small Stacked Photos) */}
+          {/* Right Stack (2 Small Stacked Square Photos) */}
           <div className="flex flex-col gap-2 sm:gap-3 shrink-0">
             {/* Top: Plucking cherries from shrub */}
-            <div
-              className={`relative w-[85px] sm:w-[110px] md:w-[130px] aspect-[4/3] rounded-[2px] border bg-neutral-900/60 overflow-hidden cursor-pointer transition-all duration-500 ease-out ${
-                activeGrowerIndex === 5
-                  ? "border-[#DEE2C9] scale-[1.04] shadow-lg shadow-black/60 z-10"
-                  : "border-white/10 hover:border-white/30"
-              }`}
-              onMouseEnter={() => setActiveGrowerIndex(5)}
-            >
+            <div className="relative w-[85px] sm:w-[110px] md:w-[130px] aspect-square bg-neutral-900 overflow-hidden group">
               <Image
                 src="/lorientalis/sourcing/grower-plucking-cherries.jpg"
                 alt="Plucking Ripe Cherries"
                 fill
                 sizes="140px"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
 
             {/* Bottom: Raking cherries on bed */}
-            <div
-              className={`relative w-[85px] sm:w-[110px] md:w-[130px] aspect-[4/3] rounded-[2px] border bg-neutral-900/60 overflow-hidden cursor-pointer transition-all duration-500 ease-out ${
-                activeGrowerIndex === 6
-                  ? "border-[#DEE2C9] scale-[1.04] shadow-lg shadow-black/60 z-10"
-                  : "border-white/10 hover:border-white/30"
-              }`}
-              onMouseEnter={() => setActiveGrowerIndex(6)}
-            >
+            <div className="relative w-[85px] sm:w-[110px] md:w-[130px] aspect-square bg-neutral-900 overflow-hidden group">
               <Image
                 src="/lorientalis/sourcing/grower-raking-cherries.jpg"
                 alt="Raking Coffee Cherries on Raised Beds"
                 fill
                 sizes="140px"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
           </div>
 
           {/* Peeking Far-Right Thumbnail */}
-          <div
-            className={`hidden xl:block w-[7vw] max-w-[90px] aspect-[3/4] rounded-[2px] border border-white/10 bg-neutral-950 shrink-0 cursor-pointer overflow-hidden transition-all duration-500 ease-out ${
-              activeGrowerIndex === 6 ? "opacity-100 scale-105 border-white/40" : "opacity-40 hover:opacity-75"
-            }`}
-            onMouseEnter={() => setActiveGrowerIndex(6)}
-          >
+          <div className="hidden xl:block w-[7vw] max-w-[85px] aspect-[3/4] bg-neutral-950 shrink-0 overflow-hidden">
             <div className="relative w-full h-full">
               <Image
                 src="/lorientalis/sourcing/grower-raking-cherries.jpg"
                 alt="Estate Preview"
                 fill
-                sizes="100px"
-                className="object-cover filter grayscale contrast-125"
+                sizes="85px"
+                className="object-cover"
               />
             </div>
           </div>
@@ -697,8 +601,8 @@ export default function LorientalisSourcingPage() {
           From Bean to Brew
         </h2>
 
-        {/* Centered B&W Farmer Carrier Portrait (Screenshot 4 & Video) */}
-        <div className="relative w-full max-w-[380px] sm:max-w-[420px] aspect-[3/4] rounded-[2px] border border-white/10 bg-neutral-900 overflow-hidden shadow-2xl my-4 select-none group">
+        {/* Centered B&W Farmer Carrier Portrait (Screenshot 3) */}
+        <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] aspect-[3/4] bg-neutral-900 overflow-hidden my-4 select-none group">
           <Image
             src="/lorientalis/sourcing/coffee-carrier-bw.jpg"
             alt="Mountain Harvest Carrier with Woven Basket"
@@ -706,7 +610,6 @@ export default function LorientalisSourcingPage() {
             sizes="420px"
             className="object-cover filter grayscale contrast-115 transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
         </div>
 
         {/* Narrative caption under portrait */}
@@ -722,294 +625,85 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 5: COFFEE PROCESSING - INTERACTIVE CAROUSEL & WATERMARK
+          SECTION 5: COFFEE PROCESSING - WATERMARK & NATURAL PROCESS SPREAD
           ========================================================================= */}
       <section
         id="coffee-processing"
-        ref={coffeeSectionRef}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        className="relative w-full pt-[clamp(32px,4vw,64px)] pb-[clamp(56px,7vw,110px)] overflow-hidden"
+        className="relative w-full pt-[clamp(32px,4vw,64px)] pb-[clamp(56px,7vw,110px)]"
         style={{
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
-        {/* Subtle Background Watermark: "COFFEE" */}
-        <div
-          className="w-full select-none pointer-events-none mb-4 sm:mb-6 flex items-center justify-between"
-          aria-hidden="true"
-        >
-          <span
-            className="text-[#FFFFFF1A] tracking-[-0.02em] font-normal block"
-            style={{
-              fontFamily: "var(--font-monschone), serif",
-              fontSize: "clamp(64px, 12vw, 170px)",
-              lineHeight: "0.85",
-            }}
-          >
-            COFFEE
-          </span>
+        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 items-start">
+          {/* Left Column: COFFEE Watermark + Natural Process Description */}
+          <div className="md:col-span-4 flex flex-col justify-between self-stretch">
+            {/* Watermark: "COFFEE" (Screenshot 2) */}
+            <div className="select-none pointer-events-none mb-12 md:mb-20" aria-hidden="true">
+              <span
+                className="text-[#FFFFFF1F] tracking-[-0.02em] font-normal block"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontSize: "clamp(60px, 9vw, 140px)",
+                  lineHeight: "0.85",
+                }}
+              >
+                COFFEE
+              </span>
+            </div>
 
-          {/* Stepper controls (Arrows + Pills) */}
-          <div className="pointer-events-auto flex items-center gap-3 pr-2">
-            <button
-              type="button"
-              onClick={() => setActiveCoffeeStep((prev) => Math.max(0, prev - 1))}
-              disabled={activeCoffeeStep === 0}
-              aria-label="Previous processing step"
-              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-200 ${
-                activeCoffeeStep === 0
-                  ? "border-white/10 text-white/20 cursor-not-allowed"
-                  : "border-white/30 text-white hover:border-white hover:bg-white/10 cursor-pointer"
-              }`}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
+            {/* Description Block */}
+            <div className="flex flex-col items-center text-center max-w-[420px] mx-auto select-none mt-auto pt-6">
+              <h3
+                className="text-white select-none m-0 mb-4"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontSize: "clamp(26px, 2.8vw, 42px)",
+                  lineHeight: "1.15",
+                  fontWeight: 400,
+                }}
+              >
+                Natural Process
+                <br />
+                (Dry Method)
+              </h3>
 
-            <button
-              type="button"
-              onClick={() => setActiveCoffeeStep((prev) => Math.min(2, prev + 1))}
-              disabled={activeCoffeeStep === 2}
-              aria-label="Next processing step"
-              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-200 ${
-                activeCoffeeStep === 2
-                  ? "border-white/10 text-white/20 cursor-not-allowed"
-                  : "border-white/30 text-white hover:border-white hover:bg-white/10 cursor-pointer"
-              }`}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Process Step Selector Pills */}
-        <div className="w-full flex items-center gap-2 sm:gap-4 mb-8 overflow-x-auto pb-2 scrollbar-none select-none">
-          {[
-            { id: 0, label: "01 / Natural Process (Dry Method)" },
-            { id: 1, label: "02 / Washed Process (Wet Method)" },
-            { id: 2, label: "03 / Semi-Washed or Honey Process" },
-          ].map((step) => {
-            const isActive = activeCoffeeStep === step.id;
-            return (
-              <button
-                key={step.id}
-                type="button"
-                onClick={() => setActiveCoffeeStep(step.id)}
-                className={`px-4 py-2 rounded-full text-[12px] sm:text-[13px] tracking-wider uppercase transition-all duration-300 shrink-0 cursor-pointer ${
-                  isActive
-                    ? "bg-white text-black font-semibold shadow-md"
-                    : "bg-white/5 text-white/60 hover:text-white hover:bg-white/10 border border-white/10"
-                }`}
+              <p
+                className="text-[#FFFFFF99] text-[12px] sm:text-[13px] leading-[1.65] m-0"
                 style={{ fontFamily: "var(--font-manrope), sans-serif" }}
               >
-                {step.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Dynamic Carousel Slider Track */}
-        <div className="relative w-full overflow-hidden">
-          <div
-            className="w-full flex transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
-            style={{
-              transform: `translateX(-${activeCoffeeStep * 100}%)`,
-            }}
-          >
-            {/* STEP 1: NATURAL PROCESS (DRY METHOD) */}
-            <div className="w-full shrink-0 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 items-center">
-              {/* Left Column: Natural Process Title & Narrative */}
-              <div className="md:col-span-5 flex flex-col justify-center select-none">
-                <div className="flex flex-col items-start">
-                  <h3
-                    className="text-white select-none m-0 mb-4"
-                    style={{
-                      fontFamily: "var(--font-monschone), serif",
-                      fontSize: "clamp(28px, 3.2vw, 44px)",
-                      lineHeight: "1.15",
-                      fontWeight: 400,
-                    }}
-                  >
-                    Natural Process
-                    <br />
-                    (Dry Method)
-                  </h3>
-
-                  <p
-                    className="text-[#FFFFFF99] text-[13px] sm:text-[14px] leading-[1.65] max-w-[460px] m-0 mb-6"
-                    style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-                  >
-                    In This Time-Tested Method, Freshly Picked Cherries Are Spread On
-                    Wide Surfaces To Dry Whole In The Sun, Then Hulled To Remove The
-                    Skin And Pulp. Slow And Low-Input, It Brings A Fuller Body And
-                    Fruit-Forward Sweetness, And It Rewards Careful, Consistent
-                    Drying.
-                  </p>
-
-                  {/* Step Accent Tag */}
-                  <div className="flex items-center gap-2 text-white/40 text-[11px] uppercase tracking-[0.18em]">
-                    <span className="w-2 h-2 rounded-full bg-[#365944]" />
-                    <span>Time-Tested &bull; Sun Dried &bull; Fruit-Forward</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Center Accent Image: Cherries Preparation */}
-              <div className="hidden md:flex md:col-span-2 items-center justify-center">
-                <div className="relative w-full aspect-[4/3] rounded-[2px] border border-white/10 bg-neutral-900 overflow-hidden shadow-xl">
-                  <Image
-                    src="/lorientalis/sourcing/coffee-process-natural-accent.jpg"
-                    alt="Cherries ready for sun-drying"
-                    fill
-                    sizes="240px"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Right Column: Large Photo of Sun Drying Beds */}
-              <div className="md:col-span-5 flex justify-center md:justify-end">
-                <div className="relative w-full aspect-[3/4] max-w-[440px] rounded-[2px] border border-white/10 bg-neutral-900 overflow-hidden shadow-2xl group">
-                  <Image
-                    src="/lorientalis/sourcing/coffee-process-natural-beds.jpg"
-                    alt="Sun-Drying Cherries On Raised Burlap Beds"
-                    fill
-                    sizes="440px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
+                In This Time-Tested Method, Freshly Picked Cherries Are Spread On
+                Wide Surfaces To Dry Whole In The Sun, Then Hulled To Remove The
+                Skin And Pulp. Slow And Low-Input, It Brings A Fuller Body And
+                Fruit-Forward Sweetness, And It Rewards Careful, Consistent
+                Drying.
+              </p>
             </div>
+          </div>
 
-            {/* STEP 2: WASHED PROCESS (WET METHOD) */}
-            <div className="w-full shrink-0 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 items-center">
-              {/* Left Column: Washing Cherries in Clean Water Stream */}
-              <div className="md:col-span-5 flex justify-center md:justify-start">
-                <div className="relative w-full aspect-[3/4] max-w-[440px] rounded-[2px] border border-white/10 bg-neutral-900 overflow-hidden shadow-2xl group">
-                  <Image
-                    src="/lorientalis/sourcing/coffee-process-washed-stream.jpg"
-                    alt="Washing Ripe Red Cherries In Pure Stream Water"
-                    fill
-                    sizes="440px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
-
-              {/* Center Column: Description */}
-              <div className="md:col-span-5 flex flex-col justify-center select-none md:pl-4">
-                <div className="flex flex-col items-start">
-                  <h3
-                    className="text-white select-none m-0 mb-4"
-                    style={{
-                      fontFamily: "var(--font-monschone), serif",
-                      fontSize: "clamp(28px, 3.2vw, 44px)",
-                      lineHeight: "1.15",
-                      fontWeight: 400,
-                    }}
-                  >
-                    Washed Process
-                    <br />
-                    (Wet Method)
-                  </h3>
-
-                  <p
-                    className="text-[#FFFFFF99] text-[13px] sm:text-[14px] leading-[1.65] max-w-[460px] m-0 mb-6"
-                    style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-                  >
-                    Here, The Skin And Pulp Are Removed Soon After Harvest, And The
-                    Beans Are Soaked And Washed In Clean Water Before Drying. The
-                    Result Is A Clean, Bright And Consistent Cup With Clear Acidity,
-                    Though It Requires More Water And Infrastructure.
-                  </p>
-
-                  <div className="flex items-center gap-2 text-white/40 text-[11px] uppercase tracking-[0.18em]">
-                    <span className="w-2 h-2 rounded-full bg-[#365944]" />
-                    <span>Clean Cup &bull; Bright Acidity &bull; High Clarity</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Accent Image: Washed parchment beans */}
-              <div className="hidden md:flex md:col-span-2 items-center justify-center">
-                <div className="relative w-full aspect-[3/4] rounded-[2px] border border-white/10 bg-neutral-900 overflow-hidden shadow-xl">
-                  <Image
-                    src="/lorientalis/sourcing/coffee-process-washed-beans.jpg"
-                    alt="Clean Washed Parchment Beans"
-                    fill
-                    sizes="240px"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
+          {/* Center Column: Sun-Drying Cherries on Raised Burlap Beds (Starts at Top) */}
+          <div className="md:col-span-4 flex justify-center">
+            <div className="relative w-full max-w-[420px] aspect-[3/4] bg-neutral-900 overflow-hidden group select-none">
+              <Image
+                src="/lorientalis/sourcing/coffee-process-natural-beds.jpg"
+                alt="Sun-Drying Cherries On Raised Burlap Beds"
+                fill
+                sizes="(max-width: 768px) 100vw, 420px"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
+          </div>
 
-            {/* STEP 3: SEMI-WASHED OR HONEY PROCESS */}
-            <div className="w-full shrink-0 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 items-center">
-              {/* Left Column: Left Accent Image & Text */}
-              <div className="md:col-span-6 flex flex-col md:flex-row items-center gap-6 select-none">
-                <div className="relative w-full md:w-[180px] aspect-[4/3] md:aspect-[3/4] rounded-[2px] border border-white/10 bg-neutral-900 overflow-hidden shrink-0 shadow-xl">
-                  <Image
-                    src="/lorientalis/sourcing/coffee-process-honey-accent.jpg"
-                    alt="Beans drying on raised honey beds"
-                    fill
-                    sizes="200px"
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="flex flex-col items-start">
-                  <h3
-                    className="text-white select-none m-0 mb-4"
-                    style={{
-                      fontFamily: "var(--font-monschone), serif",
-                      fontSize: "clamp(28px, 3.2vw, 44px)",
-                      lineHeight: "1.15",
-                      fontWeight: 400,
-                    }}
-                  >
-                    Semi-Washed or
-                    <br />
-                    Honey Process
-                  </h3>
-
-                  <p
-                    className="text-[#FFFFFF99] text-[13px] sm:text-[14px] leading-[1.65] max-w-[440px] m-0 mb-6"
-                    style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-                  >
-                    The Skin Is Removed, But Part Of The Sticky Fruit Layer Stays On The
-                    Bean As It Dries. The Result Is A Cup With The Sweetness Of A Natural
-                    And More Of The Clarity Of A Washed, With Lower Water Use Than The
-                    Full Wet Method.
-                  </p>
-
-                  <div className="flex items-center gap-2 text-white/40 text-[11px] uppercase tracking-[0.18em]">
-                    <span className="w-2 h-2 rounded-full bg-[#365944]" />
-                    <span>Sticky Mucilage &bull; Honey Sweetness &bull; Eco Friendly</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Large Photo of Honey Process Beans in Hands */}
-              <div className="md:col-span-6 flex justify-center md:justify-end">
-                <div className="relative w-full aspect-[3/4] max-w-[440px] rounded-[2px] border border-white/10 bg-neutral-900 overflow-hidden shadow-2xl group">
-                  <Image
-                    src="/lorientalis/sourcing/coffee-process-honey-beans.jpg"
-                    alt="Hands holding golden honey process coffee beans"
-                    fill
-                    sizes="440px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
+          {/* Right Column: Washing Cherries In Mountain Stream (Staggered Downward) */}
+          <div className="md:col-span-4 flex justify-center pt-0 md:pt-[clamp(100px,14vw,200px)]">
+            <div className="relative w-full max-w-[420px] aspect-[3/4] bg-neutral-900 overflow-hidden group select-none">
+              <Image
+                src="/lorientalis/sourcing/coffee-process-washed-stream.jpg"
+                alt="Washing Ripe Red Cherries In Pure Stream Water"
+                fill
+                sizes="(max-width: 768px) 100vw, 420px"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
           </div>
         </div>
