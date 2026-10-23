@@ -15,6 +15,12 @@ export default function LorientalisContactPage() {
     message: "",
   });
 
+  const [touched, setTouched] = useState<{
+    officialEmail?: boolean;
+    personalEmail?: boolean;
+    phone?: boolean;
+  }>({});
+
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
@@ -24,15 +30,47 @@ export default function LorientalisContactPage() {
   const isResizingRef = useRef(false);
   const hasUserResizedRef = useRef(false);
 
-  // Form is considered filled when name, company, job title, email, phone, and terms are completed
+  // Email format validation (standard RFC 5322 compliant regex)
+  const validateEmail = (email: string): boolean => {
+    const trimmed = email.trim();
+    if (!trimmed) return false;
+    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(trimmed);
+  };
+
+  // Mobile number validation (international and domestic: 8-15 digits, allows +, -, spaces, parentheses)
+  const validatePhone = (phone: string): boolean => {
+    const trimmed = phone.trim();
+    if (!trimmed) return false;
+    const validFormat = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]+$/.test(trimmed);
+    const digits = trimmed.replace(/\D/g, "");
+    return validFormat && digits.length >= 8 && digits.length <= 15;
+  };
+
+  // Validation flags
+  const hasOfficialEmail = Boolean(formData.officialEmail.trim());
+  const hasPersonalEmail = Boolean(formData.personalEmail.trim());
+  const isOfficialEmailValid = !hasOfficialEmail || validateEmail(formData.officialEmail);
+  const isPersonalEmailValid = !hasPersonalEmail || validateEmail(formData.personalEmail);
+  const hasAtLeastOneValidEmail =
+    (hasOfficialEmail && validateEmail(formData.officialEmail)) ||
+    (hasPersonalEmail && validateEmail(formData.personalEmail));
+  const isPhoneValid = validatePhone(formData.phone);
+
+  // Form is considered filled when name, company, job title, a valid email, valid phone, and terms are completed
   const isFormFilled = Boolean(
     formData.name.trim() &&
     formData.companyName.trim() &&
     formData.jobTitle.trim() &&
-    (formData.officialEmail.trim() || formData.personalEmail.trim()) &&
-    formData.phone.trim() &&
+    hasAtLeastOneValidEmail &&
+    isOfficialEmailValid &&
+    isPersonalEmailValid &&
+    isPhoneValid &&
     acceptedTerms
   );
+
+  const handleBlur = (field: "officialEmail" | "personalEmail" | "phone") => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
 
   const handleResizeStart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -95,9 +133,33 @@ export default function LorientalisContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    setTouched({
+      officialEmail: true,
+      personalEmail: true,
+      phone: true,
+    });
+
     if (!acceptedTerms) {
       setSubmitStatus("error");
       setStatusMessage("Please accept the terms and conditions and privacy policy.");
+      return;
+    }
+
+    if (!hasAtLeastOneValidEmail) {
+      setSubmitStatus("error");
+      setStatusMessage("Please provide a valid official or personal email address.");
+      return;
+    }
+
+    if (!isOfficialEmailValid || !isPersonalEmailValid) {
+      setSubmitStatus("error");
+      setStatusMessage("Please ensure all provided email addresses are valid.");
+      return;
+    }
+
+    if (!isPhoneValid) {
+      setSubmitStatus("error");
+      setStatusMessage("Please enter a valid mobile number (8 to 15 digits).");
       return;
     }
 
@@ -148,6 +210,7 @@ export default function LorientalisContactPage() {
         phone: "",
         message: "",
       });
+      setTouched({});
       setAcceptedTerms(false);
       hasUserResizedRef.current = false;
       if (textareaRef.current) {
@@ -420,13 +483,23 @@ export default function LorientalisContactPage() {
                     name="officialEmail"
                     value={formData.officialEmail}
                     onChange={handleInputChange}
+                    onBlur={() => handleBlur("officialEmail")}
                     placeholder="Your official mail address"
-                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className={`w-full bg-transparent border-0 border-b py-3 text-[14px] sm:text-[15px] transition-colors duration-200 focus:outline-none placeholder-white/40 text-white ${
+                      touched.officialEmail && hasOfficialEmail && !validateEmail(formData.officialEmail)
+                        ? "border-rose-400 focus:border-rose-400"
+                        : "border-white/30 focus:border-white"
+                    }`}
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
                     }}
                   />
+                  {touched.officialEmail && hasOfficialEmail && !validateEmail(formData.officialEmail) && (
+                    <p className="text-rose-400 text-[11px] sm:text-[12px] mt-1.5 font-light tracking-wide text-left">
+                      Please enter a valid email address (e.g. name@company.com).
+                    </p>
+                  )}
                 </div>
 
                 {/* Field 5: Your mail id */}
@@ -436,13 +509,23 @@ export default function LorientalisContactPage() {
                     name="personalEmail"
                     value={formData.personalEmail}
                     onChange={handleInputChange}
+                    onBlur={() => handleBlur("personalEmail")}
                     placeholder="Your mail id"
-                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className={`w-full bg-transparent border-0 border-b py-3 text-[14px] sm:text-[15px] transition-colors duration-200 focus:outline-none placeholder-white/40 text-white ${
+                      touched.personalEmail && hasPersonalEmail && !validateEmail(formData.personalEmail)
+                        ? "border-rose-400 focus:border-rose-400"
+                        : "border-white/30 focus:border-white"
+                    }`}
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
                     }}
                   />
+                  {touched.personalEmail && hasPersonalEmail && !validateEmail(formData.personalEmail) && (
+                    <p className="text-rose-400 text-[11px] sm:text-[12px] mt-1.5 font-light tracking-wide text-left">
+                      Please enter a valid email address (e.g. name@domain.com).
+                    </p>
+                  )}
                 </div>
 
                 {/* Field 6: Mobile number */}
@@ -452,14 +535,24 @@ export default function LorientalisContactPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
+                    onBlur={() => handleBlur("phone")}
                     placeholder="Mobile number"
                     required
-                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className={`w-full bg-transparent border-0 border-b py-3 text-[14px] sm:text-[15px] transition-colors duration-200 focus:outline-none placeholder-white/40 text-white ${
+                      touched.phone && formData.phone.trim() && !isPhoneValid
+                        ? "border-rose-400 focus:border-rose-400"
+                        : "border-white/30 focus:border-white"
+                    }`}
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
                     }}
                   />
+                  {touched.phone && formData.phone.trim() && !isPhoneValid && (
+                    <p className="text-rose-400 text-[11px] sm:text-[12px] mt-1.5 font-light tracking-wide text-left">
+                      Please enter a valid mobile number (8 to 15 digits).
+                    </p>
+                  )}
                 </div>
               </div>
 
