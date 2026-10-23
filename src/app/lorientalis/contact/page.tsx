@@ -228,7 +228,7 @@ export default function LorientalisContactPage() {
                 fontWeight: 400,
                 fontStyle: "normal",
                 fontSize: "clamp(26px, 2.222vw, 32px)",
-                lineHeight: "58px",
+                lineHeight: "1.1",
                 letterSpacing: "0%",
                 color: "#FFFFFF",
                 margin: 0,
@@ -238,9 +238,9 @@ export default function LorientalisContactPage() {
             </h1>
           </div>
 
-          {/* Middle Column: 546x273 responsive image + caption */}
+          {/* Middle Column: 546x273 responsive image + caption in center */}
           <div
-            className="flex flex-col items-end mx-auto md:mx-0"
+            className="flex flex-col items-center mx-auto md:mx-0"
             style={{
               width: "min(546px, 92vw)",
               maxWidth: "100%",
@@ -258,7 +258,7 @@ export default function LorientalisContactPage() {
                 className="w-full h-full object-cover block"
               />
             </div>
-            {/* 12px gap, then response time caption */}
+            {/* 12px gap, then response time caption under the image and in center */}
             <p
               style={{
                 marginTop: "12px",
@@ -268,7 +268,7 @@ export default function LorientalisContactPage() {
                 fontSize: "12px",
                 lineHeight: "100%",
                 letterSpacing: "0%",
-                textAlign: "right",
+                textAlign: "center",
                 color: "#FFFFFF",
                 width: "100%",
                 margin: "12px 0 0 0",
@@ -288,7 +288,7 @@ export default function LorientalisContactPage() {
                 fontWeight: 400,
                 fontStyle: "normal",
                 fontSize: "14px",
-                lineHeight: "100%",
+                lineHeight: "1.1",
                 letterSpacing: "0%",
                 textAlign: "right",
                 color: "#FFFFFF",
@@ -304,37 +304,51 @@ export default function LorientalisContactPage() {
         </div>
       </section>
 
-      {/* 4. 12PX BELOW THIS SECTION, THE FORM */}
+      {/* 4. THEN AFTER 158PX THE FORM STARTS */}
       <section
         className="relative w-full overflow-hidden bg-black pb-20 sm:pb-32"
         style={{
-          marginTop: "12px",
+          marginTop: "clamp(80px, 10.972vw, 158px)",
         }}
       >
         <form onSubmit={handleSubmit} className="w-full flex flex-col">
-          {/* Top Form Region with Side Botanical Images whose bottoms align with 'Message' */}
-          <div className="relative w-full max-w-[1440px] mx-auto">
-            {/* Left Image Flanking Form: bottom aligned with bottom of the word 'Message' */}
+          {/* Top Form Region with Side Botanical Images flush to viewport edges (NO margins) */}
+          <div className="relative w-full">
+            {/* Left Botanical Image: flush to left edge (no margins), 210x786 ratio, bottom aligned with 'Message' */}
             <div
-              className="absolute left-0 xl:left-[2.778vw] bottom-0 pointer-events-none select-none z-0 w-[clamp(110px,18vw,280px)] opacity-30 md:opacity-100"
+              className="absolute left-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(120px,14.583vw,210px)]"
+              style={{
+                aspectRatio: "210 / 786",
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, black 35%, black 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, black 35%, black 100%)",
+              }}
               aria-hidden="true"
             >
               <img
                 src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/4e4e461a-a416-4c94-b9b3-c29738837e00/public"
                 alt="L'Orientalis botanical left"
-                className="w-full h-auto block object-contain"
+                className="w-full h-full object-cover block"
               />
             </div>
 
-            {/* Right Image Flanking Form: bottom aligned with bottom of the word 'Message' */}
+            {/* Right Botanical Image: flush to right edge (no margins), 210x786 ratio, bottom aligned with 'Message' */}
             <div
-              className="absolute right-0 xl:right-[2.778vw] bottom-0 pointer-events-none select-none z-0 w-[clamp(110px,18vw,280px)] opacity-30 md:opacity-100"
+              className="absolute right-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(120px,14.583vw,210px)]"
+              style={{
+                aspectRatio: "210 / 786",
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, black 35%, black 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, black 35%, black 100%)",
+              }}
               aria-hidden="true"
             >
               <img
                 src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/494be43c-d9c9-44bc-86f6-6f109d7c9d00/public"
                 alt="L'Orientalis botanical right"
-                className="w-full h-auto block object-contain"
+                className="w-full h-full object-cover block"
               />
             </div>
 
@@ -357,7 +371,7 @@ export default function LorientalisContactPage() {
                     onChange={handleInputChange}
                     placeholder="Name"
                     required
-                    className="w-full bg-transparent border-0 border-b border-white/40 focus:border-white focus:outline-none text-white placeholder-white/50 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
@@ -374,7 +388,7 @@ export default function LorientalisContactPage() {
                     onChange={handleInputChange}
                     placeholder="Your company name"
                     required
-                    className="w-full bg-transparent border-0 border-b border-white/40 focus:border-white focus:outline-none text-white placeholder-white/50 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
@@ -391,7 +405,7 @@ export default function LorientalisContactPage() {
                     onChange={handleInputChange}
                     placeholder="Job title"
                     required
-                    className="w-full bg-transparent border-0 border-b border-white/40 focus:border-white focus:outline-none text-white placeholder-white/50 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
@@ -407,7 +421,7 @@ export default function LorientalisContactPage() {
                     value={formData.officialEmail}
                     onChange={handleInputChange}
                     placeholder="Your official mail address"
-                    className="w-full bg-transparent border-0 border-b border-white/40 focus:border-white focus:outline-none text-white placeholder-white/50 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
@@ -423,7 +437,7 @@ export default function LorientalisContactPage() {
                     value={formData.personalEmail}
                     onChange={handleInputChange}
                     placeholder="Your mail id"
-                    className="w-full bg-transparent border-0 border-b border-white/40 focus:border-white focus:outline-none text-white placeholder-white/50 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
@@ -440,7 +454,7 @@ export default function LorientalisContactPage() {
                     onChange={handleInputChange}
                     placeholder="Mobile number"
                     required
-                    className="w-full bg-transparent border-0 border-b border-white/40 focus:border-white focus:outline-none text-white placeholder-white/50 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
@@ -453,7 +467,7 @@ export default function LorientalisContactPage() {
               <div
                 className="w-full text-center"
                 style={{
-                  marginTop: "clamp(56px, 6.25vw, 90px)",
+                  marginTop: "clamp(72px, 8.5vw, 130px)",
                 }}
               >
                 <h2
@@ -493,7 +507,7 @@ export default function LorientalisContactPage() {
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={1}
-                placeholder="Tell us more about your enquiry."
+                placeholder="Tell me more about your enquiry."
                 className="w-full bg-transparent text-white placeholder-white/50 text-[14px] leading-[14px] tracking-wide focus:outline-none resize-none p-0 h-[14px] min-h-[14px] border-none block"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
@@ -580,12 +594,12 @@ export default function LorientalisContactPage() {
                 disabled={isSubmitting || !isFormFilled}
                 className={`w-[160px] md:w-[170px] h-[48px] rounded-full active:scale-[0.98] transition-all duration-200 uppercase text-[13px] md:text-[14px] font-medium tracking-wider flex items-center justify-center select-none shrink-0 self-end sm:self-center ${
                   isSubmitting
-                    ? "bg-[#383A38] text-white opacity-80 cursor-not-allowed"
+                    ? "bg-[#54585a] text-white opacity-80 cursor-not-allowed"
                     : submitStatus === "success"
                     ? "bg-[#254A36] hover:bg-[#2F5C43] text-white cursor-pointer"
                     : !isFormFilled
-                    ? "bg-[#2A2B2A] text-white/30 border border-white/5 cursor-not-allowed"
-                    : "bg-[#4E5250] hover:bg-[#5E6360] text-white cursor-pointer"
+                    ? "bg-[#54585a]/40 text-white/30 cursor-not-allowed"
+                    : "bg-[#54585a] hover:bg-[#686c6f] text-white cursor-pointer"
                 }`}
                 style={{ fontFamily: "var(--font-manrope), sans-serif" }}
               >
