@@ -811,22 +811,23 @@ export default function LorientalisSourcingPage() {
           ========================================================================= */}
       <section
         id="coffee-processing"
-        className="relative w-full bg-black text-white overflow-hidden select-none flex flex-col justify-end"
+        className="relative w-full bg-black text-white overflow-hidden select-none"
         style={{
-          marginTop: "clamp(48px, 6vw, 96px)",
+          marginTop: "clamp(40px, 5vw, 80px)",
           height: "100vh",
-          minHeight: "600px",
-          maxHeight: "920px",
+          minHeight: "680px",
+          maxHeight: "960px",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
+          paddingTop: "clamp(16px, 2.5vh, 32px)",
           paddingBottom: "clamp(20px, 3vh, 40px)",
           boxSizing: "border-box",
           // CSS custom properties for responsive image scaling adhering strictly to 418:667 and 187:667
-          ["--img-h" as string]: "clamp(360px, 56vh, 667px)",
-          ["--w-exp" as string]: "calc(clamp(360px, 56vh, 667px) * 418 / 667)",
-          ["--w-con" as string]: "calc(clamp(360px, 56vh, 667px) * 187 / 667)",
-          ["--gap" as string]: "clamp(20px, 2.5vw, 40px)",
-          ["--offset-0" as string]: "clamp(240px, 24vw, 360px)",
+          ["--img-h" as string]: "clamp(460px, 58vh, 667px)",
+          ["--w-exp" as string]: "calc(clamp(460px, 58vh, 667px) * 418 / 667)",
+          ["--w-con" as string]: "calc(clamp(460px, 58vh, 667px) * 187 / 667)",
+          ["--gap" as string]: "clamp(24px, 2.5vw, 40px)",
+          ["--offset-0" as string]: "clamp(340px, 33vw, 460px)",
         }}
       >
         {/* Background Watermark: "COFFEE" (Overlapped by Image 1 top-left on the second 'E') */}
@@ -834,7 +835,7 @@ export default function LorientalisSourcingPage() {
           className="absolute select-none pointer-events-none"
           style={{
             zIndex: 1,
-            top: "clamp(20px, 3.5vh, 48px)",
+            top: "clamp(16px, 2.5vh, 32px)",
             left: "2.778vw",
           }}
         >
@@ -842,7 +843,7 @@ export default function LorientalisSourcingPage() {
             style={{
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
-              fontSize: "clamp(64px, 8.889vw, 128px)",
+              fontSize: "clamp(80px, 10vw, 136px)",
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "rgba(255, 255, 255, 0.2)",
@@ -853,16 +854,16 @@ export default function LorientalisSourcingPage() {
           </span>
         </div>
 
-        {/* Carousel Track Container (Padded at bottom to provide room for Image 1's under-image description) */}
+        {/* Carousel Track Container: Positioned near top so Image 1 directly overlaps COFFEE */}
         <div
-          className="relative z-10 w-full flex items-end"
+          className="relative z-10 w-full"
           style={{
-            paddingBottom: "clamp(64px, 8vh, 96px)",
+            marginTop: "clamp(40px, 5.5vh, 68px)",
           }}
         >
           {/* Inner Horizontal Track: Transitions across states */}
           <div
-            className="flex items-end"
+            className="flex items-start"
             style={{
               gap: "var(--gap)",
               transform:
@@ -877,7 +878,7 @@ export default function LorientalisSourcingPage() {
           >
             {/* Column 0: Image 1 (Natural Process) */}
             <div
-              className="relative shrink-0 flex flex-col justify-end"
+              className="relative shrink-0 flex flex-col items-end"
               style={{
                 width: activeCoffeeSlide === 0 ? "var(--w-exp)" : "var(--w-con)",
                 transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -891,7 +892,7 @@ export default function LorientalisSourcingPage() {
                 className="absolute select-none pointer-events-none z-20"
                 style={{
                   right: "calc(100% + clamp(16px, 2vw, 32px))",
-                  bottom: "clamp(0px, 1vh, 12px)",
+                  top: "calc(var(--img-h) - clamp(75px, 10vh, 110px))",
                   whiteSpace: "nowrap",
                   textAlign: "right",
                   opacity: activeCoffeeSlide === 0 ? 1 : 0,
@@ -918,41 +919,7 @@ export default function LorientalisSourcingPage() {
                 </h3>
               </div>
 
-              {/* Description: Positioned DIRECTLY under Image 1, right-aligned to Image 1's right edge */}
-              <div
-                className="absolute select-none pointer-events-none z-20"
-                style={{
-                  top: "calc(100% + clamp(14px, 1.8vh, 22px))",
-                  right: "0px",
-                  width: "clamp(420px, 48vw, 680px)",
-                  textAlign: "right",
-                  opacity: activeCoffeeSlide === 0 ? 1 : 0,
-                  transform:
-                    activeCoffeeSlide === 0
-                      ? "translateY(0)"
-                      : "translateY(30px)",
-                  transition:
-                    "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
-                }}
-              >
-                <p
-                  className="m-0 select-none text-right"
-                  style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(12px, 1.05vw, 17px)",
-                    lineHeight: "125%",
-                    letterSpacing: "0%",
-                    color: "#DBDBDB",
-                  }}
-                >
-                  In This Time-Tested Method, Freshly Picked Cherries Are Spread On Wide Surfaces To Dry<br className="hidden md:inline" />
-                  Whole In The Sun, Then Hulled To Remove The Skin And Pulp. Slow And Low-Input, It Brings A<br className="hidden md:inline" />
-                  Fuller Body And Fruit-Forward Sweetness, And It Rewards Careful, Consistent Drying.
-                </p>
-              </div>
-
-              {/* Image 1 Container */}
+              {/* Image 1 Container: Sits at top of track, overlapping bottom-right of second 'E' of COFFEE */}
               <div
                 className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
                 style={{
@@ -967,6 +934,40 @@ export default function LorientalisSourcingPage() {
                   sizes="(max-width: 768px) 100vw, 418px"
                   className="object-cover select-none pointer-events-none"
                 />
+              </div>
+
+              {/* Description: Positioned DIRECTLY under Image 1, right-aligned to Image 1's right edge */}
+              <div
+                className="w-full flex justify-end"
+                style={{
+                  marginTop: "clamp(12px, 1.8vh, 20px)",
+                  opacity: activeCoffeeSlide === 0 ? 1 : 0,
+                  transform:
+                    activeCoffeeSlide === 0
+                      ? "translateY(0)"
+                      : "translateY(30px)",
+                  transition:
+                    "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                  pointerEvents: activeCoffeeSlide === 0 ? "auto" : "none",
+                }}
+              >
+                <p
+                  className="m-0 select-none text-right"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(12px, 1.05vw, 17px)",
+                    lineHeight: "125%",
+                    letterSpacing: "0%",
+                    color: "#DBDBDB",
+                    width: "clamp(420px, 46vw, 660px)",
+                    maxWidth: "calc(var(--offset-0) + var(--w-exp) - 2.778vw)",
+                  }}
+                >
+                  In This Time-Tested Method, Freshly Picked Cherries Are Spread On Wide Surfaces To Dry<br className="hidden md:inline" />
+                  Whole In The Sun, Then Hulled To Remove The Skin And Pulp. Slow And Low-Input, It Brings A<br className="hidden md:inline" />
+                  Fuller Body And Fruit-Forward Sweetness, And It Rewards Careful, Consistent Drying.
+                </p>
               </div>
             </div>
 
