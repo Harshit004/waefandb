@@ -218,7 +218,7 @@ export default function LorientalisSourcingPage() {
         }}
       >
         <div
-          className="w-full max-w-[1222px] rounded-[2px] overflow-hidden shadow-2xl relative select-none"
+          className="w-full rounded-[2px] overflow-hidden shadow-2xl relative select-none"
           style={{
             aspectRatio: "1222 / 688",
           }}
@@ -247,15 +247,13 @@ export default function LorientalisSourcingPage() {
         className="w-full flex flex-col items-center overflow-x-clip"
         style={{
           marginTop: "clamp(56px, 8.26vw, 119px)",
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
         }}
       >
         {/* Headings & Narrative Block */}
         <div
           className="w-full max-w-[820px] mx-auto text-center flex flex-col items-center select-none"
-          style={{
-            paddingLeft: "2.778vw",
-            paddingRight: "2.778vw",
-          }}
         >
           <span
             className="block text-center select-none"
@@ -783,9 +781,9 @@ export default function LorientalisSourcingPage() {
           <span className="text-white/40">PRODUCTION PROCESS</span>
         </h2>
 
-        {/* 137px gap then CTC TEA Block (1200px max container) */}
+        {/* 137px gap then CTC TEA Block (w-full container spanning between Sourcing and Contact) */}
         <div
-          className="w-full max-w-[1200px] mx-auto flex flex-col md:flex-row items-start justify-between"
+          className="w-full flex flex-col md:flex-row items-start justify-between"
           style={{ marginTop: "clamp(56px, 9.51vw, 137px)" }}
         >
           {/* Left Column: 398 x 677 Harvester Woman Image */}
@@ -830,7 +828,7 @@ export default function LorientalisSourcingPage() {
                     fontSize: "clamp(16px, 1.667vw, 24px)",
                     lineHeight: "120%",
                     letterSpacing: "0%",
-                    color: "#DBDBDB",
+                    color: "#AEAEAE",
                   }}
                 >
                   {" "} : CTC (Crush, Tear, Curl) makes up over 85% of the market.
@@ -869,7 +867,7 @@ export default function LorientalisSourcingPage() {
 
         {/* 110px below it, Orthodox Tea Text (right aligned) */}
         <div
-          className="w-full max-w-[1200px] mx-auto flex justify-end select-none"
+          className="w-full flex justify-end select-none"
           style={{ marginTop: "clamp(48px, 7.63vw, 110px)" }}
         >
           <p className="m-0 text-right max-w-[760px] leading-tight">
@@ -892,7 +890,7 @@ export default function LorientalisSourcingPage() {
                 fontSize: "clamp(16px, 1.667vw, 24px)",
                 lineHeight: "120%",
                 letterSpacing: "0%",
-                color: "#DBDBDB",
+                color: "#AEAEAE",
               }}
             >
               {" "} : Orthodox tea uses traditional or manual methods, producing a
@@ -908,14 +906,14 @@ export default function LorientalisSourcingPage() {
           style={{ marginTop: "clamp(48px, 7.08vw, 102px)" }}
         >
           <div
-            className="relative w-full max-w-[1200px] aspect-[1200/498] rounded-[2px] overflow-hidden shadow-2xl select-none"
+            className="relative w-full aspect-[1200/498] rounded-[2px] overflow-hidden shadow-2xl select-none"
           >
             <Image
               src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/ca262eda-b665-4ba1-3ef4-1baa5bf22e00/public"
               alt="Vibrant Green Tea Flush Leaves"
               fill
               unoptimized
-              sizes="(max-width: 1200px) 100vw, 1200px"
+              sizes="(max-width: 1200px) 100vw, 1440px"
               className="object-cover"
             />
           </div>
@@ -923,7 +921,7 @@ export default function LorientalisSourcingPage() {
 
         {/* 102px below it: Green Tea Text (left aligned) */}
         <div
-          className="w-full max-w-[1200px] mx-auto select-none"
+          className="w-full select-none"
           style={{ marginTop: "clamp(48px, 7.08vw, 102px)" }}
         >
           <p className="m-0 text-left leading-tight max-w-[1100px]">
@@ -946,7 +944,7 @@ export default function LorientalisSourcingPage() {
                 fontSize: "clamp(16px, 1.667vw, 24px)",
                 lineHeight: "120%",
                 letterSpacing: "0%",
-                color: "#DBDBDB",
+                color: "#AEAEAE",
               }}
             >
               {" "} : Green tea is made from unoxidized leaves and is one of the
