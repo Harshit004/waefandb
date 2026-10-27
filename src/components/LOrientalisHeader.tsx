@@ -47,8 +47,8 @@ export default function LOrientalisHeader({
           background: scrolled
             ? "linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 65%, rgba(0, 0, 0, 0) 100%)"
             : "linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0) 100%)",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+          backdropFilter: scrolled ? "blur(1.2px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(1.2px)" : "none",
         }}
       />
 
