@@ -813,21 +813,21 @@ export default function LorientalisSourcingPage() {
         id="coffee-processing"
         className="relative w-full bg-black text-white overflow-hidden select-none"
         style={{
-          marginTop: "clamp(40px, 5vw, 80px)",
+          marginTop: "clamp(32px, 4vw, 64px)",
           height: "100vh",
-          minHeight: "680px",
-          maxHeight: "960px",
+          minHeight: "560px",
+          maxHeight: "920px",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
-          paddingTop: "clamp(16px, 2.5vh, 32px)",
-          paddingBottom: "clamp(20px, 3vh, 40px)",
+          paddingTop: "clamp(24px, 3.5vh, 48px)",
+          paddingBottom: "clamp(20px, 3vh, 36px)",
           boxSizing: "border-box",
           // CSS custom properties for responsive image scaling adhering strictly to 418:667 and 187:667
-          ["--img-h" as string]: "clamp(460px, 58vh, 667px)",
-          ["--w-exp" as string]: "calc(clamp(460px, 58vh, 667px) * 418 / 667)",
-          ["--w-con" as string]: "calc(clamp(460px, 58vh, 667px) * 187 / 667)",
-          ["--gap" as string]: "clamp(24px, 2.5vw, 40px)",
-          ["--offset-0" as string]: "clamp(340px, 33vw, 460px)",
+          ["--img-h" as string]: "clamp(340px, calc(100vh - clamp(200px, 25vh, 260px)), 560px)",
+          ["--w-exp" as string]: "calc(var(--img-h) * 418 / 667)",
+          ["--w-con" as string]: "calc(var(--img-h) * 187 / 667)",
+          ["--gap" as string]: "clamp(20px, 2.5vw, 40px)",
+          ["--offset-0" as string]: "clamp(320px, 32vw, 460px)",
         }}
       >
         {/* Background Watermark: "COFFEE" (Overlapped by Image 1 top-left on the second 'E') */}
@@ -835,7 +835,7 @@ export default function LorientalisSourcingPage() {
           className="absolute select-none pointer-events-none"
           style={{
             zIndex: 1,
-            top: "clamp(16px, 2.5vh, 32px)",
+            top: "clamp(24px, 3.5vh, 48px)",
             left: "2.778vw",
           }}
         >
@@ -843,7 +843,7 @@ export default function LorientalisSourcingPage() {
             style={{
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
-              fontSize: "clamp(80px, 10vw, 136px)",
+              fontSize: "clamp(72px, 8.5vw, 128px)",
               lineHeight: "100%",
               letterSpacing: "0%",
               color: "rgba(255, 255, 255, 0.2)",
@@ -854,11 +854,11 @@ export default function LorientalisSourcingPage() {
           </span>
         </div>
 
-        {/* Carousel Track Container: Positioned near top so Image 1 directly overlaps COFFEE */}
+        {/* Carousel Track Container: Positioned so Image 1 top overlaps the lower half of the second 'E' of COFFEE */}
         <div
           className="relative z-10 w-full"
           style={{
-            marginTop: "clamp(40px, 5.5vh, 68px)",
+            marginTop: "calc(clamp(72px, 8.5vw, 128px) * 0.45)",
           }}
         >
           {/* Inner Horizontal Track: Transitions across states */}
@@ -892,7 +892,7 @@ export default function LorientalisSourcingPage() {
                 className="absolute select-none pointer-events-none z-20"
                 style={{
                   right: "calc(100% + clamp(16px, 2vw, 32px))",
-                  top: "calc(var(--img-h) - clamp(75px, 10vh, 110px))",
+                  bottom: "clamp(6px, 1vh, 14px)",
                   whiteSpace: "nowrap",
                   textAlign: "right",
                   opacity: activeCoffeeSlide === 0 ? 1 : 0,
@@ -909,7 +909,7 @@ export default function LorientalisSourcingPage() {
                   style={{
                     fontFamily: "var(--font-monschone), serif",
                     fontWeight: 400,
-                    fontSize: "clamp(24px, 3.2vw, 44px)",
+                    fontSize: "clamp(22px, 2.8vw, 42px)",
                     lineHeight: "105%",
                     letterSpacing: "0%",
                     textAlign: "right",
@@ -936,11 +936,14 @@ export default function LorientalisSourcingPage() {
                 />
               </div>
 
-              {/* Description: Positioned DIRECTLY under Image 1, right-aligned to Image 1's right edge */}
+              {/* Description: Positioned DIRECTLY under Image 1, right-aligned to Image 1's right edge, extending left in 3 lines */}
               <div
-                className="w-full flex justify-end"
+                className="absolute z-20"
                 style={{
-                  marginTop: "clamp(12px, 1.8vh, 20px)",
+                  top: "calc(var(--img-h) + clamp(10px, 1.5vh, 16px))",
+                  right: 0,
+                  width: "max-content",
+                  maxWidth: "calc(var(--offset-0) + var(--w-exp) - 2.778vw)",
                   opacity: activeCoffeeSlide === 0 ? 1 : 0,
                   transform:
                     activeCoffeeSlide === 0
@@ -956,24 +959,28 @@ export default function LorientalisSourcingPage() {
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 400,
-                    fontSize: "clamp(12px, 1.05vw, 17px)",
-                    lineHeight: "125%",
+                    fontSize: "clamp(11px, 0.95vw, 15px)",
+                    lineHeight: "135%",
                     letterSpacing: "0%",
                     color: "#DBDBDB",
-                    width: "clamp(420px, 46vw, 660px)",
-                    maxWidth: "calc(var(--offset-0) + var(--w-exp) - 2.778vw)",
                   }}
                 >
-                  In This Time-Tested Method, Freshly Picked Cherries Are Spread On Wide Surfaces To Dry<br className="hidden md:inline" />
-                  Whole In The Sun, Then Hulled To Remove The Skin And Pulp. Slow And Low-Input, It Brings A<br className="hidden md:inline" />
-                  Fuller Body And Fruit-Forward Sweetness, And It Rewards Careful, Consistent Drying.
+                  <span className="block whitespace-nowrap">
+                    In This Time-Tested Method, Freshly Picked Cherries Are Spread On Wide Surfaces To Dry
+                  </span>
+                  <span className="block whitespace-nowrap">
+                    Whole In The Sun, Then Hulled To Remove The Skin And Pulp. Slow And Low-Input, It Brings A
+                  </span>
+                  <span className="block whitespace-nowrap">
+                    Fuller Body And Fruit-Forward Sweetness, And It Rewards Careful, Consistent Drying.
+                  </span>
                 </p>
               </div>
             </div>
 
             {/* Column 1: Washed Process (Text above + Image 2) */}
             <div
-              className="relative shrink-0 flex flex-col justify-end"
+              className="relative shrink-0 flex flex-col justify-end items-end"
               style={{
                 width: activeCoffeeSlide === 1 ? "var(--w-exp)" : "var(--w-con)",
                 transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -982,9 +989,9 @@ export default function LorientalisSourcingPage() {
               onMouseEnter={() => setActiveCoffeeSlide(1)}
               onClick={() => setActiveCoffeeSlide(1)}
             >
-              {/* Washed Process Text (Positioned above Image 2, right-aligned) */}
+              {/* Washed Process Text (Positioned above Image 2, right-aligned in 2 lines) */}
               <div
-                className="w-full flex flex-col items-end text-right overflow-hidden mb-3"
+                className="w-full flex flex-col items-end text-right overflow-visible mb-3"
                 style={{
                   opacity: activeCoffeeSlide === 1 ? 1 : 0,
                   transform:
@@ -996,7 +1003,7 @@ export default function LorientalisSourcingPage() {
                   transition:
                     "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
                   pointerEvents: activeCoffeeSlide === 1 ? "auto" : "none",
-                  minHeight: "90px",
+                  minHeight: "clamp(75px, 9vh, 95px)",
                 }}
               >
                 <h3
@@ -1004,7 +1011,7 @@ export default function LorientalisSourcingPage() {
                   style={{
                     fontFamily: "var(--font-monschone), serif",
                     fontWeight: 400,
-                    fontSize: "clamp(24px, 2.8vw, 44px)",
+                    fontSize: "clamp(22px, 2.6vw, 40px)",
                     lineHeight: "100%",
                     letterSpacing: "0%",
                     textAlign: "right",
@@ -1015,17 +1022,23 @@ export default function LorientalisSourcingPage() {
                 <p
                   className="m-0 select-none text-right"
                   style={{
-                    marginTop: "10px",
+                    marginTop: "8px",
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 400,
-                    fontSize: "clamp(12px, 1vw, 16px)",
-                    lineHeight: "125%",
+                    fontSize: "clamp(11px, 0.95vw, 15px)",
+                    lineHeight: "135%",
                     letterSpacing: "0%",
                     color: "#DBDBDB",
-                    maxWidth: "520px",
+                    width: "max-content",
+                    maxWidth: "clamp(520px, 55vw, 760px)",
                   }}
                 >
-                  Here, The Skin And Pulp Are Removed Soon After Harvest, And The Beans Are Soaked And Washed In Clean Water Before Drying. The Result Is A Clean, Bright And Consistent Cup. It Is The Most Water-Intensive Of The Three Methods, Which Makes Water Management Part Of Quality.
+                  <span className="block whitespace-nowrap">
+                    Here, The Skin And Pulp Are Removed Soon After Harvest, And The Beans Are Soaked And Washed In Clean Water Before Drying.
+                  </span>
+                  <span className="block whitespace-nowrap">
+                    The Result Is A Clean, Bright And Consistent Cup. It Is The Most Water-Intensive Of The Three Methods, Which Makes Water Management Part Of Quality.
+                  </span>
                 </p>
               </div>
 
@@ -1049,7 +1062,7 @@ export default function LorientalisSourcingPage() {
 
             {/* Column 2: Honey Process (Text above + Image 3) */}
             <div
-              className="relative shrink-0 flex flex-col justify-end"
+              className="relative shrink-0 flex flex-col justify-end items-end"
               style={{
                 width: activeCoffeeSlide === 2 ? "var(--w-exp)" : "var(--w-con)",
                 transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -1058,9 +1071,9 @@ export default function LorientalisSourcingPage() {
               onMouseEnter={() => setActiveCoffeeSlide(2)}
               onClick={() => setActiveCoffeeSlide(2)}
             >
-              {/* Semi-Washed or Honey Process Text (Positioned above Image 3, right-aligned) */}
+              {/* Semi-Washed or Honey Process Text (Positioned above Image 3, right-aligned in 2 lines) */}
               <div
-                className="w-full flex flex-col items-end text-right overflow-hidden mb-3"
+                className="w-full flex flex-col items-end text-right overflow-visible mb-3"
                 style={{
                   opacity: activeCoffeeSlide === 2 ? 1 : 0,
                   transform:
@@ -1072,7 +1085,7 @@ export default function LorientalisSourcingPage() {
                   transition:
                     "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
                   pointerEvents: activeCoffeeSlide === 2 ? "auto" : "none",
-                  minHeight: "90px",
+                  minHeight: "clamp(75px, 9vh, 95px)",
                 }}
               >
                 <h3
@@ -1080,7 +1093,7 @@ export default function LorientalisSourcingPage() {
                   style={{
                     fontFamily: "var(--font-monschone), serif",
                     fontWeight: 400,
-                    fontSize: "clamp(24px, 2.8vw, 44px)",
+                    fontSize: "clamp(22px, 2.6vw, 40px)",
                     lineHeight: "100%",
                     letterSpacing: "0%",
                     textAlign: "right",
@@ -1091,19 +1104,23 @@ export default function LorientalisSourcingPage() {
                 <p
                   className="m-0 select-none text-right"
                   style={{
-                    marginTop: "10px",
+                    marginTop: "8px",
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 400,
-                    fontSize: "clamp(12px, 1vw, 16px)",
-                    lineHeight: "125%",
+                    fontSize: "clamp(11px, 0.95vw, 15px)",
+                    lineHeight: "135%",
                     letterSpacing: "0%",
                     color: "#DBDBDB",
-                    maxWidth: "640px",
+                    width: "max-content",
+                    maxWidth: "clamp(520px, 55vw, 760px)",
                   }}
                 >
-                  The Skin Is Removed, But Part Of The Sticky Fruit Layer Stays On The Bean As It Dries.<br className="hidden md:inline" />
-                  The Result Is A Cup With The Sweetness Of A Natural And More Of The Clarity Of A<br className="hidden md:inline" />
-                  Washed, With Lower Water Use Than The Full Wet Method.
+                  <span className="block whitespace-nowrap">
+                    The Skin Is Removed, But Part Of The Sticky Fruit Layer Stays On The Bean As It Dries.
+                  </span>
+                  <span className="block whitespace-nowrap">
+                    The Result Is A Cup With The Sweetness Of A Natural And More Of The Clarity Of A Washed, With Lower Water Use Than The Full Wet Method.
+                  </span>
                 </p>
               </div>
 
