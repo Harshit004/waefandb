@@ -855,294 +855,301 @@ export default function LorientalisSourcingPage() {
           </span>
         </div>
 
-        {/* Carousel Track Container: Positioned so Image 1 top overlaps the lower half of the second 'E' of COFFEE */}
+        {/* Track Container: Holds all three columns with smooth 1000ms transitions */}
         <div
           className="relative z-10 w-full"
           style={{
             marginTop: "calc(clamp(72px, 8.5vw, 128px) * 0.45)",
+            height: "calc(var(--img-h) + clamp(90px, 12vh, 120px))",
           }}
         >
-          {/* Inner Horizontal Track: Transitions across states */}
+          {/* Column 0: Image 1 (Natural Process) */}
           <div
-            className="flex items-start"
+            className="absolute top-0 left-0 shrink-0 flex flex-col items-end"
             style={{
-              gap: "var(--gap)",
+              width: activeCoffeeSlide === 0 ? "var(--w-exp)" : "var(--w-con)",
               transform:
                 activeCoffeeSlide === 0
                   ? "translateX(var(--offset-0))"
-                  : activeCoffeeSlide === 1
-                  ? "translateX(0px)"
-                  : "translateX(calc(100vw - 5.556vw - (var(--w-con) * 2 + var(--w-exp) + var(--gap) * 2)))",
-              transition: "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
-              willChange: "transform",
+                  : "translateX(0px)",
+              transition:
+                "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+              willChange: "transform, width",
+              zIndex: activeCoffeeSlide === 0 ? 30 : 10,
             }}
+            onMouseEnter={() => setActiveCoffeeSlide(0)}
+            onClick={() => setActiveCoffeeSlide(0)}
           >
-            {/* Column 0: Image 1 (Natural Process) */}
+            {/* Heading: Positioned to the left of Image 1 near its bottom */}
             <div
-              className="relative shrink-0 flex flex-col items-end"
+              className="absolute select-none pointer-events-none z-20"
               style={{
-                width: activeCoffeeSlide === 0 ? "var(--w-exp)" : "var(--w-con)",
-                transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
-                willChange: "width",
+                right: "calc(100% + clamp(16px, 2vw, 32px))",
+                bottom: "clamp(6px, 1vh, 14px)",
+                whiteSpace: "nowrap",
+                textAlign: "right",
+                opacity: activeCoffeeSlide === 0 ? 1 : 0,
+                transform:
+                  activeCoffeeSlide === 0
+                    ? "translateY(0)"
+                    : "translateY(30px)",
+                transition:
+                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
               }}
-              onMouseEnter={() => setActiveCoffeeSlide(0)}
-              onClick={() => setActiveCoffeeSlide(0)}
             >
-              {/* Heading: Positioned to the left of Image 1 near its bottom */}
-              <div
-                className="absolute select-none pointer-events-none z-20"
+              <h3
+                className="m-0 text-white"
                 style={{
-                  right: "calc(100% + clamp(16px, 2vw, 32px))",
-                  bottom: "clamp(6px, 1vh, 14px)",
-                  whiteSpace: "nowrap",
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(22px, 2.8vw, 42px)",
+                  lineHeight: "105%",
+                  letterSpacing: "0%",
                   textAlign: "right",
-                  opacity: activeCoffeeSlide === 0 ? 1 : 0,
-                  transform:
-                    activeCoffeeSlide === 0
-                      ? "translateY(0)"
-                      : "translateY(30px)",
-                  transition:
-                    "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
                 }}
               >
-                <h3
-                  className="m-0 text-white"
-                  style={{
-                    fontFamily: "var(--font-monschone), serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(22px, 2.8vw, 42px)",
-                    lineHeight: "105%",
-                    letterSpacing: "0%",
-                    textAlign: "right",
-                  }}
-                >
-                  Natural Process<br />(Dry Method)
-                </h3>
-              </div>
+                Natural Process<br />(Dry Method)
+              </h3>
+            </div>
 
-              {/* Image 1 Container: Sits at top of track, overlapping bottom-right of second 'E' of COFFEE */}
-              <div
-                className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
+            {/* Image 1 Container: Sits at top of track, overlapping bottom-right of second 'E' of COFFEE */}
+            <div
+              className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
+              style={{
+                height: "var(--img-h)",
+              }}
+            >
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/dbaee4e4-224c-4aba-77e6-d9f48d8a6100/public"
+                alt="Natural Process Dry Method Cherries on Raised Beds"
+                fill
+                unoptimized
+                sizes="(max-width: 768px) 100vw, 418px"
+                className="object-cover select-none pointer-events-none"
+              />
+            </div>
+
+            {/* Description: Positioned DIRECTLY under Image 1, right-aligned to Image 1's right edge, extending left in 3 lines */}
+            <div
+              className="absolute z-20"
+              style={{
+                top: "calc(var(--img-h) + clamp(10px, 1.5vh, 16px))",
+                right: 0,
+                width: "max-content",
+                maxWidth: "calc(var(--offset-0) + var(--w-exp) - 2.778vw)",
+                opacity: activeCoffeeSlide === 0 ? 1 : 0,
+                transform:
+                  activeCoffeeSlide === 0
+                    ? "translateY(0)"
+                    : "translateY(30px)",
+                transition:
+                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                pointerEvents: activeCoffeeSlide === 0 ? "auto" : "none",
+              }}
+            >
+              <p
+                className="m-0 select-none text-right"
                 style={{
-                  height: "var(--img-h)",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(11px, 0.95vw, 15px)",
+                  lineHeight: "135%",
+                  letterSpacing: "0%",
+                  color: "#DBDBDB",
                 }}
               >
-                <Image
-                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/dbaee4e4-224c-4aba-77e6-d9f48d8a6100/public"
-                  alt="Natural Process Dry Method Cherries on Raised Beds"
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 100vw, 418px"
-                  className="object-cover select-none pointer-events-none"
-                />
-              </div>
+                <span className="block whitespace-nowrap">
+                  In This Time-Tested Method, Freshly Picked Cherries Are Spread On Wide Surfaces To Dry
+                </span>
+                <span className="block whitespace-nowrap">
+                  Whole In The Sun, Then Hulled To Remove The Skin And Pulp. Slow And Low-Input, It Brings A
+                </span>
+                <span className="block whitespace-nowrap">
+                  Fuller Body And Fruit-Forward Sweetness, And It Rewards Careful, Consistent Drying.
+                </span>
+              </p>
+            </div>
+          </div>
 
-              {/* Description: Positioned DIRECTLY under Image 1, right-aligned to Image 1's right edge, extending left in 3 lines */}
-              <div
-                className="absolute z-20"
+          {/* Column 1: Washed Process (Text above + Image 2) */}
+          <div
+            className="absolute top-0 left-0 shrink-0 flex flex-col justify-end items-start"
+            style={{
+              width: activeCoffeeSlide === 2 ? "var(--w-con)" : "var(--w-exp2)",
+              transform:
+                activeCoffeeSlide === 0
+                  ? "translateX(calc(var(--offset-0) + var(--w-exp) + var(--gap)))"
+                  : activeCoffeeSlide === 1
+                  ? "translateX(calc((100vw - 5.556vw - var(--w-exp2)) / 2))"
+                  : "translateX(calc(var(--w-con) + var(--gap)))",
+              transition:
+                "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+              willChange: "transform, width",
+              zIndex: activeCoffeeSlide === 1 ? 30 : 10,
+            }}
+            onMouseEnter={() => setActiveCoffeeSlide(1)}
+            onClick={() => setActiveCoffeeSlide(1)}
+          >
+            {/* Washed Process Text (Positioned above Image 2, left-aligned in 2 lines) */}
+            <div
+              className="w-full flex flex-col items-start text-left overflow-visible mb-3"
+              style={{
+                opacity: activeCoffeeSlide === 1 ? 1 : 0,
+                transform:
+                  activeCoffeeSlide === 1
+                    ? "translateX(0) translateY(0)"
+                    : activeCoffeeSlide === 2
+                    ? "translateX(-60px)"
+                    : "translateY(-30px)",
+                transition:
+                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                pointerEvents: activeCoffeeSlide === 1 ? "auto" : "none",
+                minHeight: "clamp(75px, 9vh, 95px)",
+              }}
+            >
+              <h3
+                className="m-0 text-white select-none whitespace-nowrap"
                 style={{
-                  top: "calc(var(--img-h) + clamp(10px, 1.5vh, 16px))",
-                  right: 0,
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(22px, 2.6vw, 40px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "left",
+                }}
+              >
+                Washed Process (Wet Method)
+              </h3>
+              <p
+                className="m-0 select-none text-left"
+                style={{
+                  marginTop: "8px",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(11px, 0.95vw, 15px)",
+                  lineHeight: "135%",
+                  letterSpacing: "0%",
+                  color: "#DBDBDB",
                   width: "max-content",
-                  maxWidth: "calc(var(--offset-0) + var(--w-exp) - 2.778vw)",
-                  opacity: activeCoffeeSlide === 0 ? 1 : 0,
-                  transform:
-                    activeCoffeeSlide === 0
-                      ? "translateY(0)"
-                      : "translateY(30px)",
-                  transition:
-                    "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
-                  pointerEvents: activeCoffeeSlide === 0 ? "auto" : "none",
+                  maxWidth: "clamp(520px, 55vw, 760px)",
                 }}
               >
-                <p
-                  className="m-0 select-none text-right"
-                  style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(11px, 0.95vw, 15px)",
-                    lineHeight: "135%",
-                    letterSpacing: "0%",
-                    color: "#DBDBDB",
-                  }}
-                >
-                  <span className="block whitespace-nowrap">
-                    In This Time-Tested Method, Freshly Picked Cherries Are Spread On Wide Surfaces To Dry
-                  </span>
-                  <span className="block whitespace-nowrap">
-                    Whole In The Sun, Then Hulled To Remove The Skin And Pulp. Slow And Low-Input, It Brings A
-                  </span>
-                  <span className="block whitespace-nowrap">
-                    Fuller Body And Fruit-Forward Sweetness, And It Rewards Careful, Consistent Drying.
-                  </span>
-                </p>
-              </div>
+                <span className="block whitespace-nowrap">
+                  Here, The Skin And Pulp Are Removed Soon After Harvest, And The Beans Are Soaked And Washed In Clean Water Before Drying.
+                </span>
+                <span className="block whitespace-nowrap">
+                  The Result Is A Clean, Bright And Consistent Cup. It Is The Most Water-Intensive Of The Three Methods, Which Makes Water Management Part Of Quality.
+                </span>
+              </p>
             </div>
 
-            {/* Column 1: Washed Process (Text above + Image 2) */}
+            {/* Image 2 Container */}
             <div
-              className="relative shrink-0 flex flex-col justify-end items-end"
+              className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
               style={{
-                width: activeCoffeeSlide === 2 ? "var(--w-con)" : "var(--w-exp2)",
-                transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
-                willChange: "width",
+                height: "var(--img-h)",
               }}
-              onMouseEnter={() => setActiveCoffeeSlide(1)}
-              onClick={() => setActiveCoffeeSlide(1)}
             >
-              {/* Washed Process Text (Positioned above Image 2, right-aligned in 2 lines) */}
-              <div
-                className="w-full flex flex-col items-end text-right overflow-visible mb-3"
-                style={{
-                  opacity: activeCoffeeSlide === 1 ? 1 : 0,
-                  transform:
-                    activeCoffeeSlide === 1
-                      ? "translateX(0) translateY(0)"
-                      : activeCoffeeSlide === 2
-                      ? "translateX(-80px)"
-                      : "translateY(-30px)",
-                  transition:
-                    "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
-                  pointerEvents: activeCoffeeSlide === 1 ? "auto" : "none",
-                  minHeight: "clamp(75px, 9vh, 95px)",
-                }}
-              >
-                <h3
-                  className="m-0 text-white select-none whitespace-nowrap"
-                  style={{
-                    fontFamily: "var(--font-monschone), serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(22px, 2.6vw, 40px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                    textAlign: "right",
-                  }}
-                >
-                  Washed Process (Wet Method)
-                </h3>
-                <p
-                  className="m-0 select-none text-right"
-                  style={{
-                    marginTop: "8px",
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(11px, 0.95vw, 15px)",
-                    lineHeight: "135%",
-                    letterSpacing: "0%",
-                    color: "#DBDBDB",
-                    width: "max-content",
-                    maxWidth: "clamp(520px, 55vw, 760px)",
-                  }}
-                >
-                  <span className="block whitespace-nowrap">
-                    Here, The Skin And Pulp Are Removed Soon After Harvest, And The Beans Are Soaked And Washed In Clean Water Before Drying.
-                  </span>
-                  <span className="block whitespace-nowrap">
-                    The Result Is A Clean, Bright And Consistent Cup. It Is The Most Water-Intensive Of The Three Methods, Which Makes Water Management Part Of Quality.
-                  </span>
-                </p>
-              </div>
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e91fa152-3598-45a8-fb98-83c5c7f99400/public"
+                alt="Washed Process Wet Method Hands Washing Cherries in Water"
+                fill
+                unoptimized
+                sizes="(max-width: 768px) 100vw, 640px"
+                className="object-cover select-none pointer-events-none"
+              />
+            </div>
+          </div>
 
-              {/* Image 2 Container */}
-              <div
-                className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
+          {/* Column 2: Honey Process (Text above + Image 3) */}
+          <div
+            className="absolute top-0 left-0 shrink-0 flex flex-col justify-end items-end"
+            style={{
+              width: activeCoffeeSlide === 2 ? "var(--w-exp)" : "var(--w-con)",
+              transform:
+                activeCoffeeSlide === 0
+                  ? "translateX(calc(var(--offset-0) + var(--w-exp) + var(--gap) + var(--w-exp2) + var(--gap)))"
+                  : activeCoffeeSlide === 1
+                  ? "translateX(calc(100vw - 5.556vw - var(--w-con)))"
+                  : "translateX(calc(100vw - 5.556vw - var(--w-exp)))",
+              transition:
+                "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), width 1000ms cubic-bezier(0.16, 1, 0.3, 1), opacity 800ms cubic-bezier(0.16, 1, 0.3, 1)",
+              opacity: activeCoffeeSlide === 0 ? 0 : 1,
+              pointerEvents: activeCoffeeSlide === 0 ? "none" : "auto",
+              willChange: "transform, width, opacity",
+              zIndex: activeCoffeeSlide === 2 ? 30 : 10,
+            }}
+            onMouseEnter={() => setActiveCoffeeSlide(2)}
+            onClick={() => setActiveCoffeeSlide(2)}
+          >
+            {/* Semi-Washed or Honey Process Text (Positioned above Image 3, right-aligned in 2 lines) */}
+            <div
+              className="w-full flex flex-col items-end text-right overflow-visible mb-3"
+              style={{
+                opacity: activeCoffeeSlide === 2 ? 1 : 0,
+                transform:
+                  activeCoffeeSlide === 2
+                    ? "translateX(0) translateY(0)"
+                    : activeCoffeeSlide === 1
+                    ? "translateX(60px)"
+                    : "translateY(-30px)",
+                transition:
+                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                pointerEvents: activeCoffeeSlide === 2 ? "auto" : "none",
+                minHeight: "clamp(75px, 9vh, 95px)",
+              }}
+            >
+              <h3
+                className="m-0 text-white select-none whitespace-nowrap"
                 style={{
-                  height: "var(--img-h)",
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(22px, 2.6vw, 40px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "right",
                 }}
               >
-                <Image
-                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e91fa152-3598-45a8-fb98-83c5c7f99400/public"
-                  alt="Washed Process Wet Method Hands Washing Cherries in Water"
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 100vw, 640px"
-                  className="object-cover select-none pointer-events-none"
-                />
-              </div>
+                Semi-Washed or Honey Process
+              </h3>
+              <p
+                className="m-0 select-none text-right"
+                style={{
+                  marginTop: "8px",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(11px, 0.95vw, 15px)",
+                  lineHeight: "135%",
+                  letterSpacing: "0%",
+                  color: "#DBDBDB",
+                  width: "max-content",
+                  maxWidth: "clamp(520px, 55vw, 760px)",
+                }}
+              >
+                <span className="block whitespace-nowrap">
+                  The Skin Is Removed, But Part Of The Sticky Fruit Layer Stays On The Bean As It Dries.
+                </span>
+                <span className="block whitespace-nowrap">
+                  The Result Is A Cup With The Sweetness Of A Natural And More Of The Clarity Of A Washed, With Lower Water Use Than The Full Wet Method.
+                </span>
+              </p>
             </div>
 
-            {/* Column 2: Honey Process (Text above + Image 3) */}
+            {/* Image 3 Container */}
             <div
-              className="relative shrink-0 flex flex-col justify-end items-end"
+              className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
               style={{
-                width: activeCoffeeSlide === 2 ? "var(--w-exp)" : "var(--w-con)",
-                transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1), opacity 800ms cubic-bezier(0.16, 1, 0.3, 1)",
-                opacity: activeCoffeeSlide === 0 ? 0 : 1,
-                pointerEvents: activeCoffeeSlide === 0 ? "none" : "auto",
-                willChange: "width, opacity",
+                height: "var(--img-h)",
               }}
-              onMouseEnter={() => setActiveCoffeeSlide(2)}
-              onClick={() => setActiveCoffeeSlide(2)}
             >
-              {/* Semi-Washed or Honey Process Text (Positioned above Image 3, right-aligned in 2 lines) */}
-              <div
-                className="w-full flex flex-col items-end text-right overflow-visible mb-3"
-                style={{
-                  opacity: activeCoffeeSlide === 2 ? 1 : 0,
-                  transform:
-                    activeCoffeeSlide === 2
-                      ? "translateX(0) translateY(0)"
-                      : activeCoffeeSlide === 1
-                      ? "translateX(80px)"
-                      : "translateY(-30px)",
-                  transition:
-                    "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
-                  pointerEvents: activeCoffeeSlide === 2 ? "auto" : "none",
-                  minHeight: "clamp(75px, 9vh, 95px)",
-                }}
-              >
-                <h3
-                  className="m-0 text-white select-none whitespace-nowrap"
-                  style={{
-                    fontFamily: "var(--font-monschone), serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(22px, 2.6vw, 40px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                    textAlign: "right",
-                  }}
-                >
-                  Semi-Washed or Honey Process
-                </h3>
-                <p
-                  className="m-0 select-none text-right"
-                  style={{
-                    marginTop: "8px",
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(11px, 0.95vw, 15px)",
-                    lineHeight: "135%",
-                    letterSpacing: "0%",
-                    color: "#DBDBDB",
-                    width: "max-content",
-                    maxWidth: "clamp(520px, 55vw, 760px)",
-                  }}
-                >
-                  <span className="block whitespace-nowrap">
-                    The Skin Is Removed, But Part Of The Sticky Fruit Layer Stays On The Bean As It Dries.
-                  </span>
-                  <span className="block whitespace-nowrap">
-                    The Result Is A Cup With The Sweetness Of A Natural And More Of The Clarity Of A Washed, With Lower Water Use Than The Full Wet Method.
-                  </span>
-                </p>
-              </div>
-
-              {/* Image 3 Container */}
-              <div
-                className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
-                style={{
-                  height: "var(--img-h)",
-                }}
-              >
-                <Image
-                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/256b619b-b2c8-42db-df09-f94d7fd94a00/public"
-                  alt="Semi-Washed or Honey Process Handful of Beans"
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 100vw, 418px"
-                  className="object-cover select-none pointer-events-none"
-                />
-              </div>
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/256b619b-b2c8-42db-df09-f94d7fd94a00/public"
+                alt="Semi-Washed or Honey Process Handful of Beans"
+                fill
+                unoptimized
+                sizes="(max-width: 768px) 100vw, 418px"
+                className="object-cover select-none pointer-events-none"
+              />
             </div>
           </div>
         </div>
