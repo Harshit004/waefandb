@@ -1,11 +1,57 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
 
 export default function LorientalisSourcingPage() {
+  // Rooted In Community dynamic precedence gallery state (defaults to index 3, the middle focal image)
+  const [activeCol, setActiveCol] = useState<number | null>(null);
+  const [activeStackedChoice, setActiveStackedChoice] = useState<"top" | "bottom">("top");
+  const effectiveActiveCol = activeCol !== null ? activeCol : 3;
+
+  // Precedence-based sizing for the 7 columns in Rooted in Community
+  const getColDimensions = (colIndex: number) => {
+    const d = Math.abs(colIndex - effectiveActiveCol);
+
+    if (d === 0) {
+      // ACTIVE: Grows as big as the middle one (501x511)
+      return {
+        width: "clamp(260px, 34.792vw, 501px)",
+        height: "clamp(265px, 35.486vw, 511px)",
+        aspectRatio: "501 / 511",
+        zIndex: 30,
+        opacity: 1,
+        borderColor: "rgba(255, 255, 255, 0.6)",
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 255, 255, 0.1)",
+      };
+    }
+
+    if (d === 1) {
+      // Tier 1 Precedence: Medium (158x185)
+      return {
+        width: "clamp(82px, 10.972vw, 158px)",
+        height: "clamp(96px, 12.847vw, 185px)",
+        aspectRatio: "158 / 185",
+        zIndex: 20,
+        opacity: 0.85,
+        borderColor: "rgba(255, 255, 255, 0.25)",
+        boxShadow: "0 15px 30px -10px rgba(0, 0, 0, 0.7)",
+      };
+    }
+
+    // Tier 2+ Precedence: Smaller (91x106)
+    return {
+      width: "clamp(48px, 6.319vw, 91px)",
+      height: "clamp(56px, 7.361vw, 106px)",
+      aspectRatio: "91 / 106",
+      zIndex: 10,
+      opacity: d === 2 ? 0.65 : 0.45,
+      borderColor: "rgba(255, 255, 255, 0.12)",
+      boxShadow: "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
+    };
+  };
 
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-[#365944] selection:text-white">
@@ -417,14 +463,16 @@ export default function LorientalisSourcingPage() {
           ========================================================================= */}
       <section
         id="community-growers"
-        className="w-full pt-[clamp(48px,6vw,96px)] pb-[clamp(40px,5vw,80px)] flex flex-col items-center"
-        style={{
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
-        }}
+        className="w-full pt-[clamp(48px,6vw,96px)] pb-[clamp(40px,5vw,80px)] flex flex-col items-center overflow-x-clip"
       >
-        {/* Centered Heading Block */}
-        <div className="max-w-[820px] mx-auto text-center flex flex-col items-center select-none">
+        {/* Centered Heading Block with Section Padding */}
+        <div
+          className="max-w-[820px] mx-auto text-center flex flex-col items-center select-none"
+          style={{
+            paddingLeft: "2.778vw",
+            paddingRight: "2.778vw",
+          }}
+        >
           <span
             className="text-[#FFFFFFB3] text-[14px] sm:text-[16px] mb-2 font-normal"
             style={{ fontFamily: "var(--font-manrope), sans-serif" }}
@@ -457,203 +505,402 @@ export default function LorientalisSourcingPage() {
           </p>
         </div>
 
-        {/* Multi-Photo Collage / Growers Gallery (7 Columns matching screenshot design) */}
-        <div className="w-full mt-[clamp(36px,4.5vw,72px)] overflow-x-auto md:overflow-x-visible select-none flex items-center justify-center group/gallery py-4">
+        {/* Multi-Photo Collage / Growers Gallery (Interactive Accordion: First/Last half-cropped, hover expands to middle size) */}
+        <div
+          className="relative w-screen left-1/2 -translate-x-1/2 mt-[clamp(36px,4.5vw,72px)] overflow-x-hidden select-none flex items-center justify-center py-8"
+          onMouseLeave={() => {
+            setActiveCol(null);
+            setActiveStackedChoice("top");
+          }}
+        >
           <div
             className="flex items-center justify-center shrink-0"
             style={{
-              gap: "clamp(12px, 2.222vw, 32px)",
-              paddingLeft: "clamp(12px, 2.778vw, 40px)",
-              paddingRight: "clamp(12px, 2.778vw, 40px)",
+              gap: "clamp(16px, calc((100vw - 1090px) / 6), 56px)",
+              transform:
+                effectiveActiveCol === 0
+                  ? "translateX(clamp(120px, 16vw, 220px))"
+                  : effectiveActiveCol === 6
+                  ? "translateX(clamp(-220px, -16vw, -120px))"
+                  : "translateX(0px)",
+              transition: "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
             }}
           >
-            {/* Column 1: Far-Left Image (91x106) */}
-            <div
-              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
-              style={{
-                width: "clamp(48px, 6.319vw, 91px)",
-                aspectRatio: "91 / 106",
-              }}
-            >
-              <Image
-                src="/lorientalis/sourcing/grower-drying-bed.jpg"
-                alt="Grower harvesting"
-                fill
-                unoptimized
-                sizes="91px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </div>
+            {/* Column 0: Far-Left Image (Half-cropped on resting edge, grows on hover) */}
+            {(() => {
+              const dim = getColDimensions(0);
+              return (
+                <div
+                  className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                  style={{
+                    width: dim.width,
+                    height: dim.height,
+                    aspectRatio: dim.aspectRatio,
+                    zIndex: dim.zIndex,
+                    opacity: dim.opacity,
+                    borderColor: dim.borderColor,
+                    boxShadow: dim.boxShadow,
+                    transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                  onMouseEnter={() => setActiveCol(0)}
+                >
+                  <Image
+                    src="/lorientalis/sourcing/grower-drying-bed.jpg"
+                    alt="Grower harvesting"
+                    fill
+                    unoptimized
+                    sizes="501px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                </div>
+              );
+            })()}
 
-            {/* Column 2: 2 in a column (each 91x106 with 40px gap between them) */}
-            <div
-              className="flex flex-col shrink-0 items-center justify-center"
-              style={{
-                rowGap: "clamp(16px, 2.778vw, 40px)",
-              }}
-            >
-              {/* Top: 91x106 */}
-              <div
-                className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
-                style={{
-                  width: "clamp(48px, 6.319vw, 91px)",
-                  aspectRatio: "91 / 106",
-                }}
-              >
-                <Image
-                  src="/lorientalis/sourcing/grower-harvest-basket.jpg"
-                  alt="Drying Bed on Burlap"
-                  fill
-                  unoptimized
-                  sizes="91px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </div>
+            {/* Column 1: Stacked images in resting state, expands on hover */}
+            {(() => {
+              const d1 = Math.abs(1 - effectiveActiveCol);
+              const dim = getColDimensions(1);
 
-              {/* Bottom: 91x106 */}
-              <div
-                className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
-                style={{
-                  width: "clamp(48px, 6.319vw, 91px)",
-                  aspectRatio: "91 / 106",
-                }}
-              >
-                <Image
-                  src="/lorientalis/sourcing/grower-sorting-beans.jpg"
-                  alt="Farmer Sorting Cherries"
-                  fill
-                  unoptimized
-                  sizes="91px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </div>
-            </div>
+              if (d1 <= 1) {
+                const showTop = d1 === 0 ? activeStackedChoice === "top" : true;
+                const imgSrc = showTop
+                  ? "/lorientalis/sourcing/grower-harvest-basket.jpg"
+                  : "/lorientalis/sourcing/grower-sorting-beans.jpg";
+                const imgAlt = showTop
+                  ? "Ripe Harvest Cherries Basket"
+                  : "Farmer Sorting Cherries";
 
-            {/* Column 3: Left Medium Portrait (158x185) */}
-            <div
-              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
-              style={{
-                width: "clamp(82px, 10.972vw, 158px)",
-                aspectRatio: "158 / 185",
-              }}
-            >
-              <Image
-                src="/lorientalis/sourcing/grower-plucking-cherries.jpg"
-                alt="Plucking Ripe Cherries"
-                fill
-                unoptimized
-                sizes="158px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </div>
+                return (
+                  <div
+                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                    style={{
+                      width: dim.width,
+                      height: dim.height,
+                      aspectRatio: dim.aspectRatio,
+                      zIndex: dim.zIndex,
+                      opacity: dim.opacity,
+                      borderColor: dim.borderColor,
+                      boxShadow: dim.boxShadow,
+                      transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                    }}
+                    onMouseEnter={() => setActiveCol(1)}
+                  >
+                    <Image
+                      src={imgSrc}
+                      alt={imgAlt}
+                      fill
+                      unoptimized
+                      sizes="501px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                );
+              }
 
-            {/* Column 4: Central Focal Image (501x511) */}
-            <div
-              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-[1.03] hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
-              style={{
-                width: "clamp(260px, 34.792vw, 501px)",
-                aspectRatio: "501 / 511",
-              }}
-            >
-              <Image
-                src="/lorientalis/sourcing/grower-focal-portrait.jpg"
-                alt="Community Tea Harvester"
-                fill
-                priority
-                unoptimized
-                sizes="(max-width: 768px) 280px, 501px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </div>
+              return (
+                <div
+                  className="flex flex-col shrink-0 items-center justify-center"
+                  style={{
+                    rowGap: "clamp(16px, 2.778vw, 40px)",
+                    width: dim.width,
+                    zIndex: dim.zIndex,
+                    opacity: dim.opacity,
+                    transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                >
+                  {/* Top: 91x106 */}
+                  <div
+                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                    style={{
+                      width: dim.width,
+                      height: dim.height,
+                      aspectRatio: dim.aspectRatio,
+                      borderColor: dim.borderColor,
+                      boxShadow: dim.boxShadow,
+                      transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                    }}
+                    onMouseEnter={() => {
+                      setActiveCol(1);
+                      setActiveStackedChoice("top");
+                    }}
+                  >
+                    <Image
+                      src="/lorientalis/sourcing/grower-harvest-basket.jpg"
+                      alt="Ripe Harvest Cherries Basket"
+                      fill
+                      unoptimized
+                      sizes="91px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
 
-            {/* Column 5: Right Medium Portrait (158x185) */}
-            <div
-              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
-              style={{
-                width: "clamp(82px, 10.972vw, 158px)",
-                aspectRatio: "158 / 185",
-              }}
-            >
-              <Image
-                src="/lorientalis/sourcing/grower-smiling-foliage.jpg"
-                alt="Estate Worker in Coffee Foliage"
-                fill
-                unoptimized
-                sizes="158px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </div>
+                  {/* Bottom: 91x106 */}
+                  <div
+                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                    style={{
+                      width: dim.width,
+                      height: dim.height,
+                      aspectRatio: dim.aspectRatio,
+                      borderColor: dim.borderColor,
+                      boxShadow: dim.boxShadow,
+                      transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                    }}
+                    onMouseEnter={() => {
+                      setActiveCol(1);
+                      setActiveStackedChoice("bottom");
+                    }}
+                  >
+                    <Image
+                      src="/lorientalis/sourcing/grower-sorting-beans.jpg"
+                      alt="Farmer Sorting Cherries"
+                      fill
+                      unoptimized
+                      sizes="91px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                </div>
+              );
+            })()}
 
-            {/* Column 6: 2 in a column (each 91x106 with 40px gap between them) */}
-            <div
-              className="flex flex-col shrink-0 items-center justify-center"
-              style={{
-                rowGap: "clamp(16px, 2.778vw, 40px)",
-              }}
-            >
-              {/* Top: 91x106 */}
-              <div
-                className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
-                style={{
-                  width: "clamp(48px, 6.319vw, 91px)",
-                  aspectRatio: "91 / 106",
-                }}
-              >
-                <Image
-                  src="/lorientalis/sourcing/grower-raking-cherries.jpg"
-                  alt="Plucking Ripe Cherries"
-                  fill
-                  unoptimized
-                  sizes="91px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </div>
+            {/* Column 2: Left Medium Portrait in resting state (158x185) */}
+            {(() => {
+              const dim = getColDimensions(2);
+              return (
+                <div
+                  className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                  style={{
+                    width: dim.width,
+                    height: dim.height,
+                    aspectRatio: dim.aspectRatio,
+                    zIndex: dim.zIndex,
+                    opacity: dim.opacity,
+                    borderColor: dim.borderColor,
+                    boxShadow: dim.boxShadow,
+                    transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                  onMouseEnter={() => setActiveCol(2)}
+                >
+                  <Image
+                    src="/lorientalis/sourcing/grower-plucking-cherries.jpg"
+                    alt="Plucking Ripe Cherries"
+                    fill
+                    unoptimized
+                    sizes="501px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                </div>
+              );
+            })()}
 
-              {/* Bottom: 91x106 */}
-              <div
-                className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
-                style={{
-                  width: "clamp(48px, 6.319vw, 91px)",
-                  aspectRatio: "91 / 106",
-                }}
-              >
-                <Image
-                  src="/lorientalis/sourcing/grower-harvest-basket.jpg"
-                  alt="Raking Coffee Cherries on Raised Beds"
-                  fill
-                  unoptimized
-                  sizes="91px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </div>
-            </div>
+            {/* Column 3: Central Focal Image (501x511 in resting state) */}
+            {(() => {
+              const dim = getColDimensions(3);
+              return (
+                <div
+                  className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                  style={{
+                    width: dim.width,
+                    height: dim.height,
+                    aspectRatio: dim.aspectRatio,
+                    zIndex: dim.zIndex,
+                    opacity: dim.opacity,
+                    borderColor: dim.borderColor,
+                    boxShadow: dim.boxShadow,
+                    transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                  onMouseEnter={() => setActiveCol(3)}
+                >
+                  <Image
+                    src="/lorientalis/sourcing/grower-focal-portrait.jpg"
+                    alt="Community Tea Harvester"
+                    fill
+                    priority
+                    unoptimized
+                    sizes="(max-width: 768px) 280px, 501px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                </div>
+              );
+            })()}
 
-            {/* Column 7: Far-Right Image (91x106) */}
-            <div
-              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
-              style={{
-                width: "clamp(48px, 6.319vw, 91px)",
-                aspectRatio: "91 / 106",
-              }}
-            >
-              <Image
-                src="/lorientalis/sourcing/grower-drying-bed.jpg"
-                alt="Estate Preview"
-                fill
-                unoptimized
-                sizes="91px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </div>
+            {/* Column 4: Right Medium Portrait in resting state (158x185) */}
+            {(() => {
+              const dim = getColDimensions(4);
+              return (
+                <div
+                  className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                  style={{
+                    width: dim.width,
+                    height: dim.height,
+                    aspectRatio: dim.aspectRatio,
+                    zIndex: dim.zIndex,
+                    opacity: dim.opacity,
+                    borderColor: dim.borderColor,
+                    boxShadow: dim.boxShadow,
+                    transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                  onMouseEnter={() => setActiveCol(4)}
+                >
+                  <Image
+                    src="/lorientalis/sourcing/grower-smiling-foliage.jpg"
+                    alt="Estate Worker in Coffee Foliage"
+                    fill
+                    unoptimized
+                    sizes="501px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                </div>
+              );
+            })()}
+
+            {/* Column 5: Stacked images in resting state, expands on hover */}
+            {(() => {
+              const d5 = Math.abs(5 - effectiveActiveCol);
+              const dim = getColDimensions(5);
+
+              if (d5 <= 1) {
+                const showTop = d5 === 0 ? activeStackedChoice === "top" : true;
+                const imgSrc = showTop
+                  ? "/lorientalis/sourcing/grower-raking-cherries.jpg"
+                  : "/lorientalis/sourcing/grower-harvest-basket.jpg";
+                const imgAlt = showTop
+                  ? "Plucking Ripe Cherries"
+                  : "Raking Coffee Cherries on Raised Beds";
+
+                return (
+                  <div
+                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                    style={{
+                      width: dim.width,
+                      height: dim.height,
+                      aspectRatio: dim.aspectRatio,
+                      zIndex: dim.zIndex,
+                      opacity: dim.opacity,
+                      borderColor: dim.borderColor,
+                      boxShadow: dim.boxShadow,
+                      transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                    }}
+                    onMouseEnter={() => setActiveCol(5)}
+                  >
+                    <Image
+                      src={imgSrc}
+                      alt={imgAlt}
+                      fill
+                      unoptimized
+                      sizes="501px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                );
+              }
+
+              return (
+                <div
+                  className="flex flex-col shrink-0 items-center justify-center"
+                  style={{
+                    rowGap: "clamp(16px, 2.778vw, 40px)",
+                    width: dim.width,
+                    zIndex: dim.zIndex,
+                    opacity: dim.opacity,
+                    transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                >
+                  {/* Top: 91x106 */}
+                  <div
+                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                    style={{
+                      width: dim.width,
+                      height: dim.height,
+                      aspectRatio: dim.aspectRatio,
+                      borderColor: dim.borderColor,
+                      boxShadow: dim.boxShadow,
+                      transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                    }}
+                    onMouseEnter={() => {
+                      setActiveCol(5);
+                      setActiveStackedChoice("top");
+                    }}
+                  >
+                    <Image
+                      src="/lorientalis/sourcing/grower-raking-cherries.jpg"
+                      alt="Plucking Ripe Cherries"
+                      fill
+                      unoptimized
+                      sizes="91px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
+
+                  {/* Bottom: 91x106 */}
+                  <div
+                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                    style={{
+                      width: dim.width,
+                      height: dim.height,
+                      aspectRatio: dim.aspectRatio,
+                      borderColor: dim.borderColor,
+                      boxShadow: dim.boxShadow,
+                      transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                    }}
+                    onMouseEnter={() => {
+                      setActiveCol(5);
+                      setActiveStackedChoice("bottom");
+                    }}
+                  >
+                    <Image
+                      src="/lorientalis/sourcing/grower-harvest-basket.jpg"
+                      alt="Raking Coffee Cherries on Raised Beds"
+                      fill
+                      unoptimized
+                      sizes="91px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Column 6: Far-Right Image (Half-cropped on resting edge, grows on hover) */}
+            {(() => {
+              const dim = getColDimensions(6);
+              return (
+                <div
+                  className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border"
+                  style={{
+                    width: dim.width,
+                    height: dim.height,
+                    aspectRatio: dim.aspectRatio,
+                    zIndex: dim.zIndex,
+                    opacity: dim.opacity,
+                    borderColor: dim.borderColor,
+                    boxShadow: dim.boxShadow,
+                    transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                  onMouseEnter={() => setActiveCol(6)}
+                >
+                  <Image
+                    src="/lorientalis/sourcing/grower-drying-bed.jpg"
+                    alt="Estate Preview"
+                    fill
+                    unoptimized
+                    sizes="501px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                </div>
+              );
+            })()}
           </div>
         </div>
       </section>
