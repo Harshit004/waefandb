@@ -845,21 +845,20 @@ export default function LorientalisSourcingPage() {
         </div>
 
         {/* Row of Content: All bottom-aligned matching video */}
-        <div
-          className="relative z-10 w-full flex items-end overflow-visible"
-          style={{
-            gap: "clamp(16px, 2vw, 32px)",
-          }}
-        >
+        <div className="relative z-10 w-full flex items-end overflow-visible">
           {/* Slot 0: Left text for Natural Process (only expanded when activeCoffeeSlide === 0) */}
           <div
             className="flex flex-col justify-end shrink-0 overflow-hidden"
             style={{
               width: activeCoffeeSlide === 0 ? "clamp(280px, 26vw, 420px)" : "0px",
+              marginRight: activeCoffeeSlide === 0 ? "clamp(16px, 2.2vw, 36px)" : "0px",
               opacity: activeCoffeeSlide === 0 ? 1 : 0,
-              transform: activeCoffeeSlide === 0 ? "translateX(0)" : "translateX(-30px)",
+              transform:
+                activeCoffeeSlide === 0
+                  ? "translateX(0) translateY(0)"
+                  : "translateY(40px)",
               transition:
-                "width 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+                "width 1000ms cubic-bezier(0.16, 1, 0.3, 1), margin-right 1000ms cubic-bezier(0.16, 1, 0.3, 1), opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
               pointerEvents: activeCoffeeSlide === 0 ? "auto" : "none",
               paddingBottom: "clamp(12px, 2vh, 24px)",
             }}
@@ -905,12 +904,13 @@ export default function LorientalisSourcingPage() {
                   ? "clamp(300px, 32vw, 460px)"
                   : activeCoffeeSlide === 1
                   ? "clamp(110px, 10vw, 150px)"
-                  : "clamp(80px, 7vw, 110px)",
+                  : "clamp(75px, 6.5vw, 100px)",
               height: "clamp(420px, 58vh, 560px)",
-              transition: "width 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+              transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
               willChange: "width",
             }}
             onMouseEnter={() => setActiveCoffeeSlide(0)}
+            onClick={() => setActiveCoffeeSlide(0)}
           >
             <Image
               src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/dbaee4e4-224c-4aba-77e6-d9f48d8a6100/public"
@@ -926,24 +926,32 @@ export default function LorientalisSourcingPage() {
           <div
             className="flex flex-col justify-end shrink-0"
             style={{
+              marginLeft: "clamp(16px, 2.2vw, 36px)",
               width:
                 activeCoffeeSlide === 1
-                  ? "clamp(360px, 40vw, 580px)"
+                  ? "clamp(380px, 42vw, 600px)"
                   : activeCoffeeSlide === 0
-                  ? "clamp(220px, 24vw, 350px)"
-                  : "clamp(140px, 13vw, 200px)",
-              transition: "width 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+                  ? "clamp(200px, 22vw, 320px)"
+                  : "clamp(95px, 8.5vw, 135px)",
+              transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
               willChange: "width",
             }}
             onMouseEnter={() => setActiveCoffeeSlide(1)}
+            onClick={() => setActiveCoffeeSlide(1)}
           >
             {/* Washed Process Text (Positioned above image, right-aligned) */}
             <div
               className="w-full flex flex-col items-end text-right overflow-hidden mb-4"
               style={{
                 opacity: activeCoffeeSlide === 1 ? 1 : 0,
-                transform: activeCoffeeSlide === 1 ? "translateY(0)" : "translateY(16px)",
-                transition: "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                transform:
+                  activeCoffeeSlide === 1
+                    ? "translateX(0) translateY(0)"
+                    : activeCoffeeSlide === 2
+                    ? "translateX(-80px)"
+                    : "translateY(-30px)",
+                transition:
+                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
                 pointerEvents: activeCoffeeSlide === 1 ? "auto" : "none",
                 minHeight: "110px",
               }}
@@ -990,7 +998,7 @@ export default function LorientalisSourcingPage() {
                 alt="Washed Process Wet Method Hands Washing Cherries in Water"
                 fill
                 unoptimized
-                sizes="(max-width: 768px) 100vw, 580px"
+                sizes="(max-width: 768px) 100vw, 600px"
                 className="object-cover select-none pointer-events-none"
               />
             </div>
@@ -1000,24 +1008,34 @@ export default function LorientalisSourcingPage() {
           <div
             className="flex flex-col justify-end shrink-0"
             style={{
+              marginLeft: "clamp(16px, 2.2vw, 36px)",
               width:
                 activeCoffeeSlide === 2
-                  ? "clamp(340px, 35vw, 500px)"
+                  ? "calc(100% - clamp(75px, 6.5vw, 100px) - clamp(95px, 8.5vw, 135px) - 2 * clamp(16px, 2.2vw, 36px))"
                   : activeCoffeeSlide === 1
                   ? "clamp(180px, 18vw, 260px)"
-                  : "clamp(140px, 12vw, 180px)",
-              transition: "width 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+                  : "clamp(120px, 11vw, 160px)",
+              flex: activeCoffeeSlide === 2 ? "1 1 auto" : "0 0 auto",
+              transition:
+                "width 1000ms cubic-bezier(0.16, 1, 0.3, 1), flex 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
               willChange: "width",
             }}
             onMouseEnter={() => setActiveCoffeeSlide(2)}
+            onClick={() => setActiveCoffeeSlide(2)}
           >
-            {/* Honey Process Text (Positioned above image, right-aligned) */}
+            {/* Semi-Washed or Honey Process Text (Positioned above image, right-aligned) */}
             <div
               className="w-full flex flex-col items-end text-right overflow-hidden mb-4"
               style={{
                 opacity: activeCoffeeSlide === 2 ? 1 : 0,
-                transform: activeCoffeeSlide === 2 ? "translateY(0)" : "translateY(16px)",
-                transition: "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                transform:
+                  activeCoffeeSlide === 2
+                    ? "translateX(0) translateY(0)"
+                    : activeCoffeeSlide === 1
+                    ? "translateX(80px)"
+                    : "translateY(-30px)",
+                transition:
+                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
                 pointerEvents: activeCoffeeSlide === 2 ? "auto" : "none",
                 minHeight: "110px",
               }}
@@ -1033,7 +1051,7 @@ export default function LorientalisSourcingPage() {
                   textAlign: "right",
                 }}
               >
-                Honey Process (Hybrid Method)
+                Semi-Washed or Honey Process
               </h3>
               <p
                 className="m-0 select-none text-right"
@@ -1045,10 +1063,12 @@ export default function LorientalisSourcingPage() {
                   lineHeight: "120%",
                   letterSpacing: "0%",
                   color: "#DBDBDB",
-                  maxWidth: "480px",
+                  maxWidth: "680px",
                 }}
               >
-                Bridging Centuries-Old Tradition And Precision Milling, The Outer Skin Is Pulped While Leaving Mucilage On The Bean To Dry In The Sun. The Result Is A Syrupy Sweetness, Rounded Body, And Elegant Complexity Balancing Natural Richness With Washed Clarity.
+                The Skin Is Removed, But Part Of The Sticky Fruit Layer Stays On The Bean As It Dries.<br className="hidden md:inline" />
+                The Result Is A Cup With The Sweetness Of A Natural And More Of The Clarity Of A<br className="hidden md:inline" />
+                Washed, With Lower Water Use Than The Full Wet Method.
               </p>
             </div>
 
@@ -1056,15 +1076,15 @@ export default function LorientalisSourcingPage() {
             <div
               className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
               style={{
-                height: "clamp(400px, 54vh, 520px)",
+                height: "clamp(380px, 50vh, 480px)",
               }}
             >
               <Image
                 src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/256b619b-b2c8-42db-df09-f94d7fd94a00/public"
-                alt="Honey Process Hybrid Method Expanded Display"
+                alt="Semi-Washed or Honey Process Handful of Beans"
                 fill
                 unoptimized
-                sizes="(max-width: 768px) 100vw, 500px"
+                sizes="(max-width: 768px) 100vw, 800px"
                 className="object-cover select-none pointer-events-none"
               />
             </div>
