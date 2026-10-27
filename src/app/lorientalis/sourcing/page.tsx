@@ -247,13 +247,15 @@ export default function LorientalisSourcingPage() {
         className="w-full flex flex-col items-center overflow-x-clip"
         style={{
           marginTop: "clamp(56px, 8.26vw, 119px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
         }}
       >
         {/* Headings & Narrative Block */}
         <div
-          className="w-full max-w-[820px] mx-auto text-center flex flex-col items-center select-none"
+          className="w-full max-w-[1200px] mx-auto text-center flex flex-col items-center select-none"
+          style={{
+            paddingLeft: "2.778vw",
+            paddingRight: "2.778vw",
+          }}
         >
           <span
             className="block text-center select-none"
@@ -266,48 +268,45 @@ export default function LorientalisSourcingPage() {
               color: "#DBDBDB",
             }}
           >
-            Rooted in Community
+            Rooted In Community
           </span>
 
-          {/* 17px gap then Honouring the Growers Behind Every Cup */}
+          {/* 17px gap then Honouring The Growers Behind Every Cup (strictly ONE line) */}
           <h2
-            className="text-center select-none m-0"
+            className="text-center select-none m-0 whitespace-nowrap"
             style={{
               marginTop: "17px",
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
-              fontSize: "clamp(28px, 3.333vw, 48px)",
+              fontSize: "clamp(24px, 3.2vw, 48px)",
               lineHeight: "120%",
               letterSpacing: "0%",
               color: "#DBDBDB",
             }}
           >
-            Honouring the Growers Behind Every Cup
+            Honouring The Growers Behind Every Cup
           </h2>
 
-          {/* 98px gap then Reliable supply narrative */}
+          {/* 98px gap then Reliable supply narrative (strictly 3 lines on desktop) */}
           <p
-            className="text-center select-none m-0 mx-auto max-w-[820px]"
+            className="text-center select-none m-0 mx-auto max-w-[940px]"
             style={{
               marginTop: "clamp(48px, 6.8vw, 98px)",
               fontFamily: "'Helvetica', Arial, sans-serif",
               fontWeight: 400,
               fontSize: "clamp(15px, 1.25vw, 18px)",
-              lineHeight: "120%",
+              lineHeight: "150%",
               letterSpacing: "0%",
               color: "#DBDBDB",
             }}
           >
-            Reliable supply depends on the people who grow it. Across North East
-            India, we work with farming communities and estates, many of them
-            multi-generational, and look for ways to keep more value at the farm
-            gate. For our partners, that means stable supply, visibility from
-            farm to cup and a sourcing story that holds up in ESG and procurement
-            reviews.
+            Reliable Supply Depends On The People Who Grow It. Across North East India, We Work With Farming Communities And Estates,<br className="hidden md:inline" />
+            {" "}Many Of Them Multi-Generational, And Look For Ways To Keep More Value At The Farm Gate. For Our Partners, That Means Stable<br className="hidden md:inline" />
+            {" "}Supply, Visibility From Farm To Cup And A Sourcing Story That Holds Up In ESG And Procurement Reviews.
           </p>
         </div>
 
-        {/* 224px gap then the image grid (Interactive Accordion: First/Last half-cropped, hover expands) */}
+        {/* 224px gap then the image grid (Interactive Accordion: First/Last half-cropped, spans end-to-end of screen) */}
         <div
           className="relative w-screen left-1/2 -translate-x-1/2 overflow-x-hidden select-none flex items-center justify-center py-8"
           style={{
@@ -321,7 +320,7 @@ export default function LorientalisSourcingPage() {
           <div
             className="flex items-center justify-center shrink-0"
             style={{
-              gap: "clamp(16px, calc((100vw - 1090px) / 6), 56px)",
+              gap: "max(16px, calc((100vw - 1090px) / 6))",
               transform:
                 effectiveActiveCol === 0
                   ? "translateX(clamp(120px, 16vw, 220px))"
@@ -368,34 +367,56 @@ export default function LorientalisSourcingPage() {
               );
             })()}
 
-            {/* Column 1: Stacked images in resting state, expands on hover */}
+            {/* Column 1: Stacked images in resting state, expands on hover without hiding the other image */}
             {(() => {
               const d1 = Math.abs(1 - effectiveActiveCol);
-              const dim1 = getColDimensions(1);
-              const isTopCollapsed = d1 === 0 ? activeStackedChoice === "bottom" : false;
-              const isBottomCollapsed = d1 === 0 ? activeStackedChoice === "top" : d1 === 1;
+              const isColActive = effectiveActiveCol === 1;
+              const isTopActive = isColActive && activeStackedChoice === "top";
+              const isBottomActive = isColActive && activeStackedChoice === "bottom";
+
+              // Dimensions for active vs resting/tier
+              const activeW = "clamp(260px, 34.792vw, 501px)";
+              const activeH = "clamp(265px, 35.486vw, 511px)";
+              const smallW = d1 === 1 ? "clamp(60px, 8vw, 110px)" : "clamp(48px, 6.319vw, 91px)";
+              const smallH = d1 === 1 ? "clamp(70px, 9.3vw, 128px)" : "clamp(56px, 7.361vw, 106px)";
+
+              const topW = isTopActive ? activeW : smallW;
+              const topH = isTopActive ? activeH : smallH;
+              const topZ = isTopActive ? 30 : 10;
+              const topOpacity = isTopActive ? 1 : isBottomActive ? 0.75 : d1 === 1 ? 0.85 : 0.65;
+
+              const bottomW = isBottomActive ? activeW : smallW;
+              const bottomH = isBottomActive ? activeH : smallH;
+              const bottomZ = isBottomActive ? 30 : 10;
+              const bottomOpacity = isBottomActive ? 1 : isTopActive ? 0.75 : d1 === 1 ? 0.85 : 0.65;
+
+              const colW = isColActive ? activeW : smallW;
+              const colGap = isColActive ? "clamp(16px, 2vw, 24px)" : "clamp(16px, 2.778vw, 40px)";
 
               return (
                 <div
                   className="flex flex-col shrink-0 items-center justify-center"
                   style={{
-                    width: dim1.width,
-                    zIndex: dim1.zIndex,
-                    rowGap: d1 >= 2 ? "clamp(16px, 2.778vw, 40px)" : "0px",
+                    width: colW,
+                    zIndex: isColActive ? 30 : d1 === 1 ? 20 : 10,
+                    rowGap: colGap,
                     transition:
                       "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), row-gap 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                     willChange: "width",
                   }}
                 >
-                  {/* Top Image: grower-harvest-basket */}
+                  {/* Top Image: grower-raking-cherries */}
                   <div
                     className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
-                      width: dim1.width,
-                      height: isTopCollapsed ? 0 : dim1.height,
-                      opacity: isTopCollapsed ? 0 : dim1.opacity,
-                      boxShadow: isTopCollapsed ? "none" : dim1.boxShadow,
-                      pointerEvents: isTopCollapsed ? "none" : "auto",
+                      width: topW,
+                      height: topH,
+                      zIndex: topZ,
+                      opacity: topOpacity,
+                      boxShadow: isTopActive
+                        ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
+                        : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
+                      pointerEvents: "auto",
                       transition:
                         "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
                       willChange: "width, height",
@@ -407,8 +428,8 @@ export default function LorientalisSourcingPage() {
                     }}
                   >
                     <Image
-                      src="/lorientalis/sourcing/grower-harvest-basket.jpg"
-                      alt="Ripe Harvest Cherries Basket"
+                      src="/lorientalis/sourcing/grower-raking-cherries.jpg"
+                      alt="Raking Coffee Cherries on Raised Bed"
                       fill
                       unoptimized
                       sizes="501px"
@@ -421,11 +442,14 @@ export default function LorientalisSourcingPage() {
                   <div
                     className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
-                      width: dim1.width,
-                      height: isBottomCollapsed ? 0 : dim1.height,
-                      opacity: isBottomCollapsed ? 0 : dim1.opacity,
-                      boxShadow: isBottomCollapsed ? "none" : dim1.boxShadow,
-                      pointerEvents: isBottomCollapsed ? "none" : "auto",
+                      width: bottomW,
+                      height: bottomH,
+                      zIndex: bottomZ,
+                      opacity: bottomOpacity,
+                      boxShadow: isBottomActive
+                        ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
+                        : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
+                      pointerEvents: "auto",
                       transition:
                         "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
                       willChange: "width, height",
@@ -547,34 +571,56 @@ export default function LorientalisSourcingPage() {
               );
             })()}
 
-            {/* Column 5: Stacked images in resting state, expands on hover */}
+            {/* Column 5: Stacked images in resting state, expands on hover without hiding the other image */}
             {(() => {
               const d5 = Math.abs(5 - effectiveActiveCol);
-              const dim5 = getColDimensions(5);
-              const isTopCollapsed = d5 === 0 ? activeStackedChoice === "bottom" : false;
-              const isBottomCollapsed = d5 === 0 ? activeStackedChoice === "top" : d5 === 1;
+              const isColActive = effectiveActiveCol === 5;
+              const isTopActive = isColActive && activeStackedChoice === "top";
+              const isBottomActive = isColActive && activeStackedChoice === "bottom";
+
+              // Dimensions for active vs resting/tier
+              const activeW = "clamp(260px, 34.792vw, 501px)";
+              const activeH = "clamp(265px, 35.486vw, 511px)";
+              const smallW = d5 === 1 ? "clamp(60px, 8vw, 110px)" : "clamp(48px, 6.319vw, 91px)";
+              const smallH = d5 === 1 ? "clamp(70px, 9.3vw, 128px)" : "clamp(56px, 7.361vw, 106px)";
+
+              const topW = isTopActive ? activeW : smallW;
+              const topH = isTopActive ? activeH : smallH;
+              const topZ = isTopActive ? 30 : 10;
+              const topOpacity = isTopActive ? 1 : isBottomActive ? 0.75 : d5 === 1 ? 0.85 : 0.65;
+
+              const bottomW = isBottomActive ? activeW : smallW;
+              const bottomH = isBottomActive ? activeH : smallH;
+              const bottomZ = isBottomActive ? 30 : 10;
+              const bottomOpacity = isBottomActive ? 1 : isTopActive ? 0.75 : d5 === 1 ? 0.85 : 0.65;
+
+              const colW = isColActive ? activeW : smallW;
+              const colGap = isColActive ? "clamp(16px, 2vw, 24px)" : "clamp(16px, 2.778vw, 40px)";
 
               return (
                 <div
                   className="flex flex-col shrink-0 items-center justify-center"
                   style={{
-                    width: dim5.width,
-                    zIndex: dim5.zIndex,
-                    rowGap: d5 >= 2 ? "clamp(16px, 2.778vw, 40px)" : "0px",
+                    width: colW,
+                    zIndex: isColActive ? 30 : d5 === 1 ? 20 : 10,
+                    rowGap: colGap,
                     transition:
                       "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), row-gap 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                     willChange: "width",
                   }}
                 >
-                  {/* Top Image: grower-raking-cherries */}
+                  {/* Top Image: grower-harvest-basket */}
                   <div
                     className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
-                      width: dim5.width,
-                      height: isTopCollapsed ? 0 : dim5.height,
-                      opacity: isTopCollapsed ? 0 : dim5.opacity,
-                      boxShadow: isTopCollapsed ? "none" : dim5.boxShadow,
-                      pointerEvents: isTopCollapsed ? "none" : "auto",
+                      width: topW,
+                      height: topH,
+                      zIndex: topZ,
+                      opacity: topOpacity,
+                      boxShadow: isTopActive
+                        ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
+                        : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
+                      pointerEvents: "auto",
                       transition:
                         "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
                       willChange: "width, height",
@@ -586,8 +632,8 @@ export default function LorientalisSourcingPage() {
                     }}
                   >
                     <Image
-                      src="/lorientalis/sourcing/grower-raking-cherries.jpg"
-                      alt="Raking Coffee Cherries on Raised Beds"
+                      src="/lorientalis/sourcing/grower-harvest-basket.jpg"
+                      alt="Harvested Coffee Cherries"
                       fill
                       unoptimized
                       sizes="501px"
@@ -596,15 +642,18 @@ export default function LorientalisSourcingPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
 
-                  {/* Bottom Image: grower-harvest-basket */}
+                  {/* Bottom Image: grower-raking-cherries */}
                   <div
                     className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
-                      width: dim5.width,
-                      height: isBottomCollapsed ? 0 : dim5.height,
-                      opacity: isBottomCollapsed ? 0 : dim5.opacity,
-                      boxShadow: isBottomCollapsed ? "none" : dim5.boxShadow,
-                      pointerEvents: isBottomCollapsed ? "none" : "auto",
+                      width: bottomW,
+                      height: bottomH,
+                      zIndex: bottomZ,
+                      opacity: bottomOpacity,
+                      boxShadow: isBottomActive
+                        ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
+                        : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
+                      pointerEvents: "auto",
                       transition:
                         "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
                       willChange: "width, height",
@@ -616,8 +665,8 @@ export default function LorientalisSourcingPage() {
                     }}
                   >
                     <Image
-                      src="/lorientalis/sourcing/grower-harvest-basket.jpg"
-                      alt="Harvested Coffee Cherries"
+                      src="/lorientalis/sourcing/grower-raking-cherries.jpg"
+                      alt="Raking Coffee Cherries on Raised Beds"
                       fill
                       unoptimized
                       sizes="501px"
