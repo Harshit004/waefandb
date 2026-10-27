@@ -383,9 +383,9 @@ export default function LorientalisContactPage() {
               style={{
                 aspectRatio: "210 / 786",
                 maskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 12%, black 25%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.5) 25%, black 45%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 12%, black 25%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.5) 25%, black 45%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
               }}
               aria-hidden="true"
             >
@@ -394,12 +394,20 @@ export default function LorientalisContactPage() {
                 alt="L'Orientalis botanical left"
                 className="w-full h-full object-cover block"
               />
-              {/* Softening gradient overlays on top so all edges disappear and blend seamlessly into black bg */}
+              {/* Dedicated top edge gradient overlay to soften and dissolve the top edge into black bg */}
+              <div
+                className="absolute top-0 inset-x-0 h-[45%] pointer-events-none z-20"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0) 100%)",
+                }}
+              />
+              {/* Softening gradient overlays on top so side and bottom edges disappear and blend seamlessly into black bg */}
               <div
                 className="absolute inset-0 pointer-events-none z-10"
                 style={{
                   background:
-                    "linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 20%, rgba(0,0,0,0.7) 65%, #000000 100%), linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.5) 12%, transparent 25%, transparent 75%, rgba(0,0,0,0.7) 90%, #000000 100%)",
+                    "linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 20%, rgba(0,0,0,0.7) 65%, #000000 100%), linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.3) 35%, transparent 50%, transparent 75%, rgba(0,0,0,0.7) 90%, #000000 100%)",
                 }}
               />
             </div>
@@ -410,9 +418,9 @@ export default function LorientalisContactPage() {
               style={{
                 aspectRatio: "210 / 786",
                 maskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 12%, black 25%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.5) 25%, black 45%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 12%, black 25%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.5) 25%, black 45%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
               }}
               aria-hidden="true"
             >
@@ -421,12 +429,20 @@ export default function LorientalisContactPage() {
                 alt="L'Orientalis botanical right"
                 className="w-full h-full object-cover block"
               />
-              {/* Softening gradient overlays on top so all edges disappear and blend seamlessly into black bg */}
+              {/* Dedicated top edge gradient overlay to soften and dissolve the top edge into black bg */}
+              <div
+                className="absolute top-0 inset-x-0 h-[45%] pointer-events-none z-20"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0) 100%)",
+                }}
+              />
+              {/* Softening gradient overlays on top so side and bottom edges disappear and blend seamlessly into black bg */}
               <div
                 className="absolute inset-0 pointer-events-none z-10"
                 style={{
                   background:
-                    "linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 20%, rgba(0,0,0,0.7) 65%, #000000 100%), linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.5) 12%, transparent 25%, transparent 75%, rgba(0,0,0,0.7) 90%, #000000 100%)",
+                    "linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 20%, rgba(0,0,0,0.7) 65%, #000000 100%), linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.3) 35%, transparent 50%, transparent 75%, rgba(0,0,0,0.7) 90%, #000000 100%)",
                 }}
               />
             </div>
