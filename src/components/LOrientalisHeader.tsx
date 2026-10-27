@@ -17,24 +17,38 @@ export default function LOrientalisHeader({
 }: LOrientalisHeaderProps) {
   const pathname = usePathname();
   const isSourcing = pathname?.includes("/sourcing");
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
-      className={`relative w-full z-30 flex items-center justify-between pointer-events-none select-none ${className}`}
+      className={`fixed top-0 left-0 right-0 w-full z-50 flex items-center justify-between pointer-events-none select-none transition-all duration-300 ${className}`}
       style={{
-        paddingTop: "3.681vw", // 53px at 1440px wide (53 / 1440 * 100vw)
-        paddingLeft: "2.778vw", // 40px at 1440px wide (40 / 1440 * 100vw)
-        paddingRight: "2.778vw", // 40px at 1440px wide (40 / 1440 * 100vw)
+        paddingTop: scrolled ? "clamp(18px, 2.2vw, 32px)" : "clamp(24px, 3.681vw, 53px)",
+        paddingLeft: "2.778vw",
+        paddingRight: "2.778vw",
+        transition: "padding-top 0.3s ease",
       }}
     >
-      {/* Background gradient for enhanced contrast & readability */}
+      {/* Background gradient & backdrop blur for enhanced contrast & readability */}
       <div
-        className="absolute inset-x-0 top-0 pointer-events-none -z-10"
+        className="absolute inset-x-0 top-0 pointer-events-none -z-10 transition-all duration-300"
         style={{
-          height: "calc(100% + 50px)",
-          minHeight: "120px",
-          background:
-            "linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0) 100%)",
+          height: "calc(100% + 40px)",
+          minHeight: "110px",
+          background: scrolled
+            ? "linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 65%, rgba(0, 0, 0, 0) 100%)"
+            : "linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0) 100%)",
+          backdropFilter: scrolled ? "blur(12px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
         }}
       />
 

@@ -311,8 +311,8 @@ export default function LOrientalisPage() {
         {/* HERO OVERLAY CONTENT */}
         <div className="relative z-20 w-full h-full pointer-events-none flex flex-col justify-between">
           {/* TOP AREA: Header + Titles */}
-          <div className="w-full flex flex-col">
-            {/* Lorientalis Header (53px from top, px-40px) */}
+          <div className="w-full flex flex-col pt-[clamp(70px,6.5vw,96px)]">
+            {/* Lorientalis Header (fixed on scroll) */}
             <LOrientalisHeader />
 
             {/* Titles Row */}
