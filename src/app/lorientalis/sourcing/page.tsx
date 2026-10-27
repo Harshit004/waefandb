@@ -822,12 +822,13 @@ export default function LorientalisSourcingPage() {
           paddingTop: "clamp(24px, 3.5vh, 48px)",
           paddingBottom: "clamp(20px, 3vh, 36px)",
           boxSizing: "border-box",
-          // CSS custom properties for responsive image scaling adhering strictly to 418:667 and 187:667
+          // CSS custom properties for responsive image scaling adhering strictly to 418:667, 639:587, and 187:667
           ["--img-h" as string]: "clamp(340px, calc(100vh - clamp(200px, 25vh, 260px)), 560px)",
           ["--w-exp" as string]: "calc(var(--img-h) * 418 / 667)",
+          ["--w-exp2" as string]: "calc(var(--img-h) * 639 / 587)",
           ["--w-con" as string]: "calc(var(--img-h) * 187 / 667)",
-          ["--gap" as string]: "clamp(20px, 2.5vw, 40px)",
-          ["--offset-0" as string]: "clamp(320px, 32vw, 460px)",
+          ["--gap" as string]: "clamp(24px, 3vw, 48px)",
+          ["--offset-0" as string]: "max(clamp(320px, 32vw, 480px), calc(100vw - 2.778vw - var(--w-exp) - var(--gap) - var(--w-exp2) + clamp(100px, 12vw, 180px)))",
         }}
       >
         {/* Background Watermark: "COFFEE" (Overlapped by Image 1 top-left on the second 'E') */}
@@ -871,7 +872,7 @@ export default function LorientalisSourcingPage() {
                   ? "translateX(var(--offset-0))"
                   : activeCoffeeSlide === 1
                   ? "translateX(0px)"
-                  : "translateX(max(0px, calc(100% - (var(--w-con) * 2 + var(--w-exp) + var(--gap) * 2))))",
+                  : "translateX(calc(100vw - 5.556vw - (var(--w-con) * 2 + var(--w-exp) + var(--gap) * 2)))",
               transition: "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
               willChange: "transform",
             }}
@@ -982,7 +983,7 @@ export default function LorientalisSourcingPage() {
             <div
               className="relative shrink-0 flex flex-col justify-end items-end"
               style={{
-                width: activeCoffeeSlide === 1 ? "var(--w-exp)" : "var(--w-con)",
+                width: activeCoffeeSlide === 2 ? "var(--w-con)" : "var(--w-exp2)",
                 transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
                 willChange: "width",
               }}
@@ -1054,7 +1055,7 @@ export default function LorientalisSourcingPage() {
                   alt="Washed Process Wet Method Hands Washing Cherries in Water"
                   fill
                   unoptimized
-                  sizes="(max-width: 768px) 100vw, 418px"
+                  sizes="(max-width: 768px) 100vw, 640px"
                   className="object-cover select-none pointer-events-none"
                 />
               </div>
@@ -1065,8 +1066,10 @@ export default function LorientalisSourcingPage() {
               className="relative shrink-0 flex flex-col justify-end items-end"
               style={{
                 width: activeCoffeeSlide === 2 ? "var(--w-exp)" : "var(--w-con)",
-                transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
-                willChange: "width",
+                transition: "width 1000ms cubic-bezier(0.16, 1, 0.3, 1), opacity 800ms cubic-bezier(0.16, 1, 0.3, 1)",
+                opacity: activeCoffeeSlide === 0 ? 0 : 1,
+                pointerEvents: activeCoffeeSlide === 0 ? "none" : "auto",
+                willChange: "width, opacity",
               }}
               onMouseEnter={() => setActiveCoffeeSlide(2)}
               onClick={() => setActiveCoffeeSlide(2)}
