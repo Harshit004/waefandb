@@ -53,66 +53,74 @@ export default function LorientalisSourcingPage() {
       <LOrientalisHeader />
 
       {/* =========================================================================
-          SECTION 1: HERO - CULTURE & TRADE + NORTH-EAST MAP
+          SECTION 1: HERO - SOURCING & CULTURE & TRADE + MAP SPREAD
           ========================================================================= */}
       <section
         id="sourcing-hero"
-        className="relative w-full pt-[clamp(110px,10vw,150px)] pb-[clamp(40px,4.5vw,68px)]"
+        className="relative w-full pt-[clamp(110px,10vw,155px)]"
         style={{
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
-        {/* Top Header Row: Left Flag & Intro | Right Eyebrow & Headline */}
-        <div className="w-full flex flex-col md:flex-row items-start justify-between gap-6 md:gap-8">
-          {/* Left Column: Flag + Location description */}
-          <div className="flex flex-col items-start max-w-[280px]">
-            {/* Indian Flag Badge */}
+        {/* Top Header Row: Left Flag & Location Intro | Right SOURCING & Culture & Trade */}
+        <div className="w-full flex items-start justify-between">
+          {/* Left: Indian Flag + 81px gap + "Above the Tropic of Cancer..." */}
+          <div className="flex flex-col items-start z-10">
+            {/* 40x27 px Indian Flag (72px gap below sourcing underline bar) */}
             <div
-              className="w-[28px] h-[18px] rounded-[2px] overflow-hidden flex flex-col shadow-sm mb-4 border border-white/20 select-none"
+              className="w-[40px] h-[27px] rounded-[2px] overflow-hidden flex flex-col shadow-sm select-none shrink-0"
               title="India"
             >
               <div className="flex-1 bg-[#FF9933]" />
               <div className="flex-1 bg-white flex items-center justify-center">
-                <div className="w-[4px] h-[4px] rounded-full bg-[#000080]" />
+                <div className="w-[6px] h-[6px] rounded-full bg-[#000080]" />
               </div>
               <div className="flex-1 bg-[#138808]" />
             </div>
 
+            {/* 81px below it */}
             <p
-              className="text-[#FFFFFFCC] select-none m-0"
+              className="m-0 text-white select-none max-w-[280px] sm:max-w-[320px]"
               style={{
+                marginTop: "clamp(36px, 5.625vw, 81px)",
                 fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(13px, 1.04vw, 15px)",
-                lineHeight: "1.45",
                 fontWeight: 400,
+                fontSize: "clamp(15px, 1.25vw, 18px)",
+                lineHeight: "120%",
+                letterSpacing: "0%",
               }}
             >
-              Above The Tropic Of Cancer, North-East Hills Grow Our Botanicals.
+              Above the Tropic of Cancer, North-East hills grow our botanicals.
             </p>
           </div>
 
-          {/* Right Column: SOURCING Tag + "Culture & Trade" Headline */}
-          <div className="flex flex-col items-start md:items-end text-left md:text-right">
+          {/* Right: SOURCING (top aligned with flag top) + 23px gap + Culture & Trade */}
+          <div className="flex flex-col items-end text-right z-10">
+            {/* SOURCING */}
             <span
-              className="text-[#FFFFFFB3] uppercase tracking-[0.2em] mb-2 select-none"
+              className="text-right select-none text-white tracking-normal uppercase"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(11px, 0.9vw, 13px)",
-                fontWeight: 500,
+                fontWeight: 400,
+                fontSize: "clamp(18px, 1.667vw, 24px)",
+                lineHeight: "100%",
+                letterSpacing: "0%",
               }}
             >
               SOURCING
             </span>
 
+            {/* 23px gap then Culture & Trade */}
             <h1
-              className="text-white select-none m-0"
+              className="select-none text-white m-0 tracking-normal"
               style={{
+                marginTop: "23px",
                 fontFamily: "var(--font-monschone), serif",
-                fontSize: "clamp(44px, 6.2vw, 96px)",
-                lineHeight: "1.0",
                 fontWeight: 400,
-                letterSpacing: "-0.01em",
+                fontSize: "clamp(48px, 6.667vw, 96px)",
+                lineHeight: "100%",
+                letterSpacing: "0%",
               }}
             >
               Culture &amp; Trade
@@ -120,388 +128,193 @@ export default function LorientalisSourcingPage() {
           </div>
         </div>
 
-        {/* MAP VISUAL CONTAINER */}
-        <div className="relative w-full my-[clamp(32px,4vw,64px)] flex items-center justify-center">
-          <div className="relative w-full max-w-[1200px] aspect-[16/8.5] min-h-[300px] sm:min-h-[420px] md:min-h-[500px] flex items-center justify-center">
-            {/* SVG Vector Map of North East India with State Outlines & Tropic of Cancer */}
-            <svg
-              viewBox="0 0 1000 520"
-              className="w-full h-full select-none"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                {/* Glow filter for map markers */}
-                <filter id="marker-glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-
-              {/* Tropic of Cancer Dashed Reference Line */}
-              <line
-                x1="40"
-                y1="260"
-                x2="960"
-                y2="260"
-                stroke="rgba(255, 255, 255, 0.22)"
-                strokeWidth="1.2"
-                strokeDasharray="6 6"
-              />
-
-              {/* Tropic of Cancer Label */}
-              <text
-                x="310"
-                y="248"
-                fill="rgba(255, 255, 255, 0.85)"
-                fontSize="13"
-                letterSpacing="0.08em"
-                fontFamily="var(--font-manrope), sans-serif"
-                fontWeight="500"
-              >
-                TROPIC OF CANCER
-              </text>
-
-              {/* Regional Outer Contour & State Boundaries (Stylized Bronze / Golden Linework) */}
-              <path
-                d="M140 320 
-                   C 110 310, 105 270, 130 250 
-                   C 150 230, 190 220, 230 205 
-                   C 260 195, 300 200, 340 210 
-                   C 390 220, 420 200, 470 190 
-                   C 520 180, 560 170, 610 180 
-                   C 660 190, 710 160, 740 140 
-                   C 765 120, 780 90, 800 80 
-                   C 820 70, 840 90, 845 120 
-                   C 850 150, 835 180, 820 200 
-                   C 800 220, 780 230, 750 240 
-                   C 730 245, 715 270, 700 290 
-                   C 680 320, 670 340, 640 370 
-                   C 620 390, 590 410, 570 420 
-                   C 540 430, 480 440, 440 430 
-                   C 400 420, 360 410, 330 390 
-                   C 310 380, 270 370, 240 370 
-                   C 200 370, 170 350, 140 320 Z"
-                stroke="#6B593F"
-                strokeWidth="1.8"
-                fill="rgba(40, 32, 22, 0.08)"
-              />
-
-              {/* Internal State Boundaries */}
-              {/* Meghalaya Boundary */}
-              <path
-                d="M 140 320 
-                   C 170 315, 230 310, 280 310 
-                   C 340 310, 390 320, 410 340 
-                   C 390 370, 340 380, 290 375 
-                   C 240 370, 180 360, 140 320 Z"
-                stroke="#8A7352"
-                strokeWidth="1.5"
-                fill="rgba(54, 89, 68, 0.06)"
-              />
-
-              {/* Assam Valley & Hills Inner Boundaries */}
-              <path
-                d="M 280 310 
-                   C 340 310, 390 280, 460 270 
-                   C 510 260, 560 280, 600 300 
-                   C 630 315, 650 280, 680 260 
-                   C 700 250, 720 230, 740 210"
-                stroke="#7D684A"
-                strokeWidth="1.2"
-                strokeDasharray="4 2"
-              />
-
-              {/* Nagaland Inner Outline */}
-              <path
-                d="M 470 270 
-                   C 485 245, 520 240, 550 255 
-                   C 575 270, 560 310, 520 320 
-                   C 490 330, 475 300, 470 270 Z"
-                stroke="#947B58"
-                strokeWidth="1.5"
-                fill="rgba(54, 89, 68, 0.08)"
-              />
-
-              {/* Arunachal Border Path */}
-              <path
-                d="M 610 180 
-                   C 660 190, 700 170, 740 140 
-                   C 760 120, 790 90, 810 80"
-                stroke="#6B593F"
-                strokeWidth="1.2"
-              />
-
-              {/* LABELS & ANNOTATIONS */}
-              {/* CHINA Label */}
-              <text
-                x="725"
-                y="155"
-                fill="rgba(255, 255, 255, 0.5)"
-                fontSize="12"
-                letterSpacing="0.12em"
-                fontFamily="var(--font-manrope), sans-serif"
-                fontWeight="500"
-              >
-                CHINA
-              </text>
-
-              {/* ARUNACHAL PRADESH Label */}
-              <text
-                x="722"
-                y="235"
-                fill="rgba(255, 255, 255, 0.65)"
-                fontSize="12"
-                letterSpacing="0.08em"
-                fontFamily="var(--font-manrope), sans-serif"
-                fontWeight="500"
-              >
-                ARUNACHAL PRADESH
-              </text>
-
-              {/* MARKER 1: MEGHALAYA */}
-              <g transform="translate(278, 290)" className="cursor-pointer group">
-                <text
-                  x="0"
-                  y="-16"
-                  textAnchor="middle"
-                  fill="#FFFFFF"
-                  fontSize="14"
-                  letterSpacing="0.1em"
-                  fontFamily="var(--font-manrope), sans-serif"
-                  fontWeight="600"
-                  className="transition-all duration-300 group-hover:fill-[#DEE2C9]"
-                >
-                  MEGHALAYA
-                </text>
-                {/* Target Circle Marker */}
-                <circle
-                  cx="0"
-                  cy="0"
-                  r="14"
-                  stroke="#FFFFFF"
-                  strokeWidth="2.5"
-                  fill="none"
-                  className="transition-all duration-300 group-hover:stroke-[#DEE2C9]"
-                />
-                <circle cx="0" cy="0" r="9" fill="#2E4D3B" />
-                <circle cx="0" cy="0" r="4" fill="#FFFFFF" />
-
-                {/* Sub-locations */}
-                <text
-                  x="65"
-                  y="62"
-                  textAnchor="middle"
-                  fill="rgba(255, 255, 255, 0.65)"
-                  fontSize="10"
-                  fontFamily="var(--font-manrope), sans-serif"
-                >
-                  South-West Khasi Hills
-                </text>
-                <text
-                  x="145"
-                  y="50"
-                  textAnchor="middle"
-                  fill="rgba(255, 255, 255, 0.65)"
-                  fontSize="10"
-                  fontFamily="var(--font-manrope), sans-serif"
-                >
-                  West Garo Hills
-                </text>
-              </g>
-
-              {/* MARKER 2: NAGALAND */}
-              <g transform="translate(514, 226)" className="cursor-pointer group">
-                <text
-                  x="0"
-                  y="-16"
-                  textAnchor="middle"
-                  fill="#FFFFFF"
-                  fontSize="14"
-                  letterSpacing="0.1em"
-                  fontFamily="var(--font-manrope), sans-serif"
-                  fontWeight="600"
-                  className="transition-all duration-300 group-hover:fill-[#DEE2C9]"
-                >
-                  NAGALAND
-                </text>
-                {/* Target Circle Marker */}
-                <circle
-                  cx="0"
-                  cy="0"
-                  r="14"
-                  stroke="#FFFFFF"
-                  strokeWidth="2.5"
-                  fill="none"
-                  className="transition-all duration-300 group-hover:stroke-[#DEE2C9]"
-                />
-                <circle cx="0" cy="0" r="9" fill="#2E4D3B" />
-                <circle cx="0" cy="0" r="4" fill="#FFFFFF" />
-
-                {/* Sub-location */}
-                <text
-                  x="30"
-                  y="62"
-                  textAnchor="middle"
-                  fill="rgba(255, 255, 255, 0.65)"
-                  fontSize="10"
-                  fontFamily="var(--font-manrope), sans-serif"
-                >
-                  Wokha, Mokokchung
-                </text>
-              </g>
-
-              {/* MARKER 3: ASSAM */}
-              <g transform="translate(658, 268)" className="cursor-pointer group">
-                <text
-                  x="20"
-                  y="-16"
-                  textAnchor="middle"
-                  fill="#FFFFFF"
-                  fontSize="14"
-                  letterSpacing="0.1em"
-                  fontFamily="var(--font-manrope), sans-serif"
-                  fontWeight="600"
-                  className="transition-all duration-300 group-hover:fill-[#DEE2C9]"
-                >
-                  ASSAM
-                </text>
-                {/* Target Circle Marker */}
-                <circle
-                  cx="0"
-                  cy="0"
-                  r="14"
-                  stroke="#FFFFFF"
-                  strokeWidth="2.5"
-                  fill="none"
-                  className="transition-all duration-300 group-hover:stroke-[#DEE2C9]"
-                />
-                <circle cx="0" cy="0" r="9" fill="#2E4D3B" />
-                <circle cx="0" cy="0" r="4" fill="#FFFFFF" />
-              </g>
-            </svg>
+        {/* Map Image: Right under Culture & Trade with no vertical space, 97px ml, 55px mr, 1128x682 */}
+        <div
+          className="relative w-full flex justify-end select-none"
+          style={{
+            marginTop: "0px",
+            paddingLeft: "clamp(0px, 6.7vw, 97px)",
+            paddingRight: "clamp(0px, 3.8vw, 55px)",
+          }}
+        >
+          <div
+            className="relative w-full select-none"
+            style={{
+              maxWidth: "1128px",
+              aspectRatio: "1128 / 682",
+            }}
+          >
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3aab055b-3df4-4a5c-7016-3cb021b6b300/public"
+              alt="North East India Sourcing Map"
+              fill
+              priority
+              unoptimized
+              sizes="(max-width: 1200px) 100vw, 1128px"
+              className="object-contain"
+            />
           </div>
         </div>
 
-        {/* Bottom Coordinates & Summary Row */}
-        <div className="w-full flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 pt-4">
-          {/* Coordinates Block */}
+        {/* Bottom Coordinates & Origin Row */}
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6 mt-6 md:mt-2">
+          {/* Left Block: 26 N 92 E + 20px gap + SINGLE ORIGIN - 3 State */}
           <div className="flex flex-col items-start select-none">
-            <span
-              className="text-white tracking-tight"
+            <h3
+              className="m-0 uppercase"
               style={{
-                fontFamily: "var(--font-monschone), serif",
-                fontSize: "clamp(34px, 4vw, 58px)",
-                lineHeight: "1.0",
+                fontFamily: "var(--font-judson), 'Judson', serif",
+                fontWeight: 700,
+                fontSize: "clamp(42px, 5.858vw, 84.35px)",
+                lineHeight: "100%",
+                letterSpacing: "0%",
+                color: "#E8D8BE",
               }}
             >
-              26&deg;N 92&deg;E
-            </span>
+              26°N 92°E
+            </h3>
             <span
-              className="text-[#FFFFFFCC] uppercase tracking-[0.18em] mt-2"
               style={{
+                marginTop: "20px",
                 fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(11px, 0.9vw, 13px)",
                 fontWeight: 500,
+                fontSize: "clamp(14px, 1.25vw, 18px)",
+                lineHeight: "24px",
+                letterSpacing: "0%",
+                color: "#FFFFFF",
               }}
             >
-              SINGLE ORIGIN &ndash; 3 State
+              SINGLE ORIGIN - 3 State
             </span>
           </div>
 
-          {/* Right Narrative */}
-          <div className="max-w-[420px] text-left sm:text-right select-none">
-            <p
-              className="text-[#FFFFFFB3] m-0"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(13px, 1.04vw, 15px)",
-                lineHeight: "1.45",
-                fontWeight: 400,
-              }}
-            >
-              Three States, One Origin: Meghalaya, Assam, Nagaland, Where Mist,
-              Altitude And Shade Shape Our Cup.
-            </p>
-          </div>
+          {/* Right Block: Three states, one origin... middle aligned with left block */}
+          <p
+            className="m-0 text-right select-none max-w-[440px]"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(14px, 1.25vw, 18px)",
+              lineHeight: "120%",
+              letterSpacing: "0%",
+              color: "#DBDBDB",
+            }}
+          >
+            Three states, one origin: Meghalaya, Assam, Nagaland, where mist, altitude and shade shape our cup.
+          </p>
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 2: RIPE COFFEE CHERRIES BANNER
+          SECTION 2: VIDEO SPREAD (138px gap, 1222x688)
           ========================================================================= */}
       <section
-        id="coffee-banner"
-        className="w-full my-[clamp(24px,3.5vw,48px)]"
+        id="sourcing-video"
+        className="w-full flex justify-center"
         style={{
+          marginTop: "clamp(64px, 9.58vw, 138px)",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
-        <div className="relative w-full aspect-[21/9] sm:aspect-[16/7] min-h-[220px] max-h-[560px] rounded-[2px] overflow-hidden bg-neutral-950 group select-none shadow-2xl">
-          <Image
-            src="/lorientalis/sourcing/coffee-cherries-banner.jpg"
-            alt="Ripe Red Coffee Cherries and Foliage"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+        <div
+          className="w-full max-w-[1222px] rounded-[2px] overflow-hidden shadow-2xl relative select-none"
+          style={{
+            aspectRatio: "1222 / 688",
+          }}
+        >
+          <iframe
+            src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/750f04fe7b11c349371c94680caf9c4b/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F750f04fe7b11c349371c94680caf9c4b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
+            style={{
+              border: "none",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              height: "100%",
+              width: "100%",
+            }}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+            allowFullScreen={true}
           />
-          {/* Subtle vignette gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 3: ROOTED IN COMMUNITY & GROWERS GALLERY
+          SECTION 3: ROOTED IN COMMUNITY (119px gap, 17px, 98px, 224px gap to grid)
           ========================================================================= */}
       <section
         id="community-growers"
-        className="w-full pt-[clamp(48px,6vw,96px)] pb-[clamp(40px,5vw,80px)] flex flex-col items-center overflow-x-clip"
+        className="w-full flex flex-col items-center overflow-x-clip"
+        style={{
+          marginTop: "clamp(56px, 8.26vw, 119px)",
+        }}
       >
-        {/* Centered Heading Block with Section Padding */}
+        {/* Headings & Narrative Block */}
         <div
-          className="max-w-[820px] mx-auto text-center flex flex-col items-center select-none"
+          className="w-full max-w-[820px] mx-auto text-center flex flex-col items-center select-none"
           style={{
             paddingLeft: "2.778vw",
             paddingRight: "2.778vw",
           }}
         >
           <span
-            className="text-[#FFFFFFB3] text-[14px] sm:text-[16px] mb-2 font-normal"
-            style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-          >
-            Rooted In Community
-          </span>
-
-          <h2
-            className="text-white select-none m-0 mb-5"
+            className="block text-center select-none"
             style={{
-              fontFamily: "var(--font-monschone), serif",
-              fontSize: "clamp(30px, 4vw, 56px)",
-              lineHeight: "1.15",
-              fontWeight: 400,
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 500,
+              fontSize: "clamp(18px, 1.667vw, 24px)",
+              lineHeight: "120%",
+              letterSpacing: "0%",
+              color: "#DBDBDB",
             }}
           >
-            Honouring The Growers Behind Every Cup
+            Rooted in Community
+          </span>
+
+          {/* 17px gap then Honouring the Growers Behind Every Cup */}
+          <h2
+            className="text-center select-none m-0"
+            style={{
+              marginTop: "17px",
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+              fontSize: "clamp(28px, 3.333vw, 48px)",
+              lineHeight: "120%",
+              letterSpacing: "0%",
+              color: "#DBDBDB",
+            }}
+          >
+            Honouring the Growers Behind Every Cup
           </h2>
 
+          {/* 98px gap then Reliable supply narrative */}
           <p
-            className="text-[#FFFFFF99] text-[13px] sm:text-[14px] leading-[1.65] max-w-[740px] m-0"
-            style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+            className="text-center select-none m-0 mx-auto max-w-[820px]"
+            style={{
+              marginTop: "clamp(48px, 6.8vw, 98px)",
+              fontFamily: "'Helvetica', Arial, sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(15px, 1.25vw, 18px)",
+              lineHeight: "120%",
+              letterSpacing: "0%",
+              color: "#DBDBDB",
+            }}
           >
-            Reliable Supply Depends On The People Who Grow It. Across North East
-            India, We Work With Farming Communities And Estates, Many Of Them
-            Multi-Generational, And Look For Ways To Keep More Value At The Farm
-            Gate. For Our Partners, That Means Stable Supply, Visibility From
-            Farm To Cup And A Sourcing Story That Holds Up In ESG And Procurement
-            Reviews.
+            Reliable supply depends on the people who grow it. Across North East
+            India, we work with farming communities and estates, many of them
+            multi-generational, and look for ways to keep more value at the farm
+            gate. For our partners, that means stable supply, visibility from
+            farm to cup and a sourcing story that holds up in ESG and procurement
+            reviews.
           </p>
         </div>
 
-        {/* Multi-Photo Collage / Growers Gallery (Interactive Accordion: First/Last half-cropped, hover expands to middle size) */}
+        {/* 224px gap then the image grid (Interactive Accordion: First/Last half-cropped, hover expands) */}
         <div
-          className="relative w-screen left-1/2 -translate-x-1/2 mt-[clamp(36px,4.5vw,72px)] overflow-x-hidden select-none flex items-center justify-center py-8"
+          className="relative w-screen left-1/2 -translate-x-1/2 overflow-x-hidden select-none flex items-center justify-center py-8"
+          style={{
+            marginTop: "clamp(80px, 15.55vw, 224px)",
+          }}
           onMouseLeave={() => {
             setActiveCol(null);
             setActiveStackedChoice("top");
@@ -854,161 +667,115 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 4: THE JOURNEY OF COFFEE: FROM BEAN TO BREW
+          SECTION 4: THE JOURNEY OF COFFEE: FROM BEAN TO BREW (203px gap, 36px, 170px, 493x667 image + 882x66 text)
           ========================================================================= */}
       <section
         id="journey-coffee"
-        className="w-full pt-[clamp(48px,6vw,96px)] pb-[clamp(32px,4vw,64px)] flex flex-col items-center text-center"
+        className="w-full flex flex-col items-center text-center select-none"
         style={{
+          marginTop: "clamp(80px, 14.1vw, 203px)",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
-        <span
-          className="text-[#FFFFFFB3] text-[14px] sm:text-[16px] mb-2 font-normal select-none"
-          style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-        >
-          The Journey of Coffee:
-        </span>
-
-        <h2
-          className="text-white select-none m-0 mb-8"
+        <h3
+          className="text-white select-none m-0 text-center"
           style={{
             fontFamily: "var(--font-monschone), serif",
-            fontSize: "clamp(32px, 4.5vw, 64px)",
-            lineHeight: "1.1",
             fontWeight: 400,
+            fontSize: "clamp(24px, 2.778vw, 40px)",
+            lineHeight: "100%",
+            letterSpacing: "0%",
+          }}
+        >
+          The Journey of Coffee:
+        </h3>
+
+        {/* 36px gap then From Bean to Brew */}
+        <h2
+          className="text-white select-none m-0 text-center"
+          style={{
+            marginTop: "36px",
+            fontFamily: "var(--font-monschone), serif",
+            fontWeight: 400,
+            fontSize: "clamp(48px, 6.667vw, 96px)",
+            lineHeight: "100%",
+            letterSpacing: "0%",
           }}
         >
           From Bean to Brew
         </h2>
 
-        {/* Centered B&W Farmer Carrier Portrait (Screenshot 3) */}
-        <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] aspect-[3/4] bg-neutral-900 overflow-hidden my-4 select-none group">
-          <Image
-            src="/lorientalis/sourcing/coffee-carrier-bw.jpg"
-            alt="Mountain Harvest Carrier with Woven Basket"
-            fill
-            sizes="420px"
-            className="object-cover filter grayscale contrast-115 transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-
-        {/* Narrative caption under portrait */}
-        <p
-          className="text-[#FFFFFF99] text-[12px] sm:text-[13px] leading-[1.65] max-w-[620px] mt-6 select-none"
-          style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+        {/* 170px gap then 493x667 image with overlapping 882x66 text */}
+        <div
+          className="relative w-full flex flex-col items-center"
+          style={{
+            marginTop: "clamp(70px, 11.8vw, 170px)",
+          }}
         >
-          Once Harvested, Coffee Cherries Must Be Processed Quickly To Prevent
-          Spoilage. Today There Are Two Contrasting Methods, One Centuries Old
-          And One Technology-Led, Along With Hybrids Of Both. The Method Shapes
-          The Cup, And The Care Taken Shapes Its Consistency.
-        </p>
-      </section>
-
-      {/* =========================================================================
-          SECTION 5: COFFEE PROCESSING - WATERMARK & NATURAL PROCESS SPREAD
-          ========================================================================= */}
-      <section
-        id="coffee-processing"
-        className="relative w-full pt-[clamp(32px,4vw,64px)] pb-[clamp(56px,7vw,110px)]"
-        style={{
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
-        }}
-      >
-        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 items-start">
-          {/* Left Column: COFFEE Watermark + Natural Process Description */}
-          <div className="md:col-span-4 flex flex-col justify-between self-stretch">
-            {/* Watermark: "COFFEE" (Screenshot 2) */}
-            <div className="select-none pointer-events-none mb-12 md:mb-20" aria-hidden="true">
-              <span
-                className="text-[#FFFFFF1F] tracking-[-0.02em] font-normal block"
-                style={{
-                  fontFamily: "var(--font-monschone), serif",
-                  fontSize: "clamp(60px, 9vw, 140px)",
-                  lineHeight: "0.85",
-                }}
-              >
-                COFFEE
-              </span>
-            </div>
-
-            {/* Description Block */}
-            <div className="flex flex-col items-center text-center max-w-[420px] mx-auto select-none mt-auto pt-6">
-              <h3
-                className="text-white select-none m-0 mb-4"
-                style={{
-                  fontFamily: "var(--font-monschone), serif",
-                  fontSize: "clamp(26px, 2.8vw, 42px)",
-                  lineHeight: "1.15",
-                  fontWeight: 400,
-                }}
-              >
-                Natural Process
-                <br />
-                (Dry Method)
-              </h3>
-
-              <p
-                className="text-[#FFFFFF99] text-[12px] sm:text-[13px] leading-[1.65] m-0"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                In This Time-Tested Method, Freshly Picked Cherries Are Spread On
-                Wide Surfaces To Dry Whole In The Sun, Then Hulled To Remove The
-                Skin And Pulp. Slow And Low-Input, It Brings A Fuller Body And
-                Fruit-Forward Sweetness, And It Rewards Careful, Consistent
-                Drying.
-              </p>
-            </div>
+          {/* Centered Carrier Portrait (493 x 667) */}
+          <div
+            className="relative w-full max-w-[493px] aspect-[493/667] rounded-[2px] overflow-hidden select-none shadow-2xl"
+            style={{
+              width: "clamp(300px, 34.236vw, 493px)",
+              height: "clamp(406px, 46.319vw, 667px)",
+            }}
+          >
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/159a4588-9d3e-43d7-6f00-3df487d43e00/public"
+              alt="Mountain Harvest Carrier with Woven Basket"
+              fill
+              unoptimized
+              sizes="(max-width: 768px) 100vw, 493px"
+              className="object-cover"
+            />
           </div>
 
-          {/* Center Column: Sun-Drying Cherries on Raised Burlap Beds (Starts at Top) */}
-          <div className="md:col-span-4 flex justify-center">
-            <div className="relative w-full max-w-[420px] aspect-[3/4] bg-neutral-900 overflow-hidden group select-none">
-              <Image
-                src="/lorientalis/sourcing/coffee-process-natural-beds.jpg"
-                alt="Sun-Drying Cherries On Raised Burlap Beds"
-                fill
-                sizes="(max-width: 768px) 100vw, 420px"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          {/* Right Column: Washing Cherries In Mountain Stream (Staggered Downward) */}
-          <div className="md:col-span-4 flex justify-center pt-0 md:pt-[clamp(100px,14vw,200px)]">
-            <div className="relative w-full max-w-[420px] aspect-[3/4] bg-neutral-900 overflow-hidden group select-none">
-              <Image
-                src="/lorientalis/sourcing/coffee-process-washed-stream.jpg"
-                alt="Washing Ripe Red Cherries In Pure Stream Water"
-                fill
-                sizes="(max-width: 768px) 100vw, 420px"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
+          {/* Overlapping Text Box (882 x 66, centered with image) */}
+          <div
+            className="relative z-10 -mt-[33px] px-4 w-full max-w-[882px] flex justify-center text-center select-none"
+          >
+            <p
+              className="m-0 text-center"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(14px, 1.25vw, 18px)",
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                color: "#DBDBDB",
+              }}
+            >
+              Once harvested, coffee cherries must be processed quickly to
+              prevent spoilage. Today there are two contrasting methods, one
+              centuries old and one technology-led, along with hybrids of both.
+              The method shapes the cup, and the care taken shapes its
+              consistency.
+            </p>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 6: THE TEA PRODUCTION PROCESS (CTC, ORTHODOX, GREEN TEA)
+          SECTION 5: THE TEA PRODUCTION PROCESS (64px, 137px gap, 398x677 image, CTC Tea, 156px gap, 301x302 image, 110px gap, Orthodox tea, 102px gap, 1200x498 image, 102px gap, Green tea, 130px gap to footer)
           ========================================================================= */}
       <section
         id="tea-process"
-        className="w-full pt-[clamp(32px,5vw,80px)] pb-[clamp(48px,6vw,96px)]"
+        className="w-full flex flex-col items-center select-none"
         style={{
+          marginTop: "clamp(80px, 12.5vw, 180px)",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
         {/* Main Section Heading: "THE TEA PRODUCTION PROCESS" */}
         <h2
-          className="text-center font-normal tracking-[0.08em] uppercase select-none mb-[clamp(40px,5vw,80px)]"
+          className="text-center font-normal tracking-[0.08em] uppercase select-none m-0"
           style={{
             fontFamily: "var(--font-monschone), serif",
-            fontSize: "clamp(26px, 3.4vw, 54px)",
-            lineHeight: "1.1",
+            fontSize: "clamp(32px, 4.444vw, 64px)",
+            lineHeight: "100%",
+            letterSpacing: "0%",
           }}
         >
           <span className="text-white/40">THE </span>
@@ -1016,135 +783,189 @@ export default function LorientalisSourcingPage() {
           <span className="text-white/40">PRODUCTION PROCESS</span>
         </h2>
 
-        {/* 6A: CTC TEA */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-[clamp(48px,6vw,96px)]">
-          {/* Left Column: Harvester Woman in Morning Light */}
-          <div className="md:col-span-5 flex justify-start">
-            <div className="relative w-full max-w-[420px] aspect-[3/4] rounded-[2px] bg-neutral-900 overflow-hidden shadow-2xl select-none group">
-              <Image
-                src="/lorientalis/sourcing/tea-plucker-portrait.jpg"
-                alt="Tea Plucker Woman in Golden Hour Mist"
-                fill
-                sizes="420px"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-            </div>
+        {/* 137px gap then CTC TEA Block (1200px max container) */}
+        <div
+          className="w-full max-w-[1200px] mx-auto flex flex-col md:flex-row items-start justify-between"
+          style={{ marginTop: "clamp(56px, 9.51vw, 137px)" }}
+        >
+          {/* Left Column: 398 x 677 Harvester Woman Image */}
+          <div
+            className="relative w-full max-w-[398px] aspect-[398/677] rounded-[2px] overflow-hidden shadow-2xl select-none shrink-0"
+            style={{
+              width: "clamp(280px, 27.64vw, 398px)",
+              height: "clamp(476px, 47.01vw, 677px)",
+            }}
+          >
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/51ca3f6a-9a8d-44ab-f3d5-747021c76800/public"
+              alt="Tea Plucker Woman"
+              fill
+              unoptimized
+              sizes="398px"
+              className="object-cover"
+            />
           </div>
 
-          {/* Right Column: CTC Tea Description + Terraced Hills Photo */}
-          <div className="md:col-span-7 flex flex-col items-start justify-between h-full">
+          {/* Right Column: CTC Tea Text + 156px gap + 301x302 Image */}
+          <div className="flex-1 flex flex-col justify-between self-stretch mt-8 md:mt-0 pl-0 md:pl-12">
             {/* CTC Tea Description */}
-            <div className="select-none mb-8 max-w-[540px]">
-              <p className="m-0 leading-[1.6]">
+            <div className="select-none max-w-[660px]">
+              <p className="m-0 leading-tight">
                 <span
-                  className="text-white font-normal"
+                  className="text-white"
                   style={{
                     fontFamily: "var(--font-monschone), serif",
-                    fontSize: "clamp(24px, 2.6vw, 38px)",
+                    fontWeight: 400,
+                    fontSize: "clamp(28px, 3.333vw, 48px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0%",
                   }}
                 >
                   CTC Tea
                 </span>
                 <span
-                  className="text-[#FFFFFF99] text-[13px] sm:text-[14px]"
-                  style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+                  style={{
+                    fontFamily: "'Helvetica', Arial, sans-serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(16px, 1.667vw, 24px)",
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                    color: "#DBDBDB",
+                  }}
                 >
-                  {" "}&ndash; CTC (Crush, Tear, Curl) makes up over 85% of the
-                  market. Leaves are mechanically cut, torn and curled into
-                  uniform granules for a strong, bold cup with higher caffeine.
-                  It suits high-volume service.
+                  {" "} : CTC (Crush, Tear, Curl) makes up over 85% of the market.
+                  Leaves are mechanically cut, torn and curled into uniform
+                  granules for a strong, bold cup with higher caffeine. It suits
+                  high-volume service.
                 </span>
               </p>
             </div>
 
-            {/* Terraced Hills Photo */}
-            <div className="w-full flex justify-end">
-              <div className="relative w-full max-w-[340px] aspect-[4/3] rounded-[2px] bg-neutral-900 overflow-hidden shadow-2xl select-none group">
+            {/* 156px under it: 301x302 Terraced Hills Image (aligned right) */}
+            <div
+              className="w-full flex justify-end"
+              style={{ marginTop: "clamp(48px, 10.83vw, 156px)" }}
+            >
+              <div
+                className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
+                style={{
+                  width: "clamp(200px, 20.9vw, 301px)",
+                  height: "clamp(200px, 20.97vw, 302px)",
+                  aspectRatio: "301 / 302",
+                }}
+              >
                 <Image
-                  src="/lorientalis/sourcing/tea-terraced-estate.jpg"
-                  alt="Terraced Tea Garden Estate Trails"
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3a7e85fd-e8d8-4385-b8ce-d6fa4d08d000/public"
+                  alt="Terraced Tea Hills"
                   fill
-                  sizes="340px"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  unoptimized
+                  sizes="301px"
+                  className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               </div>
             </div>
           </div>
         </div>
 
-        {/* 6B: ORTHODOX TEA */}
-        <div className="w-full flex flex-col items-start mb-[clamp(48px,6vw,96px)] select-none">
-          {/* Orthodox Description */}
-          <div className="w-full max-w-[620px] mb-8">
-            <p className="m-0 leading-[1.6]">
-              <span
-                className="text-white font-normal"
-                style={{
-                  fontFamily: "var(--font-monschone), serif",
-                  fontSize: "clamp(24px, 2.6vw, 38px)",
-                }}
-              >
-                Orthodox Tea
-              </span>
-              <span
-                className="text-[#FFFFFF99] text-[13px] sm:text-[14px]"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                {" "}&ndash; Orthodox tea uses traditional or manual methods,
-                producing a delicate cup with less caffeine. Sold as loose or
-                whole leaf, it suits premium black teas and signature menus.
-              </span>
-            </p>
-          </div>
+        {/* 110px below it, Orthodox Tea Text (right aligned) */}
+        <div
+          className="w-full max-w-[1200px] mx-auto flex justify-end select-none"
+          style={{ marginTop: "clamp(48px, 7.63vw, 110px)" }}
+        >
+          <p className="m-0 text-right max-w-[760px] leading-tight">
+            <span
+              className="text-white"
+              style={{
+                fontFamily: "var(--font-monschone), serif",
+                fontWeight: 400,
+                fontSize: "clamp(28px, 3.333vw, 48px)",
+                lineHeight: "100%",
+                letterSpacing: "0%",
+              }}
+            >
+              Orthodox Tea
+            </span>
+            <span
+              style={{
+                fontFamily: "'Helvetica', Arial, sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(16px, 1.667vw, 24px)",
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                color: "#DBDBDB",
+              }}
+            >
+              {" "} : Orthodox tea uses traditional or manual methods, producing a
+              delicate cup with less caffeine. Sold as loose or whole leaf, it
+              suits premium black teas and signature menus.
+            </span>
+          </p>
+        </div>
 
-          {/* Panoramic Green Tea Flush Banner */}
-          <div className="relative w-full aspect-[21/9] sm:aspect-[16/6] min-h-[200px] max-h-[500px] rounded-[2px] bg-neutral-900 overflow-hidden shadow-2xl select-none group">
+        {/* 102px below it: 1200 x 498 Green Tea Flush Image */}
+        <div
+          className="w-full flex justify-center"
+          style={{ marginTop: "clamp(48px, 7.08vw, 102px)" }}
+        >
+          <div
+            className="relative w-full max-w-[1200px] aspect-[1200/498] rounded-[2px] overflow-hidden shadow-2xl select-none"
+          >
             <Image
-              src="/lorientalis/sourcing/tea-orthodox-panorama.jpg"
-              alt="Vibrant Green Tea Flush Leaves with Mountain Mist"
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/ca262eda-b665-4ba1-3ef4-1baa5bf22e00/public"
+              alt="Vibrant Green Tea Flush Leaves"
               fill
-              sizes="100vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              unoptimized
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
           </div>
         </div>
 
-        {/* 6C: GREEN TEA */}
-        <div className="w-full flex flex-col items-start select-none">
-          <div className="w-full max-w-[720px]">
-            <p className="m-0 leading-[1.6]">
-              <span
-                className="text-white font-normal"
-                style={{
-                  fontFamily: "var(--font-monschone), serif",
-                  fontSize: "clamp(24px, 2.6vw, 38px)",
-                }}
-              >
-                Green Tea
-              </span>
-              <span
-                className="text-[#FFFFFF99] text-[13px] sm:text-[14px]"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                {" "}&ndash; Green tea is made from unoxidized leaves and is one
-                of the least processed types of tea, which helps retain its
-                natural antioxidants and beneficial polyphenols. It offers a
-                fresh, light flavor with subtle grassy notes and a gentle
-                caffeine boost, making it a popular choice for a healthy,
-                refreshing drink.
-              </span>
-            </p>
-          </div>
+        {/* 102px below it: Green Tea Text (left aligned) */}
+        <div
+          className="w-full max-w-[1200px] mx-auto select-none"
+          style={{ marginTop: "clamp(48px, 7.08vw, 102px)" }}
+        >
+          <p className="m-0 text-left leading-tight max-w-[1100px]">
+            <span
+              className="text-white"
+              style={{
+                fontFamily: "var(--font-monschone), serif",
+                fontWeight: 400,
+                fontSize: "clamp(28px, 3.333vw, 48px)",
+                lineHeight: "100%",
+                letterSpacing: "0%",
+              }}
+            >
+              Green Tea
+            </span>
+            <span
+              style={{
+                fontFamily: "'Helvetica', Arial, sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(16px, 1.667vw, 24px)",
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                color: "#DBDBDB",
+              }}
+            >
+              {" "} : Green tea is made from unoxidized leaves and is one of the
+              least processed types of tea, which helps retain its natural
+              antioxidants and beneficial polyphenols. It offers a fresh, light
+              flavor with subtle grassy notes and a gentle caffeine boost,
+              making it a popular choice for a healthy, refreshing drink.
+            </span>
+          </p>
         </div>
+
+        {/* 130px spacing below it to footer */}
+        <div
+          className="w-full"
+          style={{ height: "clamp(60px, 9.02vw, 130px)" }}
+        />
       </section>
 
-      {/* Spacing above footer */}
-      <div className="w-full h-[clamp(32px,5vw,80px)]" />
-
-      {/* 7. L'ORIENTALIS FOOTER */}
+      {/* L'ORIENTALIS FOOTER */}
       <LOrientalisFooter />
     </main>
   );
