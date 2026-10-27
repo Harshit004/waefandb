@@ -1,18 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
-
-function clamp01(x: number) {
-  return Math.max(0, Math.min(1, x));
-}
-
-function smoothstep(edge0: number, edge1: number, x: number) {
-  const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
-  return t * t * (3 - 2 * t);
-}
 
 export default function LorientalisSourcingPage() {
   // Rooted In Community dynamic precedence gallery state (defaults to index 3, the middle focal image)
@@ -20,65 +11,8 @@ export default function LorientalisSourcingPage() {
   const [activeStackedChoice, setActiveStackedChoice] = useState<"top" | "bottom">("top");
   const effectiveActiveCol = activeCol !== null ? activeCol : 3;
 
-  // Scroll animation state for Section 4B: Coffee Processing Methods
-  const coffeeContainerRef = useRef<HTMLDivElement | null>(null);
-  const coffeeCurrentProgressRef = useRef(0);
-  const coffeeTargetProgressRef = useRef(0);
-  const [coffeeProgress, setCoffeeProgress] = useState(0);
-
-  useEffect(() => {
-    let animationFrameId: number;
-
-    const updateTarget = () => {
-      if (!coffeeContainerRef.current) return;
-      const rect = coffeeContainerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const totalScrollDistance = rect.height - windowHeight;
-      if (totalScrollDistance <= 0) return;
-
-      const currentScroll = -rect.top;
-      const raw = currentScroll / totalScrollDistance;
-      coffeeTargetProgressRef.current = Math.min(Math.max(raw, 0), 1);
-    };
-
-    const onScroll = () => {
-      updateTarget();
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    updateTarget();
-
-    let lastTime = performance.now();
-    const tick = (now: number) => {
-      const dt = Math.min((now - lastTime) / 1000, 0.1);
-      lastTime = now;
-
-      const lambda = 10;
-      const factor = 1 - Math.exp(-lambda * dt);
-      const target = coffeeTargetProgressRef.current;
-      const current = coffeeCurrentProgressRef.current;
-      const diff = target - current;
-
-      if (Math.abs(diff) > 0.0001) {
-        coffeeCurrentProgressRef.current = current + diff * factor;
-        setCoffeeProgress(coffeeCurrentProgressRef.current);
-      } else if (current !== target) {
-        coffeeCurrentProgressRef.current = target;
-        setCoffeeProgress(target);
-      }
-
-      animationFrameId = requestAnimationFrame(tick);
-    };
-
-    animationFrameId = requestAnimationFrame(tick);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+  // Hover state for Section 4B: Coffee Processing Methods (0 = Natural, 1 = Washed, 2 = Honey)
+  const [activeCoffeeSlide, setActiveCoffeeSlide] = useState(0);
 
   // Precedence-based sizing for the 7 columns in Rooted in Community
   const getColDimensions = (colIndex: number) => {
@@ -356,9 +290,9 @@ export default function LorientalisSourcingPage() {
             Honouring The Growers Behind Every Cup
           </h2>
 
-          {/* 98px gap then Reliable supply narrative (expanded width so text flows without awkward breaking) */}
+          {/* 98px gap then Reliable supply narrative (3 balanced lines matching design) */}
           <p
-            className="text-center select-none m-0 mx-auto max-w-[1240px]"
+            className="text-center select-none m-0 mx-auto max-w-[1360px]"
             style={{
               marginTop: "clamp(48px, 6.8vw, 98px)",
               fontFamily: "'Helvetica', Arial, sans-serif",
@@ -369,8 +303,8 @@ export default function LorientalisSourcingPage() {
               color: "#DBDBDB",
             }}
           >
-            Reliable Supply Depends On The People Who Grow It. Across North East India, We Work With Farming Communities And Estates,<br className="hidden md:inline" />
-            {" "}Many Of Them Multi-Generational, And Look For Ways To Keep More Value At The Farm Gate. For Our Partners, That Means Stable<br className="hidden md:inline" />
+            Reliable Supply Depends On The People Who Grow It. Across North East India, We Work With Farming Communities And Estates,<br className="hidden lg:inline" />
+            {" "}Many Of Them Multi-Generational, And Look For Ways To Keep More Value At The Farm Gate. For Our Partners, That Means Stable<br className="hidden lg:inline" />
             {" "}Supply, Visibility From Farm To Cup And A Sourcing Story That Holds Up In ESG And Procurement Reviews.
           </p>
         </div>
@@ -873,283 +807,270 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 4B: COFFEE PROCESSING METHODS (134px gap, scroll animated carousel)
+          SECTION 4B: COFFEE PROCESSING METHODS (134px gap, hover-based accordion)
           ========================================================================= */}
-      {(() => {
-        const p = coffeeProgress;
-        const t1 = smoothstep(0.18, 0.48, p);
-        const t2 = smoothstep(0.58, 0.88, p);
-
-        // Slide 1 transforms
-        const text1Opacity = Math.max(0, 1 - t1 * 1.5);
-        const text1X = -t1 * 100;
-        const img1Opacity = Math.max(0, 1 - t1 * 1.2);
-
-        // Slide 2 transforms
-        const text2In = smoothstep(0.2, 0.75, t1);
-        const text2Opacity = text2In * Math.max(0, 1 - t2 * 1.5);
-        const text2X = (1 - text2In) * 60 - t2 * 100;
-        const img2Opacity = t1 > 0 ? (t2 > 0 ? Math.max(0, 1 - t2 * 1.2) : 1) : 0.4 + t1 * 0.6;
-
-        // Slide 3 transforms
-        const text3In = smoothstep(0.2, 0.85, t2);
-        const text3Opacity = text3In;
-        const text3X = (1 - text3In) * 60;
-
-        // Track horizontal displacement: moves Image 2 to center during t1, Image 3 to center during t2
-        const shift1 = t1 * 44; // vw
-        const shift2 = t2 * 54;
-        const totalTrackTranslate = -(shift1 + shift2);
-
-        // Image 3 expands from 187px to 502px width (716x952 ratio at 667px height)
-        const img3WidthVal = 187 + t2 * 315;
-
-        return (
-          <section
-            id="coffee-processing"
-            ref={coffeeContainerRef}
-            className="relative w-full h-[360vh] bg-black text-white"
+      <section
+        id="coffee-processing"
+        className="relative w-full bg-black text-white overflow-hidden select-none flex flex-col justify-end"
+        style={{
+          marginTop: "clamp(64px, 8vw, 120px)",
+          height: "clamp(600px, 84vh, 780px)",
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+          paddingBottom: "clamp(24px, 4vh, 48px)",
+        }}
+      >
+        {/* Background Watermark: "COFFEE" (128px Monschone, #FFFFFF33, z-1 behind images/text) */}
+        <div
+          className="absolute select-none pointer-events-none"
+          style={{
+            zIndex: 1,
+            top: "4%",
+            left: "2vw",
+          }}
+        >
+          <span
             style={{
-              marginTop: "clamp(64px, 9.3vw, 134px)",
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+              fontSize: "clamp(64px, 8.889vw, 128px)",
+              lineHeight: "100%",
+              letterSpacing: "0%",
+              color: "rgba(255, 255, 255, 0.2)",
+              textTransform: "uppercase",
             }}
           >
-            <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-black select-none">
-              {/* Background Watermark: "COFFEE" (128px Monschone, #FFFFFF33, z-5 lower than images/text) */}
-              <div
-                className="absolute top-[8%] lg:top-[12%] left-[4vw] sm:left-[8vw] select-none pointer-events-none"
+            Coffee
+          </span>
+        </div>
+
+        {/* Row of Content: All bottom-aligned matching video */}
+        <div
+          className="relative z-10 w-full flex items-end overflow-visible"
+          style={{
+            gap: "clamp(16px, 2vw, 32px)",
+          }}
+        >
+          {/* Slot 0: Left text for Natural Process (only expanded when activeCoffeeSlide === 0) */}
+          <div
+            className="flex flex-col justify-end shrink-0 overflow-hidden"
+            style={{
+              width: activeCoffeeSlide === 0 ? "clamp(280px, 26vw, 420px)" : "0px",
+              opacity: activeCoffeeSlide === 0 ? 1 : 0,
+              transform: activeCoffeeSlide === 0 ? "translateX(0)" : "translateX(-30px)",
+              transition:
+                "width 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+              pointerEvents: activeCoffeeSlide === 0 ? "auto" : "none",
+              paddingBottom: "clamp(12px, 2vh, 24px)",
+            }}
+          >
+            <div className="w-[clamp(280px,26vw,420px)] flex flex-col items-end text-right">
+              <h3
+                className="m-0 text-white select-none whitespace-nowrap"
                 style={{
-                  zIndex: 5,
-                  transform: `translate3d(-${p * 50}px, 0, 0)`,
-                  willChange: "transform",
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(26px, 3vw, 48px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "right",
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: "var(--font-monschone), serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(64px, 8.889vw, 128px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                    color: "rgba(255, 255, 255, 0.2)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Coffee
-                </span>
-              </div>
-
-              {/* Main Stage: Left Text Box Stack + Right Track of 3 Images */}
-              <div
-                className="relative w-full max-w-[1440px] mx-auto h-[min(720px,88vh)] flex items-center justify-between"
+                Natural Process<br />(Dry Method)
+              </h3>
+              <p
+                className="m-0 select-none text-right"
                 style={{
-                  paddingLeft: "2.778vw",
-                  paddingRight: "2.778vw",
+                  marginTop: "16px",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(13px, 1.05vw, 18px)",
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  color: "#DBDBDB",
+                  maxWidth: "420px",
                 }}
               >
-                {/* LEFT: Text Stack (Right-aligned, fades & slides out/in) */}
-                <div className="relative w-full max-w-[460px] h-[340px] shrink-0 z-20 flex flex-col justify-end text-right pr-6 sm:pr-10 lg:pr-12 pointer-events-none">
-                  {/* Text 1: Natural Process (Dry Method) */}
-                  <div
-                    className="absolute inset-0 flex flex-col justify-end text-right transition-all"
-                    style={{
-                      opacity: text1Opacity,
-                      transform: `translate3d(${text1X}px, 0, 0)`,
-                      pointerEvents: text1Opacity > 0.5 ? "auto" : "none",
-                      willChange: "transform, opacity",
-                    }}
-                  >
-                    <h3
-                      className="m-0 text-white select-none text-right"
-                      style={{
-                        fontFamily: "var(--font-monschone), serif",
-                        fontWeight: 400,
-                        fontSize: "clamp(28px, 3.333vw, 48px)",
-                        lineHeight: "100%",
-                        letterSpacing: "0%",
-                        textAlign: "right",
-                      }}
-                    >
-                      Natural Process<br />(Dry Method)
-                    </h3>
-                    <p
-                      className="m-0 select-none text-right"
-                      style={{
-                        marginTop: "24px",
-                        fontFamily: "var(--font-manrope), sans-serif",
-                        fontWeight: 400,
-                        fontSize: "clamp(14px, 1.25vw, 18px)",
-                        lineHeight: "120%",
-                        letterSpacing: "0%",
-                        textAlign: "right",
-                        color: "#DBDBDB",
-                        maxWidth: "460px",
-                      }}
-                    >
-                      In This Time-Tested Method, Freshly Picked Cherries Are Spread On Wide Surfaces To Dry Whole In The Sun, Then Hulled To Remove The Skin And Pulp. Slow And Low-Input, It Brings A Fuller Body And Fruit-Forward Sweetness, And It Rewards Careful, Consistent Drying.
-                    </p>
-                  </div>
-
-                  {/* Text 2: Washed Process (Wet Method) */}
-                  <div
-                    className="absolute inset-0 flex flex-col justify-end text-right transition-all"
-                    style={{
-                      opacity: text2Opacity,
-                      transform: `translate3d(${text2X}px, 0, 0)`,
-                      pointerEvents: text2Opacity > 0.5 ? "auto" : "none",
-                      willChange: "transform, opacity",
-                    }}
-                  >
-                    <h3
-                      className="m-0 text-white select-none text-right"
-                      style={{
-                        fontFamily: "var(--font-monschone), serif",
-                        fontWeight: 400,
-                        fontSize: "clamp(28px, 3.333vw, 48px)",
-                        lineHeight: "100%",
-                        letterSpacing: "0%",
-                        textAlign: "right",
-                      }}
-                    >
-                      Washed Process<br />(Wet Method)
-                    </h3>
-                    <p
-                      className="m-0 select-none text-right"
-                      style={{
-                        marginTop: "24px",
-                        fontFamily: "var(--font-manrope), sans-serif",
-                        fontWeight: 400,
-                        fontSize: "clamp(14px, 1.25vw, 18px)",
-                        lineHeight: "120%",
-                        letterSpacing: "0%",
-                        textAlign: "right",
-                        color: "#DBDBDB",
-                        maxWidth: "460px",
-                      }}
-                    >
-                      In This Technology-Led Method, The Fruit Pulp Is Mechanically Removed Before The Beans Are Fermented And Washed In Clean Water. It Brings A Clean, Bright Cup With Vibrant Acidity, Delicate Florals, And A Transparent Reflection Of Soil And Elevation.
-                    </p>
-                  </div>
-
-                  {/* Text 3: Honey Process (Hybrid Method) */}
-                  <div
-                    className="absolute inset-0 flex flex-col justify-end text-right transition-all"
-                    style={{
-                      opacity: text3Opacity,
-                      transform: `translate3d(${text3X}px, 0, 0)`,
-                      pointerEvents: text3Opacity > 0.5 ? "auto" : "none",
-                      willChange: "transform, opacity",
-                    }}
-                  >
-                    <h3
-                      className="m-0 text-white select-none text-right"
-                      style={{
-                        fontFamily: "var(--font-monschone), serif",
-                        fontWeight: 400,
-                        fontSize: "clamp(28px, 3.333vw, 48px)",
-                        lineHeight: "100%",
-                        letterSpacing: "0%",
-                        textAlign: "right",
-                      }}
-                    >
-                      Honey Process<br />(Hybrid Method)
-                    </h3>
-                    <p
-                      className="m-0 select-none text-right"
-                      style={{
-                        marginTop: "24px",
-                        fontFamily: "var(--font-manrope), sans-serif",
-                        fontWeight: 400,
-                        fontSize: "clamp(14px, 1.25vw, 18px)",
-                        lineHeight: "120%",
-                        letterSpacing: "0%",
-                        textAlign: "right",
-                        color: "#DBDBDB",
-                        maxWidth: "460px",
-                      }}
-                    >
-                      Bridging Centuries-Old Tradition And Precision Milling, The Outer Skin Is Pulped While Leaving Mucilage On The Bean To Dry In The Sun. The Result Is A Syrupy Sweetness, Rounded Body, And Elegant Complexity Balancing Natural Richness With Washed Clarity.
-                    </p>
-                  </div>
-                </div>
-
-                {/* RIGHT: Image Track (3 images sliding left on scroll) */}
-                <div className="relative flex-1 h-full flex items-center overflow-visible z-10">
-                  <div
-                    className="flex items-center will-change-transform"
-                    style={{
-                      gap: "clamp(24px, 3.33vw, 48px)",
-                      transform: `translate3d(${totalTrackTranslate}vw, 0, 0)`,
-                      transition: "transform 0.1s linear",
-                    }}
-                  >
-                    {/* Image 1: 418 x 667 Natural Process */}
-                    <div
-                      className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
-                      style={{
-                        width: "clamp(260px, 29vw, 418px)",
-                        height: "clamp(415px, 46.3vw, 667px)",
-                        aspectRatio: "418 / 667",
-                        opacity: img1Opacity,
-                        willChange: "opacity",
-                      }}
-                    >
-                      <Image
-                        src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/dbaee4e4-224c-4aba-77e6-d9f48d8a6100/public"
-                        alt="Natural Process Dry Method Cherries on Raised Beds"
-                        fill
-                        unoptimized
-                        sizes="418px"
-                        className="object-cover select-none pointer-events-none"
-                      />
-                    </div>
-
-                    {/* Image 2: 639 x 587 Washed Process */}
-                    <div
-                      className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
-                      style={{
-                        width: "clamp(340px, 44.375vw, 639px)",
-                        height: "clamp(312px, 40.764vw, 587px)",
-                        aspectRatio: "639 / 587",
-                        opacity: img2Opacity,
-                        willChange: "opacity",
-                      }}
-                    >
-                      <Image
-                        src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e91fa152-3598-45a8-fb98-83c5c7f99400/public"
-                        alt="Washed Process Wet Method Hands Washing Cherries in Water"
-                        fill
-                        unoptimized
-                        sizes="639px"
-                        className="object-cover select-none pointer-events-none"
-                      />
-                    </div>
-
-                    {/* Image 3: Initially 187 x 667, expands to 502 x 667 (716x952 ratio) */}
-                    <div
-                      className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
-                      style={{
-                        width: `clamp(120px, ${img3WidthVal * (100 / 1440)}vw, ${img3WidthVal}px)`,
-                        height: "clamp(415px, 46.3vw, 667px)",
-                        transition: "width 0.1s linear",
-                        willChange: "width",
-                      }}
-                    >
-                      <Image
-                        src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/256b619b-b2c8-42db-df09-f94d7fd94a00/public"
-                        alt="Honey Process Hybrid Method Expanded Display"
-                        fill
-                        unoptimized
-                        sizes="502px"
-                        className="object-cover select-none pointer-events-none"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+                In This Time-Tested Method, Freshly Picked Cherries Are Spread On Wide Surfaces To Dry Whole In The Sun, Then Hulled To Remove The Skin And Pulp. Slow And Low-Input, It Brings A Fuller Body And Fruit-Forward Sweetness, And It Rewards Careful, Consistent Drying.
+              </p>
             </div>
-          </section>
-        );
-      })()}
+          </div>
+
+          {/* Column 0: Image 1 (Natural Process Cherries) */}
+          <div
+            className="relative shrink-0 overflow-hidden cursor-pointer rounded-[2px]"
+            style={{
+              width:
+                activeCoffeeSlide === 0
+                  ? "clamp(300px, 32vw, 460px)"
+                  : activeCoffeeSlide === 1
+                  ? "clamp(110px, 10vw, 150px)"
+                  : "clamp(80px, 7vw, 110px)",
+              height: "clamp(420px, 58vh, 560px)",
+              transition: "width 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+              willChange: "width",
+            }}
+            onMouseEnter={() => setActiveCoffeeSlide(0)}
+          >
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/dbaee4e4-224c-4aba-77e6-d9f48d8a6100/public"
+              alt="Natural Process Dry Method Cherries on Raised Beds"
+              fill
+              unoptimized
+              sizes="(max-width: 768px) 100vw, 460px"
+              className="object-cover select-none pointer-events-none"
+            />
+          </div>
+
+          {/* Column 1: Washed Process (Text above + Image 2) */}
+          <div
+            className="flex flex-col justify-end shrink-0"
+            style={{
+              width:
+                activeCoffeeSlide === 1
+                  ? "clamp(360px, 40vw, 580px)"
+                  : activeCoffeeSlide === 0
+                  ? "clamp(220px, 24vw, 350px)"
+                  : "clamp(140px, 13vw, 200px)",
+              transition: "width 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+              willChange: "width",
+            }}
+            onMouseEnter={() => setActiveCoffeeSlide(1)}
+          >
+            {/* Washed Process Text (Positioned above image, right-aligned) */}
+            <div
+              className="w-full flex flex-col items-end text-right overflow-hidden mb-4"
+              style={{
+                opacity: activeCoffeeSlide === 1 ? 1 : 0,
+                transform: activeCoffeeSlide === 1 ? "translateY(0)" : "translateY(16px)",
+                transition: "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                pointerEvents: activeCoffeeSlide === 1 ? "auto" : "none",
+                minHeight: "110px",
+              }}
+            >
+              <h3
+                className="m-0 text-white select-none whitespace-nowrap"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(26px, 3vw, 48px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "right",
+                }}
+              >
+                Washed Process (Wet Method)
+              </h3>
+              <p
+                className="m-0 select-none text-right"
+                style={{
+                  marginTop: "12px",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(13px, 1.05vw, 18px)",
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  color: "#DBDBDB",
+                  maxWidth: "520px",
+                }}
+              >
+                Here, The Skin And Pulp Are Removed Soon After Harvest, And The Beans Are Soaked And Washed In Clean Water Before Drying. The Result Is A Clean, Bright And Consistent Cup. It Is The Most Water-Intensive Of The Three Methods, Which Makes Water Management Part Of Quality.
+              </p>
+            </div>
+
+            {/* Image 2: Washed Cherries in Basin */}
+            <div
+              className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
+              style={{
+                height: "clamp(360px, 48vh, 460px)",
+              }}
+            >
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e91fa152-3598-45a8-fb98-83c5c7f99400/public"
+                alt="Washed Process Wet Method Hands Washing Cherries in Water"
+                fill
+                unoptimized
+                sizes="(max-width: 768px) 100vw, 580px"
+                className="object-cover select-none pointer-events-none"
+              />
+            </div>
+          </div>
+
+          {/* Column 2: Honey Process (Text above + Image 3) */}
+          <div
+            className="flex flex-col justify-end shrink-0"
+            style={{
+              width:
+                activeCoffeeSlide === 2
+                  ? "clamp(340px, 35vw, 500px)"
+                  : activeCoffeeSlide === 1
+                  ? "clamp(180px, 18vw, 260px)"
+                  : "clamp(140px, 12vw, 180px)",
+              transition: "width 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+              willChange: "width",
+            }}
+            onMouseEnter={() => setActiveCoffeeSlide(2)}
+          >
+            {/* Honey Process Text (Positioned above image, right-aligned) */}
+            <div
+              className="w-full flex flex-col items-end text-right overflow-hidden mb-4"
+              style={{
+                opacity: activeCoffeeSlide === 2 ? 1 : 0,
+                transform: activeCoffeeSlide === 2 ? "translateY(0)" : "translateY(16px)",
+                transition: "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                pointerEvents: activeCoffeeSlide === 2 ? "auto" : "none",
+                minHeight: "110px",
+              }}
+            >
+              <h3
+                className="m-0 text-white select-none whitespace-nowrap"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(26px, 3vw, 48px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textAlign: "right",
+                }}
+              >
+                Honey Process (Hybrid Method)
+              </h3>
+              <p
+                className="m-0 select-none text-right"
+                style={{
+                  marginTop: "12px",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(13px, 1.05vw, 18px)",
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  color: "#DBDBDB",
+                  maxWidth: "480px",
+                }}
+              >
+                Bridging Centuries-Old Tradition And Precision Milling, The Outer Skin Is Pulped While Leaving Mucilage On The Bean To Dry In The Sun. The Result Is A Syrupy Sweetness, Rounded Body, And Elegant Complexity Balancing Natural Richness With Washed Clarity.
+              </p>
+            </div>
+
+            {/* Image 3: Honey Process Handful of Beans */}
+            <div
+              className="relative w-full overflow-hidden cursor-pointer rounded-[2px]"
+              style={{
+                height: "clamp(400px, 54vh, 520px)",
+              }}
+            >
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/256b619b-b2c8-42db-df09-f94d7fd94a00/public"
+                alt="Honey Process Hybrid Method Expanded Display"
+                fill
+                unoptimized
+                sizes="(max-width: 768px) 100vw, 500px"
+                className="object-cover select-none pointer-events-none"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* =========================================================================
           SECTION 5: THE TEA PRODUCTION PROCESS (148px gap from Section 4B)
