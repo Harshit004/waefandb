@@ -458,7 +458,7 @@ export default function LorientalisSourcingPage() {
         </div>
 
         {/* Multi-Photo Collage / Growers Gallery (7 Columns matching screenshot design) */}
-        <div className="w-full mt-[clamp(36px,4.5vw,72px)] overflow-x-auto md:overflow-x-hidden select-none flex items-center justify-center">
+        <div className="w-full mt-[clamp(36px,4.5vw,72px)] overflow-x-auto md:overflow-x-visible select-none flex items-center justify-center group/gallery py-4">
           <div
             className="flex items-center justify-center shrink-0"
             style={{
@@ -469,7 +469,7 @@ export default function LorientalisSourcingPage() {
           >
             {/* Column 1: Far-Left Image (91x106) */}
             <div
-              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
               style={{
                 width: "clamp(48px, 6.319vw, 91px)",
                 aspectRatio: "91 / 106",
@@ -479,9 +479,11 @@ export default function LorientalisSourcingPage() {
                 src="/lorientalis/sourcing/grower-drying-bed.jpg"
                 alt="Grower harvesting"
                 fill
+                unoptimized
                 sizes="91px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </div>
 
             {/* Column 2: 2 in a column (each 91x106 with 40px gap between them) */}
@@ -493,24 +495,7 @@ export default function LorientalisSourcingPage() {
             >
               {/* Top: 91x106 */}
               <div
-                className="relative overflow-hidden bg-neutral-900 group shrink-0"
-                style={{
-                  width: "clamp(48px, 6.319vw, 91px)",
-                  aspectRatio: "91 / 106",
-                }}
-              >
-                <Image
-                  src="/lorientalis/sourcing/grower-drying-bed.jpg"
-                  alt="Drying Bed on Burlap"
-                  fill
-                  sizes="91px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              </div>
-
-              {/* Bottom: 91x106 */}
-              <div
-                className="relative overflow-hidden bg-neutral-900 group shrink-0"
+                className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
                 style={{
                   width: "clamp(48px, 6.319vw, 91px)",
                   aspectRatio: "91 / 106",
@@ -518,34 +503,57 @@ export default function LorientalisSourcingPage() {
               >
                 <Image
                   src="/lorientalis/sourcing/grower-harvest-basket.jpg"
-                  alt="Ripe Harvest Cherries Basket"
+                  alt="Drying Bed on Burlap"
                   fill
+                  unoptimized
                   sizes="91px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              </div>
+
+              {/* Bottom: 91x106 */}
+              <div
+                className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
+                style={{
+                  width: "clamp(48px, 6.319vw, 91px)",
+                  aspectRatio: "91 / 106",
+                }}
+              >
+                <Image
+                  src="/lorientalis/sourcing/grower-sorting-beans.jpg"
+                  alt="Farmer Sorting Cherries"
+                  fill
+                  unoptimized
+                  sizes="91px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </div>
             </div>
 
             {/* Column 3: Left Medium Portrait (158x185) */}
             <div
-              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
               style={{
                 width: "clamp(82px, 10.972vw, 158px)",
                 aspectRatio: "158 / 185",
               }}
             >
               <Image
-                src="/lorientalis/sourcing/grower-sorting-beans.jpg"
-                alt="Farmer Sorting Cherries"
+                src="/lorientalis/sourcing/grower-plucking-cherries.jpg"
+                alt="Plucking Ripe Cherries"
                 fill
+                unoptimized
                 sizes="158px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </div>
 
             {/* Column 4: Central Focal Image (501x511) */}
             <div
-              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-[1.03] hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
               style={{
                 width: "clamp(260px, 34.792vw, 501px)",
                 aspectRatio: "501 / 511",
@@ -556,14 +564,16 @@ export default function LorientalisSourcingPage() {
                 alt="Community Tea Harvester"
                 fill
                 priority
+                unoptimized
                 sizes="(max-width: 768px) 280px, 501px"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </div>
 
             {/* Column 5: Right Medium Portrait (158x185) */}
             <div
-              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
               style={{
                 width: "clamp(82px, 10.972vw, 158px)",
                 aspectRatio: "158 / 185",
@@ -573,9 +583,11 @@ export default function LorientalisSourcingPage() {
                 src="/lorientalis/sourcing/grower-smiling-foliage.jpg"
                 alt="Estate Worker in Coffee Foliage"
                 fill
+                unoptimized
                 sizes="158px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </div>
 
             {/* Column 6: 2 in a column (each 91x106 with 40px gap between them) */}
@@ -587,24 +599,7 @@ export default function LorientalisSourcingPage() {
             >
               {/* Top: 91x106 */}
               <div
-                className="relative overflow-hidden bg-neutral-900 group shrink-0"
-                style={{
-                  width: "clamp(48px, 6.319vw, 91px)",
-                  aspectRatio: "91 / 106",
-                }}
-              >
-                <Image
-                  src="/lorientalis/sourcing/grower-plucking-cherries.jpg"
-                  alt="Plucking Ripe Cherries"
-                  fill
-                  sizes="91px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              </div>
-
-              {/* Bottom: 91x106 */}
-              <div
-                className="relative overflow-hidden bg-neutral-900 group shrink-0"
+                className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
                 style={{
                   width: "clamp(48px, 6.319vw, 91px)",
                   aspectRatio: "91 / 106",
@@ -612,29 +607,52 @@ export default function LorientalisSourcingPage() {
               >
                 <Image
                   src="/lorientalis/sourcing/grower-raking-cherries.jpg"
+                  alt="Plucking Ripe Cherries"
+                  fill
+                  unoptimized
+                  sizes="91px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              </div>
+
+              {/* Bottom: 91x106 */}
+              <div
+                className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
+                style={{
+                  width: "clamp(48px, 6.319vw, 91px)",
+                  aspectRatio: "91 / 106",
+                }}
+              >
+                <Image
+                  src="/lorientalis/sourcing/grower-harvest-basket.jpg"
                   alt="Raking Coffee Cherries on Raised Beds"
                   fill
+                  unoptimized
                   sizes="91px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </div>
             </div>
 
             {/* Column 7: Far-Right Image (91x106) */}
             <div
-              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px] border border-white/10 transition-all duration-500 ease-out group-hover/gallery:opacity-60 hover:!opacity-100 hover:scale-105 hover:z-30 hover:border-white/60 hover:shadow-2xl hover:shadow-black/90"
               style={{
                 width: "clamp(48px, 6.319vw, 91px)",
                 aspectRatio: "91 / 106",
               }}
             >
               <Image
-                src="/lorientalis/sourcing/grower-raking-cherries.jpg"
+                src="/lorientalis/sourcing/grower-drying-bed.jpg"
                 alt="Estate Preview"
                 fill
+                unoptimized
                 sizes="91px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </div>
           </div>
         </div>
