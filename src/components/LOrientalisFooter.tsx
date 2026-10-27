@@ -327,6 +327,15 @@ export default function LOrientalisFooter({
           className="w-full h-full object-cover object-bottom select-none pointer-events-none"
         />
 
+        {/* Bottom gradient overlay so the bottom of the image is completely blended in the background */}
+        <div
+          className="absolute inset-0 pointer-events-none z-[5]"
+          style={{
+            background:
+              "linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 112.97%)",
+          }}
+        />
+
         {/* Content over the leaves: hairline divider & copyright positioned across leaves */}
         <div className="absolute inset-0 flex flex-col justify-start pt-[clamp(60px,6vw,95px)] pointer-events-none z-10">
           {/* Horizontal line running across the screen */}

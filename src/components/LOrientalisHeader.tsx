@@ -68,7 +68,7 @@ export default function LOrientalisHeader({
 
       {/* Middle: Logo (213 x 20.78) */}
       <Link
-        href="/"
+        href="/lorientalis"
         className="absolute left-1/2 -translate-x-1/2 pointer-events-auto cursor-pointer flex items-center justify-center transition-opacity duration-200 hover:opacity-85"
         onMouseEnter={onMouseEnterElement}
         onMouseLeave={onMouseLeaveElement}

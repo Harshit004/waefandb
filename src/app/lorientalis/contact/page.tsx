@@ -379,13 +379,13 @@ export default function LorientalisContactPage() {
           <div className="relative w-full">
             {/* Left Botanical Image: flush to left edge (no margins), 210x786 ratio, bottom aligned with 'Message' */}
             <div
-              className="absolute left-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(120px,14.583vw,210px)]"
+              className="absolute left-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(120px,14.583vw,210px)] overflow-hidden"
               style={{
                 aspectRatio: "210 / 786",
                 maskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, black 35%, black 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 12%, black 25%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, black 35%, black 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 12%, black 25%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
               }}
               aria-hidden="true"
             >
@@ -394,17 +394,25 @@ export default function LorientalisContactPage() {
                 alt="L'Orientalis botanical left"
                 className="w-full h-full object-cover block"
               />
+              {/* Softening gradient overlays on top so all edges disappear and blend seamlessly into black bg */}
+              <div
+                className="absolute inset-0 pointer-events-none z-10"
+                style={{
+                  background:
+                    "linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 20%, rgba(0,0,0,0.7) 65%, #000000 100%), linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.5) 12%, transparent 25%, transparent 75%, rgba(0,0,0,0.7) 90%, #000000 100%)",
+                }}
+              />
             </div>
 
             {/* Right Botanical Image: flush to right edge (no margins), 210x786 ratio, bottom aligned with 'Message' */}
             <div
-              className="absolute right-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(120px,14.583vw,210px)]"
+              className="absolute right-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(120px,14.583vw,210px)] overflow-hidden"
               style={{
                 aspectRatio: "210 / 786",
                 maskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, black 35%, black 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 12%, black 25%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, black 35%, black 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 12%, black 25%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
               }}
               aria-hidden="true"
             >
@@ -412,6 +420,14 @@ export default function LorientalisContactPage() {
                 src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/494be43c-d9c9-44bc-86f6-6f109d7c9d00/public"
                 alt="L'Orientalis botanical right"
                 className="w-full h-full object-cover block"
+              />
+              {/* Softening gradient overlays on top so all edges disappear and blend seamlessly into black bg */}
+              <div
+                className="absolute inset-0 pointer-events-none z-10"
+                style={{
+                  background:
+                    "linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 20%, rgba(0,0,0,0.7) 65%, #000000 100%), linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.5) 12%, transparent 25%, transparent 75%, rgba(0,0,0,0.7) 90%, #000000 100%)",
+                }}
               />
             </div>
 
@@ -434,7 +450,7 @@ export default function LorientalisContactPage() {
                     onChange={handleInputChange}
                     placeholder="Name"
                     required
-                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className="w-full bg-transparent border-0 border-b border-white/60 focus:border-white focus:outline-none text-white placeholder-white/75 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
@@ -451,7 +467,7 @@ export default function LorientalisContactPage() {
                     onChange={handleInputChange}
                     placeholder="Your company name"
                     required
-                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className="w-full bg-transparent border-0 border-b border-white/60 focus:border-white focus:outline-none text-white placeholder-white/75 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
@@ -468,7 +484,7 @@ export default function LorientalisContactPage() {
                     onChange={handleInputChange}
                     placeholder="Job title"
                     required
-                    className="w-full bg-transparent border-0 border-b border-white/30 focus:border-white focus:outline-none text-white placeholder-white/40 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
+                    className="w-full bg-transparent border-0 border-b border-white/60 focus:border-white focus:outline-none text-white placeholder-white/75 py-3 text-[14px] sm:text-[15px] transition-colors duration-200"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 300,
@@ -485,10 +501,10 @@ export default function LorientalisContactPage() {
                     onChange={handleInputChange}
                     onBlur={() => handleBlur("officialEmail")}
                     placeholder="Your official mail address"
-                    className={`w-full bg-transparent border-0 border-b py-3 text-[14px] sm:text-[15px] transition-colors duration-200 focus:outline-none placeholder-white/40 text-white ${
+                    className={`w-full bg-transparent border-0 border-b py-3 text-[14px] sm:text-[15px] transition-colors duration-200 focus:outline-none placeholder-white/75 text-white ${
                       touched.officialEmail && hasOfficialEmail && !validateEmail(formData.officialEmail)
                         ? "border-rose-400 focus:border-rose-400"
-                        : "border-white/30 focus:border-white"
+                        : "border-white/60 focus:border-white"
                     }`}
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
@@ -511,10 +527,10 @@ export default function LorientalisContactPage() {
                     onChange={handleInputChange}
                     onBlur={() => handleBlur("personalEmail")}
                     placeholder="Your mail id"
-                    className={`w-full bg-transparent border-0 border-b py-3 text-[14px] sm:text-[15px] transition-colors duration-200 focus:outline-none placeholder-white/40 text-white ${
+                    className={`w-full bg-transparent border-0 border-b py-3 text-[14px] sm:text-[15px] transition-colors duration-200 focus:outline-none placeholder-white/75 text-white ${
                       touched.personalEmail && hasPersonalEmail && !validateEmail(formData.personalEmail)
                         ? "border-rose-400 focus:border-rose-400"
-                        : "border-white/30 focus:border-white"
+                        : "border-white/60 focus:border-white"
                     }`}
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
@@ -538,10 +554,10 @@ export default function LorientalisContactPage() {
                     onBlur={() => handleBlur("phone")}
                     placeholder="Mobile number"
                     required
-                    className={`w-full bg-transparent border-0 border-b py-3 text-[14px] sm:text-[15px] transition-colors duration-200 focus:outline-none placeholder-white/40 text-white ${
+                    className={`w-full bg-transparent border-0 border-b py-3 text-[14px] sm:text-[15px] transition-colors duration-200 focus:outline-none placeholder-white/75 text-white ${
                       touched.phone && formData.phone.trim() && !isPhoneValid
                         ? "border-rose-400 focus:border-rose-400"
-                        : "border-white/30 focus:border-white"
+                        : "border-white/60 focus:border-white"
                     }`}
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
