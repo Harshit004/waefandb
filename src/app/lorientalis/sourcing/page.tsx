@@ -457,114 +457,183 @@ export default function LorientalisSourcingPage() {
           </p>
         </div>
 
-        {/* Multi-Photo Collage / Growers Gallery (Screenshot 1) */}
-        <div className="w-full max-w-[1440px] mt-[clamp(36px,4.5vw,72px)] flex items-center justify-center gap-2 sm:gap-3 md:gap-4 overflow-hidden select-none">
-          {/* Peeking Far-Left Thumbnail */}
-          <div className="hidden xl:block w-[7vw] max-w-[85px] aspect-[3/4] bg-neutral-950 shrink-0 overflow-hidden">
-            <div className="relative w-full h-full">
+        {/* Multi-Photo Collage / Growers Gallery (7 Columns matching screenshot design) */}
+        <div className="w-full mt-[clamp(36px,4.5vw,72px)] overflow-x-auto md:overflow-x-hidden select-none flex items-center justify-center">
+          <div
+            className="flex items-center justify-center shrink-0"
+            style={{
+              gap: "clamp(12px, 2.222vw, 32px)",
+              paddingLeft: "clamp(12px, 2.778vw, 40px)",
+              paddingRight: "clamp(12px, 2.778vw, 40px)",
+            }}
+          >
+            {/* Column 1: Far-Left Image (91x106) */}
+            <div
+              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              style={{
+                width: "clamp(48px, 6.319vw, 91px)",
+                aspectRatio: "91 / 106",
+              }}
+            >
               <Image
                 src="/lorientalis/sourcing/grower-drying-bed.jpg"
-                alt="Estate Preview"
+                alt="Grower harvesting"
                 fill
-                sizes="85px"
-                className="object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Left Stack (2 Small Stacked Square Photos) */}
-          <div className="flex flex-col gap-2 sm:gap-3 shrink-0">
-            {/* Top: Drying cherries on burlap */}
-            <div className="relative w-[85px] sm:w-[110px] md:w-[130px] aspect-square bg-neutral-900 overflow-hidden group">
-              <Image
-                src="/lorientalis/sourcing/grower-drying-bed.jpg"
-                alt="Drying Bed on Burlap"
-                fill
-                sizes="140px"
+                sizes="91px"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
 
-            {/* Bottom: Harvesting basket */}
-            <div className="relative w-[85px] sm:w-[110px] md:w-[130px] aspect-square bg-neutral-900 overflow-hidden group">
+            {/* Column 2: 2 in a column (each 91x106 with 40px gap between them) */}
+            <div
+              className="flex flex-col shrink-0 items-center justify-center"
+              style={{
+                rowGap: "clamp(16px, 2.778vw, 40px)",
+              }}
+            >
+              {/* Top: 91x106 */}
+              <div
+                className="relative overflow-hidden bg-neutral-900 group shrink-0"
+                style={{
+                  width: "clamp(48px, 6.319vw, 91px)",
+                  aspectRatio: "91 / 106",
+                }}
+              >
+                <Image
+                  src="/lorientalis/sourcing/grower-drying-bed.jpg"
+                  alt="Drying Bed on Burlap"
+                  fill
+                  sizes="91px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+              </div>
+
+              {/* Bottom: 91x106 */}
+              <div
+                className="relative overflow-hidden bg-neutral-900 group shrink-0"
+                style={{
+                  width: "clamp(48px, 6.319vw, 91px)",
+                  aspectRatio: "91 / 106",
+                }}
+              >
+                <Image
+                  src="/lorientalis/sourcing/grower-harvest-basket.jpg"
+                  alt="Ripe Harvest Cherries Basket"
+                  fill
+                  sizes="91px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+              </div>
+            </div>
+
+            {/* Column 3: Left Medium Portrait (158x185) */}
+            <div
+              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              style={{
+                width: "clamp(82px, 10.972vw, 158px)",
+                aspectRatio: "158 / 185",
+              }}
+            >
               <Image
-                src="/lorientalis/sourcing/grower-harvest-basket.jpg"
-                alt="Ripe Harvest Cherries Basket"
+                src="/lorientalis/sourcing/grower-sorting-beans.jpg"
+                alt="Farmer Sorting Cherries"
                 fill
-                sizes="140px"
+                sizes="158px"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
-          </div>
 
-          {/* Left Medium Portrait (Farmer sorting beans) */}
-          <div className="relative w-[110px] sm:w-[150px] md:w-[180px] lg:w-[200px] aspect-[3/4] bg-neutral-900 overflow-hidden shrink-0 group">
-            <Image
-              src="/lorientalis/sourcing/grower-sorting-beans.jpg"
-              alt="Farmer Sorting Cherries"
-              fill
-              sizes="200px"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-          </div>
-
-          {/* Focal Center Large Square Photo (Woman with woven bamboo tea basket) */}
-          <div className="relative w-[220px] sm:w-[300px] md:w-[360px] lg:w-[420px] aspect-square bg-neutral-900 overflow-hidden shrink-0 group">
-            <Image
-              src="/lorientalis/sourcing/grower-focal-portrait.jpg"
-              alt="Community Tea Harvester"
-              fill
-              priority
-              sizes="420px"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-          </div>
-
-          {/* Right Medium Portrait (Grower portrait with foliage) */}
-          <div className="relative w-[110px] sm:w-[150px] md:w-[180px] lg:w-[200px] aspect-[3/4] bg-neutral-900 overflow-hidden shrink-0 group">
-            <Image
-              src="/lorientalis/sourcing/grower-smiling-foliage.jpg"
-              alt="Estate Worker in Coffee Foliage"
-              fill
-              sizes="200px"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-          </div>
-
-          {/* Right Stack (2 Small Stacked Square Photos) */}
-          <div className="flex flex-col gap-2 sm:gap-3 shrink-0">
-            {/* Top: Plucking cherries from shrub */}
-            <div className="relative w-[85px] sm:w-[110px] md:w-[130px] aspect-square bg-neutral-900 overflow-hidden group">
+            {/* Column 4: Central Focal Image (501x511) */}
+            <div
+              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              style={{
+                width: "clamp(260px, 34.792vw, 501px)",
+                aspectRatio: "501 / 511",
+              }}
+            >
               <Image
-                src="/lorientalis/sourcing/grower-plucking-cherries.jpg"
-                alt="Plucking Ripe Cherries"
+                src="/lorientalis/sourcing/grower-focal-portrait.jpg"
+                alt="Community Tea Harvester"
                 fill
-                sizes="140px"
+                priority
+                sizes="(max-width: 768px) 280px, 501px"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
 
-            {/* Bottom: Raking cherries on bed */}
-            <div className="relative w-[85px] sm:w-[110px] md:w-[130px] aspect-square bg-neutral-900 overflow-hidden group">
+            {/* Column 5: Right Medium Portrait (158x185) */}
+            <div
+              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              style={{
+                width: "clamp(82px, 10.972vw, 158px)",
+                aspectRatio: "158 / 185",
+              }}
+            >
+              <Image
+                src="/lorientalis/sourcing/grower-smiling-foliage.jpg"
+                alt="Estate Worker in Coffee Foliage"
+                fill
+                sizes="158px"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            </div>
+
+            {/* Column 6: 2 in a column (each 91x106 with 40px gap between them) */}
+            <div
+              className="flex flex-col shrink-0 items-center justify-center"
+              style={{
+                rowGap: "clamp(16px, 2.778vw, 40px)",
+              }}
+            >
+              {/* Top: 91x106 */}
+              <div
+                className="relative overflow-hidden bg-neutral-900 group shrink-0"
+                style={{
+                  width: "clamp(48px, 6.319vw, 91px)",
+                  aspectRatio: "91 / 106",
+                }}
+              >
+                <Image
+                  src="/lorientalis/sourcing/grower-plucking-cherries.jpg"
+                  alt="Plucking Ripe Cherries"
+                  fill
+                  sizes="91px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+              </div>
+
+              {/* Bottom: 91x106 */}
+              <div
+                className="relative overflow-hidden bg-neutral-900 group shrink-0"
+                style={{
+                  width: "clamp(48px, 6.319vw, 91px)",
+                  aspectRatio: "91 / 106",
+                }}
+              >
+                <Image
+                  src="/lorientalis/sourcing/grower-raking-cherries.jpg"
+                  alt="Raking Coffee Cherries on Raised Beds"
+                  fill
+                  sizes="91px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+              </div>
+            </div>
+
+            {/* Column 7: Far-Right Image (91x106) */}
+            <div
+              className="relative overflow-hidden bg-neutral-900 group shrink-0"
+              style={{
+                width: "clamp(48px, 6.319vw, 91px)",
+                aspectRatio: "91 / 106",
+              }}
+            >
               <Image
                 src="/lorientalis/sourcing/grower-raking-cherries.jpg"
-                alt="Raking Coffee Cherries on Raised Beds"
-                fill
-                sizes="140px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          {/* Peeking Far-Right Thumbnail */}
-          <div className="hidden xl:block w-[7vw] max-w-[85px] aspect-[3/4] bg-neutral-950 shrink-0 overflow-hidden">
-            <div className="relative w-full h-full">
-              <Image
-                src="/lorientalis/sourcing/grower-raking-cherries.jpg"
                 alt="Estate Preview"
                 fill
-                sizes="85px"
-                className="object-cover"
+                sizes="91px"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
           </div>
