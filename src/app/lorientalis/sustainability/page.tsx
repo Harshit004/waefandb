@@ -307,7 +307,7 @@ export default function LorientalisSustainabilityPage() {
             Other Economic Options Are Limited.
           </p>
 
-          {/* Farm Landscape Placeholder: expands from 364x205 to 733x404 on scroll with 87px gap above & below */}
+          {/* Farm Landscape Video: expands from 364x205 to 733x404 on scroll with 87px gap above & below */}
           <div
             ref={farmRef}
             className="w-full flex items-center justify-center select-none"
@@ -317,7 +317,7 @@ export default function LorientalisSustainabilityPage() {
             }}
           >
             <div
-              className="relative transition-all duration-300 ease-out flex items-center justify-center max-w-full"
+              className="relative overflow-hidden rounded-[2px] bg-neutral-900 border border-neutral-800 shadow-2xl transition-all duration-300 ease-out flex items-center justify-center max-w-full"
               style={{
                 width: `min(100%, ${farmWidth}px)`,
                 height: `${farmHeight}px`,
@@ -326,10 +326,18 @@ export default function LorientalisSustainabilityPage() {
                 willChange: "width, height",
               }}
             >
-              <ImagePlaceholder
-                label="Farm Landscape Placeholder"
-                sublabel="Rolling agricultural hills & mountain plots"
-                className="w-full h-full"
+              <iframe
+                src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/8dbddb80a01b0aeccc717c5f8080ef4d/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F8dbddb80a01b0aeccc717c5f8080ef4d%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
+                style={{
+                  border: "none",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  height: "100%",
+                  width: "100%",
+                }}
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowFullScreen={true}
               />
             </div>
           </div>
