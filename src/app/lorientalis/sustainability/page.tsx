@@ -1,32 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
 
 /**
- * Hand-drawn organic green ellipse / loop SVG accent.
- * Dynamic responsive SVG that draws an accent loop around highlighted keywords.
+ * Green hand-drawn loop brand accent image.
+ * Uses official Cloudflare image asset: 73ab85b3-67e2-4103-e9c0-3fa0bec8f300
  */
 function GreenLoop({ className = "" }: { className?: string }) {
   return (
-    <svg
-      className={`absolute -inset-x-3 -inset-y-2 w-[calc(100%+24px)] h-[calc(100%+16px)] pointer-events-none overflow-visible ${className}`}
-      viewBox="0 0 120 50"
-      preserveAspectRatio="none"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    <img
+      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/73ab85b3-67e2-4103-e9c0-3fa0bec8f300/public"
+      alt=""
       aria-hidden="true"
-    >
-      <path
-        d="M8 26C6 13 28 4 64 5C96 6 114 16 112 28C109 40 80 47 44 45C18 43 4 33 10 19C15 10 32 5 56 6"
-        stroke="#48A663"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+      className={`absolute pointer-events-none select-none left-1/2 top-[50%] -translate-x-1/2 -translate-y-1/2 w-[165%] max-w-none h-auto z-10 ${className}`}
+    />
   );
 }
 
@@ -63,7 +53,7 @@ function PinwheelIcon({ className = "w-6 h-6 text-[#48A663]" }: { className?: st
 function ImagePlaceholder({
   label,
   sublabel,
-  aspectRatio = "16/10",
+  aspectRatio,
   className = "",
 }: {
   label: string;
@@ -74,7 +64,7 @@ function ImagePlaceholder({
   return (
     <div
       className={`relative w-full bg-[#0d0d0d] border border-neutral-800/80 rounded-[2px] overflow-hidden flex flex-col items-center justify-center p-6 text-center select-none group transition-all duration-300 hover:border-neutral-700 ${className}`}
-      style={{ aspectRatio }}
+      style={aspectRatio ? { aspectRatio } : undefined}
     >
       {/* Subtle ambient gradient mesh in placeholder */}
       <div className="absolute inset-0 bg-gradient-to-tr from-black via-neutral-900/40 to-[#122215]/30 pointer-events-none" />
@@ -109,6 +99,46 @@ function ImagePlaceholder({
 }
 
 export default function LorientalisSustainabilityPage() {
+  // Scroll-driven animation state for the farm landscape placeholder
+  const farmRef = useRef<HTMLDivElement>(null);
+  const [farmProgress, setFarmProgress] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (farmRef.current) {
+            const rect = farmRef.current.getBoundingClientRect();
+            const vh = window.innerHeight;
+            // Starts expanding when element enters bottom 85% of screen
+            // Fully expanded when element reaches center area (around 45% of screen)
+            const startY = vh * 0.85;
+            const endY = vh * 0.45;
+            const rawProgress = (startY - rect.top) / (startY - endY);
+            const clamped = Math.min(1, Math.max(0, rawProgress));
+            setFarmProgress(clamped);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  // Calculate dynamic dimensions for farm landscape placeholder (364x205 -> 733x404)
+  const farmWidth = Math.round(364 + (733 - 364) * farmProgress);
+  const farmHeight = Math.round(205 + (404 - 205) * farmProgress);
+
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-[#365944] selection:text-white">
       {/* 1. L'ORIENTALIS GLOBAL HEADER */}
@@ -167,10 +197,12 @@ export default function LorientalisSustainabilityPage() {
           >
             Sustainable
             <br />
+            envi
             <span className="relative inline-block">
-              environment
-              <GreenLoop />
+              ron
+              <GreenLoop className="w-[185%] top-[50%]" />
             </span>
+            ment
           </h1>
 
           {/* Subtitle */}
@@ -223,21 +255,17 @@ export default function LorientalisSustainabilityPage() {
           paddingRight: "2.778vw",
         }}
       >
-        {/* Subtle decorative dark moss-green wave ribbons in background matching screenshot */}
-        <div className="absolute inset-0 pointer-events-none opacity-20 -z-0 overflow-hidden">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 1440 900"
-            fill="none"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M-100 650C200 450 450 750 850 500C1250 250 1400 400 1600 300"
-              stroke="#2E5A36"
-              strokeWidth="90"
-              strokeLinecap="round"
-            />
-          </svg>
+        {/* Greenish wave in the background matching design */}
+        <div className="absolute inset-0 pointer-events-none -z-0 overflow-hidden flex items-center justify-center">
+          <img
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/87d91547-58ef-40f7-f370-e2673d4f6b00/public"
+            alt=""
+            aria-hidden="true"
+            className="w-full max-w-[1440px] h-auto object-contain pointer-events-none select-none opacity-95"
+            style={{
+              transform: "scale(1.05)",
+            }}
+          />
         </div>
 
         <div className="relative z-10 w-full max-w-[960px] mx-auto flex flex-col items-center">
@@ -251,11 +279,12 @@ export default function LorientalisSustainabilityPage() {
               lineHeight: "1.2",
             }}
           >
-            <span className="relative inline-block">
-              Growing
-              <GreenLoop />
-            </span>{" "}
-            Coffee And Tea In A
+            G
+            <span className="relative inline-block mx-[1px]">
+              row
+              <GreenLoop className="w-[180%] top-[48%]" />
+            </span>
+            ing Coffee And Tea In A
             <br />
             Changing Climate
           </h2>
@@ -278,19 +307,31 @@ export default function LorientalisSustainabilityPage() {
             Other Economic Options Are Limited.
           </p>
 
-          {/* Image Placeholder: Mountain / Farm Landscape */}
+          {/* Farm Landscape Placeholder: expands from 364x205 to 733x404 on scroll with 87px gap above & below */}
           <div
-            className="w-full max-w-[560px] sm:max-w-[620px] mx-auto"
+            ref={farmRef}
+            className="w-full flex items-center justify-center select-none"
             style={{
-              marginTop: "clamp(36px, 4.5vw, 64px)",
-              marginBottom: "clamp(36px, 4.5vw, 64px)",
+              marginTop: "clamp(48px, 6.04vw, 87px)",
+              marginBottom: "clamp(48px, 6.04vw, 87px)",
             }}
           >
-            <ImagePlaceholder
-              label="Farm Landscape Placeholder"
-              sublabel="Rolling agricultural hills & mountain plots"
-              aspectRatio="16/10"
-            />
+            <div
+              className="relative transition-all duration-300 ease-out flex items-center justify-center max-w-full"
+              style={{
+                width: `min(100%, ${farmWidth}px)`,
+                height: `${farmHeight}px`,
+                aspectRatio: `${farmWidth} / ${farmHeight}`,
+                transition: "width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                willChange: "width, height",
+              }}
+            >
+              <ImagePlaceholder
+                label="Farm Landscape Placeholder"
+                sublabel="Rolling agricultural hills & mountain plots"
+                className="w-full h-full"
+              />
+            </div>
           </div>
 
           {/* Narrative Paragraph 2 */}
@@ -316,30 +357,29 @@ export default function LorientalisSustainabilityPage() {
           ========================================================================= */}
       <section
         id="protecting-trees"
-        className="relative w-full flex justify-center"
+        className="relative w-full bg-black flex justify-center overflow-hidden"
         style={{
-          paddingTop: "clamp(64px, 7vw, 100px)",
-          paddingBottom: "clamp(64px, 7vw, 100px)",
+          paddingTop: "clamp(64px, 7.5vw, 120px)",
+          paddingBottom: "clamp(64px, 7.5vw, 120px)",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
-        <div className="w-full max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Heading + Narrative */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left select-none">
+        <div className="w-full max-w-[1360px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 relative">
+          {/* Left Column: Heading + Narrative (z-20, full opacity text) */}
+          <div className="relative z-20 flex-1 max-w-[620px] flex flex-col items-start text-left select-none">
             <h2
-              className="m-0 text-white tracking-normal"
+              className="m-0 text-white tracking-normal font-normal"
               style={{
                 fontFamily: "var(--font-monschone), serif",
-                fontWeight: 400,
-                fontSize: "clamp(32px, 3.8vw, 56px)",
-                lineHeight: "1.18",
+                fontSize: "clamp(32px, 3.472vw, 50px)",
+                lineHeight: "1.2",
               }}
             >
               Protecting{" "}
               <span className="relative inline-block">
                 Trees
-                <GreenLoop />
+                <GreenLoop className="w-[145%] top-[48%]" />
               </span>
               , Preventing
               <br />
@@ -347,41 +387,47 @@ export default function LorientalisSustainabilityPage() {
             </h2>
 
             <div
-              className="flex flex-col gap-6 text-[#DBDBDB] max-w-[580px]"
+              className="flex flex-col gap-6 text-white font-normal max-w-[580px]"
               style={{
-                marginTop: "clamp(28px, 3.2vw, 48px)",
+                marginTop: "clamp(32px, 3.8vw, 54px)",
                 fontFamily: "var(--font-manrope), sans-serif",
-                fontWeight: 400,
-                fontSize: "clamp(14px, 1.1vw, 16px)",
+                fontSize: "clamp(13px, 1.042vw, 15px)",
                 lineHeight: "160%",
               }}
             >
-              <p className="m-0">
+              <p className="m-0 text-white">
                 Coffee And Tea Are Perennial Crops. They Grow On Trees And Shrubs That, With Good
                 Agricultural Practice, Stay Productive For Decades. That Makes Them A Natural Fit
                 For Landscapes Where Forest Cover Matters.
-              </p>
-              <p className="m-0">
+                <br />
+                <br />
                 At L&apos;Orientalis, We Work With Growers Who Follow Practices That Keep
                 Plantations Healthy And Productive Without Clearing New Land. These Include Shade
                 Management, Soil Care And Responsible Harvesting.
               </p>
-              <p className="m-0 text-neutral-400">
+              <p className="m-0 text-white">
                 We See Land Stewardship As The Basis Of A Supply Chain That Lasts, And We Expect The
                 Same Standard Across Every Origin We Work With.
               </p>
             </div>
           </div>
 
-          {/* Right Column: Image Placeholder (Coffee Branch & Leaves) */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="w-full max-w-[480px]">
-              <ImagePlaceholder
-                label="Foliage & Branch Placeholder"
-                sublabel="Perennial crop canopy & shade tree ecosystem"
-                aspectRatio="4/5"
-              />
-            </div>
+          {/* Right Column: Coffee Branch Image (z-10, 567.66 x 686.16) */}
+          <div
+            className="relative z-10 shrink-0 select-none flex items-center justify-end"
+            style={{
+              width: "clamp(320px, 39.42vw, 568px)",
+              height: "clamp(386px, 47.65vw, 686px)",
+            }}
+          >
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/a8d01890-8b24-4e3c-6bf6-4832b5482100/public"
+              alt="Coffee branch with cherries and foliage"
+              fill
+              unoptimized
+              priority
+              className="object-contain object-right pointer-events-none"
+            />
           </div>
         </div>
       </section>
@@ -496,10 +542,12 @@ export default function LorientalisSustainabilityPage() {
               }}
             >
               Recycling{" "}
+              Gr
               <span className="relative inline-block">
-                Grounds
-                <GreenLoop />
+                ou
+                <GreenLoop className="w-[195%] top-[48%]" />
               </span>
+              nds
             </h2>
 
             <p
