@@ -171,15 +171,17 @@ export default function LorientalisSustainabilityPage() {
         <div className="absolute inset-x-0 bottom-0 h-48 sm:h-64 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" />
 
         {/* Hero Content Block (Left-Aligned) */}
-        <div className="relative z-10 max-w-[720px] pt-24 sm:pt-28 pb-16 flex flex-col items-start">
+        <div className="relative z-10 max-w-[850px] pt-24 sm:pt-28 pb-16 flex flex-col items-start">
           {/* Supporting a */}
           <span
-            className="block text-[#DBDBDB] select-none uppercase tracking-wide font-normal"
+            className="block text-[#DBDBDB] select-none font-normal"
             style={{
               fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "clamp(15px, 1.3vw, 20px)",
-              lineHeight: "120%",
-              marginBottom: "clamp(8px, 1vw, 16px)",
+              fontWeight: 400,
+              fontSize: "clamp(18px, 1.667vw, 24px)",
+              lineHeight: "100%",
+              letterSpacing: "0%",
+              marginBottom: "clamp(14px, 1.389vw, 20px)",
             }}
           >
             Supporting a
@@ -187,13 +189,14 @@ export default function LorientalisSustainabilityPage() {
 
           {/* Sustainable environment */}
           <h1
-            className="m-0 select-none text-white tracking-normal"
+            className="m-0 select-none text-white tracking-normal font-normal"
             style={{
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
-              fontSize: "clamp(44px, 5.8vw, 84px)",
-              lineHeight: "1.08",
-              letterSpacing: "-0.01em",
+              fontSize: "clamp(46px, 6.667vw, 96px)",
+              lineHeight: "clamp(52px, 7.36vw, 106px)",
+              letterSpacing: "0%",
+              marginBottom: "clamp(8px, 0.694vw, 10px)",
             }}
           >
             Sustainable
@@ -201,39 +204,38 @@ export default function LorientalisSustainabilityPage() {
             envi<span className="relative inline-block isolate"><span className="relative z-10">ron</span><GreenLoop className="w-[92.5%] top-[50%]" /></span>ment
           </h1>
 
-          {/* Subtitle */}
+          {/* Subtitle / Narrative */}
           <p
-            className="m-0 select-none text-[#DBDBDB] max-w-[380px] sm:max-w-[420px]"
+            className="m-0 select-none text-[#DBDBDB] max-w-[540px] font-normal"
             style={{
-              marginTop: "clamp(24px, 2.5vw, 36px)",
               fontFamily: "var(--font-manrope), sans-serif",
               fontWeight: 400,
-              fontSize: "clamp(14px, 1.1vw, 16px)",
-              lineHeight: "150%",
+              fontSize: "clamp(11px, 0.833vw, 12px)",
+              lineHeight: "135%",
               letterSpacing: "0%",
+              marginBottom: "clamp(24px, 2.5vw, 36px)",
             }}
           >
             Responsible sourcing for tea and coffee, built into every cup we serve your spaces.
           </p>
 
-          {/* Badge: Sustainable Future Together */}
+          {/* Sustainable Future Together Badge Image (131x40) */}
           <div
-            className="inline-flex items-center gap-3.5 select-none"
+            className="relative select-none"
             style={{
-              marginTop: "clamp(28px, 3.2vw, 44px)",
+              width: "clamp(105px, 9.1vw, 131px)",
+              height: "clamp(32px, 2.78vw, 40px)",
             }}
           >
-            <PinwheelIcon className="w-9 h-9 text-[#48A663] shrink-0" />
-            <div
-              className="flex flex-col text-left font-bold text-white tracking-widest text-[11px] sm:text-xs leading-[1.2]"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-              }}
-            >
-              <span>SUSTAINABLE</span>
-              <span>FUTURE</span>
-              <span>TOGETHER</span>
-            </div>
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9ffc0059-980f-4445-60c8-25b31df02500/public"
+              alt="Sustainable Future Together"
+              width={131}
+              height={40}
+              unoptimized
+              priority
+              className="w-full h-full object-contain object-left pointer-events-none"
+            />
           </div>
         </div>
       </section>
