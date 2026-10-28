@@ -1328,12 +1328,12 @@ export default function LorientalisSourcingPage() {
           </div>
         </div>
 
-        {/* 102px below it: Green Tea Text (left aligned) */}
+        {/* 102px below it: Green Tea Text (right aligned, spans full image width) */}
         <div
           className="w-full select-none"
           style={{ marginTop: "clamp(48px, 7.08vw, 102px)" }}
         >
-          <p className="m-0 text-left leading-tight max-w-[1100px]">
+          <p className="m-0 text-right leading-tight w-full">
             <span
               className="text-white"
               style={{
