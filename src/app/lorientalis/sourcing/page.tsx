@@ -860,7 +860,7 @@ export default function LorientalisSourcingPage() {
           className="relative z-10 w-full"
           style={{
             marginTop: "calc(clamp(72px, 8.5vw, 128px) * 0.45)",
-            height: "calc(var(--img-h) + clamp(90px, 12vh, 120px))",
+            height: "calc(var(--img-h) + clamp(100px, 13vh, 135px))",
           }}
         >
           {/* Column 0: Image 1 (Natural Process) */}
@@ -873,7 +873,7 @@ export default function LorientalisSourcingPage() {
                   ? "translateX(var(--offset-0))"
                   : "translateX(0px)",
               transition:
-                "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                "transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), width 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
               willChange: "transform, width",
               zIndex: activeCoffeeSlide === 0 ? 30 : 10,
             }}
@@ -894,7 +894,7 @@ export default function LorientalisSourcingPage() {
                     ? "translateY(0)"
                     : "translateY(30px)",
                 transition:
-                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                  "opacity 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
               <h3
@@ -943,7 +943,7 @@ export default function LorientalisSourcingPage() {
                     ? "translateY(0)"
                     : "translateY(30px)",
                 transition:
-                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                  "opacity 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
                 pointerEvents: activeCoffeeSlide === 0 ? "auto" : "none",
               }}
             >
@@ -973,7 +973,7 @@ export default function LorientalisSourcingPage() {
 
           {/* Column 1: Washed Process (Text above + Image 2) */}
           <div
-            className="absolute top-0 left-0 shrink-0 flex flex-col justify-end items-start"
+            className="absolute top-0 left-0 shrink-0 flex flex-col justify-end items-end"
             style={{
               width: activeCoffeeSlide === 2 ? "var(--w-con)" : "var(--w-exp2)",
               transform:
@@ -983,16 +983,16 @@ export default function LorientalisSourcingPage() {
                   ? "translateX(calc((100vw - 5.556vw - var(--w-exp2)) / 2))"
                   : "translateX(calc(var(--w-con) + var(--gap)))",
               transition:
-                "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), width 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                "transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), width 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
               willChange: "transform, width",
               zIndex: activeCoffeeSlide === 1 ? 30 : 10,
             }}
             onMouseEnter={() => setActiveCoffeeSlide(1)}
             onClick={() => setActiveCoffeeSlide(1)}
           >
-            {/* Washed Process Text (Positioned above Image 2, left-aligned in 2 lines) */}
+            {/* Washed Process Text (Positioned above Image 2, right-aligned in 3 lines) */}
             <div
-              className="w-full flex flex-col items-start text-left overflow-visible mb-3"
+              className="w-full flex flex-col items-end text-right overflow-visible mb-3"
               style={{
                 opacity: activeCoffeeSlide === 1 ? 1 : 0,
                 transform:
@@ -1002,9 +1002,9 @@ export default function LorientalisSourcingPage() {
                     ? "translateX(-60px)"
                     : "translateY(-30px)",
                 transition:
-                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                  "opacity 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
                 pointerEvents: activeCoffeeSlide === 1 ? "auto" : "none",
-                minHeight: "clamp(75px, 9vh, 95px)",
+                minHeight: "clamp(85px, 11vh, 115px)",
               }}
             >
               <h3
@@ -1015,13 +1015,13 @@ export default function LorientalisSourcingPage() {
                   fontSize: "clamp(22px, 2.6vw, 40px)",
                   lineHeight: "100%",
                   letterSpacing: "0%",
-                  textAlign: "left",
+                  textAlign: "right",
                 }}
               >
                 Washed Process (Wet Method)
               </h3>
               <p
-                className="m-0 select-none text-left"
+                className="m-0 select-none text-right"
                 style={{
                   marginTop: "8px",
                   fontFamily: "var(--font-manrope), sans-serif",
@@ -1035,10 +1035,13 @@ export default function LorientalisSourcingPage() {
                 }}
               >
                 <span className="block whitespace-nowrap">
-                  Here, The Skin And Pulp Are Removed Soon After Harvest, And The Beans Are Soaked And Washed In Clean Water Before Drying.
+                  Here, The Skin And Pulp Are Removed Soon After Harvest, And The Beans Are Soaked And Washed
                 </span>
                 <span className="block whitespace-nowrap">
-                  The Result Is A Clean, Bright And Consistent Cup. It Is The Most Water-Intensive Of The Three Methods, Which Makes Water Management Part Of Quality.
+                  In Clean Water Before Drying. The Result Is A Clean, Bright And Consistent Cup. It Is The
+                </span>
+                <span className="block whitespace-nowrap">
+                  Most Water-Intensive Of The Three Methods, Which Makes Water Management Part Of Quality.
                 </span>
               </p>
             </div>
@@ -1063,7 +1066,7 @@ export default function LorientalisSourcingPage() {
 
           {/* Column 2: Honey Process (Text above + Image 3) */}
           <div
-            className="absolute top-0 left-0 shrink-0 flex flex-col justify-end items-end"
+            className="absolute top-0 left-0 shrink-0 flex flex-col justify-end items-start"
             style={{
               width: activeCoffeeSlide === 2 ? "var(--w-exp)" : "var(--w-con)",
               transform:
@@ -1071,9 +1074,9 @@ export default function LorientalisSourcingPage() {
                   ? "translateX(calc(var(--offset-0) + var(--w-exp) + var(--gap) + var(--w-exp2) + var(--gap)))"
                   : activeCoffeeSlide === 1
                   ? "translateX(calc(100vw - 5.556vw - var(--w-con)))"
-                  : "translateX(calc(100vw - 5.556vw - var(--w-exp)))",
+                  : "translateX(calc((100vw - 5.556vw - var(--w-exp)) / 2))",
               transition:
-                "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1), width 1000ms cubic-bezier(0.16, 1, 0.3, 1), opacity 800ms cubic-bezier(0.16, 1, 0.3, 1)",
+                "transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), width 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2000ms cubic-bezier(0.16, 1, 0.3, 1)",
               opacity: activeCoffeeSlide === 0 ? 0 : 1,
               pointerEvents: activeCoffeeSlide === 0 ? "none" : "auto",
               willChange: "transform, width, opacity",
@@ -1082,9 +1085,9 @@ export default function LorientalisSourcingPage() {
             onMouseEnter={() => setActiveCoffeeSlide(2)}
             onClick={() => setActiveCoffeeSlide(2)}
           >
-            {/* Semi-Washed or Honey Process Text (Positioned above Image 3, right-aligned in 2 lines) */}
+            {/* Semi-Washed or Honey Process Text (Positioned above Image 3, right-aligned in 3 lines, left-aligned with Image 3) */}
             <div
-              className="w-full flex flex-col items-end text-right overflow-visible mb-3"
+              className="w-full flex flex-col items-start text-right overflow-visible mb-3"
               style={{
                 opacity: activeCoffeeSlide === 2 ? 1 : 0,
                 transform:
@@ -1094,45 +1097,50 @@ export default function LorientalisSourcingPage() {
                     ? "translateX(60px)"
                     : "translateY(-30px)",
                 transition:
-                  "opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)",
+                  "opacity 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
                 pointerEvents: activeCoffeeSlide === 2 ? "auto" : "none",
-                minHeight: "clamp(75px, 9vh, 95px)",
+                minHeight: "clamp(85px, 11vh, 115px)",
               }}
             >
-              <h3
-                className="m-0 text-white select-none whitespace-nowrap"
-                style={{
-                  fontFamily: "var(--font-monschone), serif",
-                  fontWeight: 400,
-                  fontSize: "clamp(22px, 2.6vw, 40px)",
-                  lineHeight: "100%",
-                  letterSpacing: "0%",
-                  textAlign: "right",
-                }}
-              >
-                Semi-Washed or Honey Process
-              </h3>
-              <p
-                className="m-0 select-none text-right"
-                style={{
-                  marginTop: "8px",
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontWeight: 400,
-                  fontSize: "clamp(11px, 0.95vw, 15px)",
-                  lineHeight: "135%",
-                  letterSpacing: "0%",
-                  color: "#DBDBDB",
-                  width: "max-content",
-                  maxWidth: "clamp(520px, 55vw, 760px)",
-                }}
-              >
-                <span className="block whitespace-nowrap">
-                  The Skin Is Removed, But Part Of The Sticky Fruit Layer Stays On The Bean As It Dries.
-                </span>
-                <span className="block whitespace-nowrap">
-                  The Result Is A Cup With The Sweetness Of A Natural And More Of The Clarity Of A Washed, With Lower Water Use Than The Full Wet Method.
-                </span>
-              </p>
+              <div className="flex flex-col items-end text-right">
+                <h3
+                  className="m-0 text-white select-none whitespace-nowrap"
+                  style={{
+                    fontFamily: "var(--font-monschone), serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(22px, 2.6vw, 40px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0%",
+                    textAlign: "right",
+                  }}
+                >
+                  Semi-Washed or Honey Process
+                </h3>
+                <p
+                  className="m-0 select-none text-right"
+                  style={{
+                    marginTop: "8px",
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(11px, 0.95vw, 15px)",
+                    lineHeight: "135%",
+                    letterSpacing: "0%",
+                    color: "#DBDBDB",
+                    width: "max-content",
+                    maxWidth: "clamp(520px, 55vw, 760px)",
+                  }}
+                >
+                  <span className="block whitespace-nowrap">
+                    The Skin Is Removed, But Part Of The Sticky Fruit Layer Stays On The Bean
+                  </span>
+                  <span className="block whitespace-nowrap">
+                    As It Dries. The Result Is A Cup With The Sweetness Of A Natural And More
+                  </span>
+                  <span className="block whitespace-nowrap">
+                    Of The Clarity Of A Washed, With Lower Water Use Than The Full Wet Method.
+                  </span>
+                </p>
+              </div>
             </div>
 
             {/* Image 3 Container */}
