@@ -358,7 +358,7 @@ export default function LorientalisSourcingPage() {
                   onMouseEnter={() => setActiveCol(0)}
                 >
                   <Image
-                    src="/lorientalis/sourcing/grower-drying-bed.jpg"
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f12c0095-3f7d-4a20-5db8-593299423f00/public"
                     alt="Grower harvesting"
                     fill
                     unoptimized
@@ -408,7 +408,7 @@ export default function LorientalisSourcingPage() {
                     willChange: "width",
                   }}
                 >
-                  {/* Top Image: grower-raking-cherries */}
+                  {/* Top Image: left two image column top */}
                   <div
                     className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
@@ -431,7 +431,7 @@ export default function LorientalisSourcingPage() {
                     }}
                   >
                     <Image
-                      src="/lorientalis/sourcing/grower-raking-cherries.jpg"
+                      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6085039f-c122-4b95-cbea-08b5fc61e900/public"
                       alt="Raking Coffee Cherries on Raised Bed"
                       fill
                       unoptimized
@@ -441,7 +441,7 @@ export default function LorientalisSourcingPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
 
-                  {/* Bottom Image: grower-sorting-beans */}
+                  {/* Bottom Image: left two image column bottom */}
                   <div
                     className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
@@ -464,7 +464,7 @@ export default function LorientalisSourcingPage() {
                     }}
                   >
                     <Image
-                      src="/lorientalis/sourcing/grower-sorting-beans.jpg"
+                      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/16a67e44-41e9-4655-bfbe-013a61a25000/public"
                       alt="Farmer Sorting Cherries"
                       fill
                       unoptimized
@@ -497,7 +497,7 @@ export default function LorientalisSourcingPage() {
                   onMouseEnter={() => setActiveCol(2)}
                 >
                   <Image
-                    src="/lorientalis/sourcing/grower-plucking-cherries.jpg"
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/4bc88755-8242-4362-28a9-1131fbd9e000/public"
                     alt="Plucking Ripe Cherries"
                     fill
                     unoptimized
@@ -529,7 +529,7 @@ export default function LorientalisSourcingPage() {
                   onMouseEnter={() => setActiveCol(3)}
                 >
                   <Image
-                    src="/lorientalis/sourcing/grower-focal-portrait.jpg"
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/4c3fc691-5b51-4cbd-0c69-978333aa7500/public"
                     alt="Community Tea Harvester"
                     fill
                     priority
@@ -562,7 +562,7 @@ export default function LorientalisSourcingPage() {
                   onMouseEnter={() => setActiveCol(4)}
                 >
                   <Image
-                    src="/lorientalis/sourcing/grower-smiling-foliage.jpg"
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3d7d81ea-596a-45f1-d8d5-6a94e6282e00/public"
                     alt="Estate Worker in Coffee Foliage"
                     fill
                     unoptimized
@@ -612,7 +612,7 @@ export default function LorientalisSourcingPage() {
                     willChange: "width",
                   }}
                 >
-                  {/* Top Image: grower-harvest-basket */}
+                  {/* Top Image: next two image column top */}
                   <div
                     className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
@@ -635,7 +635,7 @@ export default function LorientalisSourcingPage() {
                     }}
                   >
                     <Image
-                      src="/lorientalis/sourcing/grower-harvest-basket.jpg"
+                      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e585b365-6678-4603-f51b-6bdae13c0800/public"
                       alt="Harvested Coffee Cherries"
                       fill
                       unoptimized
@@ -645,7 +645,7 @@ export default function LorientalisSourcingPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
 
-                  {/* Bottom Image: grower-raking-cherries */}
+                  {/* Bottom Image: next two image column bottom */}
                   <div
                     className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
@@ -668,7 +668,7 @@ export default function LorientalisSourcingPage() {
                     }}
                   >
                     <Image
-                      src="/lorientalis/sourcing/grower-raking-cherries.jpg"
+                      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/b2106a0f-beba-4255-e99c-4eecc5abf000/public"
                       alt="Raking Coffee Cherries on Raised Beds"
                       fill
                       unoptimized
@@ -700,14 +700,16 @@ export default function LorientalisSourcingPage() {
                   }}
                   onMouseEnter={() => setActiveCol(6)}
                 >
-                  <Image
-                    src="/lorientalis/sourcing/grower-drying-bed.jpg"
-                    alt="Estate Preview"
-                    fill
-                    unoptimized
-                    sizes="501px"
-                    className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
+                  <div className="absolute inset-0" style={{ transform: "scaleX(-1)" }}>
+                    <Image
+                      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f12c0095-3f7d-4a20-5db8-593299423f00/public"
+                      alt="Estate Preview"
+                      fill
+                      unoptimized
+                      sizes="501px"
+                      className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 </div>
               );
