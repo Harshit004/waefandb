@@ -680,9 +680,9 @@ export default function LorientalisSustainabilityPage() {
           ========================================================================= */}
       <section
         id="sustainability-closing"
-        className="w-full flex flex-col items-center text-center select-none"
+        className="w-full bg-black flex flex-col items-center text-center select-none"
         style={{
-          paddingTop: "clamp(48px, 6vw, 90px)",
+          paddingTop: "clamp(56px, 7vw, 100px)",
           paddingBottom: "clamp(72px, 9vw, 130px)",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
@@ -690,10 +690,11 @@ export default function LorientalisSustainabilityPage() {
       >
         {/* Main Tagline: Better Sourcing. Less Waste. One Standard. */}
         <h2
-          className="m-0 tracking-normal"
+          className="m-0 text-center tracking-normal font-normal"
           style={{
-            fontSize: "clamp(24px, 3.2vw, 48px)",
-            lineHeight: "1.25",
+            fontSize: "clamp(26px, 3.8vw, 54px)",
+            lineHeight: "1.2",
+            letterSpacing: "0%",
           }}
         >
           <span
@@ -706,9 +707,10 @@ export default function LorientalisSustainabilityPage() {
             Better
           </span>{" "}
           <span
-            className="text-neutral-400 font-light"
             style={{
-              fontFamily: "var(--font-manrope), sans-serif",
+              fontFamily: "var(--font-poly), 'Poly', serif",
+              fontWeight: 400,
+              color: "#8A8A8E",
             }}
           >
             Sourcing. Less Waste. One
@@ -724,19 +726,24 @@ export default function LorientalisSustainabilityPage() {
           </span>
         </h2>
 
-        {/* Narrative subtext */}
+        {/* Narrative subtext matching screenshot line breaks */}
         <p
-          className="m-0 text-neutral-400 max-w-[720px]"
+          className="m-0 text-white text-center font-normal max-w-[850px]"
           style={{
-            marginTop: "clamp(20px, 2.5vw, 36px)",
+            marginTop: "clamp(24px, 2.5vw, 36px)",
             fontFamily: "var(--font-manrope), sans-serif",
             fontWeight: 400,
             fontSize: "clamp(13px, 1.1vw, 16px)",
             lineHeight: "150%",
+            letterSpacing: "0%",
           }}
         >
-          From The Farms We Source From To The Cups We Serve, WAE Is Committed To Beverage
-          Programmes That Respect People And The Planet.
+          <span className="sm:block">
+            From The Farms We Source From To The Cups We Serve, WAE Is Committed
+          </span>{" "}
+          <span className="sm:block">
+            To Beverage Programmes That Respect People And The Planet.
+          </span>
         </p>
       </section>
 
