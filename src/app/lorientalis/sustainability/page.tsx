@@ -366,59 +366,13 @@ export default function LorientalisSustainabilityPage() {
           paddingRight: "0px",
         }}
       >
-        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 relative">
-          {/* Left Column: Heading + Narrative (z-20, full opacity text) */}
-          <div className="relative z-20 flex-1 max-w-[620px] flex flex-col items-start text-left select-none">
-            <h2
-              className="m-0 text-white tracking-normal font-normal"
-              style={{
-                fontFamily: "var(--font-monschone), serif",
-                fontSize: "clamp(32px, 3.472vw, 50px)",
-                lineHeight: "1.2",
-              }}
-            >
-              Protecting{" "}
-              <span className="relative inline-block isolate">
-                <span className="relative z-10">Trees</span>
-                <GreenLoop className="w-[72.5%] top-[48%]" />
-              </span>
-              , Preventing
-              <br />
-              Deforestation
-            </h2>
-
-            <div
-              className="flex flex-col gap-6 text-white font-normal max-w-[580px]"
-              style={{
-                marginTop: "clamp(32px, 3.8vw, 54px)",
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(13px, 1.042vw, 15px)",
-                lineHeight: "160%",
-              }}
-            >
-              <p className="m-0 text-white">
-                Coffee And Tea Are Perennial Crops. They Grow On Trees And Shrubs That, With Good
-                Agricultural Practice, Stay Productive For Decades. That Makes Them A Natural Fit
-                For Landscapes Where Forest Cover Matters.
-                <br />
-                <br />
-                At L&apos;Orientalis, We Work With Growers Who Follow Practices That Keep
-                Plantations Healthy And Productive Without Clearing New Land. These Include Shade
-                Management, Soil Care And Responsible Harvesting.
-              </p>
-              <p className="m-0 text-white">
-                We See Land Stewardship As The Basis Of A Supply Chain That Lasts, And We Expect The
-                Same Standard Across Every Origin We Work With.
-              </p>
-            </div>
-          </div>
-
-          {/* Right Column: Coffee Branch Image (Flush Right, no margin/padding) */}
+        <div className="w-full relative flex flex-col lg:block">
+          {/* Coffee Branch Image (Positioned on the right, flush right, arching into center) */}
           <div
-            className="relative z-10 shrink-0 select-none flex items-center justify-end ml-auto"
+            className="order-2 lg:order-none relative lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 z-10 shrink-0 select-none flex items-center justify-end ml-auto pointer-events-none mt-10 lg:mt-0"
             style={{
-              width: "clamp(320px, 39.42vw, 568px)",
-              height: "clamp(386px, 47.65vw, 686px)",
+              width: "clamp(320px, 48vw, 700px)",
+              height: "clamp(360px, 52vw, 760px)",
             }}
           >
             <Image
@@ -429,6 +383,66 @@ export default function LorientalisSustainabilityPage() {
               priority
               className="object-contain object-right pointer-events-none"
             />
+          </div>
+
+          {/* Left / Center Content: Heading + Narrative matching screenshot placement & line breaks */}
+          <div className="order-1 lg:order-none relative z-20 max-w-[1100px] flex flex-col items-start text-left select-none">
+            <h2
+              className="m-0 text-white tracking-normal font-normal"
+              style={{
+                fontFamily: "var(--font-monschone), serif",
+                fontSize: "clamp(30px, 3.472vw, 50px)",
+                lineHeight: "1.18",
+              }}
+            >
+              Protecting{" "}
+              <span className="relative inline-block isolate">
+                <span className="relative z-10">Trees</span>
+                <GreenLoop className="w-[85%] top-[48%]" />
+              </span>
+              , Preventing
+              <br />
+              Deforestation
+            </h2>
+
+            <div
+              className="flex flex-col gap-6 text-white font-normal"
+              style={{
+                marginTop: "clamp(32px, 3.8vw, 54px)",
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontSize: "clamp(13px, 1.042vw, 15px)",
+                lineHeight: "160%",
+              }}
+            >
+              <p className="m-0 text-white">
+                <span className="lg:block">
+                  Coffee And Tea Are Perennial Crops. They Grow On Trees And Shrubs That, With Good
+                </span>{" "}
+                <span className="lg:block">
+                  Agricultural Practice, Stay Productive For Decades. That Makes Them A Natural Fit For
+                </span>{" "}
+                <span className="lg:block">
+                  Landscapes Where Forest Cover Matters.
+                </span>{" "}
+                <span className="lg:block">
+                  At L&apos;Orientalis, We Work With Growers Who Follow Practices That Keep Plantations Healthy
+                </span>{" "}
+                <span className="lg:block">
+                  And Productive Without Clearing New Land. These Include Shade Management, Soil Care
+                </span>{" "}
+                <span className="lg:block">
+                  And Responsible Harvesting.
+                </span>
+              </p>
+              <p className="m-0 text-white">
+                <span className="lg:block">
+                  We See Land Stewardship As The Basis Of A Supply Chain That Lasts, And We Expect The Same Standard Across Every Origin We
+                </span>{" "}
+                <span className="lg:block">
+                  Work With.
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </section>
