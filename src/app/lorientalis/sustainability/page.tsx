@@ -436,58 +436,69 @@ export default function LorientalisSustainabilityPage() {
           ========================================================================= */}
       <section
         id="origin-to-outlet"
-        className="relative w-full flex justify-center"
+        className="relative w-full overflow-hidden select-none"
         style={{
-          paddingTop: "clamp(48px, 6vw, 90px)",
-          paddingBottom: "clamp(48px, 6vw, 90px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingLeft: "0px",
+          paddingRight: "0px",
+          paddingTop: "0px",
+          paddingBottom: "0px",
         }}
       >
-        <div className="w-full max-w-[1360px] mx-auto">
-          {/* Panoramic Video Banner with Integrated Text Content */}
+        {/* Full-bleed panoramic video banner */}
+        <div
+          className="relative w-full overflow-hidden"
+          style={{
+            paddingTop: "52.734375%",
+            minHeight: "clamp(460px, 52.734375vw, 1012px)",
+          }}
+        >
+          {/* Background Cloudflare Stream Video */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <iframe
+              src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/fc1aae211ee303771b943705fd7aa728/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Ffc1aae211ee303771b943705fd7aa728%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
+              style={{
+                border: "none",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                height: "100%",
+                width: "100%",
+              }}
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+              allowFullScreen={true}
+            />
+
+            {/* Subtle ambient overlays matching screenshot 1 */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.0) 65%, rgba(0,0,0,0.5) 100%)",
+              }}
+            />
+          </div>
+
+          {/* Overlay Text Content matching Screenshot 1 text placement & typography */}
           <div
-            className="relative w-full rounded-[2px] overflow-hidden flex flex-col justify-between p-8 sm:p-12 lg:p-16 select-none shadow-2xl"
-            style={{ minHeight: "clamp(340px, 45vw, 680px)" }}
+            className="absolute inset-0 z-10 flex flex-col justify-between pointer-events-none"
+            style={{
+              paddingTop: "clamp(32px, 4.167vw, 60px)",
+              paddingBottom: "clamp(28px, 3.889vw, 56px)",
+              paddingLeft: "clamp(24px, 3.472vw, 50px)",
+              paddingRight: "clamp(24px, 3.472vw, 50px)",
+            }}
           >
-            {/* Background Video using user provided Cloudflare embed */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div style={{ position: "relative", width: "100%", height: "100%", paddingTop: "52.734375%" }}>
-                <iframe
-                  src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/fc1aae211ee303771b943705fd7aa728/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Ffc1aae211ee303771b943705fd7aa728%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
-                  style={{
-                    border: "none",
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    height: "100%",
-                    width: "100%",
-                  }}
-                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                  allowFullScreen={true}
-                />
-              </div>
-
-              {/* Ambient Dark Gradient Overlays for High Legibility */}
-              <div className="absolute inset-0 bg-black/40 pointer-events-none" />
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.75) 100%)",
-                }}
-              />
-            </div>
-
             {/* Top Left: Heading */}
-            <div className="relative z-10 max-w-[580px]">
+            <div className="max-w-[720px]">
               <h2
-                className="m-0 text-white tracking-normal"
+                className="m-0 text-white tracking-normal font-normal"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
                   fontWeight: 400,
-                  fontSize: "clamp(26px, 3.2vw, 46px)",
-                  lineHeight: "1.18",
+                  fontSize: "clamp(26px, 3.333vw, 48px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textShadow: "0 2px 10px rgba(0,0,0,0.45)",
                 }}
               >
                 From Origin To Outlet,
@@ -497,18 +508,30 @@ export default function LorientalisSustainabilityPage() {
             </div>
 
             {/* Bottom Right: Narrative Text */}
-            <div className="relative z-10 self-end mt-12 max-w-[700px] text-right">
+            <div className="self-end max-w-[1160px] text-right">
               <p
-                className="m-0 text-[#DBDBDB] text-xs sm:text-sm lg:text-[15px] leading-relaxed"
+                className="m-0 text-white text-right font-normal"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(12px, 1.25vw, 18px)",
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  textShadow: "0 2px 8px rgba(0,0,0,0.75)",
                 }}
               >
-                Sustainability Does Not Stop At The Farm Gate. WAE Brings One Operating Standard To
-                Every Stage Of The Beverage Journey, From How Tea And Coffee Are Sourced To How
-                They Are Served And What Happens To The Waste. Every Cup We Deliver To Your Spaces
-                Is Held To The Same Standard Of Responsible Sourcing, Careful Handling And Minimal
-                Waste, Whichever Origin It Comes From.
+                <span className="md:block">
+                  Sustainability Does Not Stop At The Farm Gate. WAE Brings One Operating Standard To Every Stage Of The Beverage
+                </span>{" "}
+                <span className="md:block">
+                  Journey, From How Tea And Coffee Are Sourced To How They Are Served And What Happens To The Waste.
+                </span>{" "}
+                <span className="md:block">
+                  Every Cup We Deliver To Your Spaces Is Held To The Same Standard Of Responsible Sourcing, Careful Handling And Minimal
+                </span>{" "}
+                <span className="md:block">
+                  Waste, Whichever Origin It Comes From.
+                </span>
               </p>
             </div>
           </div>
@@ -539,66 +562,74 @@ export default function LorientalisSustainabilityPage() {
           ========================================================================= */}
       <section
         id="recycling-grounds"
-        className="relative w-full flex justify-center overflow-hidden"
+        className="relative w-full bg-black flex flex-col lg:flex-row items-center justify-between overflow-hidden"
         style={{
-          paddingTop: "clamp(48px, 6vw, 90px)",
-          paddingBottom: "clamp(48px, 6vw, 90px)",
-          paddingLeft: "2.778vw",
+          paddingTop: "clamp(56px, 6.5vw, 100px)",
+          paddingBottom: "clamp(56px, 6.5vw, 100px)",
+          paddingLeft: "0px",
           paddingRight: "0px",
         }}
       >
-        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 relative">
-          {/* Left Column: Heading + Narrative */}
-          <div className="relative z-20 flex-1 max-w-[620px] flex flex-col items-start text-left select-none">
-            <h2
-              className="m-0 text-white tracking-normal"
-              style={{
-                fontFamily: "var(--font-monschone), serif",
-                fontWeight: 400,
-                fontSize: "clamp(32px, 3.8vw, 56px)",
-                lineHeight: "1.18",
-              }}
-            >
-              Recycling{" "}
-              Gr<span className="relative inline-block isolate"><span className="relative z-10">ou</span><GreenLoop className="w-[97.5%] top-[48%]" /></span>nds
-            </h2>
-
-            <p
-              className="m-0 text-[#DBDBDB] max-w-[540px]"
-              style={{
-                marginTop: "clamp(24px, 3vw, 42px)",
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontWeight: 400,
-                fontSize: "clamp(14px, 1.1vw, 16px)",
-                lineHeight: "160%",
-              }}
-            >
-              Every Cup Leaves Something Behind. Spent Coffee Grounds And Used Tea Leaves Are
-              Organic Material Rich In Nutrients. In Most Facilities They Go To Landfill. We Help
-              Our Partners Treat Them As A Resource Instead. Collected At The Point Of Service,
-              They Can Be Diverted To Composting And Other Organic Recycling Routes. This Reduces
-              Waste Volumes And Supports The Circular Goals Many Of Our Clients Have Already
-              Committed To.
-            </p>
-          </div>
-
-          {/* Right Column: Recycling Grounds Image (Flush Right, no margin/padding) */}
-          <div
-            className="relative z-10 shrink-0 select-none flex items-center justify-end ml-auto"
+        {/* Left Column: Heading + 99px Gap + Narrative (6.875vw margin left) */}
+        <div className="relative z-20 flex-1 flex flex-col items-start text-left select-none ml-6 lg:ml-[6.875vw] max-w-[640px]">
+          <h2
+            className="m-0 text-white tracking-normal font-normal"
             style={{
-              width: "clamp(320px, 39.42vw, 568px)",
-              height: "clamp(320px, 39.42vw, 568px)",
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+              fontSize: "clamp(28px, 3.333vw, 48px)",
+              lineHeight: "100%",
+              letterSpacing: "0%",
             }}
           >
-            <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/268e5671-2de0-4151-e50f-6dbd8cfef700/public"
-              alt="Recycling spent coffee grounds and tea leaves into compost"
-              fill
-              unoptimized
-              priority
-              className="object-contain object-right pointer-events-none"
-            />
-          </div>
+            Recycling{" "}
+            Gr<span className="relative inline-block isolate"><span className="relative z-10">ou</span><GreenLoop className="w-[97.5%] top-[48%]" /></span>nds
+          </h2>
+
+          {/* 99px gap between heading and body */}
+          <div
+            className="w-full"
+            style={{ height: "clamp(36px, 6.875vw, 99px)" }}
+            aria-hidden="true"
+          />
+
+          <p
+            className="m-0 text-white font-normal"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(13px, 1.25vw, 18px)",
+              lineHeight: "120%",
+              letterSpacing: "0%",
+            }}
+          >
+            <span className="md:block">Every Cup Leaves Something Behind. Spent Coffee</span>{" "}
+            <span className="md:block">Grounds And Used Tea Leaves Are Organic Material Rich</span>{" "}
+            <span className="md:block">In Nutrients. In Most Facilities They Go To Landfill.</span>{" "}
+            <span className="md:block">We Help Our Partners Treat Them As A Resource Instead.</span>{" "}
+            <span className="md:block">Collected At The Point Of Service, They Can Be Diverted</span>{" "}
+            <span className="md:block">To Composting And Other Organic Recycling Routes. This</span>{" "}
+            <span className="md:block">Reduces Waste Volumes And Supports The Circular Goals</span>{" "}
+            <span className="md:block">Many Of Our Clients Have Already Committed To.</span>
+          </p>
+        </div>
+
+        {/* Right Column: Recycling Grounds Image (Flush Right, no margin/padding) */}
+        <div
+          className="relative z-10 shrink-0 select-none flex items-center justify-end ml-auto mt-10 lg:mt-0"
+          style={{
+            width: "clamp(320px, 45.5vw, 656px)",
+            height: "clamp(340px, 46.5vw, 670px)",
+          }}
+        >
+          <Image
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/268e5671-2de0-4151-e50f-6dbd8cfef700/public"
+            alt="Spent coffee grounds and fresh coffee cherries in hands"
+            fill
+            unoptimized
+            priority
+            className="object-cover object-center pointer-events-none"
+          />
         </div>
       </section>
 
