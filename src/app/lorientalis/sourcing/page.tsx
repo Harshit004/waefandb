@@ -334,7 +334,7 @@ export default function LorientalisSourcingPage() {
                   : effectiveActiveCol === 6
                   ? "translateX(clamp(-220px, -16vw, -120px))"
                   : "translateX(0px)",
-              transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+              transition: "transform 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
               willChange: "transform",
             }}
           >
@@ -351,7 +351,7 @@ export default function LorientalisSourcingPage() {
                     opacity: dim.opacity,
                     boxShadow: dim.boxShadow,
                     transition:
-                      "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
+                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                     willChange: "width, height",
                     transform: "translateZ(0)",
                   }}
@@ -363,7 +363,7 @@ export default function LorientalisSourcingPage() {
                     fill
                     unoptimized
                     sizes="501px"
-                    className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-cover pointer-events-none transition-transform duration-[2500ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 </div>
@@ -404,7 +404,7 @@ export default function LorientalisSourcingPage() {
                     zIndex: isColActive ? 30 : d1 === 1 ? 20 : 10,
                     rowGap: colGap,
                     transition:
-                      "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), row-gap 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), row-gap 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
                     willChange: "width",
                   }}
                 >
@@ -421,7 +421,7 @@ export default function LorientalisSourcingPage() {
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
                       transition:
-                        "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
+                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                       willChange: "width, height",
                       transform: "translateZ(0)",
                     }}
@@ -436,7 +436,7 @@ export default function LorientalisSourcingPage() {
                       fill
                       unoptimized
                       sizes="501px"
-                      className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover pointer-events-none transition-transform duration-[2500ms] ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
@@ -454,7 +454,7 @@ export default function LorientalisSourcingPage() {
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
                       transition:
-                        "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
+                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                       willChange: "width, height",
                       transform: "translateZ(0)",
                     }}
@@ -469,7 +469,7 @@ export default function LorientalisSourcingPage() {
                       fill
                       unoptimized
                       sizes="501px"
-                      className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover pointer-events-none transition-transform duration-[2500ms] ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
@@ -490,7 +490,7 @@ export default function LorientalisSourcingPage() {
                     opacity: dim.opacity,
                     boxShadow: dim.boxShadow,
                     transition:
-                      "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
+                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                     willChange: "width, height",
                     transform: "translateZ(0)",
                   }}
@@ -502,7 +502,7 @@ export default function LorientalisSourcingPage() {
                     fill
                     unoptimized
                     sizes="501px"
-                    className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-cover pointer-events-none transition-transform duration-[2500ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 </div>
@@ -522,7 +522,7 @@ export default function LorientalisSourcingPage() {
                     opacity: dim.opacity,
                     boxShadow: dim.boxShadow,
                     transition:
-                      "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
+                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                     willChange: "width, height",
                     transform: "translateZ(0)",
                   }}
@@ -535,7 +535,7 @@ export default function LorientalisSourcingPage() {
                     priority
                     unoptimized
                     sizes="(max-width: 768px) 280px, 501px"
-                    className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-cover pointer-events-none transition-transform duration-[2500ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 </div>
@@ -555,7 +555,7 @@ export default function LorientalisSourcingPage() {
                     opacity: dim.opacity,
                     boxShadow: dim.boxShadow,
                     transition:
-                      "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
+                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                     willChange: "width, height",
                     transform: "translateZ(0)",
                   }}
@@ -567,7 +567,7 @@ export default function LorientalisSourcingPage() {
                     fill
                     unoptimized
                     sizes="501px"
-                    className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-cover pointer-events-none transition-transform duration-[2500ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 </div>
@@ -608,7 +608,7 @@ export default function LorientalisSourcingPage() {
                     zIndex: isColActive ? 30 : d5 === 1 ? 20 : 10,
                     rowGap: colGap,
                     transition:
-                      "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), row-gap 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), row-gap 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
                     willChange: "width",
                   }}
                 >
@@ -625,7 +625,7 @@ export default function LorientalisSourcingPage() {
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
                       transition:
-                        "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
+                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                       willChange: "width, height",
                       transform: "translateZ(0)",
                     }}
@@ -640,7 +640,7 @@ export default function LorientalisSourcingPage() {
                       fill
                       unoptimized
                       sizes="501px"
-                      className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover pointer-events-none transition-transform duration-[2500ms] ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
@@ -658,7 +658,7 @@ export default function LorientalisSourcingPage() {
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
                       transition:
-                        "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
+                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                       willChange: "width, height",
                       transform: "translateZ(0)",
                     }}
@@ -673,7 +673,7 @@ export default function LorientalisSourcingPage() {
                       fill
                       unoptimized
                       sizes="501px"
-                      className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover pointer-events-none transition-transform duration-[2500ms] ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
@@ -694,7 +694,7 @@ export default function LorientalisSourcingPage() {
                     opacity: dim.opacity,
                     boxShadow: dim.boxShadow,
                     transition:
-                      "width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, box-shadow 0.4s ease",
+                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                     willChange: "width, height",
                     transform: "translateZ(0)",
                   }}
@@ -707,7 +707,7 @@ export default function LorientalisSourcingPage() {
                       fill
                       unoptimized
                       sizes="501px"
-                      className="object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover pointer-events-none transition-transform duration-[2500ms] ease-out group-hover:scale-105"
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />

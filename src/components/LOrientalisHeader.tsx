@@ -38,7 +38,7 @@ export default function LOrientalisHeader({
         transition: "padding-top 0.3s ease",
       }}
     >
-      {/* Background gradient & backdrop blur for enhanced contrast & readability */}
+      {/* Background gradient for enhanced contrast & readability */}
       <div
         className="absolute inset-x-0 top-0 pointer-events-none -z-10 transition-all duration-300"
         style={{
@@ -47,8 +47,6 @@ export default function LOrientalisHeader({
           background: scrolled
             ? "linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 65%, rgba(0, 0, 0, 0) 100%)"
             : "linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0) 100%)",
-          backdropFilter: scrolled ? "blur(1.2px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(1.2px)" : "none",
         }}
       />
 
