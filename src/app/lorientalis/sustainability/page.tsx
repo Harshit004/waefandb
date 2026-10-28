@@ -1,0 +1,630 @@
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import LOrientalisHeader from "@/components/LOrientalisHeader";
+import LOrientalisFooter from "@/components/LOrientalisFooter";
+
+/**
+ * Hand-drawn organic green ellipse / loop SVG accent.
+ * Dynamic responsive SVG that draws an accent loop around highlighted keywords.
+ */
+function GreenLoop({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={`absolute -inset-x-3 -inset-y-2 w-[calc(100%+24px)] h-[calc(100%+16px)] pointer-events-none overflow-visible ${className}`}
+      viewBox="0 0 120 50"
+      preserveAspectRatio="none"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M8 26C6 13 28 4 64 5C96 6 114 16 112 28C109 40 80 47 44 45C18 43 4 33 10 19C15 10 32 5 56 6"
+        stroke="#48A663"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/**
+ * Geometric 6-blade pinwheel logo icon for "Sustainable Future Together".
+ */
+function PinwheelIcon({ className = "w-6 h-6 text-[#48A663]" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <g stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        {/* Central folded petal blades */}
+        <path d="M16 16L16 6C18.5 6 20.5 7.5 21 10L16 16Z" fill="currentColor" fillOpacity="0.25" />
+        <path d="M16 16L24.66 11C26 13.2 25.5 15.8 23.5 17.5L16 16Z" fill="currentColor" fillOpacity="0.25" />
+        <path d="M16 16L24.66 21C24.5 23.5 22.5 25.5 20 25.5L16 16Z" fill="currentColor" fillOpacity="0.25" />
+        <path d="M16 16L16 26C13.5 26 11.5 24.5 11 22L16 16Z" fill="currentColor" fillOpacity="0.25" />
+        <path d="M16 16L7.34 21C6 18.8 6.5 16.2 8.5 14.5L16 16Z" fill="currentColor" fillOpacity="0.25" />
+        <path d="M16 16L7.34 11C7.5 8.5 9.5 6.5 12 6.5L16 16Z" fill="currentColor" fillOpacity="0.25" />
+        {/* Central hub */}
+        <circle cx="16" cy="16" r="1.8" fill="currentColor" />
+      </g>
+    </svg>
+  );
+}
+
+/**
+ * Standardized high-fidelity image placeholder div.
+ */
+function ImagePlaceholder({
+  label,
+  sublabel,
+  aspectRatio = "16/10",
+  className = "",
+}: {
+  label: string;
+  sublabel?: string;
+  aspectRatio?: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`relative w-full bg-[#0d0d0d] border border-neutral-800/80 rounded-[2px] overflow-hidden flex flex-col items-center justify-center p-6 text-center select-none group transition-all duration-300 hover:border-neutral-700 ${className}`}
+      style={{ aspectRatio }}
+    >
+      {/* Subtle ambient gradient mesh in placeholder */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-black via-neutral-900/40 to-[#122215]/30 pointer-events-none" />
+
+      {/* Decorative camera/image icon */}
+      <div className="relative z-10 w-11 h-11 rounded-full bg-neutral-900 border border-neutral-700/60 flex items-center justify-center mb-3 text-neutral-400 group-hover:scale-105 group-hover:border-[#48A663]/50 transition-all duration-300 shadow-lg">
+        <svg
+          className="w-5 h-5 text-neutral-400 group-hover:text-[#48A663] transition-colors duration-300"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
+      </div>
+
+      <span className="relative z-10 font-mono text-xs uppercase tracking-wider text-neutral-300 font-medium">
+        {label}
+      </span>
+      {sublabel && (
+        <span className="relative z-10 text-[11px] text-neutral-500 mt-1 max-w-[280px]">
+          {sublabel}
+        </span>
+      )}
+    </div>
+  );
+}
+
+export default function LorientalisSustainabilityPage() {
+  return (
+    <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-[#365944] selection:text-white">
+      {/* 1. L'ORIENTALIS GLOBAL HEADER */}
+      <LOrientalisHeader />
+
+      {/* =========================================================================
+          SECTION 1: HERO - SUSTAINABLE ENVIRONMENT
+          ========================================================================= */}
+      <section
+        id="sustainability-hero"
+        className="relative w-full min-h-[92vh] sm:min-h-screen flex flex-col justify-center overflow-hidden"
+        style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        {/* Hero Background Image */}
+        <Image
+          src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/76182cd2-7048-411f-53fc-38396d961000/public"
+          alt="Sustainable environment tea picker in lush garden"
+          fill
+          priority
+          unoptimized
+          className="object-cover object-center pointer-events-none"
+        />
+
+        {/* Ambient Dark Gradient Overlays for Readability and Seamless Bottom Blending */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-64 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" />
+
+        {/* Hero Content Block (Left-Aligned) */}
+        <div className="relative z-10 max-w-[720px] pt-24 sm:pt-28 pb-16 flex flex-col items-start">
+          {/* Supporting a */}
+          <span
+            className="block text-[#DBDBDB] select-none uppercase tracking-wide font-normal"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontSize: "clamp(15px, 1.3vw, 20px)",
+              lineHeight: "120%",
+              marginBottom: "clamp(8px, 1vw, 16px)",
+            }}
+          >
+            Supporting a
+          </span>
+
+          {/* Sustainable environment */}
+          <h1
+            className="m-0 select-none text-white tracking-normal"
+            style={{
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+              fontSize: "clamp(44px, 5.8vw, 84px)",
+              lineHeight: "1.08",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Sustainable
+            <br />
+            <span className="relative inline-block">
+              environment
+              <GreenLoop />
+            </span>
+          </h1>
+
+          {/* Subtitle */}
+          <p
+            className="m-0 select-none text-[#DBDBDB] max-w-[380px] sm:max-w-[420px]"
+            style={{
+              marginTop: "clamp(24px, 2.5vw, 36px)",
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(14px, 1.1vw, 16px)",
+              lineHeight: "150%",
+              letterSpacing: "0%",
+            }}
+          >
+            Responsible sourcing for tea and coffee, built into every cup we serve your spaces.
+          </p>
+
+          {/* Badge: Sustainable Future Together */}
+          <div
+            className="inline-flex items-center gap-3.5 select-none"
+            style={{
+              marginTop: "clamp(28px, 3.2vw, 44px)",
+            }}
+          >
+            <PinwheelIcon className="w-9 h-9 text-[#48A663] shrink-0" />
+            <div
+              className="flex flex-col text-left font-bold text-white tracking-widest text-[11px] sm:text-xs leading-[1.2]"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+              }}
+            >
+              <span>SUSTAINABLE</span>
+              <span>FUTURE</span>
+              <span>TOGETHER</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 2: GROWING COFFEE AND TEA IN A CHANGING CLIMATE
+          ========================================================================= */}
+      <section
+        id="changing-climate"
+        className="relative w-full flex flex-col items-center text-center overflow-hidden"
+        style={{
+          paddingTop: "clamp(64px, 8vw, 110px)",
+          paddingBottom: "clamp(64px, 8vw, 110px)",
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        {/* Subtle decorative dark moss-green wave ribbons in background matching screenshot */}
+        <div className="absolute inset-0 pointer-events-none opacity-20 -z-0 overflow-hidden">
+          <svg
+            className="w-full h-full"
+            viewBox="0 0 1440 900"
+            fill="none"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M-100 650C200 450 450 750 850 500C1250 250 1400 400 1600 300"
+              stroke="#2E5A36"
+              strokeWidth="90"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
+
+        <div className="relative z-10 w-full max-w-[960px] mx-auto flex flex-col items-center">
+          {/* Section Heading */}
+          <h2
+            className="m-0 select-none text-white tracking-normal"
+            style={{
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+              fontSize: "clamp(28px, 3.6vw, 54px)",
+              lineHeight: "1.2",
+            }}
+          >
+            <span className="relative inline-block">
+              Growing
+              <GreenLoop />
+            </span>{" "}
+            Coffee And Tea In A
+            <br />
+            Changing Climate
+          </h2>
+
+          {/* Narrative Paragraph 1 */}
+          <p
+            className="m-0 select-none text-[#DBDBDB] max-w-[850px]"
+            style={{
+              marginTop: "clamp(32px, 4vw, 56px)",
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(14px, 1.15vw, 17px)",
+              lineHeight: "160%",
+            }}
+          >
+            Most Of The World&apos;s Coffee And Tea Is Grown By Smallholder Farmers On Small Plots.
+            Their Harvests Are Sorted, Graded And Aggregated Before They Reach Your Facility. That
+            Supply Chain Is Only As Resilient As The Farms Behind It. For These Farming Communities,
+            Coffee And Tea Are Often The Primary Source Of Livelihood, And In Many Growing Regions
+            Other Economic Options Are Limited.
+          </p>
+
+          {/* Image Placeholder: Mountain / Farm Landscape */}
+          <div
+            className="w-full max-w-[560px] sm:max-w-[620px] mx-auto"
+            style={{
+              marginTop: "clamp(36px, 4.5vw, 64px)",
+              marginBottom: "clamp(36px, 4.5vw, 64px)",
+            }}
+          >
+            <ImagePlaceholder
+              label="Farm Landscape Placeholder"
+              sublabel="Rolling agricultural hills & mountain plots"
+              aspectRatio="16/10"
+            />
+          </div>
+
+          {/* Narrative Paragraph 2 */}
+          <p
+            className="m-0 select-none text-[#DBDBDB] max-w-[850px]"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(14px, 1.15vw, 17px)",
+              lineHeight: "160%",
+            }}
+          >
+            Both Crops Are Climate-Sensitive. Shifts In Temperature And Rainfall Affect Plant
+            Health, Yield And Quality. For An Enterprise Buyer, This Is A Continuity Issue As Much
+            As A Sustainability Issue. Supporting Farmers Today Protects The Consistency, Quality
+            And Availability Of What You Serve Tomorrow.
+          </p>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 3: PROTECTING TREES, PREVENTING DEFORESTATION
+          ========================================================================= */}
+      <section
+        id="protecting-trees"
+        className="relative w-full flex justify-center"
+        style={{
+          paddingTop: "clamp(64px, 7vw, 100px)",
+          paddingBottom: "clamp(64px, 7vw, 100px)",
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        <div className="w-full max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Heading + Narrative */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left select-none">
+            <h2
+              className="m-0 text-white tracking-normal"
+              style={{
+                fontFamily: "var(--font-monschone), serif",
+                fontWeight: 400,
+                fontSize: "clamp(32px, 3.8vw, 56px)",
+                lineHeight: "1.18",
+              }}
+            >
+              Protecting{" "}
+              <span className="relative inline-block">
+                Trees
+                <GreenLoop />
+              </span>
+              , Preventing
+              <br />
+              Deforestation
+            </h2>
+
+            <div
+              className="flex flex-col gap-6 text-[#DBDBDB] max-w-[580px]"
+              style={{
+                marginTop: "clamp(28px, 3.2vw, 48px)",
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(14px, 1.1vw, 16px)",
+                lineHeight: "160%",
+              }}
+            >
+              <p className="m-0">
+                Coffee And Tea Are Perennial Crops. They Grow On Trees And Shrubs That, With Good
+                Agricultural Practice, Stay Productive For Decades. That Makes Them A Natural Fit
+                For Landscapes Where Forest Cover Matters.
+              </p>
+              <p className="m-0">
+                At L&apos;Orientalis, We Work With Growers Who Follow Practices That Keep
+                Plantations Healthy And Productive Without Clearing New Land. These Include Shade
+                Management, Soil Care And Responsible Harvesting.
+              </p>
+              <p className="m-0 text-neutral-400">
+                We See Land Stewardship As The Basis Of A Supply Chain That Lasts, And We Expect The
+                Same Standard Across Every Origin We Work With.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column: Image Placeholder (Coffee Branch & Leaves) */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="w-full max-w-[480px]">
+              <ImagePlaceholder
+                label="Foliage & Branch Placeholder"
+                sublabel="Perennial crop canopy & shade tree ecosystem"
+                aspectRatio="4/5"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 4: FROM ORIGIN TO OUTLET, ACCOUNTABLE AT EVERY STEP
+          ========================================================================= */}
+      <section
+        id="origin-to-outlet"
+        className="relative w-full flex justify-center"
+        style={{
+          paddingTop: "clamp(48px, 6vw, 90px)",
+          paddingBottom: "clamp(48px, 6vw, 90px)",
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        <div className="w-full max-w-[1360px] mx-auto">
+          {/* Panoramic Banner Placeholder with Integrated Text Content */}
+          <div
+            className="relative w-full bg-[#0c0c0c] border border-neutral-800 rounded-[2px] overflow-hidden flex flex-col justify-between p-8 sm:p-12 lg:p-16 select-none"
+            style={{ minHeight: "clamp(340px, 35vw, 520px)" }}
+          >
+            {/* Ambient Background Gradient for the banner */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-black via-neutral-900/60 to-[#102213]/40 pointer-events-none" />
+
+            {/* Top Left: Heading */}
+            <div className="relative z-10 max-w-[580px]">
+              <h2
+                className="m-0 text-white tracking-normal"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(26px, 3.2vw, 46px)",
+                  lineHeight: "1.18",
+                }}
+              >
+                From Origin To Outlet,
+                <br />
+                Accountable At Every Step
+              </h2>
+            </div>
+
+            {/* Central subtle watermark badge */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
+              <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+                Banner Placeholder: Panoramic Mountain Estate
+              </span>
+            </div>
+
+            {/* Bottom Right: Narrative Text */}
+            <div className="relative z-10 self-end mt-12 max-w-[700px] text-right">
+              <p
+                className="m-0 text-[#DBDBDB] text-xs sm:text-sm lg:text-[15px] leading-relaxed"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                }}
+              >
+                Sustainability Does Not Stop At The Farm Gate. WAE Brings One Operating Standard To
+                Every Stage Of The Beverage Journey, From How Tea And Coffee Are Sourced To How
+                They Are Served And What Happens To The Waste. Every Cup We Deliver To Your Spaces
+                Is Held To The Same Standard Of Responsible Sourcing, Careful Handling And Minimal
+                Waste, Whichever Origin It Comes From.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 5: CENTRED EMBLEM DIVIDER
+          ========================================================================= */}
+      <div
+        className="w-full flex items-center justify-center select-none"
+        style={{
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+          paddingTop: "clamp(20px, 3vw, 40px)",
+          paddingBottom: "clamp(20px, 3vw, 40px)",
+        }}
+      >
+        <div className="w-full max-w-[720px] flex items-center justify-center gap-6 opacity-60">
+          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-neutral-700" />
+          <PinwheelIcon className="w-6 h-6 text-[#48A663] shrink-0" />
+          <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-neutral-700" />
+        </div>
+      </div>
+
+      {/* =========================================================================
+          SECTION 6: RECYCLING GROUNDS
+          ========================================================================= */}
+      <section
+        id="recycling-grounds"
+        className="relative w-full flex justify-center"
+        style={{
+          paddingTop: "clamp(48px, 6vw, 90px)",
+          paddingBottom: "clamp(48px, 6vw, 90px)",
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        <div className="w-full max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Heading + Narrative */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left select-none">
+            <h2
+              className="m-0 text-white tracking-normal"
+              style={{
+                fontFamily: "var(--font-monschone), serif",
+                fontWeight: 400,
+                fontSize: "clamp(32px, 3.8vw, 56px)",
+                lineHeight: "1.18",
+              }}
+            >
+              Recycling{" "}
+              <span className="relative inline-block">
+                Grounds
+                <GreenLoop />
+              </span>
+            </h2>
+
+            <p
+              className="m-0 text-[#DBDBDB] max-w-[540px]"
+              style={{
+                marginTop: "clamp(24px, 3vw, 42px)",
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(14px, 1.1vw, 16px)",
+                lineHeight: "160%",
+              }}
+            >
+              Every Cup Leaves Something Behind. Spent Coffee Grounds And Used Tea Leaves Are
+              Organic Material Rich In Nutrients. In Most Facilities They Go To Landfill. We Help
+              Our Partners Treat Them As A Resource Instead. Collected At The Point Of Service,
+              They Can Be Diverted To Composting And Other Organic Recycling Routes. This Reduces
+              Waste Volumes And Supports The Circular Goals Many Of Our Clients Have Already
+              Committed To.
+            </p>
+          </div>
+
+          {/* Right Column: Square Image Placeholder (Holding Coffee Cherries) */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="w-full max-w-[460px]">
+              <ImagePlaceholder
+                label="Circular Recycling Placeholder"
+                sublabel="Organic composting & circular waste management"
+                aspectRatio="1/1"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 7: WIDE TEA PLANTATION LANDSCAPE PLACEHOLDER
+          ========================================================================= */}
+      <section
+        id="plantation-landscape"
+        className="w-full flex justify-center"
+        style={{
+          paddingTop: "clamp(32px, 4vw, 64px)",
+          paddingBottom: "clamp(48px, 6vw, 90px)",
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        <div className="w-full max-w-[1360px] mx-auto">
+          <ImagePlaceholder
+            label="Panoramic Tea Estate Landscape Placeholder"
+            sublabel="Expansive contoured tea terrace roads & highland estates"
+            aspectRatio="21/9"
+          />
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 8: CLOSING TAGLINE & COMMITMENT
+          ========================================================================= */}
+      <section
+        id="sustainability-closing"
+        className="w-full flex flex-col items-center text-center select-none"
+        style={{
+          paddingTop: "clamp(48px, 6vw, 90px)",
+          paddingBottom: "clamp(72px, 9vw, 130px)",
+          paddingLeft: "2.778vw",
+          paddingRight: "2.778vw",
+        }}
+      >
+        {/* Main Tagline: Better Sourcing. Less Waste. One Standard. */}
+        <h2
+          className="m-0 tracking-normal"
+          style={{
+            fontSize: "clamp(24px, 3.2vw, 48px)",
+            lineHeight: "1.25",
+          }}
+        >
+          <span
+            className="text-white"
+            style={{
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+            }}
+          >
+            Better
+          </span>{" "}
+          <span
+            className="text-neutral-400 font-light"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+            }}
+          >
+            Sourcing. Less Waste. One
+          </span>{" "}
+          <span
+            className="text-white"
+            style={{
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+            }}
+          >
+            Standard.
+          </span>
+        </h2>
+
+        {/* Narrative subtext */}
+        <p
+          className="m-0 text-neutral-400 max-w-[720px]"
+          style={{
+            marginTop: "clamp(20px, 2.5vw, 36px)",
+            fontFamily: "var(--font-manrope), sans-serif",
+            fontWeight: 400,
+            fontSize: "clamp(13px, 1.1vw, 16px)",
+            lineHeight: "150%",
+          }}
+        >
+          From The Farms We Source From To The Cups We Serve, WAE Is Committed To Beverage
+          Programmes That Respect People And The Planet.
+        </p>
+      </section>
+
+      {/* =========================================================================
+          SECTION 9: L'ORIENTALIS GLOBAL FOOTER
+          ========================================================================= */}
+      <LOrientalisFooter />
+    </main>
+  );
+}
