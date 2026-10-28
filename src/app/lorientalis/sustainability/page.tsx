@@ -7,7 +7,7 @@ import LOrientalisFooter from "@/components/LOrientalisFooter";
 
 /**
  * Green hand-drawn loop brand accent image.
- * Renders behind text via negative z-index within an isolated stacking context.
+ * Renders behind text via lower z-index (z-0) while text has higher z-index (z-10) within an isolated stacking context.
  * Uses official Cloudflare image asset: 73ab85b3-67e2-4103-e9c0-3fa0bec8f300
  */
 function GreenLoop({ className = "" }: { className?: string }) {
@@ -16,7 +16,7 @@ function GreenLoop({ className = "" }: { className?: string }) {
       src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/73ab85b3-67e2-4103-e9c0-3fa0bec8f300/public"
       alt=""
       aria-hidden="true"
-      className={`absolute pointer-events-none select-none left-1/2 top-[50%] -translate-x-1/2 -translate-y-1/2 w-[165%] max-w-none h-auto -z-10 ${className}`}
+      className={`absolute pointer-events-none select-none left-1/2 top-[50%] -translate-x-1/2 -translate-y-1/2 w-[82.5%] max-w-none h-auto z-0 ${className}`}
     />
   );
 }
@@ -198,7 +198,7 @@ export default function LorientalisSustainabilityPage() {
           >
             Sustainable
             <br />
-            envi<span className="relative inline-block isolate"><span className="relative z-10">ron</span><GreenLoop className="w-[185%] top-[50%]" /></span>ment
+            envi<span className="relative inline-block isolate"><span className="relative z-10">ron</span><GreenLoop className="w-[92.5%] top-[50%]" /></span>ment
           </h1>
 
           {/* Subtitle */}
@@ -275,7 +275,7 @@ export default function LorientalisSustainabilityPage() {
               lineHeight: "1.2",
             }}
           >
-            G<span className="relative inline-block isolate mx-[1px]"><span className="relative z-10">row</span><GreenLoop className="w-[180%] top-[48%]" /></span>ing Coffee And Tea In A
+            G<span className="relative inline-block isolate mx-[1px]"><span className="relative z-10">row</span><GreenLoop className="w-[90%] top-[48%]" /></span>ing Coffee And Tea In A
             <br />
             Changing Climate
           </h2>
@@ -378,7 +378,7 @@ export default function LorientalisSustainabilityPage() {
               Protecting{" "}
               <span className="relative inline-block isolate">
                 <span className="relative z-10">Trees</span>
-                <GreenLoop className="w-[145%] top-[48%]" />
+                <GreenLoop className="w-[72.5%] top-[48%]" />
               </span>
               , Preventing
               <br />
@@ -541,7 +541,7 @@ export default function LorientalisSustainabilityPage() {
               }}
             >
               Recycling{" "}
-              Gr<span className="relative inline-block isolate"><span className="relative z-10">ou</span><GreenLoop className="w-[195%] top-[48%]" /></span>nds
+              Gr<span className="relative inline-block isolate"><span className="relative z-10">ou</span><GreenLoop className="w-[97.5%] top-[48%]" /></span>nds
             </h2>
 
             <p
