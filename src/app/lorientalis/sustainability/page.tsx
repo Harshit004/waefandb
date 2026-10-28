@@ -64,14 +64,14 @@ function ImagePlaceholder({
 }) {
   return (
     <div
-      className={`relative w-full bg-[#0d0d0d] border border-neutral-800/80 rounded-[2px] overflow-hidden flex flex-col items-center justify-center p-6 text-center select-none group transition-all duration-300 hover:border-neutral-700 ${className}`}
+      className={`relative w-full bg-[#0d0d0d] rounded-[2px] overflow-hidden flex flex-col items-center justify-center p-6 text-center select-none group transition-all duration-300 ${className}`}
       style={aspectRatio ? { aspectRatio } : undefined}
     >
       {/* Subtle ambient gradient mesh in placeholder */}
       <div className="absolute inset-0 bg-gradient-to-tr from-black via-neutral-900/40 to-[#122215]/30 pointer-events-none" />
 
       {/* Decorative camera/image icon */}
-      <div className="relative z-10 w-11 h-11 rounded-full bg-neutral-900 border border-neutral-700/60 flex items-center justify-center mb-3 text-neutral-400 group-hover:scale-105 group-hover:border-[#48A663]/50 transition-all duration-300 shadow-lg">
+      <div className="relative z-10 w-11 h-11 rounded-full bg-neutral-900 flex items-center justify-center mb-3 text-neutral-400 group-hover:scale-105 transition-all duration-300 shadow-lg">
         <svg
           className="w-5 h-5 text-neutral-400 group-hover:text-[#48A663] transition-colors duration-300"
           fill="none"
@@ -308,7 +308,7 @@ export default function LorientalisSustainabilityPage() {
             }}
           >
             <div
-              className="relative overflow-hidden rounded-[2px] bg-neutral-900 border border-neutral-800 shadow-2xl transition-all duration-300 ease-out flex items-center justify-center max-w-full"
+              className="relative overflow-hidden rounded-[2px] bg-neutral-900 shadow-2xl transition-all duration-300 ease-out flex items-center justify-center max-w-full"
               style={{
                 width: `min(100%, ${farmWidth}px)`,
                 height: `${farmHeight}px`,
@@ -361,10 +361,10 @@ export default function LorientalisSustainabilityPage() {
           paddingTop: "clamp(64px, 7.5vw, 120px)",
           paddingBottom: "clamp(64px, 7.5vw, 120px)",
           paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingRight: "0px",
         }}
       >
-        <div className="w-full max-w-[1360px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 relative">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 relative">
           {/* Left Column: Heading + Narrative (z-20, full opacity text) */}
           <div className="relative z-20 flex-1 max-w-[620px] flex flex-col items-start text-left select-none">
             <h2
@@ -411,9 +411,9 @@ export default function LorientalisSustainabilityPage() {
             </div>
           </div>
 
-          {/* Right Column: Coffee Branch Image (z-10, 567.66 x 686.16) */}
+          {/* Right Column: Coffee Branch Image (Flush Right, no margin/padding) */}
           <div
-            className="relative z-10 shrink-0 select-none flex items-center justify-end"
+            className="relative z-10 shrink-0 select-none flex items-center justify-end ml-auto"
             style={{
               width: "clamp(320px, 39.42vw, 568px)",
               height: "clamp(386px, 47.65vw, 686px)",
@@ -445,13 +445,39 @@ export default function LorientalisSustainabilityPage() {
         }}
       >
         <div className="w-full max-w-[1360px] mx-auto">
-          {/* Panoramic Banner Placeholder with Integrated Text Content */}
+          {/* Panoramic Video Banner with Integrated Text Content */}
           <div
-            className="relative w-full bg-[#0c0c0c] border border-neutral-800 rounded-[2px] overflow-hidden flex flex-col justify-between p-8 sm:p-12 lg:p-16 select-none"
-            style={{ minHeight: "clamp(340px, 35vw, 520px)" }}
+            className="relative w-full rounded-[2px] overflow-hidden flex flex-col justify-between p-8 sm:p-12 lg:p-16 select-none shadow-2xl"
+            style={{ minHeight: "clamp(340px, 45vw, 680px)" }}
           >
-            {/* Ambient Background Gradient for the banner */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-black via-neutral-900/60 to-[#102213]/40 pointer-events-none" />
+            {/* Background Video using user provided Cloudflare embed */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div style={{ position: "relative", width: "100%", height: "100%", paddingTop: "52.734375%" }}>
+                <iframe
+                  src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/fc1aae211ee303771b943705fd7aa728/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Ffc1aae211ee303771b943705fd7aa728%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
+                  style={{
+                    border: "none",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    height: "100%",
+                    width: "100%",
+                  }}
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                  allowFullScreen={true}
+                />
+              </div>
+
+              {/* Ambient Dark Gradient Overlays for High Legibility */}
+              <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.75) 100%)",
+                }}
+              />
+            </div>
 
             {/* Top Left: Heading */}
             <div className="relative z-10 max-w-[580px]">
@@ -468,13 +494,6 @@ export default function LorientalisSustainabilityPage() {
                 <br />
                 Accountable At Every Step
               </h2>
-            </div>
-
-            {/* Central subtle watermark badge */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
-              <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
-                Banner Placeholder: Panoramic Mountain Estate
-              </span>
             </div>
 
             {/* Bottom Right: Narrative Text */}
@@ -520,17 +539,17 @@ export default function LorientalisSustainabilityPage() {
           ========================================================================= */}
       <section
         id="recycling-grounds"
-        className="relative w-full flex justify-center"
+        className="relative w-full flex justify-center overflow-hidden"
         style={{
           paddingTop: "clamp(48px, 6vw, 90px)",
           paddingBottom: "clamp(48px, 6vw, 90px)",
           paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingRight: "0px",
         }}
       >
-        <div className="w-full max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 relative">
           {/* Left Column: Heading + Narrative */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left select-none">
+          <div className="relative z-20 flex-1 max-w-[620px] flex flex-col items-start text-left select-none">
             <h2
               className="m-0 text-white tracking-normal"
               style={{
@@ -563,37 +582,48 @@ export default function LorientalisSustainabilityPage() {
             </p>
           </div>
 
-          {/* Right Column: Square Image Placeholder (Holding Coffee Cherries) */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="w-full max-w-[460px]">
-              <ImagePlaceholder
-                label="Circular Recycling Placeholder"
-                sublabel="Organic composting & circular waste management"
-                aspectRatio="1/1"
-              />
-            </div>
+          {/* Right Column: Recycling Grounds Image (Flush Right, no margin/padding) */}
+          <div
+            className="relative z-10 shrink-0 select-none flex items-center justify-end ml-auto"
+            style={{
+              width: "clamp(320px, 39.42vw, 568px)",
+              height: "clamp(320px, 39.42vw, 568px)",
+            }}
+          >
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/268e5671-2de0-4151-e50f-6dbd8cfef700/public"
+              alt="Recycling spent coffee grounds and tea leaves into compost"
+              fill
+              unoptimized
+              priority
+              className="object-contain object-right pointer-events-none"
+            />
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 7: WIDE TEA PLANTATION LANDSCAPE PLACEHOLDER
+          SECTION 7: WIDE TEA PLANTATION LANDSCAPE (PANORAMIC)
           ========================================================================= */}
       <section
         id="plantation-landscape"
-        className="w-full flex justify-center"
+        className="w-full flex justify-center overflow-hidden"
         style={{
           paddingTop: "clamp(32px, 4vw, 64px)",
           paddingBottom: "clamp(48px, 6vw, 90px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingLeft: "0px",
+          paddingRight: "0px",
         }}
       >
-        <div className="w-full max-w-[1360px] mx-auto">
-          <ImagePlaceholder
-            label="Panoramic Tea Estate Landscape Placeholder"
-            sublabel="Expansive contoured tea terrace roads & highland estates"
-            aspectRatio="21/9"
+        <div className="relative w-full aspect-[21/9] min-h-[260px] sm:min-h-[380px] lg:min-h-[500px] overflow-hidden select-none">
+          <Image
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9c4353cb-26cc-495c-ccc5-67b687bb2000/public"
+            alt="Panoramic tea estate landscape"
+            fill
+            unoptimized
+            priority
+            className="object-cover object-center pointer-events-none"
+            sizes="100vw"
           />
         </div>
       </section>
