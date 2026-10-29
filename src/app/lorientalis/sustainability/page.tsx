@@ -720,50 +720,32 @@ export default function LorientalisSustainabilityPage() {
         <h2
           className="m-0 text-center tracking-normal font-normal"
           style={{
-            fontSize: "clamp(26px, 3.8vw, 54px)",
-            lineHeight: "1.2",
+            fontFamily: "var(--font-monschone), serif",
+            fontWeight: 400,
+            fontSize: "clamp(24px, 2.778vw, 40px)",
+            lineHeight: "120%",
             letterSpacing: "0%",
+            textAlign: "center",
           }}
         >
-          <span
-            className="text-white"
-            style={{
-              fontFamily: "var(--font-monschone), serif",
-              fontWeight: 400,
-            }}
-          >
-            Better
-          </span>{" "}
-          <span
-            style={{
-              fontFamily: "var(--font-poly), 'Poly', serif",
-              fontWeight: 400,
-              color: "#8A8A8E",
-            }}
-          >
-            Sourcing. Less Waste. One
-          </span>{" "}
-          <span
-            className="text-white"
-            style={{
-              fontFamily: "var(--font-monschone), serif",
-              fontWeight: 400,
-            }}
-          >
-            Standard.
-          </span>
+          <span className="text-white">Better</span>{" "}
+          <span style={{ color: "#8A8A8E" }}>Sourcing. Less Waste. One</span>{" "}
+          <span className="text-white">Standard.</span>
         </h2>
 
-        {/* Narrative subtext matching screenshot line breaks */}
+        {/* 24px gap between tagline and narrative */}
+        <div style={{ height: "24px" }} aria-hidden="true" />
+
+        {/* Narrative subtext */}
         <p
           className="m-0 text-white text-center font-normal max-w-[850px]"
           style={{
-            marginTop: "clamp(24px, 2.5vw, 36px)",
             fontFamily: "var(--font-manrope), sans-serif",
             fontWeight: 400,
-            fontSize: "clamp(13px, 1.1vw, 16px)",
-            lineHeight: "150%",
+            fontSize: "clamp(13px, 1.25vw, 18px)",
+            lineHeight: "120%",
             letterSpacing: "0%",
+            textAlign: "center",
           }}
         >
           <span className="sm:block">
