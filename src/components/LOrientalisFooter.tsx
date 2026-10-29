@@ -324,7 +324,7 @@ export default function LOrientalisFooter({
           alt="Tea leaves foliage"
           fill
           unoptimized
-          className="w-full h-full object-cover object-bottom select-none pointer-events-none"
+          className="w-full h-full object-cover object-top select-none pointer-events-none"
         />
 
         {/* Bottom gradient overlay so the bottom of the image is completely blended in the background */}
