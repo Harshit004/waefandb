@@ -235,11 +235,21 @@ export default function LorientalisContactPage() {
         </div>
 
         {/* Hero Image: Full screen width and height to maintain original ratio */}
-        <div className="w-full relative">
+        <div className="w-full relative overflow-hidden">
           <img
             src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/55a5dca7-3bfd-4095-dda3-52d8cbd5fa00/public"
             alt="L'Orientalis Hero"
             className="w-full h-auto block object-cover"
+          />
+
+          {/* Bottom gradient so it blends seamlessly into the next section with no hard edges */}
+          <div
+            className="absolute bottom-0 inset-x-0 pointer-events-none z-10"
+            style={{
+              height: "clamp(60px, 8vw, 120px)",
+              background:
+                "linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.8) 80%, #000000 100%)",
+            }}
           />
         </div>
       </section>
