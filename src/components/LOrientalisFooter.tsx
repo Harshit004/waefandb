@@ -320,7 +320,7 @@ export default function LOrientalisFooter({
       <div className="relative w-full h-[clamp(280px,28vw,460px)] overflow-hidden select-none">
         {/* Full width edge-to-edge tea leaves background image */}
         <Image
-          src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e1c525de-5d53-4a6d-24e8-7f7405a6d100/public"
+          src="/images/tea-foliage-trimmed.png"
           alt="Tea leaves foliage"
           fill
           unoptimized
