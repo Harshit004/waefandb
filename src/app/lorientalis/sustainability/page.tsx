@@ -361,7 +361,7 @@ export default function LorientalisSustainabilityPage() {
         className="relative w-full bg-black flex justify-center overflow-hidden"
         style={{
           paddingTop: "clamp(64px, 7.5vw, 120px)",
-          paddingBottom: "clamp(64px, 7.5vw, 120px)",
+          paddingBottom: "clamp(100px, 15.28vw, 220px)",
           paddingLeft: "2.778vw",
           paddingRight: "0px",
         }}
@@ -558,18 +558,46 @@ export default function LorientalisSustainabilityPage() {
           SECTION 5: CENTRED EMBLEM DIVIDER
           ========================================================================= */}
       <div
-        className="w-full flex items-center justify-center select-none"
+        className="w-full flex items-center justify-center select-none bg-black"
         style={{
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
-          paddingTop: "clamp(20px, 3vw, 40px)",
-          paddingBottom: "clamp(20px, 3vw, 40px)",
+          paddingLeft: "clamp(24px, 17vw, 17vw)",
+          paddingRight: "clamp(24px, 17vw, 17vw)",
+          paddingTop: "clamp(24px, 3.2vw, 44px)",
+          paddingBottom: "clamp(24px, 3.2vw, 44px)",
         }}
       >
-        <div className="w-full max-w-[720px] flex items-center justify-center gap-6 opacity-60">
-          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-neutral-700" />
-          <PinwheelIcon className="w-6 h-6 text-[#48A663] shrink-0" />
-          <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-neutral-700" />
+        <div className="w-full relative flex items-center justify-center">
+          {/* Border-image gradient line spanning across */}
+          <div
+            className="absolute inset-x-0 h-0"
+            style={{
+              border: "1px solid",
+              borderBottom: "none",
+              borderLeft: "none",
+              borderRight: "none",
+              borderImageSource:
+                "linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50.96%, rgba(255, 255, 255, 0.04) 100%)",
+              borderImageSlice: 1,
+            }}
+          />
+
+          {/* Pinwheel icon in the middle (39x39) */}
+          <div className="relative z-10 px-4 sm:px-5 bg-black flex items-center justify-center">
+            <div
+              className="relative shrink-0 select-none"
+              style={{ width: "39px", height: "39px" }}
+            >
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3acb7cdc-43b8-4afc-a3a7-a8892b2ed100/public"
+                alt="WAE Pinwheel emblem"
+                width={39}
+                height={39}
+                unoptimized
+                priority
+                className="w-full h-full object-contain pointer-events-none"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
