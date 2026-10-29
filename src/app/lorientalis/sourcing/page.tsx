@@ -202,13 +202,13 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 2: VIDEO SPREAD (24:11 ratio)
+          SECTION 2: VIDEO SPREAD (Spans across screen, bottom-cropped to fit in viewport)
           ========================================================================= */}
       <section
         id="sourcing-video"
         className="w-full flex justify-center"
         style={{
-          marginTop: "clamp(64px, 9.58vw, 138px)",
+          marginTop: "clamp(24px, 6.1vw, 88px)",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
@@ -216,7 +216,9 @@ export default function LorientalisSourcingPage() {
         <div
           className="w-full rounded-[2px] overflow-hidden shadow-2xl relative select-none"
           style={{
-            aspectRatio: "24 / 11",
+            height: "calc(100vh - clamp(210px, 25vh, 260px))",
+            maxHeight: "calc((100vw - 5.556vw) * (9 / 16))",
+            minHeight: "220px",
           }}
         >
           <iframe
@@ -226,8 +228,9 @@ export default function LorientalisSourcingPage() {
               position: "absolute",
               top: 0,
               left: 0,
-              height: "100%",
               width: "100%",
+              height: "calc((100vw - 5.556vw) * (9 / 16))",
+              minHeight: "100%",
             }}
             allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
             allowFullScreen={true}
