@@ -131,20 +131,13 @@ export default function LorientalisSourcingPage() {
           </div>
         </div>
 
-        {/* Map Image: Right under Culture & Trade with no vertical space, 97px ml, 55px mr, 1128x682 */}
-        <div
-          className="relative w-full flex justify-end select-none"
-          style={{
-            marginTop: "0px",
-            paddingLeft: "clamp(0px, 6.7vw, 97px)",
-            paddingRight: "clamp(0px, 3.8vw, 55px)",
-          }}
-        >
+        {/* Map Image: Centered, no margin/padding above/below, increased size to fill gaps */}
+        <div className="relative w-full flex justify-center items-center select-none m-0 p-0">
           <div
             className="relative w-full select-none"
             style={{
-              maxWidth: "1128px",
-              aspectRatio: "1128 / 682",
+              maxWidth: "1380px",
+              aspectRatio: "1270 / 768",
             }}
           >
             <Image
@@ -153,14 +146,14 @@ export default function LorientalisSourcingPage() {
               fill
               priority
               unoptimized
-              sizes="(max-width: 1200px) 100vw, 1128px"
+              sizes="(max-width: 1400px) 100vw, 1380px"
               className="object-contain"
             />
           </div>
         </div>
 
         {/* Bottom Coordinates & Origin Row */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6 mt-6 md:mt-2">
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6 mt-0">
           {/* Left Block: 26 N 92 E + 20px gap + SINGLE ORIGIN - 3 State */}
           <div className="flex flex-col items-start select-none">
             <h3
@@ -209,21 +202,25 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 2: VIDEO SPREAD (138px gap, 1222x688)
+          SECTION 2: VIDEO SPREAD (fits on screen with coordinates row)
           ========================================================================= */}
       <section
         id="sourcing-video"
         className="w-full flex justify-center"
         style={{
-          marginTop: "clamp(64px, 9.58vw, 138px)",
+          marginTop: "clamp(24px, 3.5vh, 48px)",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
         <div
-          className="w-full rounded-[2px] overflow-hidden shadow-2xl relative select-none"
+          className="rounded-[2px] overflow-hidden shadow-2xl relative select-none mx-auto"
           style={{
             aspectRatio: "1222 / 688",
+            height: "clamp(240px, 52vh, 580px)",
+            maxHeight: "clamp(240px, 52vh, 580px)",
+            width: "calc(clamp(240px, 52vh, 580px) * (1222 / 688))",
+            maxWidth: "100%",
           }}
         >
           <iframe
@@ -396,6 +393,15 @@ export default function LorientalisSourcingPage() {
               const colW = isColActive ? activeW : smallW;
               const colGap = isColActive ? "clamp(16px, 2vw, 24px)" : "clamp(16px, 2.778vw, 40px)";
 
+              // Horizontal translation for column 1:
+              // when bottom image is hovered, top goes on right; when top is hovered, bottom goes on left
+              const topTransform = isBottomActive
+                ? `translateX(calc((${activeW} - ${smallW}) / 2)) translateZ(0)`
+                : "translateX(0px) translateZ(0)";
+              const bottomTransform = isTopActive
+                ? `translateX(calc((${smallW} - ${activeW}) / 2)) translateZ(0)`
+                : "translateX(0px) translateZ(0)";
+
               return (
                 <div
                   className="flex flex-col shrink-0 items-center justify-center"
@@ -420,10 +426,10 @@ export default function LorientalisSourcingPage() {
                         ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
+                      transform: topTransform,
                       transition:
-                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
-                      willChange: "width, height",
-                      transform: "translateZ(0)",
+                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
+                      willChange: "width, height, transform",
                     }}
                     onMouseEnter={() => {
                       setActiveCol(1);
@@ -453,10 +459,10 @@ export default function LorientalisSourcingPage() {
                         ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
+                      transform: bottomTransform,
                       transition:
-                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
-                      willChange: "width, height",
-                      transform: "translateZ(0)",
+                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
+                      willChange: "width, height, transform",
                     }}
                     onMouseEnter={() => {
                       setActiveCol(1);
@@ -600,6 +606,16 @@ export default function LorientalisSourcingPage() {
               const colW = isColActive ? activeW : smallW;
               const colGap = isColActive ? "clamp(16px, 2vw, 24px)" : "clamp(16px, 2.778vw, 40px)";
 
+              // Horizontal translation for column 2 (col 5):
+              // Vice versa of column 1:
+              // when bottom image is hovered, top goes on left; when top is hovered, bottom goes on right
+              const topTransform = isBottomActive
+                ? `translateX(calc((${smallW} - ${activeW}) / 2)) translateZ(0)`
+                : "translateX(0px) translateZ(0)";
+              const bottomTransform = isTopActive
+                ? `translateX(calc((${activeW} - ${smallW}) / 2)) translateZ(0)`
+                : "translateX(0px) translateZ(0)";
+
               return (
                 <div
                   className="flex flex-col shrink-0 items-center justify-center"
@@ -624,10 +640,10 @@ export default function LorientalisSourcingPage() {
                         ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
+                      transform: topTransform,
                       transition:
-                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
-                      willChange: "width, height",
-                      transform: "translateZ(0)",
+                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
+                      willChange: "width, height, transform",
                     }}
                     onMouseEnter={() => {
                       setActiveCol(5);
@@ -657,10 +673,10 @@ export default function LorientalisSourcingPage() {
                         ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
+                      transform: bottomTransform,
                       transition:
-                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
-                      willChange: "width, height",
-                      transform: "translateZ(0)",
+                        "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
+                      willChange: "width, height, transform",
                     }}
                     onMouseEnter={() => {
                       setActiveCol(5);
