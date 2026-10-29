@@ -17,6 +17,7 @@ export default function LOrientalisHeader({
 }: LOrientalisHeaderProps) {
   const pathname = usePathname();
   const isSourcing = pathname?.includes("/sourcing");
+  const isContact = pathname?.includes("/contact");
   const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
@@ -98,24 +99,32 @@ export default function LOrientalisHeader({
       </Link>
 
       {/* Right Navigation: "Contact" */}
-      <Link
-        href="/lorientalis/contact"
-        className="pointer-events-auto cursor-pointer transition-opacity duration-200 hover:opacity-75 inline-flex items-center"
-        onMouseEnter={onMouseEnterElement}
-        onMouseLeave={onMouseLeaveElement}
-        style={{
-          fontFamily: "var(--font-manrope), sans-serif",
-          fontWeight: 600,
-          fontStyle: "normal",
-          fontSize: "0.972vw", // 14px at 1440px (14 / 1440 * 100vw)
-          lineHeight: "0.875vw", // 12.6px at 1440px (12.6 / 1440 * 100vw)
-          letterSpacing: "-0.035vw", // -0.5px at 1440px (-0.5 / 1440 * 100vw)
-          verticalAlign: "middle",
-          color: "#FFFFFF",
-        }}
-      >
-        Contact
-      </Link>
+      <div className="relative inline-flex flex-col items-end">
+        <Link
+          href="/lorientalis/contact"
+          className="pointer-events-auto cursor-pointer transition-opacity duration-200 hover:opacity-75 inline-flex items-center"
+          onMouseEnter={onMouseEnterElement}
+          onMouseLeave={onMouseLeaveElement}
+          style={{
+            fontFamily: "var(--font-manrope), sans-serif",
+            fontWeight: 600,
+            fontStyle: "normal",
+            fontSize: "0.972vw", // 14px at 1440px (14 / 1440 * 100vw)
+            lineHeight: "0.875vw", // 12.6px at 1440px (12.6 / 1440 * 100vw)
+            letterSpacing: "-0.035vw", // -0.5px at 1440px (-0.5 / 1440 * 100vw)
+            verticalAlign: "middle",
+            color: "#FFFFFF",
+          }}
+        >
+          Contact
+        </Link>
+        {isContact && (
+          <div
+            className="absolute right-[-2.778vw] -bottom-3 sm:-bottom-4 h-[1px] bg-white pointer-events-none"
+            style={{ width: "calc(100% + 2.778vw + 24px)" }}
+          />
+        )}
+      </div>
     </header>
   );
 }

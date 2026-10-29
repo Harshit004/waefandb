@@ -237,7 +237,7 @@ export default function LorientalisContactPage() {
         {/* Hero Image: Full screen width and height to maintain original ratio */}
         <div className="w-full relative">
           <img
-            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/2babc9dd-334f-44ed-01ac-a645d3525000/public"
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/55a5dca7-3bfd-4095-dda3-52d8cbd5fa00/public"
             alt="L'Orientalis Hero"
             className="w-full h-auto block object-cover"
           />
@@ -377,11 +377,11 @@ export default function LorientalisContactPage() {
         <form onSubmit={handleSubmit} className="w-full flex flex-col">
           {/* Top Form Region with Side Botanical Images flush to viewport edges (NO margins) */}
           <div className="relative w-full">
-            {/* Left Botanical Image: flush to left edge (no margins), 210x786 ratio, bottom aligned with 'Message' */}
+            {/* Left Botanical Image: flush to left edge (no margins), 210x980 ratio, bottom aligned with 'Message' */}
             <div
               className="absolute left-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(120px,14.583vw,210px)] overflow-hidden"
               style={{
-                aspectRatio: "210 / 786",
+                aspectRatio: "210 / 980",
                 maskImage:
                   "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.5) 25%, black 45%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
                 WebkitMaskImage:
@@ -412,11 +412,11 @@ export default function LorientalisContactPage() {
               />
             </div>
 
-            {/* Right Botanical Image: flush to right edge (no margins), 210x786 ratio, bottom aligned with 'Message' */}
+            {/* Right Botanical Image: flush to right edge (no margins), 210x980 ratio, bottom aligned with 'Message' */}
             <div
               className="absolute right-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(120px,14.583vw,210px)] overflow-hidden"
               style={{
-                aspectRatio: "210 / 786",
+                aspectRatio: "210 / 980",
                 maskImage:
                   "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.5) 25%, black 45%, black 75%, rgba(0,0,0,0.6) 90%, transparent 100%)",
                 WebkitMaskImage:
