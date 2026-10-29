@@ -153,7 +153,7 @@ export default function LorientalisSourcingPage() {
         </div>
 
         {/* Bottom Coordinates & Origin Row */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6 mt-0">
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6 mt-6 md:mt-2">
           {/* Left Block: 26 N 92 E + 20px gap + SINGLE ORIGIN - 3 State */}
           <div className="flex flex-col items-start select-none">
             <h3
@@ -202,25 +202,21 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 2: VIDEO SPREAD (fits on screen with coordinates row)
+          SECTION 2: VIDEO SPREAD (24:11 ratio)
           ========================================================================= */}
       <section
         id="sourcing-video"
         className="w-full flex justify-center"
         style={{
-          marginTop: "clamp(24px, 3.5vh, 48px)",
+          marginTop: "clamp(64px, 9.58vw, 138px)",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
         <div
-          className="rounded-[2px] overflow-hidden shadow-2xl relative select-none mx-auto"
+          className="w-full rounded-[2px] overflow-hidden shadow-2xl relative select-none"
           style={{
-            aspectRatio: "1222 / 688",
-            height: "clamp(240px, 52vh, 580px)",
-            maxHeight: "clamp(240px, 52vh, 580px)",
-            width: "calc(clamp(240px, 52vh, 580px) * (1222 / 688))",
-            maxWidth: "100%",
+            aspectRatio: "24 / 11",
           }}
         >
           <iframe
@@ -367,7 +363,7 @@ export default function LorientalisSourcingPage() {
               );
             })()}
 
-            {/* Column 1: Stacked images in resting state, expands on hover without hiding the other image */}
+            {/* Column 1: Stacked images in resting state, comes on the side when hovered */}
             {(() => {
               const d1 = Math.abs(1 - effectiveActiveCol);
               const isColActive = effectiveActiveCol === 1;
@@ -390,34 +386,49 @@ export default function LorientalisSourcingPage() {
               const bottomZ = isBottomActive ? 30 : 10;
               const bottomOpacity = isBottomActive ? 1 : isTopActive ? 0.75 : d1 === 1 ? 0.85 : 0.65;
 
-              const colW = isColActive ? activeW : smallW;
-              const colGap = isColActive ? "clamp(16px, 2vw, 24px)" : "clamp(16px, 2.778vw, 40px)";
+              const sideGap = "clamp(12px, 1.5vw, 20px)";
+              const restingGap = "clamp(16px, 2.778vw, 40px)";
 
-              // Horizontal translation for column 1:
-              // when bottom image is hovered, top goes on right; when top is hovered, bottom goes on left
-              const topTransform = isBottomActive
-                ? `translateX(calc((${activeW} - ${smallW}) / 2)) translateZ(0)`
-                : "translateX(0px) translateZ(0)";
-              const bottomTransform = isTopActive
-                ? `translateX(calc((${smallW} - ${activeW}) / 2)) translateZ(0)`
-                : "translateX(0px) translateZ(0)";
+              // Resting: stacked vertically (top at top, bottom at bottom)
+              // When active: companion comes on the side (vertically centered alongside active image)
+              // Column 1: bottom hovered -> top goes on right; top hovered -> bottom goes on left
+              let topX = "0px";
+              let topY = `calc(-1 * (${smallH} / 2 + ${restingGap} / 2))`;
+              let bottomX = "0px";
+              let bottomY = `calc(${smallH} / 2 + ${restingGap} / 2)`;
+
+              if (isColActive) {
+                if (isBottomActive) {
+                  bottomX = `calc(-1 * (${smallW} + ${sideGap}) / 2)`;
+                  bottomY = "0px";
+                  topX = `calc((${activeW} + ${sideGap}) / 2)`;
+                  topY = "0px";
+                } else {
+                  topX = `calc((${smallW} + ${sideGap}) / 2)`;
+                  topY = "0px";
+                  bottomX = `calc(-1 * (${activeW} + ${sideGap}) / 2)`;
+                  bottomY = "0px";
+                }
+              }
 
               return (
                 <div
-                  className="flex flex-col shrink-0 items-center justify-center"
+                  className="relative shrink-0 flex items-center justify-center"
                   style={{
-                    width: colW,
+                    width: isColActive ? `calc(${activeW} + ${smallW} + ${sideGap})` : smallW,
+                    height: isColActive ? activeH : `calc(${smallH} * 2 + ${restingGap})`,
                     zIndex: isColActive ? 30 : d1 === 1 ? 20 : 10,
-                    rowGap: colGap,
                     transition:
-                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), row-gap 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
-                    willChange: "width",
+                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
+                    willChange: "width, height",
                   }}
                 >
                   {/* Top Image: left two image column top */}
                   <div
-                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
+                    className="absolute overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
+                      top: "50%",
+                      left: "50%",
                       width: topW,
                       height: topH,
                       zIndex: topZ,
@@ -426,7 +437,7 @@ export default function LorientalisSourcingPage() {
                         ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
-                      transform: topTransform,
+                      transform: `translate(-50%, -50%) translate3d(${topX}, ${topY}, 0)`,
                       transition:
                         "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                       willChange: "width, height, transform",
@@ -449,8 +460,10 @@ export default function LorientalisSourcingPage() {
 
                   {/* Bottom Image: left two image column bottom */}
                   <div
-                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
+                    className="absolute overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
+                      top: "50%",
+                      left: "50%",
                       width: bottomW,
                       height: bottomH,
                       zIndex: bottomZ,
@@ -459,7 +472,7 @@ export default function LorientalisSourcingPage() {
                         ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
-                      transform: bottomTransform,
+                      transform: `translate(-50%, -50%) translate3d(${bottomX}, ${bottomY}, 0)`,
                       transition:
                         "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                       willChange: "width, height, transform",
@@ -603,35 +616,50 @@ export default function LorientalisSourcingPage() {
               const bottomZ = isBottomActive ? 30 : 10;
               const bottomOpacity = isBottomActive ? 1 : isTopActive ? 0.75 : d5 === 1 ? 0.85 : 0.65;
 
-              const colW = isColActive ? activeW : smallW;
-              const colGap = isColActive ? "clamp(16px, 2vw, 24px)" : "clamp(16px, 2.778vw, 40px)";
+              const sideGap = "clamp(12px, 1.5vw, 20px)";
+              const restingGap = "clamp(16px, 2.778vw, 40px)";
 
-              // Horizontal translation for column 2 (col 5):
-              // Vice versa of column 1:
-              // when bottom image is hovered, top goes on left; when top is hovered, bottom goes on right
-              const topTransform = isBottomActive
-                ? `translateX(calc((${smallW} - ${activeW}) / 2)) translateZ(0)`
-                : "translateX(0px) translateZ(0)";
-              const bottomTransform = isTopActive
-                ? `translateX(calc((${activeW} - ${smallW}) / 2)) translateZ(0)`
-                : "translateX(0px) translateZ(0)";
+              // Resting: stacked vertically (top at top, bottom at bottom)
+              // When active: companion comes on the side (vertically centered alongside active image)
+              // Column 2 (col 5) vice versa:
+              // bottom hovered -> top goes on LEFT; top hovered -> bottom goes on RIGHT
+              let topX = "0px";
+              let topY = `calc(-1 * (${smallH} / 2 + ${restingGap} / 2))`;
+              let bottomX = "0px";
+              let bottomY = `calc(${smallH} / 2 + ${restingGap} / 2)`;
+
+              if (isColActive) {
+                if (isBottomActive) {
+                  bottomX = `calc((${smallW} + ${sideGap}) / 2)`;
+                  bottomY = "0px";
+                  topX = `calc(-1 * (${activeW} + ${sideGap}) / 2)`;
+                  topY = "0px";
+                } else {
+                  topX = `calc(-1 * (${smallW} + ${sideGap}) / 2)`;
+                  topY = "0px";
+                  bottomX = `calc((${activeW} + ${sideGap}) / 2)`;
+                  bottomY = "0px";
+                }
+              }
 
               return (
                 <div
-                  className="flex flex-col shrink-0 items-center justify-center"
+                  className="relative shrink-0 flex items-center justify-center"
                   style={{
-                    width: colW,
+                    width: isColActive ? `calc(${activeW} + ${smallW} + ${sideGap})` : smallW,
+                    height: isColActive ? activeH : `calc(${smallH} * 2 + ${restingGap})`,
                     zIndex: isColActive ? 30 : d5 === 1 ? 20 : 10,
-                    rowGap: colGap,
                     transition:
-                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), row-gap 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
-                    willChange: "width",
+                      "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
+                    willChange: "width, height",
                   }}
                 >
                   {/* Top Image: next two image column top */}
                   <div
-                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
+                    className="absolute overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
+                      top: "50%",
+                      left: "50%",
                       width: topW,
                       height: topH,
                       zIndex: topZ,
@@ -640,7 +668,7 @@ export default function LorientalisSourcingPage() {
                         ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
-                      transform: topTransform,
+                      transform: `translate(-50%, -50%) translate3d(${topX}, ${topY}, 0)`,
                       transition:
                         "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                       willChange: "width, height, transform",
@@ -663,8 +691,10 @@ export default function LorientalisSourcingPage() {
 
                   {/* Bottom Image: next two image column bottom */}
                   <div
-                    className="relative overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
+                    className="absolute overflow-hidden bg-neutral-900 group cursor-pointer shrink-0 rounded-[2px]"
                     style={{
+                      top: "50%",
+                      left: "50%",
                       width: bottomW,
                       height: bottomH,
                       zIndex: bottomZ,
@@ -673,7 +703,7 @@ export default function LorientalisSourcingPage() {
                         ? "0 25px 50px -12px rgba(0, 0, 0, 0.95)"
                         : "0 10px 20px -8px rgba(0, 0, 0, 0.5)",
                       pointerEvents: "auto",
-                      transform: bottomTransform,
+                      transform: `translate(-50%, -50%) translate3d(${bottomX}, ${bottomY}, 0)`,
                       transition:
                         "width 2500ms cubic-bezier(0.16, 1, 0.3, 1), height 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2500ms ease, box-shadow 2500ms ease",
                       willChange: "width, height, transform",
@@ -1233,8 +1263,8 @@ export default function LorientalisSourcingPage() {
 
           {/* Right Column: CTC Tea Text + 156px gap + 301x302 Image */}
           <div className="flex-1 flex flex-col justify-between self-stretch mt-8 md:mt-0 pl-0 md:pl-12">
-            {/* CTC Tea Description */}
-            <div className="select-none max-w-[660px]">
+            {/* CTC Tea Description - width up to margin */}
+            <div className="select-none w-full">
               <p className="m-0 leading-tight">
                 <span
                   className="text-white"
@@ -1266,7 +1296,7 @@ export default function LorientalisSourcingPage() {
               </p>
             </div>
 
-            {/* 156px under it: 301x302 Terraced Hills Image (aligned right) */}
+            {/* 156px under it: Terraced Hills Image expanded by 20% (361x362, aligned right) */}
             <div
               className="w-full flex justify-end"
               style={{ marginTop: "clamp(48px, 10.83vw, 156px)" }}
@@ -1274,8 +1304,8 @@ export default function LorientalisSourcingPage() {
               <div
                 className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
                 style={{
-                  width: "clamp(200px, 20.9vw, 301px)",
-                  height: "clamp(200px, 20.97vw, 302px)",
+                  width: "clamp(240px, 25.08vw, 361px)",
+                  height: "clamp(240px, 25.16vw, 362px)",
                   aspectRatio: "301 / 302",
                 }}
               >
@@ -1284,7 +1314,7 @@ export default function LorientalisSourcingPage() {
                   alt="Terraced Tea Hills"
                   fill
                   unoptimized
-                  sizes="301px"
+                  sizes="361px"
                   className="object-cover"
                 />
               </div>
@@ -1346,47 +1376,44 @@ export default function LorientalisSourcingPage() {
           </div>
         </div>
 
-        {/* 102px below it: Green Tea Text (right aligned, spans full image width) */}
+        {/* 72px gap then Green Tea Title & Description (centered per design) */}
         <div
-          className="w-full select-none"
-          style={{ marginTop: "clamp(48px, 7.08vw, 102px)" }}
+          className="w-full flex flex-col items-center select-none"
+          style={{ marginTop: "clamp(36px, 5vw, 72px)" }}
         >
-          <p className="m-0 text-right leading-tight w-full">
-            <span
-              className="text-white"
-              style={{
-                fontFamily: "var(--font-monschone), serif",
-                fontWeight: 400,
-                fontSize: "clamp(28px, 3.333vw, 48px)",
-                lineHeight: "100%",
-                letterSpacing: "0%",
-              }}
-            >
-              Green Tea
-            </span>
-            <span
-              style={{
-                fontFamily: "'Helvetica', Arial, sans-serif",
-                fontWeight: 400,
-                fontSize: "clamp(16px, 1.667vw, 24px)",
-                lineHeight: "120%",
-                letterSpacing: "0%",
-                color: "#AEAEAE",
-              }}
-            >
-              {" "} : Green tea is made from unoxidized leaves and is one of the
-              least processed types of tea, which helps retain its natural
-              antioxidants and beneficial polyphenols. It offers a fresh, light
-              flavor with subtle grassy notes and a gentle caffeine boost,
-              making it a popular choice for a healthy, refreshing drink.
-            </span>
+          <h3
+            className="text-center text-white m-0"
+            style={{
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+              fontSize: "clamp(32px, 3.333vw, 48px)",
+              lineHeight: "100%",
+              letterSpacing: "0%",
+            }}
+          >
+            Green Tea
+          </h3>
+
+          <p
+            className="text-center m-0 max-w-[940px]"
+            style={{
+              marginTop: "25px",
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(15px, 1.25vw, 18px)",
+              lineHeight: "130%",
+              letterSpacing: "0%",
+              color: "#FFFFFF73",
+            }}
+          >
+            Green tea is made from unoxidized leaves and is one of the least processed types of tea, which helps retain its natural antioxidants and beneficial polyphenols. It offers a fresh, light flavor with subtle grassy notes and a gentle caffeine boost, making it a popular choice for a healthy, refreshing drink.
           </p>
         </div>
 
-        {/* 130px spacing below it to footer */}
+        {/* 111px gap then footer */}
         <div
           className="w-full"
-          style={{ height: "clamp(60px, 9.02vw, 130px)" }}
+          style={{ height: "clamp(48px, 7.7vw, 111px)" }}
         />
       </section>
 
