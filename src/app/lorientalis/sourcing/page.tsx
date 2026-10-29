@@ -1288,7 +1288,7 @@ export default function LorientalisSourcingPage() {
                     fontSize: "clamp(16px, 1.667vw, 24px)",
                     lineHeight: "120%",
                     letterSpacing: "0%",
-                    color: "#AEAEAE",
+                    color: "#FFFFFF73",
                   }}
                 >
                   {" "} : CTC (Crush, Tear, Curl) makes up over 85% of the market.
@@ -1350,7 +1350,7 @@ export default function LorientalisSourcingPage() {
                 fontSize: "clamp(16px, 1.667vw, 24px)",
                 lineHeight: "120%",
                 letterSpacing: "0%",
-                color: "#AEAEAE",
+                color: "#FFFFFF73",
               }}
             >
               {" "} : Orthodox tea uses traditional or manual methods, producing a
