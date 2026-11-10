@@ -489,7 +489,7 @@ export default function LOrientalisPage() {
         id="hero"
         className="relative w-full h-[100dvh] min-h-[620px] bg-black overflow-hidden flex flex-col justify-between"
       >
-        {/* Background Image covering viewport: high quality unoptimized to prevent CDN blur */}
+        {/* Background Image: uncropped, full height, high quality unoptimized */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
           <Image
             src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/420a8da2-893b-473d-5841-27f068dda100/public"
@@ -499,7 +499,7 @@ export default function LOrientalisPage() {
             unoptimized
             quality={100}
             sizes="100vw"
-            className="object-cover object-center w-full h-full"
+            className="object-contain object-center w-full h-full"
             style={{
               imageRendering: "-webkit-optimize-contrast",
             }}
