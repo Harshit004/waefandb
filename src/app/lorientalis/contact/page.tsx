@@ -381,7 +381,7 @@ export default function LorientalisContactPage() {
       <section
         className="relative w-full bg-black pb-20 sm:pb-32"
         style={{
-          marginTop: "clamp(12px, 1.389vw, 20px)",
+          marginTop: "8px",
         }}
       >
         <form onSubmit={handleSubmit} className="w-full flex flex-col">
@@ -389,7 +389,7 @@ export default function LorientalisContactPage() {
           <div
             className="relative w-full"
             style={{
-              paddingTop: "clamp(72px, 9.583vw, 138px)",
+              paddingTop: "clamp(64px, 7.5vw, 108px)",
             }}
           >
             {/* Left Botanical Image: flush to left edge (no margins), spans full height from below Section 3 to Message */}
@@ -397,9 +397,9 @@ export default function LorientalisContactPage() {
               className="absolute left-0 top-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(130px,14.583vw,210px)] overflow-hidden"
               style={{
                 maskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 5%, black 12%, black 88%, rgba(0,0,0,0.4) 95%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 2%, black 6%, black 94%, rgba(0,0,0,0.3) 98%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 5%, black 12%, black 88%, rgba(0,0,0,0.4) 95%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 2%, black 6%, black 94%, rgba(0,0,0,0.3) 98%, transparent 100%)",
               }}
               aria-hidden="true"
             >
@@ -423,9 +423,9 @@ export default function LorientalisContactPage() {
               className="absolute right-0 top-0 bottom-0 pointer-events-none select-none z-0 w-[clamp(130px,14.583vw,210px)] overflow-hidden"
               style={{
                 maskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 5%, black 12%, black 88%, rgba(0,0,0,0.4) 95%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 2%, black 6%, black 94%, rgba(0,0,0,0.3) 98%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 5%, black 12%, black 88%, rgba(0,0,0,0.4) 95%, transparent 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 2%, black 6%, black 94%, rgba(0,0,0,0.3) 98%, transparent 100%)",
               }}
               aria-hidden="true"
             >
