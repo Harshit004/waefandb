@@ -237,7 +237,7 @@ export default function LorientalisContactPage() {
         {/* Hero Image: Full screen width and height to maintain original ratio */}
         <div className="w-full relative overflow-hidden">
           <img
-            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/55a5dca7-3bfd-4095-dda3-52d8cbd5fa00/public"
+            src="/images/Frame%201000008371.png"
             alt="L'Orientalis Hero"
             className="w-full h-auto block object-cover"
           />
