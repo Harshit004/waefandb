@@ -716,19 +716,19 @@ export default function LorientalisContactPage() {
                 disabled={isSubmitting || !isFormFilled}
                 className={`w-[160px] md:w-[170px] h-[48px] rounded-full active:scale-[0.98] transition-all duration-200 uppercase text-[13px] md:text-[14px] font-medium tracking-wider flex items-center justify-center select-none shrink-0 self-end sm:self-center ${
                   isSubmitting
-                    ? "bg-[#54585a] text-white opacity-80 cursor-not-allowed"
+                    ? "bg-white/90 text-black opacity-80 cursor-not-allowed"
                     : submitStatus === "success"
                     ? "bg-[#254A36] hover:bg-[#2F5C43] text-white cursor-pointer"
                     : !isFormFilled
                     ? "bg-[#54585a]/40 text-white/30 cursor-not-allowed"
-                    : "bg-[#54585a] hover:bg-[#686c6f] text-white cursor-pointer"
+                    : "bg-white hover:bg-neutral-200 text-black cursor-pointer shadow-md"
                 }`}
                 style={{ fontFamily: "var(--font-manrope), sans-serif" }}
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
                     <svg
-                      className="animate-spin h-4 w-4 text-white"
+                      className="animate-spin h-4 w-4 text-black"
                       fill="none"
                       viewBox="0 0 24 24"
                     >
