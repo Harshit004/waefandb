@@ -298,13 +298,13 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 4: THE JOURNEY OF COFFEE: FROM BEAN TO BREW (203px gap, 36px, 170px, 493x667 image + 882x66 text)
+          SECTION 4: THE JOURNEY OF COFFEE: FROM BEAN TO BREW (0px gap above, 36px, 170px, 493x667 image + 882x66 text)
           ========================================================================= */}
       <section
         id="journey-coffee"
         className="w-full flex flex-col items-center text-center select-none"
         style={{
-          marginTop: "clamp(80px, 14.1vw, 203px)",
+          marginTop: 0,
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
