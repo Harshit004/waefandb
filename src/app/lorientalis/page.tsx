@@ -62,42 +62,136 @@ function smoothstep(edge0: number, edge1: number, x: number) {
   return t * t * (3 - 2 * t);
 }
 
-function getSlideVerticalStyles(progress: number) {
-  const p = clamp01(progress);
+function FarmerStoryRightColumn({
+  story,
+  progress,
+}: {
+  story: (typeof FARMER_STORIES)[number];
+  progress: number;
+}) {
+  const text1Ref = useRef<HTMLDivElement>(null);
+  const [text1Height, setText1Height] = useState(110);
 
-  // --- TEXT 1 ---
-  // Initial focus from 0.00-0.15, then glides up smoothly (-24px) and dissolves across 0.15-0.30
-  const text1Phase = clamp01((p - 0.15) / 0.15);
-  const text1Y = -text1Phase * 24;
-  const text1Opacity = Math.max(0, 1 - text1Phase);
+  useEffect(() => {
+    const measure = () => {
+      if (text1Ref.current) {
+        const h = text1Ref.current.offsetHeight;
+        if (h > 0) setText1Height(h);
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
 
-  // --- SECONDARY IMAGE ("THE NEW IMAGE") ---
-  // Ascends cleanly from +50px -> 0px and scales into place between 0.25-0.65 as Text 1 finishes exit
-  const imgPhase = clamp01((p - 0.25) / 0.4);
-  const imageY = 50 * (1 - imgPhase);
-  const imageScale = 0.96 + imgPhase * 0.04;
-  const imageOpacity = imgPhase;
+  const t = clamp01(progress);
 
-  // --- TEXT 2 ---
-  // Reveals steadily beneath the secondary image with seamless 16px spacing between 0.60-0.95
-  const text2Phase = clamp01((p - 0.6) / 0.35);
-  const text2Lift = 20 * (1 - text2Phase);
-  const text2Opacity = text2Phase;
+  // Phase 1 (t: 0.10 -> 0.44): Small image slides in from bottom to sit right below Text 1
+  const p1 = clamp01((t - 0.10) / 0.34);
+  const e1 = smoothstep(0, 1, p1);
 
-  return {
-    text1: {
-      transform: `translate3d(0, ${text1Y.toFixed(2)}px, 0)`,
-      opacity: text1Opacity,
-    },
-    image: {
-      transform: `translate3d(0, ${imageY.toFixed(2)}px, 0) scale(${imageScale.toFixed(3)})`,
-      opacity: imageOpacity,
-    },
-    text2: {
-      transform: `translate3d(0, ${text2Lift.toFixed(2)}px, 0)`,
-      opacity: text2Opacity,
-    },
-  };
+  // Phase 2 (t: 0.54 -> 0.88): Simultaneous hand-off:
+  // Text 1 disappears upward, Small Image slides to top (0px), Text 2 slides in from bottom right below it
+  const p2 = clamp01((t - 0.54) / 0.34);
+  const e2 = smoothstep(0, 1, p2);
+
+  // Gap between elements (16px)
+  const gap = 16;
+  const imageY_belowText1 = text1Height + gap;
+
+  // 1. Text 1: Starts at top (0px). In Phase 2, glides up and dissolves to 0
+  const text1Y = -e2 * (text1Height * 0.4 + 20);
+  const text1Opacity = Math.max(0, 1 - e2);
+
+  // 2. Small Image:
+  // Starts offscreen below (520px). In Phase 1, slides up to imageY_belowText1.
+  // In Phase 2, slides from imageY_belowText1 up to 0px (top of column).
+  const imageStartY = 520;
+  let currentImageY: number;
+  let currentImageOpacity: number;
+
+  if (p2 > 0) {
+    currentImageY = (1 - e2) * imageY_belowText1;
+    currentImageOpacity = 1;
+  } else {
+    currentImageY = imageStartY + e1 * (imageY_belowText1 - imageStartY);
+    currentImageOpacity = Math.min(1, p1 * 2.2);
+  }
+
+  // 3. Text 2:
+  // Hidden during Phase 1. In Phase 2, slides in from bottom to sit right below the photo.
+  // Base top is responsively anchored right below the photo (top-[256px]/[276px]/[296px]).
+  const text2Lift = (1 - e2) * 220;
+  const text2Opacity = Math.min(1, p2 * 1.8);
+
+  return (
+    <div className="relative w-full max-w-[420px] h-[520px] lg:h-[560px] overflow-hidden">
+      {/* Small Text 1 */}
+      <div
+        ref={text1Ref}
+        style={{
+          transform: `translate3d(0, ${text1Y.toFixed(2)}px, 0)`,
+          opacity: text1Opacity,
+          willChange: "transform, opacity",
+        }}
+        className="absolute top-0 left-0 w-full pointer-events-none"
+      >
+        <p
+          className="text-white select-none text-left"
+          style={{
+            fontFamily: "var(--font-manrope), sans-serif",
+            fontWeight: 400,
+            fontSize: "14px",
+            lineHeight: "24px",
+            letterSpacing: "0%",
+          }}
+        >
+          {story.text1}
+        </p>
+      </div>
+
+      {/* Secondary Photo (Small Image) */}
+      <div
+        style={{
+          transform: `translate3d(0, ${currentImageY.toFixed(2)}px, 0)`,
+          opacity: currentImageOpacity,
+          willChange: "transform, opacity",
+        }}
+        className="absolute top-0 left-0 w-[240px] sm:w-[260px] lg:w-[280px] aspect-square overflow-hidden rounded-[2px] shadow-2xl"
+      >
+        <Image
+          src={story.subImage}
+          alt={story.altSub}
+          fill
+          unoptimized
+          className="object-cover select-none"
+        />
+      </div>
+
+      {/* Small Text 2: Responsively anchored 16px below the secondary photo across all screen sizes */}
+      <div
+        style={{
+          transform: `translate3d(0, ${text2Lift.toFixed(2)}px, 0)`,
+          opacity: text2Opacity,
+          willChange: "transform, opacity",
+        }}
+        className="absolute left-0 w-full top-[256px] sm:top-[276px] lg:top-[296px] pointer-events-none"
+      >
+        <p
+          className="text-white select-none text-left"
+          style={{
+            fontFamily: "var(--font-manrope), sans-serif",
+            fontWeight: 400,
+            fontSize: "14px",
+            lineHeight: "24px",
+            letterSpacing: "0%",
+          }}
+        >
+          {story.text2}
+        </p>
+      </div>
+    </div>
+  );
 }
 
 const COFFEE_BLENDS = [
@@ -1225,8 +1319,8 @@ export default function LOrientalisPage() {
                 paddingRight: "2.778vw",
               }}
             >
-              {/* BIG TEXT: Farmers (starts on the right, glides left on scroll sliding behind expanding center image) */}
-              <div className="absolute top-[12%] md:top-[14%] lg:top-[14%] left-[48%] sm:left-[50%] md:left-[52%] z-0 select-none pointer-events-none">
+              {/* BIG TEXT: Farmers (starts on the right, glides left on scroll OVER center image) */}
+              <div className="absolute top-[12%] md:top-[14%] lg:top-[14%] left-[48%] sm:left-[50%] md:left-[52%] z-20 select-none pointer-events-none">
                 <h2
                   className="text-white whitespace-nowrap"
                   style={{
@@ -1244,8 +1338,8 @@ export default function LOrientalisPage() {
                 </h2>
               </div>
 
-              {/* INTRO IMAGE: EXPANDING FROM CENTER (z-10 so Farmers text slides behind it) */}
-              <div className="relative z-10 w-full max-w-[1158px] h-[60vh] lg:h-[768px] max-h-[768px] mx-auto overflow-hidden flex items-center justify-center">
+              {/* INTRO IMAGE: EXPANDING FROM CENTER (behind Farmers text) */}
+              <div className="relative z-0 w-full max-w-[1158px] h-[60vh] lg:h-[768px] max-h-[768px] mx-auto overflow-hidden flex items-center justify-center">
                 <div
                   className="relative w-full h-full"
                   style={{
@@ -1268,7 +1362,6 @@ export default function LOrientalisPage() {
             {/* SLIDES 2, 3, 4: FARMER STORIES */}
             {FARMER_STORIES.map((story, sIdx) => {
               const t = sIdx === 0 ? t0 : sIdx === 1 ? t1 : t2;
-              const anim = getSlideVerticalStyles(t);
               return (
                 <div
                   key={story.id}
@@ -1317,73 +1410,9 @@ export default function LOrientalisPage() {
                       </div>
                     </div>
 
-                    {/* RIGHT COLUMN: 38% width (Choreographed Vertical Sequence for 3rd, 5th, and last images) */}
+                    {/* RIGHT COLUMN: 38% width (Choreographed Vertical Sequence: Text 1 -> Image slides below it -> Text 1 dissolves as Image slides to top & Text 2 slides in below it) */}
                     <div className="relative w-full lg:w-[38%] h-[500px] lg:h-full max-h-[640px] flex items-center justify-end shrink-0">
-                      <div className="relative w-full max-w-[420px] h-[520px] lg:h-[560px] overflow-hidden">
-                        {/* Small Text 1 */}
-                        <div
-                          style={{
-                            transform: anim.text1.transform,
-                            opacity: anim.text1.opacity,
-                            willChange: "transform, opacity",
-                          }}
-                          className="absolute top-0 left-0 w-full pointer-events-none"
-                        >
-                          <p
-                            className="text-white select-none text-left"
-                            style={{
-                              fontFamily: "var(--font-manrope), sans-serif",
-                              fontWeight: 400,
-                              fontSize: "14px",
-                              lineHeight: "24px",
-                              letterSpacing: "0%",
-                            }}
-                          >
-                            {story.text1}
-                          </p>
-                        </div>
-
-                        {/* Secondary Image: square aspect ratio (3rd, 5th, last image) */}
-                        <div
-                          style={{
-                            transform: anim.image.transform,
-                            opacity: anim.image.opacity,
-                            willChange: "transform, opacity",
-                          }}
-                          className="absolute top-0 left-0 w-[240px] sm:w-[260px] lg:w-[280px] aspect-square overflow-hidden rounded-[2px] shadow-2xl"
-                        >
-                          <Image
-                            src={story.subImage}
-                            alt={story.altSub}
-                            fill
-                            unoptimized
-                            className="object-cover select-none"
-                          />
-                        </div>
-
-                        {/* Small Text 2: Responsively anchored 16px below the secondary photo across all screen sizes */}
-                        <div
-                          style={{
-                            transform: anim.text2.transform,
-                            opacity: anim.text2.opacity,
-                            willChange: "transform, opacity",
-                          }}
-                          className="absolute left-0 w-full top-[256px] sm:top-[276px] lg:top-[296px] pointer-events-none"
-                        >
-                          <p
-                            className="text-white select-none text-left"
-                            style={{
-                              fontFamily: "var(--font-manrope), sans-serif",
-                              fontWeight: 400,
-                              fontSize: "14px",
-                              lineHeight: "24px",
-                              letterSpacing: "0%",
-                            }}
-                          >
-                            {story.text2}
-                          </p>
-                        </div>
-                      </div>
+                      <FarmerStoryRightColumn story={story} progress={t} />
                     </div>
                   </div>
                 </div>
