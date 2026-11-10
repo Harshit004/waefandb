@@ -10,22 +10,74 @@ interface LOrientalisHeaderProps {
   onMouseLeaveElement?: () => void;
 }
 
+interface NavLinkItemProps {
+  href: string;
+  label: string;
+  isActive: boolean;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+}
+
+function NavLinkItem({
+  href,
+  label,
+  isActive,
+  onMouseEnter,
+  onMouseLeave,
+}: NavLinkItemProps) {
+  const [hovered, setHovered] = React.useState(false);
+  const isHighlighted = isActive || hovered;
+
+  return (
+    <div
+      className="relative inline-flex flex-col items-center group shrink-0"
+      onMouseEnter={() => {
+        setHovered(true);
+        onMouseEnter?.();
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+        onMouseLeave?.();
+      }}
+    >
+      <Link
+        href={href}
+        className="pointer-events-auto cursor-pointer inline-flex items-center transition-all duration-300 text-white whitespace-nowrap"
+        style={{
+          fontFamily: "var(--font-manrope), sans-serif",
+          fontWeight: isHighlighted ? 700 : 600,
+          fontStyle: "normal",
+          fontSize: isHighlighted
+            ? "clamp(13px, 1.25vw, 16px)" // 16px at 1280px+
+            : "clamp(12px, 1.094vw, 14px)", // 14px at 1280px+
+          lineHeight: "12.6px",
+          letterSpacing: "-0.5px",
+          verticalAlign: "middle",
+          color: "#FFFFFF",
+        }}
+      >
+        {label}
+      </Link>
+      <div
+        className={`absolute left-0 right-0 -bottom-2 sm:-bottom-2.5 h-[1px] bg-white pointer-events-none transition-all duration-300 ease-out origin-left ${
+          isHighlighted
+            ? "opacity-100 scale-x-100"
+            : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
+        }`}
+      />
+    </div>
+  );
+}
+
 export default function LOrientalisHeader({
   className = "",
   onMouseEnterElement,
   onMouseLeaveElement,
 }: LOrientalisHeaderProps) {
   const pathname = usePathname();
-  const isSourcing = pathname?.includes("/sourcing");
-  const isContact = pathname?.includes("/contact");
   const [scrolled, setScrolled] = React.useState(false);
-  const [sourcingHovered, setSourcingHovered] = React.useState(false);
-  const [contactHovered, setContactHovered] = React.useState(false);
-
-  const isSourcingActive = !!isSourcing;
-  const isContactActive = !!isContact;
-  const isSourcingHighlighted = isSourcingActive || sourcingHovered;
-  const isContactHighlighted = isContactActive || contactHovered;
+  const [currentHash, setCurrentHash] = React.useState("");
+  const [isGrowSectionVisible, setIsGrowSectionVisible] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -36,13 +88,53 @@ export default function LOrientalisHeader({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  React.useEffect(() => {
+    const handleHash = () => {
+      if (typeof window !== "undefined") {
+        setCurrentHash(window.location.hash);
+      }
+    };
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
+
+  // Detect visibility of Growing Conditions section when on main /lorientalis page
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (pathname === "/lorientalis" || pathname === "/lorientalis/") {
+      const el = document.getElementById("conditions") || document.getElementById("grow");
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            setIsGrowSectionVisible(entry.isIntersecting);
+          });
+        },
+        { threshold: 0.25 }
+      );
+      observer.observe(el);
+      return () => observer.disconnect();
+    } else {
+      setIsGrowSectionVisible(false);
+    }
+  }, [pathname]);
+
+  const isSourcingActive = !!pathname?.includes("/sourcing");
+  const isSustainabilityActive = !!pathname?.includes("/sustainability");
+  const isGrowActive =
+    !!pathname?.includes("/grow") ||
+    (pathname === "/lorientalis" &&
+      (currentHash === "#conditions" || currentHash === "#grow" || isGrowSectionVisible));
+  const isContactActive = !!pathname?.includes("/contact");
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 w-full z-50 flex items-center justify-between pointer-events-none select-none transition-all duration-300 ${className}`}
       style={{
         paddingTop: scrolled ? "clamp(18px, 2.2vw, 32px)" : "clamp(24px, 3.681vw, 53px)",
-        paddingLeft: "2.778vw",
-        paddingRight: "2.778vw",
+        paddingLeft: "clamp(14px, 2.778vw, 40px)",
+        paddingRight: "clamp(14px, 2.778vw, 40px)",
         transition: "padding-top 0.3s ease",
       }}
     >
@@ -58,50 +150,31 @@ export default function LOrientalisHeader({
         }}
       />
 
-      {/* Left Navigation: "Sourcing" */}
-      <div
-        className="relative inline-flex flex-col items-start group"
-        onMouseEnter={() => {
-          setSourcingHovered(true);
-          onMouseEnterElement?.();
-        }}
-        onMouseLeave={() => {
-          setSourcingHovered(false);
-          onMouseLeaveElement?.();
-        }}
+      {/* Left Navigation: "Sourcing" & "Sustainability" */}
+      <nav
+        aria-label="Left Navigation"
+        className="flex items-center gap-[clamp(12px,2.5vw,40px)] z-10"
       >
-        <Link
+        <NavLinkItem
           href="/lorientalis/sourcing"
-          className="pointer-events-auto cursor-pointer inline-flex items-center transition-all duration-300 text-white"
-          style={{
-            fontFamily: "var(--font-manrope), sans-serif",
-            fontWeight: isSourcingHighlighted ? 700 : 600,
-            fontStyle: "normal",
-            fontSize: isSourcingHighlighted
-              ? "clamp(14px, 1.111vw, 16px)" // 16px at 1440px
-              : "clamp(13px, 0.972vw, 14px)", // 14px at 1440px
-            lineHeight: "clamp(12px, 0.875vw, 13px)", // 12.6px at 1440px
-            letterSpacing: "-0.5px",
-            verticalAlign: "middle",
-            color: "#FFFFFF",
-          }}
-        >
-          Sourcing
-        </Link>
-        <div
-          className={`absolute left-[-2.778vw] -bottom-3 sm:-bottom-4 h-[1px] bg-white pointer-events-none transition-all duration-300 ease-out origin-left ${
-            isSourcingHighlighted
-              ? "opacity-100 scale-x-100"
-              : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
-          }`}
-          style={{ width: "calc(100% + 2.778vw + 24px)" }}
+          label="Sourcing"
+          isActive={isSourcingActive}
+          onMouseEnter={onMouseEnterElement}
+          onMouseLeave={onMouseLeaveElement}
         />
-      </div>
+        <NavLinkItem
+          href="/lorientalis/sustainability"
+          label="Sustainability"
+          isActive={isSustainabilityActive}
+          onMouseEnter={onMouseEnterElement}
+          onMouseLeave={onMouseLeaveElement}
+        />
+      </nav>
 
-      {/* Middle: Logo (213 x 20.78) */}
+      {/* Middle: Brand Logo (213 x 20.78 at 1440px) */}
       <Link
         href="/lorientalis"
-        className="absolute left-1/2 -translate-x-1/2 pointer-events-auto cursor-pointer flex items-center justify-center transition-opacity duration-200 hover:opacity-85"
+        className="absolute left-1/2 -translate-x-1/2 pointer-events-auto cursor-pointer flex items-center justify-center transition-opacity duration-200 hover:opacity-85 shrink-0 z-10"
         onMouseEnter={onMouseEnterElement}
         onMouseLeave={onMouseLeaveElement}
         aria-label="L'ORIENTALIS Home"
@@ -111,51 +184,32 @@ export default function LOrientalisHeader({
           alt="L'ORIENTALIS"
           className="object-contain"
           style={{
-            width: "clamp(130px, 14.792vw, 213px)", // 213px at 1440px (213 / 1440 * 100vw)
-            height: "clamp(13px, 1.443vw, 20.78px)", // 20.78px at 1440px (20.78 / 1440 * 100vw)
+            width: "clamp(115px, 14.792vw, 213px)", // 213px at 1440px
+            height: "clamp(12px, 1.443vw, 20.78px)", // 20.78px at 1440px
           }}
         />
       </Link>
 
-      {/* Right Navigation: "Contact" */}
-      <div
-        className="relative inline-flex flex-col items-end group"
-        onMouseEnter={() => {
-          setContactHovered(true);
-          onMouseEnterElement?.();
-        }}
-        onMouseLeave={() => {
-          setContactHovered(false);
-          onMouseLeaveElement?.();
-        }}
+      {/* Right Navigation: "Grow" & "Contact" */}
+      <nav
+        aria-label="Right Navigation"
+        className="flex items-center gap-[clamp(12px,2.5vw,40px)] z-10"
       >
-        <Link
-          href="/lorientalis/contact"
-          className="pointer-events-auto cursor-pointer inline-flex items-center transition-all duration-300 text-white"
-          style={{
-            fontFamily: "var(--font-manrope), sans-serif",
-            fontWeight: isContactHighlighted ? 700 : 600,
-            fontStyle: "normal",
-            fontSize: isContactHighlighted
-              ? "clamp(14px, 1.111vw, 16px)" // 16px at 1440px
-              : "clamp(13px, 0.972vw, 14px)", // 14px at 1440px
-            lineHeight: "clamp(12px, 0.875vw, 13px)", // 12.6px at 1440px
-            letterSpacing: "-0.5px",
-            verticalAlign: "middle",
-            color: "#FFFFFF",
-          }}
-        >
-          Contact
-        </Link>
-        <div
-          className={`absolute right-[-2.778vw] -bottom-3 sm:-bottom-4 h-[1px] bg-white pointer-events-none transition-all duration-300 ease-out origin-right ${
-            isContactHighlighted
-              ? "opacity-100 scale-x-100"
-              : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
-          }`}
-          style={{ width: "calc(100% + 2.778vw + 24px)" }}
+        <NavLinkItem
+          href="/lorientalis#conditions"
+          label="Grow"
+          isActive={isGrowActive}
+          onMouseEnter={onMouseEnterElement}
+          onMouseLeave={onMouseLeaveElement}
         />
-      </div>
+        <NavLinkItem
+          href="/lorientalis/contact"
+          label="Contact"
+          isActive={isContactActive}
+          onMouseEnter={onMouseEnterElement}
+          onMouseLeave={onMouseLeaveElement}
+        />
+      </nav>
     </header>
   );
 }

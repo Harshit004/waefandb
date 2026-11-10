@@ -953,7 +953,7 @@ export default function LOrientalisPage() {
       {/* THE GROWING CONDITIONS SECTION */}
       <section
         id="conditions"
-        className="relative w-full bg-black text-white overflow-hidden"
+        className="relative w-full bg-black text-white overflow-hidden scroll-mt-24"
         style={{
           paddingLeft: "2.778vw", // 40px at 1440px - consistent across page
           paddingRight: "2.778vw", // 40px at 1440px - consistent across page
@@ -961,6 +961,7 @@ export default function LOrientalisPage() {
           paddingBottom: "clamp(60px, 6.944vw, 100px)",
         }}
       >
+        <span id="grow" className="sr-only" />
         {/* SECTION HEADER: The Growing Conditions. (Text align right) */}
         <div className="w-full flex justify-end">
           <h2
