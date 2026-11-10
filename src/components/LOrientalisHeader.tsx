@@ -19,6 +19,13 @@ export default function LOrientalisHeader({
   const isSourcing = pathname?.includes("/sourcing");
   const isContact = pathname?.includes("/contact");
   const [scrolled, setScrolled] = React.useState(false);
+  const [sourcingHovered, setSourcingHovered] = React.useState(false);
+  const [contactHovered, setContactHovered] = React.useState(false);
+
+  const isSourcingActive = !!isSourcing;
+  const isContactActive = !!isContact;
+  const isSourcingHighlighted = isSourcingActive || sourcingHovered;
+  const isContactHighlighted = isContactActive || contactHovered;
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -52,31 +59,43 @@ export default function LOrientalisHeader({
       />
 
       {/* Left Navigation: "Sourcing" */}
-      <div className="relative inline-flex flex-col items-start">
+      <div
+        className="relative inline-flex flex-col items-start group"
+        onMouseEnter={() => {
+          setSourcingHovered(true);
+          onMouseEnterElement?.();
+        }}
+        onMouseLeave={() => {
+          setSourcingHovered(false);
+          onMouseLeaveElement?.();
+        }}
+      >
         <Link
           href="/lorientalis/sourcing"
-          className="pointer-events-auto cursor-pointer transition-opacity duration-200 hover:opacity-75 inline-flex items-center"
-          onMouseEnter={onMouseEnterElement}
-          onMouseLeave={onMouseLeaveElement}
+          className="pointer-events-auto cursor-pointer inline-flex items-center transition-all duration-300 text-white"
           style={{
             fontFamily: "var(--font-manrope), sans-serif",
-            fontWeight: 600,
+            fontWeight: isSourcingHighlighted ? 700 : 600,
             fontStyle: "normal",
-            fontSize: "0.972vw", // 14px at 1440px (14 / 1440 * 100vw)
-            lineHeight: "0.875vw", // 12.6px at 1440px (12.6 / 1440 * 100vw)
-            letterSpacing: "-0.035vw", // -0.5px at 1440px (-0.5 / 1440 * 100vw)
+            fontSize: isSourcingHighlighted
+              ? "clamp(14px, 1.111vw, 16px)" // 16px at 1440px
+              : "clamp(13px, 0.972vw, 14px)", // 14px at 1440px
+            lineHeight: "clamp(12px, 0.875vw, 13px)", // 12.6px at 1440px
+            letterSpacing: "-0.5px",
             verticalAlign: "middle",
             color: "#FFFFFF",
           }}
         >
           Sourcing
         </Link>
-        {isSourcing && (
-          <div
-            className="absolute left-[-2.778vw] -bottom-3 sm:-bottom-4 h-[1px] bg-white pointer-events-none"
-            style={{ width: "calc(100% + 2.778vw + 24px)" }}
-          />
-        )}
+        <div
+          className={`absolute left-[-2.778vw] -bottom-3 sm:-bottom-4 h-[1px] bg-white pointer-events-none transition-all duration-300 ease-out origin-left ${
+            isSourcingHighlighted
+              ? "opacity-100 scale-x-100"
+              : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
+          }`}
+          style={{ width: "calc(100% + 2.778vw + 24px)" }}
+        />
       </div>
 
       {/* Middle: Logo (213 x 20.78) */}
@@ -92,38 +111,50 @@ export default function LOrientalisHeader({
           alt="L'ORIENTALIS"
           className="object-contain"
           style={{
-            width: "14.792vw", // 213px at 1440px (213 / 1440 * 100vw)
-            height: "1.443vw", // 20.78px at 1440px (20.78 / 1440 * 100vw)
+            width: "clamp(130px, 14.792vw, 213px)", // 213px at 1440px (213 / 1440 * 100vw)
+            height: "clamp(13px, 1.443vw, 20.78px)", // 20.78px at 1440px (20.78 / 1440 * 100vw)
           }}
         />
       </Link>
 
       {/* Right Navigation: "Contact" */}
-      <div className="relative inline-flex flex-col items-end">
+      <div
+        className="relative inline-flex flex-col items-end group"
+        onMouseEnter={() => {
+          setContactHovered(true);
+          onMouseEnterElement?.();
+        }}
+        onMouseLeave={() => {
+          setContactHovered(false);
+          onMouseLeaveElement?.();
+        }}
+      >
         <Link
           href="/lorientalis/contact"
-          className="pointer-events-auto cursor-pointer transition-opacity duration-200 hover:opacity-75 inline-flex items-center"
-          onMouseEnter={onMouseEnterElement}
-          onMouseLeave={onMouseLeaveElement}
+          className="pointer-events-auto cursor-pointer inline-flex items-center transition-all duration-300 text-white"
           style={{
             fontFamily: "var(--font-manrope), sans-serif",
-            fontWeight: 600,
+            fontWeight: isContactHighlighted ? 700 : 600,
             fontStyle: "normal",
-            fontSize: "0.972vw", // 14px at 1440px (14 / 1440 * 100vw)
-            lineHeight: "0.875vw", // 12.6px at 1440px (12.6 / 1440 * 100vw)
-            letterSpacing: "-0.035vw", // -0.5px at 1440px (-0.5 / 1440 * 100vw)
+            fontSize: isContactHighlighted
+              ? "clamp(14px, 1.111vw, 16px)" // 16px at 1440px
+              : "clamp(13px, 0.972vw, 14px)", // 14px at 1440px
+            lineHeight: "clamp(12px, 0.875vw, 13px)", // 12.6px at 1440px
+            letterSpacing: "-0.5px",
             verticalAlign: "middle",
             color: "#FFFFFF",
           }}
         >
           Contact
         </Link>
-        {isContact && (
-          <div
-            className="absolute right-[-2.778vw] -bottom-3 sm:-bottom-4 h-[1px] bg-white pointer-events-none"
-            style={{ width: "calc(100% + 2.778vw + 24px)" }}
-          />
-        )}
+        <div
+          className={`absolute right-[-2.778vw] -bottom-3 sm:-bottom-4 h-[1px] bg-white pointer-events-none transition-all duration-300 ease-out origin-right ${
+            isContactHighlighted
+              ? "opacity-100 scale-x-100"
+              : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
+          }`}
+          style={{ width: "calc(100% + 2.778vw + 24px)" }}
+        />
       </div>
     </header>
   );
