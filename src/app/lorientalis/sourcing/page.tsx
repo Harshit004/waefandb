@@ -20,13 +20,15 @@ export default function LorientalisSourcingPage() {
       <section
         id="sourcing-hero"
         className="relative w-full pt-[clamp(110px,10vw,155px)]"
-        style={{
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
-        }}
       >
         {/* Top Header Row: Left Flag & Location Intro | Right SOURCING & Culture & Trade */}
-        <div className="relative z-10 w-full flex items-start justify-between">
+        <div
+          className="relative z-10 w-full flex items-start justify-between"
+          style={{
+            paddingLeft: "2.778vw",
+            paddingRight: "2.778vw",
+          }}
+        >
           {/* Left: Indian Flag + 81px gap + "Above the Tropic of Cancer..." */}
           <div className="flex flex-col items-start z-10">
             {/* 40x27 px Indian Flag (72px gap below sourcing underline bar) */}
@@ -90,17 +92,18 @@ export default function LorientalisSourcingPage() {
           </div>
         </div>
 
-        {/* Map Image: Centered, overlaps top header row by half its height */}
+        {/* Map Image: overlaps top header row by half its height, with 7.58vw left and 4.3vw right margins */}
         <div
-          className="relative z-0 w-full flex justify-center items-center select-none m-0 p-0"
+          className="relative z-0 select-none"
           style={{
             marginTop: "calc(-0.5 * clamp(48px, 6.667vw, 96px))",
+            marginLeft: "7.58vw",
+            marginRight: "4.3vw",
           }}
         >
           <div
             className="relative w-full select-none"
             style={{
-              maxWidth: "1380px",
               aspectRatio: "1270 / 768",
             }}
           >
@@ -121,6 +124,8 @@ export default function LorientalisSourcingPage() {
           className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between gap-6 select-none"
           style={{
             marginTop: "calc(-0.5 * clamp(72px, 9vw, 140px))",
+            paddingLeft: "2.778vw",
+            paddingRight: "2.778vw",
           }}
         >
           {/* Left Block: 26 N 92 E + 20px gap + SINGLE ORIGIN - 3 State */}
