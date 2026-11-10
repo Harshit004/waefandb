@@ -1283,10 +1283,10 @@ export default function LorientalisSourcingPage() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "'Helvetica', Arial, sans-serif",
+                    fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 400,
-                    fontSize: "clamp(16px, 1.667vw, 24px)",
-                    lineHeight: "120%",
+                    fontSize: "clamp(15px, 1.25vw, 18px)",
+                    lineHeight: "130%",
                     letterSpacing: "0%",
                     color: "#FFFFFF73",
                   }}
@@ -1345,10 +1345,10 @@ export default function LorientalisSourcingPage() {
             </span>
             <span
               style={{
-                fontFamily: "'Helvetica', Arial, sans-serif",
+                fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(16px, 1.667vw, 24px)",
-                lineHeight: "120%",
+                fontSize: "clamp(15px, 1.25vw, 18px)",
+                lineHeight: "130%",
                 letterSpacing: "0%",
                 color: "#FFFFFF73",
               }}
