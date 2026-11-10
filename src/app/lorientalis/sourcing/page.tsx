@@ -264,41 +264,36 @@ export default function LorientalisSourcingPage() {
           </p>
         </div>
 
-        {/* Full-width Video replacing the gallery: spans end-to-end across screen width, height-cropped and viewport-adjusted */}
+        {/* Full-width Video replacing the gallery: uncropped natural 2560x1598 dimensions spanning screen end-to-end edges */}
         <div
-          className="w-full relative overflow-hidden select-none"
+          className="w-full relative select-none overflow-hidden"
           style={{
             marginTop: "clamp(48px, 6.5vw, 96px)",
-            height: "clamp(260px, 65vh, 760px)",
-            maxHeight: "62.42vw",
           }}
         >
-          <div
+          <video
+            ref={(el) => {
+              if (el) {
+                el.muted = true;
+                el.defaultMuted = true;
+                el.play().catch(() => {});
+              }
+            }}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="w-full h-auto block select-none pointer-events-none"
             style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
               width: "100%",
-              paddingTop: "62.42187500000001%",
-              minHeight: "100%",
-              minWidth: "100%",
+              aspectRatio: "2560 / 1598",
             }}
           >
-            <iframe
-              src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/76f02b796b04bad9026ba92adf349036/iframe?muted=true&preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F76f02b796b04bad9026ba92adf349036%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
-              style={{
-                border: "none",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                height: "100%",
-                width: "100%",
-              }}
-              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-              allowFullScreen={true}
-            />
-          </div>
+            <source src="/videos/community-growers.mp4" type="video/mp4" />
+            <source src="/videos/Screen%20Recording%202026-11-02%20at%2010.30.56%E2%80%AFAM.mov" type="video/quicktime" />
+            <source src="/videos/Screen%20Recording%202026-11-02%20at%2010.30.56%20AM.mov" type="video/quicktime" />
+          </video>
         </div>
       </section>
 
@@ -566,8 +561,8 @@ export default function LorientalisSourcingPage() {
                 activeCoffeeSlide === 0
                   ? "translateX(calc(var(--offset-0) + var(--w-exp) + var(--gap)))"
                   : activeCoffeeSlide === 1
-                  ? "translateX(calc((100vw - 5.556vw - var(--w-exp2)) / 2))"
-                  : "translateX(calc(var(--w-con) + var(--gap)))",
+                    ? "translateX(calc((100vw - 5.556vw - var(--w-exp2)) / 2))"
+                    : "translateX(calc(var(--w-con) + var(--gap)))",
               transition:
                 "transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), width 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
               willChange: "transform, width",
@@ -585,8 +580,8 @@ export default function LorientalisSourcingPage() {
                   activeCoffeeSlide === 1
                     ? "translateX(0) translateY(0)"
                     : activeCoffeeSlide === 2
-                    ? "translateX(-60px)"
-                    : "translateY(-30px)",
+                      ? "translateX(-60px)"
+                      : "translateY(-30px)",
                 transition:
                   "opacity 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
                 pointerEvents: activeCoffeeSlide === 1 ? "auto" : "none",
@@ -659,8 +654,8 @@ export default function LorientalisSourcingPage() {
                 activeCoffeeSlide === 0
                   ? "translateX(calc(var(--offset-0) + var(--w-exp) + var(--gap) + var(--w-exp2) + var(--gap)))"
                   : activeCoffeeSlide === 1
-                  ? "translateX(calc(100vw - 5.556vw - var(--w-con)))"
-                  : "translateX(calc((100vw - 5.556vw - var(--w-exp)) / 2))",
+                    ? "translateX(calc(100vw - 5.556vw - var(--w-con)))"
+                    : "translateX(calc((100vw - 5.556vw - var(--w-exp)) / 2))",
               transition:
                 "transform 2500ms cubic-bezier(0.16, 1, 0.3, 1), width 2500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 2000ms cubic-bezier(0.16, 1, 0.3, 1)",
               opacity: activeCoffeeSlide === 0 ? 0 : 1,
@@ -680,8 +675,8 @@ export default function LorientalisSourcingPage() {
                   activeCoffeeSlide === 2
                     ? "translateX(0) translateY(0)"
                     : activeCoffeeSlide === 1
-                    ? "translateX(60px)"
-                    : "translateY(-30px)",
+                      ? "translateX(60px)"
+                      : "translateY(-30px)",
                 transition:
                   "opacity 2500ms cubic-bezier(0.16, 1, 0.3, 1), transform 2500ms cubic-bezier(0.16, 1, 0.3, 1)",
                 pointerEvents: activeCoffeeSlide === 2 ? "auto" : "none",

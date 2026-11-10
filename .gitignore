@@ -44,3 +44,6 @@ next-env.d.ts
 
 # codegraph
 .codegraph/
+
+# root raw recording
+/Screen Recording*.mov
