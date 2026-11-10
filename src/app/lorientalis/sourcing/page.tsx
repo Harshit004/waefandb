@@ -111,8 +111,13 @@ export default function LorientalisSourcingPage() {
           </div>
         </div>
 
-        {/* Bottom Coordinates & Origin Row */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6 mt-6 md:mt-2">
+        {/* Bottom Coordinates & Origin Row: Overlaps half onto the bottom of the map above */}
+        <div
+          className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between gap-6 select-none"
+          style={{
+            marginTop: "calc(-0.5 * clamp(72px, 9vw, 140px))",
+          }}
+        >
           {/* Left Block: 26 N 92 E + 20px gap + SINGLE ORIGIN - 3 State */}
           <div className="flex flex-col items-start select-none">
             <h3
