@@ -86,27 +86,42 @@ function FarmerStoryRightColumn({
 
   const t = clamp01(progress);
 
-  // Phase 1 (t: 0.10 -> 0.44): Small image slides in from bottom to sit right below Text 1
-  const p1 = clamp01((t - 0.10) / 0.34);
+  // Act 1 (t: 0.00 -> 0.28): Text 1 also slides in from the bottom up to the top
+  const p0 = clamp01(t / 0.24);
+  const e0 = smoothstep(0, 1, p0);
+
+  // Act 2 (t: 0.33 -> 0.63): Small image slides in from bottom to sit right below Text 1
+  const p1 = clamp01((t - 0.33) / 0.25);
   const e1 = smoothstep(0, 1, p1);
 
-  // Phase 2 (t: 0.54 -> 0.88): Simultaneous hand-off:
+  // Act 3 (t: 0.67 -> 0.95): Simultaneous hand-off:
   // Text 1 disappears upward, Small Image slides to top (0px), Text 2 slides in from bottom right below it
-  const p2 = clamp01((t - 0.54) / 0.34);
+  const p2 = clamp01((t - 0.67) / 0.28);
   const e2 = smoothstep(0, 1, p2);
 
   // Gap between elements (16px)
   const gap = 16;
   const imageY_belowText1 = text1Height + gap;
 
-  // 1. Text 1: Starts at top (0px). In Phase 2, glides up and dissolves to 0
-  const text1Y = -e2 * (text1Height * 0.4 + 20);
-  const text1Opacity = Math.max(0, 1 - e2);
+  // 1. Text 1:
+  // Starts sliding in from bottom (+90px) up to top (0px) during Act 1.
+  // In Act 3, glides up and dissolves to 0 as Small Image takes over top.
+  const text1StartY = 90;
+  let text1Y: number;
+  let text1Opacity: number;
+
+  if (p2 > 0) {
+    text1Y = -e2 * (text1Height * 0.4 + 20);
+    text1Opacity = Math.max(0, 1 - e2);
+  } else {
+    text1Y = (1 - e0) * text1StartY;
+    text1Opacity = Math.min(1, p0 * 2.0);
+  }
 
   // 2. Small Image:
-  // Starts offscreen below (520px). In Phase 1, slides up to imageY_belowText1.
-  // In Phase 2, slides from imageY_belowText1 up to 0px (top of column).
-  const imageStartY = 520;
+  // Starts offscreen below (480px). In Act 2, slides smoothly up to imageY_belowText1.
+  // In Act 3, slides from imageY_belowText1 up to 0px (top of column).
+  const imageStartY = 480;
   let currentImageY: number;
   let currentImageOpacity: number;
 
@@ -115,13 +130,13 @@ function FarmerStoryRightColumn({
     currentImageOpacity = 1;
   } else {
     currentImageY = imageStartY + e1 * (imageY_belowText1 - imageStartY);
-    currentImageOpacity = Math.min(1, p1 * 2.2);
+    currentImageOpacity = Math.min(1, p1 * 2.0);
   }
 
   // 3. Text 2:
-  // Hidden during Phase 1. In Phase 2, slides in from bottom to sit right below the photo.
+  // Hidden during Act 1 & 2. In Act 3, slides in from bottom to sit right below the photo.
   // Base top is responsively anchored right below the photo (top-[256px]/[276px]/[296px]).
-  const text2Lift = (1 - e2) * 220;
+  const text2Lift = (1 - e2) * 200;
   const text2Opacity = Math.min(1, p2 * 1.8);
 
   return (
@@ -306,23 +321,23 @@ export default function LOrientalisPage() {
     };
   }, []);
 
-  const introPhase = clamp01(smoothProgress / 0.10);
+  const introPhase = clamp01(smoothProgress / 0.053);
   const introScale = 0.78 + introPhase * 0.22;
   const introTextShift = introPhase * 44;
 
-  // Track translation: symmetric 0.15 transitions between 0.15 dwell windows
-  const p0 = smoothstep(0.10, 0.25, smoothProgress);
-  const p1 = smoothstep(0.40, 0.55, smoothProgress);
-  const p2 = smoothstep(0.70, 0.85, smoothProgress);
+  // Track translation: symmetric 0.105 transitions between generous 0.210 dwell windows
+  const p0 = smoothstep(0.053, 0.158, smoothProgress);
+  const p1 = smoothstep(0.368, 0.474, smoothProgress);
+  const p2 = smoothstep(0.684, 0.789, smoothProgress);
   const trackTranslatePercent = (p0 + p1 + p2) * 25;
 
-  // Story vertical choreography timers: perfectly symmetric 0.15 dwell windows for every slide
-  const t0 = clamp01((smoothProgress - 0.25) / 0.15);
-  const t1 = clamp01((smoothProgress - 0.55) / 0.15);
-  const t2 = clamp01((smoothProgress - 0.85) / 0.15);
+  // Story vertical choreography timers: generous 0.210 dwell windows for calm, leisurely animation pace
+  const t0 = clamp01((smoothProgress - 0.158) / 0.210);
+  const t1 = clamp01((smoothProgress - 0.474) / 0.210);
+  const t2 = clamp01((smoothProgress - 0.789) / 0.210);
 
   const activeStoryIndex =
-    smoothProgress < 0.475 ? 0 : smoothProgress < 0.775 ? 1 : 2;
+    smoothProgress < 0.421 ? 0 : smoothProgress < 0.736 ? 1 : 2;
 
   const scrollToStory = (index: number) => {
     if (!carouselContainerRef.current) return;
@@ -332,8 +347,8 @@ export default function LOrientalisPage() {
       carouselContainerRef.current.offsetHeight - windowHeight;
     const containerTopOnPage = window.scrollY + rect.top;
 
-    // Land at the beginning of each story dwell so Text 1 is fully visible upon navigation
-    const targetProgress = [0.25, 0.55, 0.85][index];
+    // Land at the beginning of each story dwell so Text 1 slides in from the bottom
+    const targetProgress = [0.158, 0.474, 0.789][index];
     const targetScrollY =
       containerTopOnPage + targetProgress * totalScrollDistance;
     window.scrollTo({ top: targetScrollY, behavior: "smooth" });
@@ -1300,7 +1315,7 @@ export default function LOrientalisPage() {
       <section
         id="farmers"
         ref={carouselContainerRef}
-        className="relative w-full h-[1250vh] bg-black text-white"
+        className="relative w-full h-[1800vh] bg-black text-white"
       >
         <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-black">
           {/* HORIZONTAL CAROUSEL TRACK */}
