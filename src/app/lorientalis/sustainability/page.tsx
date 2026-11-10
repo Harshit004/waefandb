@@ -360,21 +360,23 @@ export default function LorientalisSustainabilityPage() {
           ========================================================================= */}
       <section
         id="protecting-trees"
-        className="relative w-full bg-black flex justify-center overflow-hidden"
+        className="relative w-full bg-black flex items-center justify-center"
         style={{
-          paddingTop: "clamp(64px, 7.5vw, 120px)",
-          paddingBottom: "clamp(100px, 15.28vw, 220px)",
+          paddingTop: "clamp(64px, 6vw, 100px)",
+          paddingBottom: "clamp(64px, 6vw, 100px)",
           paddingLeft: "2.778vw",
           paddingRight: "0px",
+          minHeight: "clamp(550px, 56vw, 850px)",
         }}
       >
-        <div className="w-full relative flex flex-col lg:block">
-          {/* Coffee Branch Image (Positioned on the right, flush right, arching into center) */}
+        <div className="w-full relative lg:static flex flex-col lg:block">
+          {/* Coffee Branch Image (Positioned on the right, flush right, arching into center - uncropped) */}
           <div
             className="order-2 lg:order-none relative lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 z-10 shrink-0 select-none flex items-center justify-end ml-auto pointer-events-none mt-10 lg:mt-0"
             style={{
-              width: "clamp(320px, 48vw, 700px)",
-              height: "clamp(360px, 52vw, 760px)",
+              width: "clamp(300px, 44vw, 634px)",
+              height: "clamp(363px, 53.3vw, 768px)",
+              aspectRatio: "634 / 768",
             }}
           >
             <Image
@@ -383,7 +385,7 @@ export default function LorientalisSustainabilityPage() {
               fill
               unoptimized
               priority
-              className="object-contain object-right pointer-events-none"
+              className="object-contain object-right pointer-events-none select-none"
             />
           </div>
 
