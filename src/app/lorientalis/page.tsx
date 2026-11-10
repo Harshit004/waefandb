@@ -1367,7 +1367,7 @@ export default function LOrientalisPage() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
             <div className="relative w-full max-w-[1260px] aspect-[1366/756]">
               <Image
-                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9b9a2004-5a6a-4798-f127-a4c9cb24cc00/public"
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/678b8cf3-83ac-4ea2-a990-289ed5cb0900/public"
                 alt="Northeast India single origin tea and coffee growing districts map"
                 fill
                 priority
