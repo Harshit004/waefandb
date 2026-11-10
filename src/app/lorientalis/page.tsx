@@ -86,58 +86,48 @@ function FarmerStoryRightColumn({
 
   const t = clamp01(progress);
 
-  // Act 1 (t: 0.00 -> 0.28): Text 1 also slides in from the bottom up to the top
-  const p0 = clamp01(t / 0.24);
-  const e0 = smoothstep(0, 1, p0);
-
-  // Act 2 (t: 0.33 -> 0.63): Small image slides in from bottom to sit right below Text 1
-  const p1 = clamp01((t - 0.33) / 0.25);
-  const e1 = smoothstep(0, 1, p1);
-
-  // Act 3 (t: 0.67 -> 0.95): Simultaneous hand-off:
-  // Text 1 disappears upward, Small Image slides to top (0px), Text 2 slides in from bottom right below it
-  const p2 = clamp01((t - 0.67) / 0.28);
-  const e2 = smoothstep(0, 1, p2);
+  // Smooth overlapping continuous curves for a seamless, slow, fluid flow
+  const e0 = smoothstep(0.00, 0.30, t);
+  const e1 = smoothstep(0.20, 0.60, t);
+  const e2 = smoothstep(0.55, 0.95, t);
 
   // Gap between elements (16px)
   const gap = 16;
   const imageY_belowText1 = text1Height + gap;
 
   // 1. Text 1:
-  // Starts sliding in from bottom (+90px) up to top (0px) during Act 1.
-  // In Act 3, glides up and dissolves to 0 as Small Image takes over top.
-  const text1StartY = 90;
+  // Starts sliding in from bottom (+70px) up to top (0px).
+  // In Phase 3, glides up (-40px) and dissolves away as Small Image takes over top.
+  const text1StartY = 70;
   let text1Y: number;
   let text1Opacity: number;
 
-  if (p2 > 0) {
-    text1Y = -e2 * (text1Height * 0.4 + 20);
+  if (e2 > 0) {
+    text1Y = -e2 * 40;
     text1Opacity = Math.max(0, 1 - e2);
   } else {
     text1Y = (1 - e0) * text1StartY;
-    text1Opacity = Math.min(1, p0 * 2.0);
+    text1Opacity = Math.min(1, e0 * 1.5);
   }
 
   // 2. Small Image:
-  // Starts offscreen below (480px). In Act 2, slides smoothly up to imageY_belowText1.
-  // In Act 3, slides from imageY_belowText1 up to 0px (top of column).
-  const imageStartY = 480;
+  // Starts offscreen below (+420px), slides up to imageY_belowText1, then glides to top (0px).
+  const imageStartY = 420;
   let currentImageY: number;
   let currentImageOpacity: number;
 
-  if (p2 > 0) {
+  if (e2 > 0) {
     currentImageY = (1 - e2) * imageY_belowText1;
     currentImageOpacity = 1;
   } else {
     currentImageY = imageStartY + e1 * (imageY_belowText1 - imageStartY);
-    currentImageOpacity = Math.min(1, p1 * 2.0);
+    currentImageOpacity = e1;
   }
 
   // 3. Text 2:
-  // Hidden during Act 1 & 2. In Act 3, slides in from bottom to sit right below the photo.
-  // Base top is responsively anchored right below the photo (top-[256px]/[276px]/[296px]).
-  const text2Lift = (1 - e2) * 200;
-  const text2Opacity = Math.min(1, p2 * 1.8);
+  // Glides in smoothly from bottom to sit right below the photo.
+  const text2Lift = (1 - e2) * 160;
+  const text2Opacity = e2;
 
   return (
     <div className="relative w-full max-w-[420px] h-[520px] lg:h-[560px] overflow-hidden">
@@ -251,20 +241,11 @@ const TEA_AS_YOU_LIKE_IMAGES = [
   },
 ];
 
-export default function LOrientalisPage() {
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+function FarmersCarouselSection() {
   const carouselContainerRef = useRef<HTMLDivElement | null>(null);
   const currentProgressRef = useRef(0);
   const targetProgressRef = useRef(0);
   const [smoothProgress, setSmoothProgress] = useState(0);
-  const [activeBeverage, setActiveBeverage] = useState<"coffee" | "tea">("coffee");
-  const [selectedBlend, setSelectedBlend] = useState(1);
-
-  const currentBlends = activeBeverage === "coffee" ? COFFEE_BLENDS : TEA_BLENDS;
-  const currentImages =
-    activeBeverage === "coffee"
-      ? COFFEE_AS_YOU_LIKE_IMAGES
-      : TEA_AS_YOU_LIKE_IMAGES;
 
   useEffect(() => {
     let animationFrameId: number;
@@ -289,13 +270,13 @@ export default function LOrientalisPage() {
     window.addEventListener("resize", onScroll, { passive: true });
     updateTarget();
 
-    // Smooth continuous exponential interpolation loop
+    // Silky fluid exponential interpolation loop with lambda = 7 for luxurious deceleration
     let lastTime = performance.now();
     const tick = (now: number) => {
       const dt = Math.min((now - lastTime) / 1000, 0.1);
       lastTime = now;
 
-      const lambda = 12;
+      const lambda = 7;
       const factor = 1 - Math.exp(-lambda * dt);
       const target = targetProgressRef.current;
       const current = currentProgressRef.current;
@@ -353,6 +334,146 @@ export default function LOrientalisPage() {
       containerTopOnPage + targetProgress * totalScrollDistance;
     window.scrollTo({ top: targetScrollY, behavior: "smooth" });
   };
+
+  return (
+    <section
+      id="farmers"
+      ref={carouselContainerRef}
+      className="relative w-full h-[3600vh] bg-black text-white"
+    >
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-black">
+        {/* HORIZONTAL CAROUSEL TRACK */}
+        <div
+          className="flex h-full will-change-transform"
+          style={{
+            width: "400%",
+            transform: `translate3d(-${trackTranslatePercent}%, 0, 0)`,
+          }}
+        >
+          {/* SLIDE 1: INTRO (FARMERS BIG TEXT + EXPANDING IMAGE) */}
+          <div
+            className="relative w-1/4 shrink-0 h-full flex items-center justify-center overflow-hidden"
+            style={{
+              paddingLeft: "2.778vw",
+              paddingRight: "2.778vw",
+            }}
+          >
+            {/* BIG TEXT: Farmers (starts on the right, glides left on scroll OVER center image) */}
+            <div className="absolute top-[12%] md:top-[14%] lg:top-[14%] left-[48%] sm:left-[50%] md:left-[52%] z-20 select-none pointer-events-none">
+              <h2
+                className="text-white whitespace-nowrap"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(56px, 13.88vw, 200px)",
+                  lineHeight: "0.95",
+                  letterSpacing: "0%",
+                  verticalAlign: "middle",
+                  transform: `translate3d(-${introTextShift}vw, 0, 0)`,
+                  willChange: "transform",
+                }}
+              >
+                Farmers
+              </h2>
+            </div>
+
+            {/* INTRO IMAGE: EXPANDING FROM CENTER (behind Farmers text) */}
+            <div className="relative z-0 w-full max-w-[1158px] h-[60vh] lg:h-[768px] max-h-[768px] mx-auto overflow-hidden flex items-center justify-center">
+              <div
+                className="relative w-full h-full"
+                style={{
+                  transform: `scale(${introScale})`,
+                  willChange: "transform",
+                }}
+              >
+                <Image
+                  src={FARMERS_INTRO_IMAGE}
+                  alt="Farmers harvesting tea in the highlands"
+                  fill
+                  priority
+                  unoptimized
+                  className="object-cover select-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* SLIDES 2, 3, 4: FARMER STORIES */}
+          {FARMER_STORIES.map((story, sIdx) => {
+            const t = sIdx === 0 ? t0 : sIdx === 1 ? t1 : t2;
+            return (
+              <div
+                key={story.id}
+                className="w-1/4 shrink-0 h-full flex items-center justify-center overflow-hidden"
+                style={{
+                  paddingLeft: "2.778vw",
+                  paddingRight: "2.778vw",
+                }}
+              >
+                <div className="w-full max-w-[1360px] h-[min(640px,78vh)] flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-12 my-auto">
+                  {/* LEFT COLUMN: Main Image (58% width) */}
+                  <div className="relative w-full lg:w-[58%] h-[340px] sm:h-[420px] lg:h-full max-h-[640px] overflow-hidden shrink-0 rounded-[2px]">
+                    <Image
+                      src={story.mainImage}
+                      alt={story.altMain}
+                      fill
+                      unoptimized
+                      className="object-cover select-none"
+                    />
+
+                    {/* 3 THUMBNAILS AT BOTTOM-LEFT */}
+                    <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 flex items-center gap-2.5 z-20">
+                      {FARMER_STORIES.map((thumb, tIdx) => {
+                        const isActive = activeStoryIndex === tIdx;
+                        return (
+                          <button
+                            key={thumb.id}
+                            onClick={() => scrollToStory(tIdx)}
+                            className={`relative w-[36px] h-[44px] lg:w-[46px] lg:h-[54px] overflow-hidden transition-all duration-300 cursor-pointer ${
+                              isActive
+                                ? "border-2 border-white scale-105 shadow-xl shadow-black/80"
+                                : "border border-white/40 opacity-70 hover:opacity-100 hover:scale-102"
+                            }`}
+                            aria-label={`Jump to farmer story ${tIdx + 1}`}
+                          >
+                            <Image
+                              src={thumb.mainImage}
+                              alt={`Thumbnail ${tIdx + 1}`}
+                              fill
+                              sizes="54px"
+                              unoptimized
+                              className="object-cover select-none pointer-events-none"
+                            />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* RIGHT COLUMN: 38% width (Choreographed Vertical Sequence) */}
+                  <div className="relative w-full lg:w-[38%] h-[500px] lg:h-full max-h-[640px] flex items-center justify-end shrink-0">
+                    <FarmerStoryRightColumn story={story} progress={t} />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function LOrientalisPage() {
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const [activeBeverage, setActiveBeverage] = useState<"coffee" | "tea">("coffee");
+  const [selectedBlend, setSelectedBlend] = useState(1);
+
+  const currentBlends = activeBeverage === "coffee" ? COFFEE_BLENDS : TEA_BLENDS;
+  const currentImages =
+    activeBeverage === "coffee"
+      ? COFFEE_AS_YOU_LIKE_IMAGES
+      : TEA_AS_YOU_LIKE_IMAGES;
 
   const handleScrollDown = () => {
     const nextSection =
@@ -1312,132 +1433,7 @@ export default function LOrientalisPage() {
       <div className="w-full h-[140px]" />
 
       {/* FARMERS ANIMATED HORIZONTAL CAROUSEL SECTION */}
-      <section
-        id="farmers"
-        ref={carouselContainerRef}
-        className="relative w-full h-[1800vh] bg-black text-white"
-      >
-        <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-black">
-          {/* HORIZONTAL CAROUSEL TRACK */}
-          <div
-            className="flex h-full will-change-transform"
-            style={{
-              width: "400%",
-              transform: `translate3d(-${trackTranslatePercent}%, 0, 0)`,
-            }}
-          >
-            {/* SLIDE 1: INTRO (FARMERS BIG TEXT + EXPANDING IMAGE) */}
-            <div
-              className="relative w-1/4 shrink-0 h-full flex items-center justify-center overflow-hidden"
-              style={{
-                paddingLeft: "2.778vw",
-                paddingRight: "2.778vw",
-              }}
-            >
-              {/* BIG TEXT: Farmers (starts on the right, glides left on scroll OVER center image) */}
-              <div className="absolute top-[12%] md:top-[14%] lg:top-[14%] left-[48%] sm:left-[50%] md:left-[52%] z-20 select-none pointer-events-none">
-                <h2
-                  className="text-white whitespace-nowrap"
-                  style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(56px, 13.88vw, 200px)",
-                    lineHeight: "0.95",
-                    letterSpacing: "0%",
-                    verticalAlign: "middle",
-                    transform: `translate3d(-${introTextShift}vw, 0, 0)`,
-                    willChange: "transform",
-                  }}
-                >
-                  Farmers
-                </h2>
-              </div>
-
-              {/* INTRO IMAGE: EXPANDING FROM CENTER (behind Farmers text) */}
-              <div className="relative z-0 w-full max-w-[1158px] h-[60vh] lg:h-[768px] max-h-[768px] mx-auto overflow-hidden flex items-center justify-center">
-                <div
-                  className="relative w-full h-full"
-                  style={{
-                    transform: `scale(${introScale})`,
-                    willChange: "transform",
-                  }}
-                >
-                  <Image
-                    src={FARMERS_INTRO_IMAGE}
-                    alt="Farmers harvesting tea in the highlands"
-                    fill
-                    priority
-                    unoptimized
-                    className="object-cover select-none"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* SLIDES 2, 3, 4: FARMER STORIES */}
-            {FARMER_STORIES.map((story, sIdx) => {
-              const t = sIdx === 0 ? t0 : sIdx === 1 ? t1 : t2;
-              return (
-                <div
-                  key={story.id}
-                  className="w-1/4 shrink-0 h-full flex items-center justify-center overflow-hidden"
-                  style={{
-                    paddingLeft: "2.778vw",
-                    paddingRight: "2.778vw",
-                  }}
-                >
-                  <div className="w-full max-w-[1360px] h-[min(640px,78vh)] flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-12 my-auto">
-                    {/* LEFT COLUMN: Main Image (58% width) */}
-                    <div className="relative w-full lg:w-[58%] h-[340px] sm:h-[420px] lg:h-full max-h-[640px] overflow-hidden shrink-0 rounded-[2px]">
-                      <Image
-                        src={story.mainImage}
-                        alt={story.altMain}
-                        fill
-                        unoptimized
-                        className="object-cover select-none"
-                      />
-
-                      {/* 3 THUMBNAILS AT BOTTOM-LEFT */}
-                      <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 flex items-center gap-2.5 z-20">
-                        {FARMER_STORIES.map((thumb, tIdx) => {
-                          const isActive = activeStoryIndex === tIdx;
-                          return (
-                            <button
-                              key={thumb.id}
-                              onClick={() => scrollToStory(tIdx)}
-                              className={`relative w-[36px] h-[44px] lg:w-[46px] lg:h-[54px] overflow-hidden transition-all duration-300 cursor-pointer ${isActive
-                                  ? "border-2 border-white scale-105 shadow-xl shadow-black/80"
-                                  : "border border-white/40 opacity-70 hover:opacity-100 hover:scale-102"
-                                }`}
-                              aria-label={`Jump to farmer story ${tIdx + 1}`}
-                            >
-                              <Image
-                                src={thumb.mainImage}
-                                alt={`Thumbnail ${tIdx + 1}`}
-                                fill
-                                sizes="54px"
-                                unoptimized
-                                className="object-cover select-none pointer-events-none"
-                              />
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* RIGHT COLUMN: 38% width (Choreographed Vertical Sequence: Text 1 -> Image slides below it -> Text 1 dissolves as Image slides to top & Text 2 slides in below it) */}
-                    <div className="relative w-full lg:w-[38%] h-[500px] lg:h-full max-h-[640px] flex items-center justify-end shrink-0">
-                      <FarmerStoryRightColumn story={story} progress={t} />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-
-        </div>
-      </section>
+      <FarmersCarouselSection />
 
       {/* 140PX GAP BELOW CAROUSEL */}
       <div className="w-full h-[140px]" />
