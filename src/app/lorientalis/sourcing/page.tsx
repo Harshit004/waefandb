@@ -26,7 +26,7 @@ export default function LorientalisSourcingPage() {
         }}
       >
         {/* Top Header Row: Left Flag & Location Intro | Right SOURCING & Culture & Trade */}
-        <div className="w-full flex items-start justify-between">
+        <div className="relative z-10 w-full flex items-start justify-between">
           {/* Left: Indian Flag + 81px gap + "Above the Tropic of Cancer..." */}
           <div className="flex flex-col items-start z-10">
             {/* 40x27 px Indian Flag (72px gap below sourcing underline bar) */}
@@ -90,8 +90,13 @@ export default function LorientalisSourcingPage() {
           </div>
         </div>
 
-        {/* Map Image: Centered, no margin/padding above/below, increased size to fill gaps */}
-        <div className="relative w-full flex justify-center items-center select-none m-0 p-0">
+        {/* Map Image: Centered, overlaps top header row by half its height */}
+        <div
+          className="relative z-0 w-full flex justify-center items-center select-none m-0 p-0"
+          style={{
+            marginTop: "calc(-0.5 * clamp(48px, 6.667vw, 96px))",
+          }}
+        >
           <div
             className="relative w-full select-none"
             style={{
