@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
+import ScrollLetterHighlight from "@/components/ScrollLetterHighlight";
 
 const FARMER_STORIES = [
   {
@@ -496,19 +497,20 @@ export default function LOrientalisPage() {
               lineHeight: "clamp(34px, 4.097vw, 59px)", // 59px at 1440px
               letterSpacing: "0%",
               textAlign: "right",
-              color: "#717171",
             }}
           >
-            <p className="space-y-0">
-              <span className="block">
-                {"For years, "}
-                <span className="text-white font-medium">WAE</span>
-                {" worked with"}
-              </span>
-              <span className="block">the most fundamental</span>
-              <span className="block">ingredient in every</span>
-              <span className="block text-white font-medium">brewed beverage</span>
-            </p>
+            <ScrollLetterHighlight
+              lines={[
+                "For years, WAE worked with",
+                "the most fundamental",
+                "ingredient in every",
+                "brewed beverage",
+              ]}
+              baseColor="#717171"
+              highlightColor="#FFFFFF"
+              startThreshold={0.85}
+              endThreshold={0.25}
+            />
           </div>
         </div>
 
