@@ -255,13 +255,13 @@ export default function LorientalisSustainabilityPage() {
           paddingRight: "2.778vw",
         }}
       >
-        {/* Greenish wave in the background matching design */}
+        {/* Greenish wave in the background matching design - spans across full screen width */}
         <div className="absolute inset-0 pointer-events-none -z-0 overflow-hidden flex items-center justify-center">
           <img
             src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/87d91547-58ef-40f7-f370-e2673d4f6b00/public"
             alt=""
             aria-hidden="true"
-            className="w-full max-w-[1440px] h-auto object-contain pointer-events-none select-none opacity-95"
+            className="w-full min-w-full h-auto object-cover pointer-events-none select-none opacity-95"
             style={{
               transform: "scale(1.05)",
             }}
@@ -288,7 +288,7 @@ export default function LorientalisSustainabilityPage() {
           <p
             className="m-0 select-none text-[#DBDBDB] max-w-[850px]"
             style={{
-              marginTop: "clamp(32px, 4vw, 56px)",
+              marginTop: "clamp(48px, 6.67vw, 96px)",
               fontFamily: "var(--font-manrope), sans-serif",
               fontWeight: 400,
               fontSize: "clamp(14px, 1.15vw, 17px)",
