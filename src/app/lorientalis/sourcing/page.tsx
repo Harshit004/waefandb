@@ -96,11 +96,11 @@ export default function LorientalisSourcingPage() {
             className="relative w-full select-none"
             style={{
               maxWidth: "1380px",
-              aspectRatio: "1366 / 756",
+              aspectRatio: "1270 / 768",
             }}
           >
             <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9b9a2004-5a6a-4798-f127-a4c9cb24cc00/public"
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/ebdb6cbf-4a2e-4a20-7d81-bd8712ac6900/public"
               alt="North East India Sourcing Map"
               fill
               priority
