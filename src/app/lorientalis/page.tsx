@@ -487,9 +487,12 @@ export default function LOrientalisPage() {
       {/* HERO SECTION WITH IMAGE & OVERLAY */}
       <section
         id="hero"
-        className="relative w-full h-[100dvh] min-h-[620px] bg-black overflow-hidden flex flex-col justify-between"
+        className="relative w-full bg-black overflow-hidden flex flex-col justify-between"
+        style={{
+          aspectRatio: "1094 / 768",
+        }}
       >
-        {/* Background Image: pinned to bottom so the full yellow sunlit portion is completely visible */}
+        {/* Background Image: width equals screen width, height adjusts naturally with 1094/768 ratio */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
           <Image
             src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/420a8da2-893b-473d-5841-27f068dda100/public"
@@ -499,7 +502,7 @@ export default function LOrientalisPage() {
             unoptimized
             quality={100}
             sizes="100vw"
-            className="object-cover object-bottom w-full h-full"
+            className="object-cover w-full h-full"
             style={{
               imageRendering: "-webkit-optimize-contrast",
             }}
