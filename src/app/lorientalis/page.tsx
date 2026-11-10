@@ -66,22 +66,22 @@ function getSlideVerticalStyles(progress: number) {
   const p = clamp01(progress);
 
   // --- TEXT 1 ---
-  // Glides up smoothly and dissolves across the first 35% of the slide dwell
-  const text1Phase = clamp01(p / 0.35);
-  const text1Y = -text1Phase * 30;
+  // Initial focus from 0.00-0.15, then glides up smoothly (-24px) and dissolves across 0.15-0.30
+  const text1Phase = clamp01((p - 0.15) / 0.15);
+  const text1Y = -text1Phase * 24;
   const text1Opacity = Math.max(0, 1 - text1Phase);
 
   // --- SECONDARY IMAGE ("THE NEW IMAGE") ---
-  // Glides steadily upward in direct 1:1 proportion with the scroll across a wide 75% span of the dwell
-  const imgPhase = clamp01((p - 0.10) / 0.75);
-  const imageY = 70 * (1 - imgPhase);
+  // Ascends cleanly from +50px -> 0px and scales into place between 0.25-0.65 as Text 1 finishes exit
+  const imgPhase = clamp01((p - 0.25) / 0.4);
+  const imageY = 50 * (1 - imgPhase);
   const imageScale = 0.96 + imgPhase * 0.04;
   const imageOpacity = imgPhase;
 
   // --- TEXT 2 ---
-  // Reveals steadily beneath the secondary image
-  const text2Phase = clamp01((p - 0.45) / 0.50);
-  const text2Y = 320 - text2Phase * 24;
+  // Reveals steadily beneath the secondary image with seamless 16px spacing between 0.60-0.95
+  const text2Phase = clamp01((p - 0.6) / 0.35);
+  const text2Lift = 20 * (1 - text2Phase);
   const text2Opacity = text2Phase;
 
   return {
@@ -94,7 +94,7 @@ function getSlideVerticalStyles(progress: number) {
       opacity: imageOpacity,
     },
     text2: {
-      transform: `translate3d(0, ${text2Y.toFixed(2)}px, 0)`,
+      transform: `translate3d(0, ${text2Lift.toFixed(2)}px, 0)`,
       opacity: text2Opacity,
     },
   };
@@ -212,23 +212,23 @@ export default function LOrientalisPage() {
     };
   }, []);
 
-  const introPhase = clamp01(smoothProgress / 0.14);
+  const introPhase = clamp01(smoothProgress / 0.10);
   const introScale = 0.78 + introPhase * 0.22;
   const introTextShift = introPhase * 44;
 
-  // Track translation using continuous, generous transitions in direct proportion with scroll
-  const p0 = smoothstep(0.14, 0.28, smoothProgress);
-  const p1 = smoothstep(0.44, 0.58, smoothProgress);
-  const p2 = smoothstep(0.74, 0.88, smoothProgress);
+  // Track translation: symmetric 0.15 transitions between 0.15 dwell windows
+  const p0 = smoothstep(0.10, 0.25, smoothProgress);
+  const p1 = smoothstep(0.40, 0.55, smoothProgress);
+  const p2 = smoothstep(0.70, 0.85, smoothProgress);
   const trackTranslatePercent = (p0 + p1 + p2) * 25;
 
-  // Story vertical choreography timers: generous dwell windows directly aligned with scroll speed
-  const t0 = clamp01((smoothProgress - 0.28) / 0.16);
-  const t1 = clamp01((smoothProgress - 0.58) / 0.16);
-  const t2 = clamp01((smoothProgress - 0.88) / 0.12);
+  // Story vertical choreography timers: perfectly symmetric 0.15 dwell windows for every slide
+  const t0 = clamp01((smoothProgress - 0.25) / 0.15);
+  const t1 = clamp01((smoothProgress - 0.55) / 0.15);
+  const t2 = clamp01((smoothProgress - 0.85) / 0.15);
 
   const activeStoryIndex =
-    smoothProgress < 0.51 ? 0 : smoothProgress < 0.81 ? 1 : 2;
+    smoothProgress < 0.475 ? 0 : smoothProgress < 0.775 ? 1 : 2;
 
   const scrollToStory = (index: number) => {
     if (!carouselContainerRef.current) return;
@@ -238,7 +238,8 @@ export default function LOrientalisPage() {
       carouselContainerRef.current.offsetHeight - windowHeight;
     const containerTopOnPage = window.scrollY + rect.top;
 
-    const targetProgress = [0.36, 0.66, 0.94][index];
+    // Land at the beginning of each story dwell so Text 1 is fully visible upon navigation
+    const targetProgress = [0.25, 0.55, 0.85][index];
     const targetScrollY =
       containerTopOnPage + targetProgress * totalScrollDistance;
     window.scrollTo({ top: targetScrollY, behavior: "smooth" });
@@ -1224,8 +1225,8 @@ export default function LOrientalisPage() {
                 paddingRight: "2.778vw",
               }}
             >
-              {/* BIG TEXT: Farmers (starts on the right, glides left on scroll as center image expands) */}
-              <div className="absolute top-[12%] md:top-[14%] lg:top-[14%] left-[48%] sm:left-[50%] md:left-[52%] z-20 select-none pointer-events-none">
+              {/* BIG TEXT: Farmers (starts on the right, glides left on scroll sliding behind expanding center image) */}
+              <div className="absolute top-[12%] md:top-[14%] lg:top-[14%] left-[48%] sm:left-[50%] md:left-[52%] z-0 select-none pointer-events-none">
                 <h2
                   className="text-white whitespace-nowrap"
                   style={{
@@ -1243,8 +1244,8 @@ export default function LOrientalisPage() {
                 </h2>
               </div>
 
-              {/* INTRO IMAGE: EXPANDING FROM CENTER */}
-              <div className="relative w-full max-w-[1158px] h-[60vh] lg:h-[768px] max-h-[768px] mx-auto overflow-hidden flex items-center justify-center">
+              {/* INTRO IMAGE: EXPANDING FROM CENTER (z-10 so Farmers text slides behind it) */}
+              <div className="relative z-10 w-full max-w-[1158px] h-[60vh] lg:h-[768px] max-h-[768px] mx-auto overflow-hidden flex items-center justify-center">
                 <div
                   className="relative w-full h-full"
                   style={{
@@ -1360,14 +1361,14 @@ export default function LOrientalisPage() {
                           />
                         </div>
 
-                        {/* Small Text 2 */}
+                        {/* Small Text 2: Responsively anchored 16px below the secondary photo across all screen sizes */}
                         <div
                           style={{
                             transform: anim.text2.transform,
                             opacity: anim.text2.opacity,
                             willChange: "transform, opacity",
                           }}
-                          className="absolute top-0 left-0 w-full pointer-events-none"
+                          className="absolute left-0 w-full top-[256px] sm:top-[276px] lg:top-[296px] pointer-events-none"
                         >
                           <p
                             className="text-white select-none text-left"
