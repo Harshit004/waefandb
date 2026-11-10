@@ -153,7 +153,8 @@ export default function LOrientalisHeader({
       {/* Left Navigation: "Sourcing" & "Sustainability" */}
       <nav
         aria-label="Left Navigation"
-        className="flex items-center gap-[clamp(12px,2.5vw,40px)] z-10"
+        className="flex items-center gap-[7vw] z-10"
+        style={{ gap: "7vw" }}
       >
         <NavLinkItem
           href="/lorientalis/sourcing"
@@ -193,7 +194,8 @@ export default function LOrientalisHeader({
       {/* Right Navigation: "Grow" & "Contact" */}
       <nav
         aria-label="Right Navigation"
-        className="flex items-center gap-[clamp(12px,2.5vw,40px)] z-10"
+        className="flex items-center gap-[7vw] z-10"
+        style={{ gap: "7vw" }}
       >
         <NavLinkItem
           href="/lorientalis#conditions"
