@@ -1134,9 +1134,9 @@ export default function LOrientalisPage() {
         <div className="relative w-full max-w-[1440px] mx-auto min-h-[420px] sm:min-h-[470px] md:min-h-[520px] lg:min-h-[576px] flex flex-col justify-between">
           {/* MAP GRAPHIC: Cropped to remove black space, 10% smaller (max-w-[1260px]), z-0 behind text */}
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-            <div className="relative w-full max-w-[1260px] aspect-[1147/481]">
+            <div className="relative w-full max-w-[1260px] aspect-[1366/756]">
               <Image
-                src="/images/northeast-map.png"
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9b9a2004-5a6a-4798-f127-a4c9cb24cc00/public"
                 alt="Northeast India single origin tea and coffee growing districts map"
                 fill
                 priority
@@ -1296,11 +1296,10 @@ export default function LOrientalisPage() {
                             <button
                               key={thumb.id}
                               onClick={() => scrollToStory(tIdx)}
-                              className={`relative w-[36px] h-[44px] lg:w-[46px] lg:h-[54px] overflow-hidden transition-all duration-300 cursor-pointer ${
-                                isActive
+                              className={`relative w-[36px] h-[44px] lg:w-[46px] lg:h-[54px] overflow-hidden transition-all duration-300 cursor-pointer ${isActive
                                   ? "border-2 border-white scale-105 shadow-xl shadow-black/80"
                                   : "border border-white/40 opacity-70 hover:opacity-100 hover:scale-102"
-                              }`}
+                                }`}
                               aria-label={`Jump to farmer story ${tIdx + 1}`}
                             >
                               <Image
