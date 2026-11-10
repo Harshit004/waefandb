@@ -156,19 +156,20 @@ export default function LorientalisSustainabilityPage() {
           paddingRight: "2.778vw",
         }}
       >
-        {/* Hero Background Image */}
+        {/* Hero Background Image: pinned to bottom so the full yellow sunlit canopy is completely visible */}
         <Image
-          src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/76182cd2-7048-411f-53fc-38396d961000/public"
+          src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/420a8da2-893b-473d-5841-27f068dda100/public"
           alt="Sustainable environment tea picker in lush garden"
           fill
           priority
           unoptimized
-          className="object-cover object-center pointer-events-none"
+          quality={100}
+          sizes="100vw"
+          className="object-cover object-bottom pointer-events-none"
+          style={{
+            imageRendering: "-webkit-optimize-contrast",
+          }}
         />
-
-        {/* Ambient Dark Gradient Overlays for Readability and Seamless Bottom Blending */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-64 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" />
 
         {/* Hero Content Block (Left-Aligned) */}
         <div className="relative z-10 max-w-[850px] pt-24 sm:pt-28 pb-16 flex flex-col items-start">
