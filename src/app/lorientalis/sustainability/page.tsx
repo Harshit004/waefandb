@@ -471,14 +471,8 @@ export default function LorientalisSustainabilityPage() {
           paddingBottom: "0px",
         }}
       >
-        {/* Full-bleed panoramic video banner: height cropped to match plantation landscape image (1366x665) */}
-        <div
-          className="relative w-full overflow-hidden select-none"
-          style={{
-            aspectRatio: "1366 / 665",
-            minHeight: "clamp(260px, 48.68vw, 665px)",
-          }}
-        >
+        {/* Full-bleed panoramic video banner: height matches plantation landscape image (aspect 21/9) */}
+        <div className="relative w-full aspect-[21/9] min-h-[260px] sm:min-h-[380px] lg:min-h-[500px] overflow-hidden select-none">
           {/* Background Cloudflare Stream Video */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <iframe
@@ -488,11 +482,11 @@ export default function LorientalisSustainabilityPage() {
                 position: "absolute",
                 top: "50%",
                 left: "50%",
-                transform: "translate(-50%, -50%) scale(1.08)",
-                height: "100%",
+                transform: "translate(-50%, -50%)",
                 width: "100%",
+                height: "56.25vw",
                 minHeight: "100%",
-                minWidth: "100%",
+                minWidth: "calc(260px * 16 / 9)",
               }}
               allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
               allowFullScreen={true}
