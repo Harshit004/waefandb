@@ -100,45 +100,53 @@ function ImagePlaceholder({
 }
 
 export default function LorientalisSustainabilityPage() {
-  // Scroll-driven animation state for the farm landscape placeholder
-  const farmRef = useRef<HTMLDivElement>(null);
-  const [farmProgress, setFarmProgress] = useState(0);
+  // Smooth scroll-driven animation refs for the farm landscape video (eliminates state re-render jitter & CSS fighting)
+  const farmSpacerRef = useRef<HTMLDivElement>(null);
+  const farmCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let ticking = false;
+    let animId: number;
+    let targetProgress = 0;
+    let currentProgress = 0;
 
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (farmRef.current) {
-            const rect = farmRef.current.getBoundingClientRect();
-            const vh = window.innerHeight;
-            // Starts expanding when element enters bottom 85% of screen
-            // Fully expanded when element reaches center area (around 45% of screen)
-            const startY = vh * 0.85;
-            const endY = vh * 0.45;
-            const rawProgress = (startY - rect.top) / (startY - endY);
-            const clamped = Math.min(1, Math.max(0, rawProgress));
-            setFarmProgress(clamped);
-          }
-          ticking = false;
-        });
-        ticking = true;
+    const updateTarget = () => {
+      if (farmSpacerRef.current) {
+        const rect = farmSpacerRef.current.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // Starts expanding when element enters bottom 85% of screen
+        // Fully expanded when element reaches center area (around 45% of screen)
+        const startY = vh * 0.85;
+        const endY = vh * 0.45;
+        const rawProgress = (startY - rect.top) / (startY - endY);
+        targetProgress = Math.min(1, Math.max(0, rawProgress));
       }
     };
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
+    const renderLoop = () => {
+      // Lerp with 0.12 factor for physics-based, silky-smooth spring damping without discrete scroll jumps
+      currentProgress += (targetProgress - currentProgress) * 0.12;
+
+      if (farmCardRef.current) {
+        const width = 364 + (733 - 364) * currentProgress;
+        const height = 205 + (404 - 205) * currentProgress;
+        farmCardRef.current.style.width = `min(100%, ${width.toFixed(1)}px)`;
+        farmCardRef.current.style.height = `${height.toFixed(1)}px`;
+      }
+
+      animId = requestAnimationFrame(renderLoop);
+    };
+
+    updateTarget();
+    renderLoop();
+
+    window.addEventListener("scroll", updateTarget, { passive: true });
+    window.addEventListener("resize", updateTarget, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      cancelAnimationFrame(animId);
+      window.removeEventListener("scroll", updateTarget);
+      window.removeEventListener("resize", updateTarget);
     };
   }, []);
-
-  // Calculate dynamic dimensions for farm landscape placeholder (364x205 -> 733x404)
-  const farmWidth = Math.round(364 + (733 - 364) * farmProgress);
-  const farmHeight = Math.round(205 + (404 - 205) * farmProgress);
 
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-[#365944] selection:text-white">
@@ -302,9 +310,9 @@ export default function LorientalisSustainabilityPage() {
             Other Economic Options Are Limited.
           </p>
 
-          {/* Farm Landscape Video: expands from 364x205 to 733x404 on scroll with 87px gap above & below */}
+          {/* Farm Landscape Video: expands smoothly from 364x205 to 733x404 on scroll with 87px gap above & below */}
           <div
-            ref={farmRef}
+            ref={farmSpacerRef}
             className="w-full flex items-center justify-center select-none"
             style={{
               marginTop: "clamp(48px, 6.04vw, 87px)",
@@ -312,12 +320,11 @@ export default function LorientalisSustainabilityPage() {
             }}
           >
             <div
-              className="relative overflow-hidden rounded-[2px] bg-neutral-900 shadow-2xl transition-all duration-300 ease-out flex items-center justify-center max-w-full"
+              ref={farmCardRef}
+              className="relative overflow-hidden rounded-[2px] bg-neutral-900 shadow-2xl flex items-center justify-center max-w-full"
               style={{
-                width: `min(100%, ${farmWidth}px)`,
-                height: `${farmHeight}px`,
-                aspectRatio: `${farmWidth} / ${farmHeight}`,
-                transition: "width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                width: "min(100%, 364px)",
+                height: "205px",
                 willChange: "width, height",
               }}
             >
@@ -362,20 +369,19 @@ export default function LorientalisSustainabilityPage() {
         id="protecting-trees"
         className="relative w-full bg-black flex items-center justify-center"
         style={{
-          paddingTop: "clamp(64px, 6vw, 100px)",
-          paddingBottom: "clamp(64px, 6vw, 100px)",
+          paddingTop: "clamp(64px, 10vw, 150px)",
+          paddingBottom: "clamp(80px, 15.21vw, 219px)",
           paddingLeft: "2.778vw",
           paddingRight: "0px",
-          minHeight: "clamp(550px, 56vw, 850px)",
         }}
       >
-        <div className="w-full relative lg:static flex flex-col lg:block">
-          {/* Coffee Branch Image (Positioned on the right, flush right, arching into center - uncropped) */}
+        <div className="w-full relative flex flex-col lg:block">
+          {/* Coffee Branch Image: aligned to the bottom on desktop to match text bottom */}
           <div
-            className="order-2 lg:order-none relative lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 z-10 shrink-0 select-none flex items-center justify-end ml-auto pointer-events-none mt-10 lg:mt-0"
+            className="order-2 lg:order-none relative lg:absolute lg:right-0 lg:bottom-0 z-10 shrink-0 select-none flex items-center justify-end ml-auto pointer-events-none mt-10 lg:mt-0"
             style={{
-              width: "clamp(300px, 44vw, 634px)",
-              height: "clamp(363px, 53.3vw, 768px)",
+              width: "clamp(300px, 39.42vw, 568px)",
+              height: "clamp(363px, 47.65vw, 686px)",
               aspectRatio: "634 / 768",
             }}
           >
@@ -412,7 +418,7 @@ export default function LorientalisSustainabilityPage() {
             <div
               className="flex flex-col gap-6 text-white font-normal"
               style={{
-                marginTop: "clamp(32px, 3.8vw, 54px)",
+                marginTop: "clamp(48px, 7.8vw, 112px)",
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontSize: "clamp(13px, 1.042vw, 15px)",
                 lineHeight: "160%",
@@ -464,12 +470,12 @@ export default function LorientalisSustainabilityPage() {
           paddingBottom: "0px",
         }}
       >
-        {/* Full-bleed panoramic video banner */}
+        {/* Full-bleed panoramic video banner: height cropped to match plantation landscape image (1366x665) */}
         <div
-          className="relative w-full overflow-hidden"
+          className="relative w-full overflow-hidden select-none"
           style={{
-            paddingTop: "52.734375%",
-            minHeight: "clamp(460px, 52.734375vw, 1012px)",
+            aspectRatio: "1366 / 665",
+            minHeight: "clamp(260px, 48.68vw, 665px)",
           }}
         >
           {/* Background Cloudflare Stream Video */}
@@ -479,10 +485,13 @@ export default function LorientalisSustainabilityPage() {
               style={{
                 border: "none",
                 position: "absolute",
-                top: 0,
-                left: 0,
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%) scale(1.08)",
                 height: "100%",
                 width: "100%",
+                minHeight: "100%",
+                minWidth: "100%",
               }}
               allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
               allowFullScreen={true}
@@ -571,22 +580,24 @@ export default function LorientalisSustainabilityPage() {
         }}
       >
         <div className="w-full relative flex items-center justify-center">
-          {/* Border-image gradient line spanning across */}
-          <div
-            className="absolute inset-x-0 h-0"
-            style={{
-              border: "1px solid",
-              borderBottom: "none",
-              borderLeft: "none",
-              borderRight: "none",
-              borderImageSource:
-                "linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50.96%, rgba(255, 255, 255, 0.04) 100%)",
-              borderImageSlice: 1,
-            }}
-          />
+          {/* Left horizontal line: thin on both ends */}
+          <div className="flex-1 flex items-center pr-2">
+            <svg className="w-full h-[2px]" preserveAspectRatio="none" viewBox="0 0 100 2">
+              <defs>
+                <linearGradient id="dividerLeftGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
+                  <stop offset="20%" stopColor="#FFFFFF" stopOpacity="0.35" />
+                  <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.85" />
+                  <stop offset="80%" stopColor="#FFFFFF" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <polygon points="0,1 50,0 100,1 50,2" fill="url(#dividerLeftGrad)" />
+            </svg>
+          </div>
 
           {/* Pinwheel icon in the middle (39x39) */}
-          <div className="relative z-10 px-4 sm:px-5 bg-black flex items-center justify-center">
+          <div className="relative z-10 px-3 sm:px-4 bg-black flex items-center justify-center shrink-0">
             <div
               className="relative shrink-0 select-none"
               style={{ width: "39px", height: "39px" }}
@@ -601,6 +612,22 @@ export default function LorientalisSustainabilityPage() {
                 className="w-full h-full object-contain pointer-events-none"
               />
             </div>
+          </div>
+
+          {/* Right horizontal line: thin on both ends */}
+          <div className="flex-1 flex items-center pl-2">
+            <svg className="w-full h-[2px]" preserveAspectRatio="none" viewBox="0 0 100 2">
+              <defs>
+                <linearGradient id="dividerRightGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
+                  <stop offset="20%" stopColor="#FFFFFF" stopOpacity="0.35" />
+                  <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.85" />
+                  <stop offset="80%" stopColor="#FFFFFF" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <polygon points="0,1 50,0 100,1 50,2" fill="url(#dividerRightGrad)" />
+            </svg>
           </div>
         </div>
       </div>
