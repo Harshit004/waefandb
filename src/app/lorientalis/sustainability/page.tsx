@@ -10,13 +10,14 @@ import LOrientalisFooter from "@/components/LOrientalisFooter";
  * Renders behind text via lower z-index (z-0) while text has higher z-index (z-10) within an isolated stacking context.
  * Uses official Cloudflare image asset: 73ab85b3-67e2-4103-e9c0-3fa0bec8f300
  */
-function GreenLoop({ className = "" }: { className?: string }) {
+function GreenLoop({ className = "", style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <img
       src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/73ab85b3-67e2-4103-e9c0-3fa0bec8f300/public"
       alt=""
       aria-hidden="true"
       className={`absolute pointer-events-none select-none left-1/2 top-[50%] -translate-x-1/2 -translate-y-1/2 w-[82.5%] max-w-none h-auto z-0 ${className}`}
+      style={style}
     />
   );
 }
@@ -658,7 +659,7 @@ export default function LorientalisSustainabilityPage() {
             }}
           >
             Recycling{" "}
-            Gr<span className="relative inline-block isolate"><span className="relative z-10">ou</span><GreenLoop className="w-[97.5%] top-[48%]" /></span>nds
+            Gr<span className="relative inline-block isolate"><span className="relative z-10">ou</span><GreenLoop className="w-[146.25%] top-[48%]" style={{ width: "146.25%" }} /></span>nds
           </h2>
 
           {/* 99px gap between heading and body */}
