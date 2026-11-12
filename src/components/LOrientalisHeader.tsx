@@ -45,16 +45,13 @@ function NavLinkItem({
         className="pointer-events-auto cursor-pointer inline-flex items-center text-white whitespace-nowrap"
         style={{
           fontFamily: "var(--font-manrope), sans-serif",
-          fontWeight: isHighlighted ? 700 : 600,
+          fontWeight: 600,
           fontStyle: "normal",
-          fontSize: isHighlighted
-            ? "clamp(13px, 1.25vw, 16px)" // 16px at 1280px+
-            : "clamp(12px, 1.094vw, 14px)", // 14px at 1280px+
+          fontSize: "clamp(12px, 1.094vw, 14px)", // 14px at 1280px+
           lineHeight: "12.6px",
           letterSpacing: "-0.5px",
           verticalAlign: "middle",
           color: "#FFFFFF",
-          transition: "all 390ms ease-out",
         }}
       >
         {label}
