@@ -198,7 +198,7 @@ export default function LOrientalisHeader({
         style={{ gap: "7vw" }}
       >
         <NavLinkItem
-          href="/lorientalis#conditions"
+          href="/lorientalis/grow"
           label="Grow"
           isActive={isGrowActive}
           onMouseEnter={onMouseEnterElement}
