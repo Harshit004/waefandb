@@ -880,8 +880,8 @@ export default function LOrientalisPage() {
               mineral-rich soil slow the cherry&apos;s ripening — concentrating
               sugars and acidity long before the bean ever meets a roaster. Most
               origin stories stop at geography.{" "}
-              <button
-                type="button"
+              <Link
+                href="/lorientalis/grow#coffee"
                 className="inline font-semibold text-[#7CC055] hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
@@ -896,7 +896,7 @@ export default function LOrientalisPage() {
                 }}
               >
                 Read more
-              </button>
+              </Link>
             </p>
           </div>
         </div>
@@ -1122,8 +1122,8 @@ export default function LOrientalisPage() {
               nuanced environments for Camellia sinensis — fog-fed mornings,
               sharp diurnal shifts, and soil chemistry that few other regions can
               replicate.{" "}
-              <button
-                type="button"
+              <Link
+                href="/lorientalis/grow#tea"
                 className="inline font-semibold text-[#7CC055] hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
@@ -1138,7 +1138,7 @@ export default function LOrientalisPage() {
                 }}
               >
                 Read more
-              </button>
+              </Link>
             </p>
           </div>
 
