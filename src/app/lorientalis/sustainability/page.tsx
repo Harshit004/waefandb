@@ -159,14 +159,13 @@ export default function LorientalisSustainabilityPage() {
           ========================================================================= */}
       <section
         id="sustainability-hero"
-        className="relative w-full flex flex-col justify-center overflow-hidden"
+        className="relative w-full h-[100dvh] min-h-[620px] flex flex-col justify-center overflow-hidden"
         style={{
-          aspectRatio: "1181 / 768",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
         }}
       >
-        {/* Hero Background Image: width equals screen width, height adjusts naturally with 1181/768 ratio */}
+        {/* Hero Background Image: adjusted to screen height, cropped from top */}
         <Image
           src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e4b3d77d-04ed-46ad-0adc-14fbadf1b200/public"
           alt="Sustainable environment tea picker in lush garden"
@@ -175,7 +174,7 @@ export default function LorientalisSustainabilityPage() {
           unoptimized
           quality={100}
           sizes="100vw"
-          className="object-cover pointer-events-none"
+          className="object-cover object-bottom pointer-events-none"
           style={{
             imageRendering: "-webkit-optimize-contrast",
           }}
