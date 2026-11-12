@@ -42,7 +42,7 @@ function NavLinkItem({
     >
       <Link
         href={href}
-        className="pointer-events-auto cursor-pointer inline-flex items-center transition-all duration-300 text-white whitespace-nowrap"
+        className="pointer-events-auto cursor-pointer inline-flex items-center text-white whitespace-nowrap"
         style={{
           fontFamily: "var(--font-manrope), sans-serif",
           fontWeight: isHighlighted ? 700 : 600,
@@ -54,16 +54,21 @@ function NavLinkItem({
           letterSpacing: "-0.5px",
           verticalAlign: "middle",
           color: "#FFFFFF",
+          transition: "all 390ms ease-out",
         }}
       >
         {label}
       </Link>
       <div
-        className={`absolute left-0 right-0 -bottom-2 sm:-bottom-2.5 h-[1px] bg-white pointer-events-none transition-all duration-300 ease-out origin-left ${
+        className={`absolute left-0 right-0 -bottom-2 sm:-bottom-2.5 h-[1.5px] pointer-events-none origin-left ${
           isHighlighted
             ? "opacity-100 scale-x-100"
             : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
         }`}
+        style={{
+          backgroundColor: "#7cc055",
+          transition: "all 390ms ease-out",
+        }}
       />
     </div>
   );
