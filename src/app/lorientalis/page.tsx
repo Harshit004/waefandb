@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
+import Script from "next/script";
 import Image from "next/image";
 import Link from "next/link";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
@@ -464,6 +465,7 @@ function FarmersCarouselSection() {
 }
 
 export default function LOrientalisPage() {
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [activeBeverage, setActiveBeverage] = useState<"coffee" | "tea">("coffee");
   const [selectedBlend, setSelectedBlend] = useState(1);
 
@@ -484,30 +486,59 @@ export default function LOrientalisPage() {
 
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-[#365944] selection:text-white">
-      {/* HERO SECTION WITH IMAGE & OVERLAY */}
+      {/* Cloudflare Stream Player SDK */}
+      <Script
+        src="https://embed.cloudflarestream.com/embed/sdk.latest.js"
+        strategy="afterInteractive"
+      />
+
+      {/* HERO SECTION WITH VIDEO & OVERLAY */}
       <section
         id="hero"
-        className="relative w-full bg-black overflow-hidden flex flex-col justify-between"
-        style={{
-          aspectRatio: "1094 / 768",
-        }}
+        className="relative w-full h-[100dvh] min-h-[620px] bg-black overflow-hidden flex flex-col justify-between"
       >
-        {/* Background Image: width equals screen width, height adjusts naturally with 1094/768 ratio */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
-          <Image
-            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/420a8da2-893b-473d-5841-27f068dda100/public"
-            alt="L'Orientalis - Beverage Botanicals"
-            fill
-            priority
-            unoptimized
-            quality={100}
-            sizes="100vw"
-            className="object-cover w-full h-full"
+        {/* Background Video Canvas covering viewport */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Cloudflare Stream Video Iframe - Autoplay, Muted, Loop */}
+          <iframe
+            ref={iframeRef}
+            src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/646c1e22d36d5dc9459d4080ac0e4508/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F646c1e22d36d5dc9459d4080ac0e4508%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&autoplay=true&muted=true&loop=true&controls=false&preload=auto"
+            loading="lazy"
             style={{
-              imageRendering: "-webkit-optimize-contrast",
+              border: "none",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width: "max(100vw, 177.78dvh)",
+              height: "max(56.25vw, 100dvh)",
+              minWidth: "100%",
+              minHeight: "100%",
+              transform: "translate(-50%, -50%)",
+              pointerEvents: "none",
+            }}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+            allowFullScreen={true}
+          />
+
+          {/* Subtly dark gradient tint */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.25) 100%)",
             }}
           />
         </div>
+
+        {/* BOTTOM GRADIENT BLENDING HERO INTO BLACK & MATCHING BOTTOM ELEMENTS */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
+          style={{
+            height: "clamp(220px, 32vh, 360px)",
+            background:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.85) 65%, #000000 100%)",
+          }}
+        />
 
         {/* HERO OVERLAY CONTENT */}
         <div className="relative z-20 w-full h-full pointer-events-none flex flex-col justify-between">
