@@ -271,54 +271,55 @@ export default function LorientalisGrowPage() {
             fill
             priority
             unoptimized
-            className="object-contain object-center pointer-events-none"
+            className="object-cover object-center pointer-events-none"
           />
         </div>
 
         {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Cards */}
         <div
-          className="relative z-30 w-full flex flex-col lg:flex-row items-start lg:items-end justify-between select-none pb-[clamp(18px,3.8vh,42px)] gap-6 lg:gap-0"
+          className="relative z-30 w-full flex flex-col md:flex-row items-start md:items-end select-none pb-[clamp(18px,3.8vh,42px)] gap-6 md:gap-0"
           style={{
             paddingLeft: "clamp(14px, 2.778vw, 40px)",
             paddingRight: "clamp(14px, 2.778vw, 40px)",
           }}
         >
-          {/* Left group: Know More button + 82px gap + Philosophy Narrative */}
-          {/* Items vertically centered with each other (button center aligns with text center) */}
-          {/* mb elevated so bottom of narrative text aligns with bottom of coffee/tea images */}
-          <div
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 lg:gap-[clamp(24px,6.406vw,82px)] mb-0 lg:mb-[clamp(28px,4vh,44px)] mr-0 lg:mr-[clamp(16px,3.672vw,47px)]"
-          >
-            {/* Know More Button: text black, arrow black, bg white on hover */}
+          {/* Left: Know More Button */}
+          {/* Vertical center aligned with narrative text center */}
+          <div className="shrink-0 mb-0 md:mb-[clamp(40px,5.8vh,66px)]">
             <button
               type="button"
               onClick={() => handleScrollTo("coffee")}
-              className="inline-flex items-center gap-[clamp(8px,0.938vw,12px)] border border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 cursor-pointer select-none shrink-0 group rounded-none h-[clamp(36px,4.5vh,45px)] px-[clamp(12px,1.25vw,16px)]"
+              className="inline-flex items-center gap-2.5 sm:gap-3 border border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 cursor-pointer select-none shrink-0 group rounded-none h-[40px] sm:h-[46px] px-3.5 sm:px-4"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(13px, 1.406vw, 18px)", // 18px at 1280px
+                fontSize: "clamp(14px, 1.406vw, 18px)", // 18px at 1280px
                 lineHeight: "120%",
                 letterSpacing: "0%",
                 textAlign: "right",
               }}
             >
               <span>Know More</span>
-              {/* Arrow as big as the button */}
+              {/* Arrow as big as button text, pointing down-right */}
               <svg
-                className="w-[clamp(22px,2.5vw,32px)] h-[clamp(22px,2.5vw,32px)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 shrink-0"
+                className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 shrink-0"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth={1.5}
+                strokeWidth={1.8}
               >
-                <path d="M5 5L19 19M19 19H8M19 19V8" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6 6L18 18M18 18H9M18 18V9" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
+          </div>
 
-            {/* Middle: Philosophy Narrative */}
+          {/* Right Group: Narrative Text + strict 47px gap + Coffee/Tea Cards */}
+          {/* ml-auto keeps cards at right margin, and keeps text strictly 47px from coffee card */}
+          {/* pl-[clamp(24px,6.406vw,82px)] guarantees the 82px minimum gap between button and narrative text */}
+          <div className="ml-auto flex flex-col sm:flex-row items-start sm:items-end gap-6 sm:gap-[clamp(16px,3.672vw,47px)] pl-[clamp(24px,6.406vw,82px)]">
+            {/* Philosophy Narrative: bottom aligned with bottom of coffee/tea images */}
             <p
-              className="m-0 select-none text-left sm:text-right"
+              className="m-0 select-none text-left sm:text-right mb-0 sm:mb-[clamp(28px,4vh,44px)]"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
@@ -332,99 +333,99 @@ export default function LorientalisGrowPage() {
             >
               Quality In The Cup Is Decided At The Farm. For Procurement And Hospitality Leaders, Understanding How Coffee And Tea Are Grown Is The First Step To Specifying Them With Confidence And To Holding A Supplier Accountable.
             </p>
-          </div>
 
-          {/* Right group: Coffee & Tea Thumbnail Cards (202x202 at 1280px) */}
-          <div className="flex items-end gap-[clamp(14px,2.656vw,34px)] shrink-0 select-none">
-            {/* Coffee thumbnail card */}
-            <button
-              type="button"
-              onClick={() => handleScrollTo("coffee")}
-              className="flex flex-col items-end group cursor-pointer text-right p-0 bg-transparent border-none focus:outline-none"
-              style={{
-                transition: "transform 300ms cubic-bezier(0.7, -0.4, 0.4, 1.4)",
-              }}
-            >
-              <div
-                className="relative overflow-hidden rounded-[14px] transition-transform group-hover:scale-[1.03] group-active:scale-[0.98]"
+            {/* Coffee & Tea Thumbnail Cards (202x202 at 1280px) */}
+            <div className="flex items-end gap-[clamp(14px,2.656vw,34px)] shrink-0 select-none">
+              {/* Coffee thumbnail card */}
+              <button
+                type="button"
+                onClick={() => handleScrollTo("coffee")}
+                className="flex flex-col items-end group cursor-pointer text-right p-0 bg-transparent border-none focus:outline-none"
                 style={{
-                  width: "clamp(120px, 15.781vw, 202px)",
-                  height: "clamp(120px, 15.781vw, 202px)",
-                  transitionTimingFunction: "cubic-bezier(0.7, -0.4, 0.4, 1.4)",
-                  transitionDuration: "300ms",
+                  transition: "transform 300ms cubic-bezier(0.7, -0.4, 0.4, 1.4)",
                 }}
               >
-                <Image
-                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/791ac191-2ccd-471d-04cb-40e6f8763900/public"
-                  alt="Coffee - Ripe Cherries"
-                  fill
-                  unoptimized
-                  priority
-                  className="object-cover pointer-events-none"
-                />
-              </div>
-              <div
-                className="mt-2.5 sm:mt-3 px-3 sm:px-3.5 py-1 rounded-[2px] transition-opacity duration-300 group-hover:opacity-90"
-                style={{
-                  background:
-                    "linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)",
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontWeight: 400,
-                  fontSize: "clamp(12px, 1.406vw, 18px)",
-                  lineHeight: "120%",
-                  letterSpacing: "0%",
-                  textAlign: "right",
-                  color: "#FFFFFF",
-                }}
-              >
-                Coffee
-              </div>
-            </button>
+                <div
+                  className="relative overflow-hidden rounded-[14px] transition-transform group-hover:scale-[1.03] group-active:scale-[0.98]"
+                  style={{
+                    width: "clamp(120px, 15.781vw, 202px)",
+                    height: "clamp(120px, 15.781vw, 202px)",
+                    transitionTimingFunction: "cubic-bezier(0.7, -0.4, 0.4, 1.4)",
+                    transitionDuration: "300ms",
+                  }}
+                >
+                  <Image
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/791ac191-2ccd-471d-04cb-40e6f8763900/public"
+                    alt="Coffee - Ripe Cherries"
+                    fill
+                    unoptimized
+                    priority
+                    className="object-cover pointer-events-none"
+                  />
+                </div>
+                <div
+                  className="mt-2.5 sm:mt-3 px-3 sm:px-3.5 py-1 rounded-[2px] transition-opacity duration-300 group-hover:opacity-90"
+                  style={{
+                    background:
+                      "linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)",
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(12px, 1.406vw, 18px)",
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                    textAlign: "right",
+                    color: "#FFFFFF",
+                  }}
+                >
+                  Coffee
+                </div>
+              </button>
 
-            {/* Tea thumbnail card */}
-            <button
-              type="button"
-              onClick={() => handleScrollTo("tea")}
-              className="flex flex-col items-end group cursor-pointer text-right p-0 bg-transparent border-none focus:outline-none"
-              style={{
-                transition: "transform 300ms cubic-bezier(0.7, -0.4, 0.4, 1.4)",
-              }}
-            >
-              <div
-                className="relative overflow-hidden rounded-[14px] transition-transform group-hover:scale-[1.03] group-active:scale-[0.98]"
+              {/* Tea thumbnail card */}
+              <button
+                type="button"
+                onClick={() => handleScrollTo("tea")}
+                className="flex flex-col items-end group cursor-pointer text-right p-0 bg-transparent border-none focus:outline-none"
                 style={{
-                  width: "clamp(120px, 15.781vw, 202px)",
-                  height: "clamp(120px, 15.781vw, 202px)",
-                  transitionTimingFunction: "cubic-bezier(0.7, -0.4, 0.4, 1.4)",
-                  transitionDuration: "300ms",
+                  transition: "transform 300ms cubic-bezier(0.7, -0.4, 0.4, 1.4)",
                 }}
               >
-                <Image
-                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/65c7379f-c2f3-4deb-3f37-25f791402500/public"
-                  alt="Tea - Camellia Sinensis Flush"
-                  fill
-                  unoptimized
-                  priority
-                  className="object-cover pointer-events-none"
-                />
-              </div>
-              <div
-                className="mt-2.5 sm:mt-3 px-3 sm:px-3.5 py-1 rounded-[2px] transition-opacity duration-300 group-hover:opacity-90"
-                style={{
-                  background:
-                    "linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)",
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontWeight: 400,
-                  fontSize: "clamp(12px, 1.406vw, 18px)",
-                  lineHeight: "120%",
-                  letterSpacing: "0%",
-                  textAlign: "right",
-                  color: "#FFFFFF",
-                }}
-              >
-                Tea
-              </div>
-            </button>
+                <div
+                  className="relative overflow-hidden rounded-[14px] transition-transform group-hover:scale-[1.03] group-active:scale-[0.98]"
+                  style={{
+                    width: "clamp(120px, 15.781vw, 202px)",
+                    height: "clamp(120px, 15.781vw, 202px)",
+                    transitionTimingFunction: "cubic-bezier(0.7, -0.4, 0.4, 1.4)",
+                    transitionDuration: "300ms",
+                  }}
+                >
+                  <Image
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/65c7379f-c2f3-4deb-3f37-25f791402500/public"
+                    alt="Tea - Camellia Sinensis Flush"
+                    fill
+                    unoptimized
+                    priority
+                    className="object-cover pointer-events-none"
+                  />
+                </div>
+                <div
+                  className="mt-2.5 sm:mt-3 px-3 sm:px-3.5 py-1 rounded-[2px] transition-opacity duration-300 group-hover:opacity-90"
+                  style={{
+                    background:
+                      "linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)",
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(12px, 1.406vw, 18px)",
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                    textAlign: "right",
+                    color: "#FFFFFF",
+                  }}
+                >
+                  Tea
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </section>
