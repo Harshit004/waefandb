@@ -250,7 +250,7 @@ export default function LorientalisGrowPage() {
           ========================================================================= */}
       <section
         id="grow-hero"
-        className="relative w-full min-h-[100dvh] lg:min-h-[729px] flex flex-col justify-between overflow-hidden bg-black select-none"
+        className="relative w-full min-h-[100dvh] lg:min-h-[729px] flex flex-col justify-end overflow-hidden bg-black select-none"
       >
         {/* Background ambient lighting */}
         <div className="absolute inset-0 pointer-events-none">
@@ -263,35 +263,39 @@ export default function LorientalisGrowPage() {
           />
         </div>
 
-        {/* HERO ARTWORK LAYER: Giant "Grow" organic moss branch illustration */}
-        <div className="relative w-full flex-1 flex items-center justify-center select-none pointer-events-none pt-[clamp(65px,8vw,100px)]">
-          <div className="relative w-full max-w-[1440px] aspect-[1024/530] sm:aspect-[1024/500] lg:aspect-[1024/470]">
+        {/* HERO ARTWORK LAYER: Spans end-to-end screen starting from top of screen behind header */}
+        <div className="absolute top-0 left-0 right-0 w-full pointer-events-none select-none z-0">
+          <div className="relative w-full aspect-[1024/682] max-h-[85vh]">
             <Image
               src="/images/lorientalis/grow-hero.png"
               alt="L'Orientalis Grow - Highland moss-covered branch with coffee cherries and tea leaves"
               fill
               priority
               unoptimized
-              className="object-contain object-left-top sm:object-center pointer-events-none"
+              className="object-cover object-top pointer-events-none"
             />
           </div>
         </div>
 
         {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Cards */}
         <div
-          className="relative z-30 w-full flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-0 select-none pb-[clamp(28px,3.8vw,48px)]"
+          className="relative z-30 w-full flex flex-col lg:flex-row items-start lg:items-end justify-between select-none pb-[clamp(24px,3.8vw,44px)] gap-8 lg:gap-0"
           style={{
             paddingLeft: "clamp(14px, 2.778vw, 40px)",
             paddingRight: "clamp(14px, 2.778vw, 40px)",
           }}
         >
-          {/* Left: "Know More ↘" Button + 82px gap + Philosophy Narrative */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-end gap-6 lg:gap-[clamp(24px,6.406vw,82px)]">
-            {/* Know More Button */}
+          {/* Left group: Know More button + 82px gap + Philosophy Narrative */}
+          {/* Items vertically centered with each other (button center aligns with text center) */}
+          {/* mb elevated so bottom of narrative text aligns with bottom of coffee/tea images */}
+          <div
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-[clamp(24px,6.406vw,82px)] mb-0 lg:mb-[clamp(32px,3.28vw,42px)] mr-0 lg:mr-[clamp(20px,3.672vw,47px)]"
+          >
+            {/* Know More Button: text black, arrow black, bg white on hover */}
             <button
               type="button"
               onClick={() => handleScrollTo("coffee")}
-              className="inline-flex items-center gap-2.5 sm:gap-3 border border-white text-white transition-all duration-300 hover:bg-white/10 cursor-pointer select-none shrink-0 group rounded-none"
+              className="inline-flex items-center gap-[clamp(8px,0.938vw,12px)] border border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 cursor-pointer select-none shrink-0 group rounded-none h-[clamp(36px,3.516vw,45px)] px-[clamp(12px,1.25vw,16px)]"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
@@ -299,19 +303,18 @@ export default function LorientalisGrowPage() {
                 lineHeight: "120%",
                 letterSpacing: "0%",
                 textAlign: "right",
-                padding: "clamp(8px, 0.86vw, 11px) clamp(14px, 1.406vw, 18px)",
               }}
             >
               <span>Know More</span>
+              {/* Arrow as big as the button */}
               <svg
-                className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 shrink-0"
-                viewBox="0 0 16 16"
+                className="w-[clamp(24px,2.5vw,32px)] h-[clamp(24px,2.5vw,32px)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 shrink-0"
+                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth={1.5}
               >
-                {/* Upside down arrow pointing down-right ↘ */}
-                <path d="M4 4L12 12M12 12H6M12 12V6" />
+                <path d="M5 5L19 19M19 19H8M19 19V8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
 
@@ -326,14 +329,14 @@ export default function LorientalisGrowPage() {
                 letterSpacing: "0%",
                 textAlign: "right",
                 color: "#DBDBDB",
-                maxWidth: "clamp(300px, 35.938vw, 460px)",
+                maxWidth: "clamp(300px, 36.25vw, 464px)",
               }}
             >
               Quality In The Cup Is Decided At The Farm. For Procurement And Hospitality Leaders, Understanding How Coffee And Tea Are Grown Is The First Step To Specifying Them With Confidence And To Holding A Supplier Accountable.
             </p>
           </div>
 
-          {/* Right: Coffee & Tea Thumbnail Cards (202x202 at 1280px) */}
+          {/* Right group: Coffee & Tea Thumbnail Cards (202x202 at 1280px) */}
           <div className="flex items-end gap-[clamp(16px,2.656vw,34px)] shrink-0 select-none">
             {/* Coffee thumbnail card */}
             <button
