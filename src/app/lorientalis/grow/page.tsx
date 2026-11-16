@@ -448,7 +448,8 @@ export default function LorientalisGrowPage() {
         {/* Section Heading Row with Horizontal Gradient Divider */}
         {/* Heading: Monschone, 400, Regular, 64px, line-height 100% */}
         {/* HR beside it: 1px solid border-image-source gradient 90deg, width 321px at 1280px, 95px gap below */}
-        <div className="w-full flex items-end gap-3 sm:gap-4 mb-[clamp(48px,7.422vw,95px)] select-none">
+        {/* Line aligned at 99% of heading height starting from top */}
+        <div className="w-full flex items-start gap-3 sm:gap-4 mb-[clamp(48px,7.422vw,95px)] select-none">
           <h2
             className="m-0 text-white font-normal whitespace-nowrap"
             style={{
@@ -462,11 +463,12 @@ export default function LorientalisGrowPage() {
             Coffee
           </h2>
           <div
-            className="h-[1px] shrink-0 mb-[4px] sm:mb-[6px]"
+            className="h-[1px] shrink-0"
             style={{
               width: "clamp(160px, 25.078vw, 321px)", // 321px at 1280px
               background:
                 "linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
+              marginTop: "calc(clamp(36px, 5vw, 64px) * 0.99)",
             }}
           />
         </div>
@@ -567,8 +569,14 @@ export default function LorientalisGrowPage() {
         }}
       >
         {/* Section Heading Row with Line on Left leading to "Varieties" on Right */}
-        <div className="w-full flex items-center justify-end mb-10 sm:mb-14 select-none">
-          <div className="flex-1 mr-6 sm:mr-8 h-px bg-gradient-to-l from-white/30 via-white/10 to-transparent" />
+        {/* Line aligned at 99% of heading height starting from top */}
+        <div className="w-full flex items-start justify-end mb-10 sm:mb-14 select-none">
+          <div
+            className="flex-1 mr-6 sm:mr-8 h-px bg-gradient-to-l from-white/30 via-white/10 to-transparent"
+            style={{
+              marginTop: "calc(clamp(32px, 3.8vw, 56px) * 0.99)",
+            }}
+          />
           <h2
             className="m-0 text-white font-normal whitespace-nowrap"
             style={{
@@ -858,8 +866,9 @@ export default function LorientalisGrowPage() {
         }}
       >
         {/* Section Heading Row with horizontal line */}
-        <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 select-none">
-          <div className="flex items-center flex-1">
+        {/* Line aligned at 99% of heading height starting from top */}
+        <div className="w-full flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-10 sm:mb-14 select-none">
+          <div className="flex items-start flex-1">
             <h2
               className="m-0 text-white font-normal whitespace-nowrap"
               style={{
@@ -870,12 +879,17 @@ export default function LorientalisGrowPage() {
             >
               Know your roasts
             </h2>
-            <div className="flex-1 ml-6 sm:ml-8 h-px bg-gradient-to-r from-white/30 via-white/10 to-transparent" />
+            <div
+              className="flex-1 ml-6 sm:ml-8 h-px bg-gradient-to-r from-white/30 via-white/10 to-transparent"
+              style={{
+                marginTop: "calc(clamp(30px, 3.6vw, 54px) * 0.99)",
+              }}
+            />
           </div>
 
           {/* Right Sub-narrative */}
           <p
-            className="m-0 text-[#A0A0A0] text-left sm:text-right text-[12px] sm:text-[13.5px] max-w-[420px] leading-[150%]"
+            className="m-0 text-[#A0A0A0] text-left sm:text-right text-[12px] sm:text-[13.5px] max-w-[420px] leading-[150%] sm:pt-[clamp(2px,0.5vw,8px)]"
             style={{ fontFamily: "var(--font-manrope), sans-serif" }}
           >
             There Is No Single Perfect Roast, Only The Right One For Your Guest And Your Menu. Three Things Are Worth Knowing
@@ -1134,8 +1148,14 @@ export default function LorientalisGrowPage() {
         }}
       >
         {/* Heading Row with horizontal line leading to "Tea Processing" on right */}
-        <div className="w-full flex items-center justify-end mb-8 sm:mb-12 select-none">
-          <div className="flex-1 mr-6 sm:mr-8 h-px bg-gradient-to-l from-white/30 via-white/10 to-transparent" />
+        {/* Line aligned at 99% of heading height starting from top */}
+        <div className="w-full flex items-start justify-end mb-8 sm:mb-12 select-none">
+          <div
+            className="flex-1 mr-6 sm:mr-8 h-px bg-gradient-to-l from-white/30 via-white/10 to-transparent"
+            style={{
+              marginTop: "calc(clamp(30px, 3.6vw, 54px) * 0.99)",
+            }}
+          />
           <h2
             className="m-0 text-white font-normal whitespace-nowrap"
             style={{
@@ -1296,7 +1316,8 @@ export default function LorientalisGrowPage() {
         }}
       >
         {/* Section Heading Row with Horizontal Divider */}
-        <div className="w-full flex items-center mb-10 sm:mb-14 select-none">
+        {/* Line aligned at 99% of heading height starting from top */}
+        <div className="w-full flex items-start mb-10 sm:mb-14 select-none">
           <h2
             className="m-0 text-white font-normal whitespace-nowrap"
             style={{
@@ -1307,7 +1328,12 @@ export default function LorientalisGrowPage() {
           >
             Variety of Teas
           </h2>
-          <div className="flex-1 ml-6 sm:ml-8 h-px bg-gradient-to-r from-white/30 via-white/10 to-transparent" />
+          <div
+            className="flex-1 ml-6 sm:ml-8 h-px bg-gradient-to-r from-white/30 via-white/10 to-transparent"
+            style={{
+              marginTop: "calc(clamp(30px, 3.6vw, 54px) * 0.99)",
+            }}
+          />
         </div>
 
         {/* 2x2 Grid of Tea Categories */}
