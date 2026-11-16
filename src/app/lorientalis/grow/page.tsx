@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
 
@@ -229,9 +230,14 @@ export default function LorientalisGrowPage() {
 
   const handleScrollTo = (id: string) => {
     const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    if (!el) return;
+    const headerOffset = 80;
+    const elementPosition = el.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -244,13 +250,7 @@ export default function LorientalisGrowPage() {
           ========================================================================= */}
       <section
         id="grow-hero"
-        className="relative w-full min-h-[580px] sm:min-h-[660px] lg:min-h-[760px] flex flex-col justify-between overflow-hidden"
-        style={{
-          paddingTop: "clamp(88px, 9vw, 130px)",
-          paddingBottom: "clamp(36px, 4vw, 56px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
-        }}
+        className="relative w-full min-h-[100dvh] lg:min-h-[729px] flex flex-col justify-between overflow-hidden bg-black select-none"
       >
         {/* Background ambient lighting */}
         <div className="absolute inset-0 pointer-events-none">
@@ -263,135 +263,166 @@ export default function LorientalisGrowPage() {
           />
         </div>
 
-        {/* TOP HERO LAYER: Giant "Grow" text with overlapping organic moss branch */}
-        <div className="relative w-full flex flex-col justify-start">
-          {/* Giant Title "Grow" */}
-          <div className="relative z-10 w-full select-none">
-            <h1
-              className="m-0 text-white font-normal leading-[90%]"
-              style={{
-                fontFamily: "var(--font-monschone), serif",
-                fontSize: "clamp(68px, 15vw, 220px)",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Grow
-            </h1>
-          </div>
-
-          {/* Organic Moss-Covered Branch with Coffee Cherries Placeholder */}
-          <div
-            className="absolute top-[-10px] sm:top-[-20px] right-0 z-20 w-[65vw] sm:w-[58vw] lg:w-[50vw] max-w-[760px] pointer-events-none select-none"
-            style={{
-              transform: "rotate(-2deg)",
-            }}
-          >
-            <VisualPlaceholder
-              label="Asset Placeholder: Organic Moss-Covered Tree Branch"
-              sublabel="Highland tree branch overgrown with velvety green moss, clusters of ripe red coffee cherries, roasted beans & delicate Camellia sinensis foliage"
-              aspectRatio="16/7"
-              theme="green"
-              iconType="branch"
-              className="shadow-2xl border-white/15 bg-gradient-to-l from-[#183623] via-[#0E2015] to-black/80"
+        {/* HERO ARTWORK LAYER: Giant "Grow" organic moss branch illustration */}
+        <div className="relative w-full flex-1 flex items-center justify-center select-none pointer-events-none pt-[clamp(65px,8vw,100px)]">
+          <div className="relative w-full max-w-[1440px] aspect-[1024/530] sm:aspect-[1024/500] lg:aspect-[1024/470]">
+            <Image
+              src="/images/lorientalis/grow-hero.png"
+              alt="L'Orientalis Grow - Highland moss-covered branch with coffee cherries and tea leaves"
+              fill
+              priority
+              unoptimized
+              className="object-contain object-left-top sm:object-center pointer-events-none"
             />
           </div>
         </div>
 
-        {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Thumbnails */}
-        <div className="relative z-30 w-full mt-14 sm:mt-20 lg:mt-28 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-12">
-          {/* Left: "Know More ↗" Button */}
-          <button
-            type="button"
-            onClick={() => handleScrollTo("coffee")}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-white/30 text-white text-[13px] sm:text-[14px] font-medium tracking-wide transition-all duration-300 hover:border-white hover:bg-white/10 cursor-pointer select-none shrink-0"
-            style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-          >
-            <span>Know More</span>
-            <svg
-              className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              viewBox="0 0 12 12"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" />
-            </svg>
-          </button>
-
-          {/* Middle: Philosophy Narrative */}
-          <div className="max-w-[460px] select-none">
-            <p
-              className="m-0 text-[#D1D1D1] font-normal"
+        {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Cards */}
+        <div
+          className="relative z-30 w-full flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-0 select-none pb-[clamp(28px,3.8vw,48px)]"
+          style={{
+            paddingLeft: "clamp(14px, 2.778vw, 40px)",
+            paddingRight: "clamp(14px, 2.778vw, 40px)",
+          }}
+        >
+          {/* Left: "Know More ↘" Button + 82px gap + Philosophy Narrative */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-end gap-6 lg:gap-[clamp(24px,6.406vw,82px)]">
+            {/* Know More Button */}
+            <button
+              type="button"
+              onClick={() => handleScrollTo("coffee")}
+              className="inline-flex items-center gap-2.5 sm:gap-3 border border-white text-white transition-all duration-300 hover:bg-white/10 cursor-pointer select-none shrink-0 group rounded-none"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(12px, 1.05vw, 15px)",
-                lineHeight: "155%",
+                fontWeight: 400,
+                fontSize: "clamp(13px, 1.406vw, 18px)", // 18px at 1280px
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                textAlign: "right",
+                padding: "clamp(8px, 0.86vw, 11px) clamp(14px, 1.406vw, 18px)",
+              }}
+            >
+              <span>Know More</span>
+              <svg
+                className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 shrink-0"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
+                {/* Upside down arrow pointing down-right ↘ */}
+                <path d="M4 4L12 12M12 12H6M12 12V6" />
+              </svg>
+            </button>
+
+            {/* Middle: Philosophy Narrative */}
+            <p
+              className="m-0 select-none text-left sm:text-right"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(13px, 1.406vw, 18px)", // 18px at 1280px
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                textAlign: "right",
+                color: "#DBDBDB",
+                maxWidth: "clamp(300px, 35.938vw, 460px)",
               }}
             >
               Quality In The Cup Is Decided At The Farm. For Procurement And Hospitality Leaders, Understanding How Coffee And Tea Are Grown Is The First Step To Specifying Them With Confidence And To Holding A Supplier Accountable.
             </p>
           </div>
 
-          {/* Right: Coffee & Tea Thumbnail Cards */}
-          <div className="flex items-center gap-4 sm:gap-6 shrink-0 select-none">
-            {/* Coffee thumbnail */}
+          {/* Right: Coffee & Tea Thumbnail Cards (202x202 at 1280px) */}
+          <div className="flex items-end gap-[clamp(16px,2.656vw,34px)] shrink-0 select-none">
+            {/* Coffee thumbnail card */}
             <button
               type="button"
               onClick={() => handleScrollTo("coffee")}
-              className="flex flex-col items-center gap-2 group cursor-pointer text-left"
+              className="flex flex-col items-end group cursor-pointer text-right p-0 bg-transparent border-none focus:outline-none"
+              style={{
+                transition: "transform 300ms cubic-bezier(0.7, -0.4, 0.4, 1.4)",
+              }}
             >
               <div
-                className="rounded-[2px] overflow-hidden border border-white/20 transition-all duration-300 group-hover:border-white/60 group-hover:scale-105"
+                className="relative overflow-hidden rounded-[14px] transition-transform group-hover:scale-[1.03] group-active:scale-[0.98]"
                 style={{
-                  width: "clamp(80px, 8vw, 115px)",
-                  height: "clamp(80px, 8vw, 115px)",
+                  width: "clamp(130px, 15.781vw, 202px)",
+                  height: "clamp(130px, 15.781vw, 202px)",
+                  transitionTimingFunction: "cubic-bezier(0.7, -0.4, 0.4, 1.4)",
+                  transitionDuration: "300ms",
                 }}
               >
-                <VisualPlaceholder
-                  label="Coffee"
-                  sublabel="Ripe Cherries"
-                  aspectRatio="1/1"
-                  theme="coffee"
-                  iconType="coffee"
-                  className="p-2 border-0"
+                <Image
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/791ac191-2ccd-471d-04cb-40e6f8763900/public"
+                  alt="Coffee - Ripe Cherries"
+                  fill
+                  unoptimized
+                  priority
+                  className="object-cover pointer-events-none"
                 />
               </div>
-              <span
-                className="text-[12px] sm:text-[13px] text-white/80 group-hover:text-white transition-colors"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+              <div
+                className="mt-2.5 sm:mt-3 px-3 sm:px-3.5 py-1 rounded-[2px] transition-opacity duration-300 group-hover:opacity-90"
+                style={{
+                  background:
+                    "linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(13px, 1.406vw, 18px)",
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  textAlign: "right",
+                  color: "#FFFFFF",
+                }}
               >
                 Coffee
-              </span>
+              </div>
             </button>
 
-            {/* Tea thumbnail */}
+            {/* Tea thumbnail card */}
             <button
               type="button"
               onClick={() => handleScrollTo("tea")}
-              className="flex flex-col items-center gap-2 group cursor-pointer text-left"
+              className="flex flex-col items-end group cursor-pointer text-right p-0 bg-transparent border-none focus:outline-none"
+              style={{
+                transition: "transform 300ms cubic-bezier(0.7, -0.4, 0.4, 1.4)",
+              }}
             >
               <div
-                className="rounded-[2px] overflow-hidden border border-white/20 transition-all duration-300 group-hover:border-white/60 group-hover:scale-105"
+                className="relative overflow-hidden rounded-[14px] transition-transform group-hover:scale-[1.03] group-active:scale-[0.98]"
                 style={{
-                  width: "clamp(80px, 8vw, 115px)",
-                  height: "clamp(80px, 8vw, 115px)",
+                  width: "clamp(130px, 15.781vw, 202px)",
+                  height: "clamp(130px, 15.781vw, 202px)",
+                  transitionTimingFunction: "cubic-bezier(0.7, -0.4, 0.4, 1.4)",
+                  transitionDuration: "300ms",
                 }}
               >
-                <VisualPlaceholder
-                  label="Tea"
-                  sublabel="Camellia Flush"
-                  aspectRatio="1/1"
-                  theme="tea"
-                  iconType="tea"
-                  className="p-2 border-0"
+                <Image
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/65c7379f-c2f3-4deb-3f37-25f791402500/public"
+                  alt="Tea - Camellia Sinensis Flush"
+                  fill
+                  unoptimized
+                  priority
+                  className="object-cover pointer-events-none"
                 />
               </div>
-              <span
-                className="text-[12px] sm:text-[13px] text-white/80 group-hover:text-white transition-colors"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+              <div
+                className="mt-2.5 sm:mt-3 px-3 sm:px-3.5 py-1 rounded-[2px] transition-opacity duration-300 group-hover:opacity-90"
+                style={{
+                  background:
+                    "linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(13px, 1.406vw, 18px)",
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  textAlign: "right",
+                  color: "#FFFFFF",
+                }}
               >
                 Tea
-              </span>
+              </div>
             </button>
           </div>
         </div>
