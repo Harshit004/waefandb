@@ -435,72 +435,93 @@ export default function LorientalisGrowPage() {
           ========================================================================= */}
       <section
         id="coffee"
-        className="w-full flex flex-col justify-center overflow-hidden"
+        className="w-full flex flex-col justify-center overflow-hidden bg-black select-none"
         style={{
-          paddingTop: "clamp(56px, 7vw, 110px)",
-          paddingBottom: "clamp(56px, 7vw, 110px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingTop: "clamp(56px, 7vw, 100px)",
+          paddingBottom: "clamp(56px, 7vw, 100px)",
+          paddingLeft: "clamp(16px, 3.125vw, 40px)",
+          paddingRight: "clamp(16px, 3.125vw, 40px)",
         }}
       >
-        {/* Section Heading Row with Horizontal Divider */}
-        <div className="w-full flex items-center mb-10 sm:mb-14 lg:mb-16 select-none">
+        {/* Section Heading Row with Horizontal Gradient Divider */}
+        {/* Heading: Monschone, 400, Regular, 64px, line-height 100% */}
+        {/* HR beside it: 1px solid border-image-source gradient 90deg, width 321px at 1280px, 95px gap below */}
+        <div className="w-full flex items-end gap-3 sm:gap-4 mb-[clamp(48px,7.422vw,95px)] select-none">
           <h2
             className="m-0 text-white font-normal whitespace-nowrap"
             style={{
               fontFamily: "var(--font-monschone), serif",
-              fontSize: "clamp(32px, 3.8vw, 56px)",
+              fontWeight: 400,
+              fontSize: "clamp(36px, 5vw, 64px)", // 64px at 1280px
               lineHeight: "100%",
+              letterSpacing: "0%",
             }}
           >
             Coffee
           </h2>
-          <div className="flex-1 ml-6 sm:ml-8 h-px bg-gradient-to-r from-white/30 via-white/10 to-transparent" />
+          <div
+            className="h-[1px] shrink-0 mb-[4px] sm:mb-[6px]"
+            style={{
+              width: "clamp(160px, 25.078vw, 321px)", // 321px at 1280px
+              background:
+                "linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
+            }}
+          />
         </div>
 
         {/* 3-Column Content Layout: Left Terroir | Center Portrait Botanical | Right Varietals */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-center select-none">
-          {/* Left Column: Terroir Overview */}
-          <div className="md:col-span-4 lg:col-span-3 flex flex-col items-start justify-center">
+        <div className="w-full flex flex-col lg:flex-row items-center lg:items-stretch justify-between gap-8 lg:gap-0 select-none">
+          {/* Left Column: Terroir Overview (inward right-aligned) */}
+          <div className="w-full lg:w-[clamp(240px,25.469vw,326px)] shrink-0 flex flex-col justify-start lg:pt-[clamp(160px,28.438vw,364px)] pr-0 lg:pr-[clamp(12px,1.875vw,24px)]">
             <p
-              className="m-0 text-[#D1D1D1] font-normal leading-[160%]"
+              className="m-0 text-[#DBDBDB] font-normal text-left lg:text-right lg:ml-auto"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(13px, 1.1vw, 16px)",
+                fontWeight: 400,
+                fontSize: "clamp(14px, 1.406vw, 18px)", // 18px at 1280px
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                maxWidth: "clamp(260px, 24.219vw, 310px)",
               }}
             >
               Soil, Climate, Sunlight, Vegetation, And Altitude Shape Coffee&apos;s Flavour. This Combination, Called Terroir, Is Key In Single-Origin Coffee From One Farm Or Region, Giving It A Unique, Complex Taste.
             </p>
           </div>
 
-          {/* Center Column: Central Portrait Image of Coffee Plant with Cherries & White Blossoms */}
-          <div className="md:col-span-4 lg:col-span-6 flex justify-center">
+          {/* Center Column: Central Portrait Image of Coffee Plant with Cherries & White Blossoms (479x740 at 1280px) */}
+          <div className="shrink-0 flex justify-center">
             <div
-              className="w-full max-w-[420px] rounded-[2px] overflow-hidden shadow-2xl border border-white/10"
+              className="relative overflow-hidden shrink-0"
               style={{
-                aspectRatio: "3/4",
-                minHeight: "clamp(340px, 38vw, 560px)",
+                width: "clamp(280px, 37.422vw, 479px)",
+                height: "clamp(432px, 57.812vw, 740px)",
+                aspectRatio: "479 / 740",
               }}
             >
-              <VisualPlaceholder
-                label="Asset Placeholder: Coffee Tree with Cherries & Blossoms"
-                sublabel="Close-up of vibrant Coffea arabica branch with delicate star-shaped white blossoms, dense clusters of ripening crimson cherries & glossy dark green leaves"
-                theme="coffee"
-                iconType="branch"
-                className="h-full border-0 bg-gradient-to-b from-[#1C120C] via-[#2A160D] to-[#0A0503]"
+              <Image
+                src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/efdeefd5-de98-441d-a37f-ec36eaf44b00/public"
+                alt="Coffee Plant with Ripe Cherries and White Blossoms"
+                fill
+                priority
+                unoptimized
+                className="object-cover pointer-events-none"
               />
             </div>
           </div>
 
-          {/* Right Column: Two Stacked Varietal & Altitude Factor Blocks */}
-          <div className="md:col-span-4 lg:col-span-3 flex flex-col gap-8 sm:gap-10 justify-center">
+          {/* Right Column: Two Stacked Varietal & Altitude Factor Blocks (inward left-aligned) */}
+          <div className="w-full lg:w-[clamp(260px,30.781vw,394px)] shrink-0 flex flex-col justify-between lg:pt-[clamp(40px,7.656vw,98px)] lg:pb-[clamp(40px,8.281vw,106px)] pl-0 lg:pl-[clamp(16px,2.5vw,32px)] gap-6 lg:gap-0">
             {/* Top Text Block */}
             <div>
               <p
-                className="m-0 text-[#B5B5B5] font-normal leading-[160%]"
+                className="m-0 text-[#DBDBDB] font-normal text-left"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
-                  fontSize: "clamp(12px, 1.0vw, 14.5px)",
+                  fontWeight: 400,
+                  fontSize: "clamp(14px, 1.406vw, 18px)", // 18px at 1280px
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  maxWidth: "clamp(280px, 28.516vw, 365px)",
                 }}
               >
                 Coffee Varieties, Or Varietals, Are The Different Types Of Coffee Plant, Much As Apples Come In Different Types. Each Has Its Own Profile Of Flavor, Body, Acidity, Sweetness, Finish, And Caffeine.
@@ -510,10 +531,14 @@ export default function LorientalisGrowPage() {
             {/* Bottom Text Block */}
             <div>
               <p
-                className="m-0 text-[#B5B5B5] font-normal leading-[160%]"
+                className="m-0 text-[#DBDBDB] font-normal text-left"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
-                  fontSize: "clamp(12px, 1.0vw, 14.5px)",
+                  fontWeight: 400,
+                  fontSize: "clamp(14px, 1.406vw, 18px)", // 18px at 1280px
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  maxWidth: "clamp(280px, 28.516vw, 365px)",
                 }}
               >
                 Reviews Temperature, Altitude, Shade, Rainfall, And Agronomy As Key Coffee Terroir Factors. A Review Of 73 Studies Found Higher Altitude Consistently Linked To Better Sensory Quality. For Buyers, Terroir Distinguishes Commodity Beans From Traceable Origins.
