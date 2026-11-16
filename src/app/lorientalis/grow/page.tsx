@@ -433,12 +433,14 @@ export default function LorientalisGrowPage() {
       {/* =========================================================================
           SECTION 2: COFFEE TERROIR & BOTANICAL SPREAD
           ========================================================================= */}
+      {/* Gap from Hero: 72px (clamp(38px, 5.625vw, 72px)) */}
+      {/* Gap to Varieties: 92px (clamp(48px, 7.188vw, 92px)) */}
       <section
         id="coffee"
         className="w-full flex flex-col justify-center overflow-hidden bg-black select-none"
         style={{
-          paddingTop: "clamp(56px, 7vw, 100px)",
-          paddingBottom: "clamp(56px, 7vw, 100px)",
+          paddingTop: "clamp(38px, 5.625vw, 72px)",
+          paddingBottom: "clamp(48px, 7.188vw, 92px)",
           paddingLeft: "clamp(16px, 3.125vw, 40px)",
           paddingRight: "clamp(16px, 3.125vw, 40px)",
         }}
@@ -551,14 +553,17 @@ export default function LorientalisGrowPage() {
       {/* =========================================================================
           SECTION 3: VARIETIES OVERVIEW & ARABICA / ROBUSTA CARDS
           ========================================================================= */}
+      {/* 92px gap from Coffee (via Coffee pb) */}
+      {/* 172px gap between content and carousel (mb-[clamp(80px,13.438vw,172px)]) */}
+      {/* 172px gap to Know your roasts (pb-[clamp(80px,13.438vw,172px)]) */}
       <section
         id="varieties"
         className="w-full flex flex-col justify-center overflow-hidden"
         style={{
-          paddingTop: "clamp(48px, 6vw, 90px)",
-          paddingBottom: "clamp(48px, 6vw, 90px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingTop: 0,
+          paddingBottom: "clamp(80px, 13.438vw, 172px)",
+          paddingLeft: "clamp(16px, 3.125vw, 40px)",
+          paddingRight: "clamp(16px, 3.125vw, 40px)",
         }}
       >
         {/* Section Heading Row with Line on Left leading to "Varieties" on Right */}
@@ -577,7 +582,8 @@ export default function LorientalisGrowPage() {
         </div>
 
         {/* Content Row: Description on Left, Arabica & Robusta Green Cards on Right */}
-        <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-8 lg:gap-14 select-none mb-14 sm:mb-18">
+        {/* 172px gap to the Carousel below */}
+        <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-8 lg:gap-14 select-none mb-[clamp(80px,13.438vw,172px)]">
           {/* Left: Heading & Description */}
           <div className="max-w-[500px]">
             <h3
@@ -838,14 +844,17 @@ export default function LorientalisGrowPage() {
       {/* =========================================================================
           SECTION 5: KNOW YOUR ROASTS & DEGREE SPECTRUM
           ========================================================================= */}
+      {/* 172px gap from Varieties Carousel (via Varieties pb) */}
+      {/* 172px gap between Roast Spectrum and Most Common Varieties (mb-[clamp(80px,13.438vw,172px)]) */}
+      {/* 172px gap to Tea Processing Big Image (pb-[clamp(80px,13.438vw,172px)]) */}
       <section
         id="roasts"
         className="w-full flex flex-col justify-center overflow-hidden"
         style={{
-          paddingTop: "clamp(56px, 7vw, 110px)",
-          paddingBottom: "clamp(56px, 7vw, 110px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingTop: 0,
+          paddingBottom: "clamp(80px, 13.438vw, 172px)",
+          paddingLeft: "clamp(16px, 3.125vw, 40px)",
+          paddingRight: "clamp(16px, 3.125vw, 40px)",
         }}
       >
         {/* Section Heading Row with horizontal line */}
@@ -891,7 +900,8 @@ export default function LorientalisGrowPage() {
         </div>
 
         {/* Roast Spectrum Selector Bar & Tabs */}
-        <div className="w-full flex flex-col items-center gap-5 select-none mb-14 sm:mb-18">
+        {/* 172px gap to Most common varieties below */}
+        <div className="w-full flex flex-col items-center gap-5 select-none mb-[clamp(80px,13.438vw,172px)]">
           {/* Continuous gradient horizontal slider indicator */}
           <div className="w-full h-1.5 rounded-full bg-gradient-to-r from-[#1A0A05] via-[#A85A2A] to-[#D6B086] relative">
             <div
@@ -1049,14 +1059,16 @@ export default function LorientalisGrowPage() {
       {/* =========================================================================
           SECTION 6: DISCOVER YOUR PERFECT TEA BANNER
           ========================================================================= */}
+      {/* 172px gap from Roasts Most Common Varieties (via Roasts pb) */}
+      {/* 186px gap to Tea Processing Section (pb-[clamp(88px,14.531vw,186px)]) */}
       <section
         id="tea"
         className="w-full flex flex-col justify-center overflow-hidden"
         style={{
-          paddingTop: "clamp(48px, 6vw, 90px)",
-          paddingBottom: "clamp(48px, 6vw, 90px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingTop: 0,
+          paddingBottom: "clamp(88px, 14.531vw, 186px)",
+          paddingLeft: "clamp(16px, 3.125vw, 40px)",
+          paddingRight: "clamp(16px, 3.125vw, 40px)",
         }}
       >
         <div
@@ -1109,14 +1121,16 @@ export default function LorientalisGrowPage() {
       {/* =========================================================================
           SECTION 7: TEA PROCESSING - CONTROLLED DEHYDRATION & OXIDATION
           ========================================================================= */}
+      {/* 186px gap from Discover Your Perfect Tea banner (via #tea pb) */}
+      {/* 108px gap to Another big image (pb-[clamp(54px,8.438vw,108px)]) */}
       <section
         id="tea-processing"
         className="w-full flex flex-col justify-center overflow-hidden"
         style={{
-          paddingTop: "clamp(48px, 6vw, 90px)",
-          paddingBottom: "clamp(48px, 6vw, 90px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingTop: 0,
+          paddingBottom: "clamp(54px, 8.438vw, 108px)",
+          paddingLeft: "clamp(16px, 3.125vw, 40px)",
+          paddingRight: "clamp(16px, 3.125vw, 40px)",
         }}
       >
         {/* Heading Row with horizontal line leading to "Tea Processing" on right */}
@@ -1237,14 +1251,16 @@ export default function LorientalisGrowPage() {
       {/* =========================================================================
           SECTION 8: TEA RITUAL PHOTOGRAPHIC FEATURE BANNER
           ========================================================================= */}
+      {/* 108px gap from Tea Processing (via #tea-processing pb) */}
+      {/* 160px gap to Varieties of tea (pb-[clamp(80px,12.5vw,160px)]) */}
       <section
         id="tea-ritual"
         className="w-full flex justify-center overflow-hidden"
         style={{
-          paddingTop: "clamp(32px, 4vw, 64px)",
-          paddingBottom: "clamp(48px, 6vw, 90px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingTop: 0,
+          paddingBottom: "clamp(80px, 12.5vw, 160px)",
+          paddingLeft: "clamp(16px, 3.125vw, 40px)",
+          paddingRight: "clamp(16px, 3.125vw, 40px)",
         }}
       >
         <div
@@ -1267,14 +1283,16 @@ export default function LorientalisGrowPage() {
       {/* =========================================================================
           SECTION 9: VARIETY OF TEAS - 2X2 CARD SPREAD
           ========================================================================= */}
+      {/* 160px gap from another big image (via #tea-ritual pb) */}
+      {/* 185px gap to footer (pb-[clamp(90px,14.453vw,185px)]) */}
       <section
         id="variety-of-teas"
         className="w-full flex flex-col justify-center overflow-hidden"
         style={{
-          paddingTop: "clamp(48px, 6vw, 90px)",
-          paddingBottom: "clamp(64px, 8vw, 120px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          paddingTop: 0,
+          paddingBottom: "clamp(90px, 14.453vw, 185px)",
+          paddingLeft: "clamp(16px, 3.125vw, 40px)",
+          paddingRight: "clamp(16px, 3.125vw, 40px)",
         }}
       >
         {/* Section Heading Row with Horizontal Divider */}
