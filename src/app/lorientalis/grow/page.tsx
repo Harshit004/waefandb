@@ -250,7 +250,7 @@ export default function LorientalisGrowPage() {
           ========================================================================= */}
       <section
         id="grow-hero"
-        className="relative w-full min-h-[100dvh] lg:min-h-[729px] flex flex-col justify-end overflow-hidden bg-black select-none"
+        className="relative w-full h-[100dvh] flex flex-col justify-end overflow-hidden bg-black select-none"
       >
         {/* Background ambient lighting */}
         <div className="absolute inset-0 pointer-events-none">
@@ -263,23 +263,21 @@ export default function LorientalisGrowPage() {
           />
         </div>
 
-        {/* HERO ARTWORK LAYER: Spans end-to-end screen starting from top of screen behind header */}
-        <div className="absolute top-0 left-0 right-0 w-full pointer-events-none select-none z-0">
-          <div className="relative w-full aspect-[1024/682] max-h-[85vh]">
-            <Image
-              src="/images/lorientalis/grow-hero.png"
-              alt="L'Orientalis Grow - Highland moss-covered branch with coffee cherries and tea leaves"
-              fill
-              priority
-              unoptimized
-              className="object-cover object-top pointer-events-none"
-            />
-          </div>
+        {/* HERO ARTWORK LAYER: Spans end-to-end top-to-bottom left-to-right in intact ratio of dimensions */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
+          <Image
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/94da132b-c938-49ac-0ed3-1e2015466d00/public"
+            alt="L'Orientalis Grow"
+            fill
+            priority
+            unoptimized
+            className="object-contain object-center pointer-events-none"
+          />
         </div>
 
         {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Cards */}
         <div
-          className="relative z-30 w-full flex flex-col lg:flex-row items-start lg:items-end justify-between select-none pb-[clamp(24px,3.8vw,44px)] gap-8 lg:gap-0"
+          className="relative z-30 w-full flex flex-col lg:flex-row items-start lg:items-end justify-between select-none pb-[clamp(18px,3.8vh,42px)] gap-6 lg:gap-0"
           style={{
             paddingLeft: "clamp(14px, 2.778vw, 40px)",
             paddingRight: "clamp(14px, 2.778vw, 40px)",
@@ -289,13 +287,13 @@ export default function LorientalisGrowPage() {
           {/* Items vertically centered with each other (button center aligns with text center) */}
           {/* mb elevated so bottom of narrative text aligns with bottom of coffee/tea images */}
           <div
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-[clamp(24px,6.406vw,82px)] mb-0 lg:mb-[clamp(32px,3.28vw,42px)] mr-0 lg:mr-[clamp(20px,3.672vw,47px)]"
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 lg:gap-[clamp(24px,6.406vw,82px)] mb-0 lg:mb-[clamp(28px,4vh,44px)] mr-0 lg:mr-[clamp(16px,3.672vw,47px)]"
           >
             {/* Know More Button: text black, arrow black, bg white on hover */}
             <button
               type="button"
               onClick={() => handleScrollTo("coffee")}
-              className="inline-flex items-center gap-[clamp(8px,0.938vw,12px)] border border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 cursor-pointer select-none shrink-0 group rounded-none h-[clamp(36px,3.516vw,45px)] px-[clamp(12px,1.25vw,16px)]"
+              className="inline-flex items-center gap-[clamp(8px,0.938vw,12px)] border border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 cursor-pointer select-none shrink-0 group rounded-none h-[clamp(36px,4.5vh,45px)] px-[clamp(12px,1.25vw,16px)]"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
@@ -308,7 +306,7 @@ export default function LorientalisGrowPage() {
               <span>Know More</span>
               {/* Arrow as big as the button */}
               <svg
-                className="w-[clamp(24px,2.5vw,32px)] h-[clamp(24px,2.5vw,32px)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 shrink-0"
+                className="w-[clamp(22px,2.5vw,32px)] h-[clamp(22px,2.5vw,32px)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5 shrink-0"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -324,12 +322,12 @@ export default function LorientalisGrowPage() {
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(13px, 1.406vw, 18px)", // 18px at 1280px
+                fontSize: "clamp(12px, 1.406vw, 18px)", // 18px at 1280px
                 lineHeight: "120%",
                 letterSpacing: "0%",
                 textAlign: "right",
                 color: "#DBDBDB",
-                maxWidth: "clamp(300px, 36.25vw, 464px)",
+                maxWidth: "clamp(280px, 36.25vw, 464px)",
               }}
             >
               Quality In The Cup Is Decided At The Farm. For Procurement And Hospitality Leaders, Understanding How Coffee And Tea Are Grown Is The First Step To Specifying Them With Confidence And To Holding A Supplier Accountable.
@@ -337,7 +335,7 @@ export default function LorientalisGrowPage() {
           </div>
 
           {/* Right group: Coffee & Tea Thumbnail Cards (202x202 at 1280px) */}
-          <div className="flex items-end gap-[clamp(16px,2.656vw,34px)] shrink-0 select-none">
+          <div className="flex items-end gap-[clamp(14px,2.656vw,34px)] shrink-0 select-none">
             {/* Coffee thumbnail card */}
             <button
               type="button"
@@ -350,8 +348,8 @@ export default function LorientalisGrowPage() {
               <div
                 className="relative overflow-hidden rounded-[14px] transition-transform group-hover:scale-[1.03] group-active:scale-[0.98]"
                 style={{
-                  width: "clamp(130px, 15.781vw, 202px)",
-                  height: "clamp(130px, 15.781vw, 202px)",
+                  width: "clamp(120px, 15.781vw, 202px)",
+                  height: "clamp(120px, 15.781vw, 202px)",
                   transitionTimingFunction: "cubic-bezier(0.7, -0.4, 0.4, 1.4)",
                   transitionDuration: "300ms",
                 }}
@@ -372,7 +370,7 @@ export default function LorientalisGrowPage() {
                     "linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)",
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 400,
-                  fontSize: "clamp(13px, 1.406vw, 18px)",
+                  fontSize: "clamp(12px, 1.406vw, 18px)",
                   lineHeight: "120%",
                   letterSpacing: "0%",
                   textAlign: "right",
@@ -395,8 +393,8 @@ export default function LorientalisGrowPage() {
               <div
                 className="relative overflow-hidden rounded-[14px] transition-transform group-hover:scale-[1.03] group-active:scale-[0.98]"
                 style={{
-                  width: "clamp(130px, 15.781vw, 202px)",
-                  height: "clamp(130px, 15.781vw, 202px)",
+                  width: "clamp(120px, 15.781vw, 202px)",
+                  height: "clamp(120px, 15.781vw, 202px)",
                   transitionTimingFunction: "cubic-bezier(0.7, -0.4, 0.4, 1.4)",
                   transitionDuration: "300ms",
                 }}
@@ -417,7 +415,7 @@ export default function LorientalisGrowPage() {
                     "linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)",
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 400,
-                  fontSize: "clamp(13px, 1.406vw, 18px)",
+                  fontSize: "clamp(12px, 1.406vw, 18px)",
                   lineHeight: "120%",
                   letterSpacing: "0%",
                   textAlign: "right",
