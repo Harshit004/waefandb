@@ -889,20 +889,24 @@ export default function LorientalisGrowPage() {
         {/* 110px gap at 1280px */}
         <div className="h-[clamp(55px,8.594vw,198px)]" />
 
-        {/* Full-bleed Green Banner Row: Light Roast & Medium Roast */}
+        {/* Varieties Row: Light Roast & Medium Roast with green background ONLY around text (90% circle height, vertically centered) */}
         <div
-          className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)] px-[clamp(16px,3.125vw,75px)] select-none mb-[clamp(80px,13.438vw,310px)]"
-          style={{
-            backgroundColor: "rgba(67, 88, 57, 0.32)",
-            paddingTop: "clamp(24px, 2.8vw, 54px)",
-            paddingBottom: "clamp(24px, 2.8vw, 54px)",
-          }}
+          className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)] select-none mb-[clamp(80px,13.438vw,310px)]"
         >
-          <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 relative">
-            {/* Light Roast Narrative (Left) */}
-            <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left">
+          <div className="w-full flex flex-col lg:flex-row items-center justify-between relative pb-[clamp(24px,2.5vw,48px)]">
+            {/* Left Column: Green Text Box (Light Roast) */}
+            <div
+              className="w-full lg:flex-1 flex items-center justify-start z-0 py-4 lg:py-0"
+              style={{
+                minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
+                backgroundColor: "rgba(67, 88, 57, 0.35)",
+                paddingLeft: "clamp(16px, 3.125vw, 75px)",
+                paddingRight: "clamp(16px, 2.5vw, 40px)",
+                marginRight: "calc(-1 * clamp(15px, 2vw, 35px))",
+              }}
+            >
               <p
-                className="m-0 text-[#D5D5D5]"
+                className="m-0 text-[#D5D5D5] text-left max-w-[clamp(260px,24vw,520px)]"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 500,
@@ -915,23 +919,23 @@ export default function LorientalisGrowPage() {
               </p>
             </div>
 
-            {/* Center: Two Empty Circles 232x232 with Labels */}
-            <div className="flex items-start justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0">
+            {/* Center: Two Empty Circles 232x232 with Labels below */}
+            <div className="flex items-center justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0 z-10 relative my-6 lg:my-0">
               {/* Circle 1: Light Roast */}
-              <div className="flex flex-col items-center">
+              <div className="relative flex flex-col items-center">
                 <div
                   className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
                   style={{
                     width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                     height: "clamp(150px, 18.125vw, 360px)",
                     aspectRatio: "1 / 1",
-                    backgroundColor: "#435839",
-                    border: "1px solid rgba(213, 213, 213, 0.25)",
+                    backgroundColor: "#000000",
+                    border: "1px solid rgba(213, 213, 213, 0.3)",
                     boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                   }}
                 />
                 <span
-                  className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                  className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 500,
@@ -945,20 +949,20 @@ export default function LorientalisGrowPage() {
               </div>
 
               {/* Circle 2: Medium Roast */}
-              <div className="flex flex-col items-center">
+              <div className="relative flex flex-col items-center">
                 <div
                   className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
                   style={{
                     width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                     height: "clamp(150px, 18.125vw, 360px)",
                     aspectRatio: "1 / 1",
-                    backgroundColor: "#435839",
-                    border: "1px solid rgba(213, 213, 213, 0.25)",
+                    backgroundColor: "#000000",
+                    border: "1px solid rgba(213, 213, 213, 0.3)",
                     boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                   }}
                 />
                 <span
-                  className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                  className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 500,
@@ -972,10 +976,19 @@ export default function LorientalisGrowPage() {
               </div>
             </div>
 
-            {/* Medium Roast Narrative (Right) */}
-            <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left lg:text-right">
+            {/* Right Column: Green Text Box (Medium Roast) */}
+            <div
+              className="w-full lg:flex-1 flex items-center justify-end z-0 py-4 lg:py-0"
+              style={{
+                minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
+                backgroundColor: "rgba(67, 88, 57, 0.35)",
+                paddingRight: "clamp(16px, 3.125vw, 75px)",
+                paddingLeft: "clamp(16px, 2.5vw, 40px)",
+                marginLeft: "calc(-1 * clamp(15px, 2vw, 35px))",
+              }}
+            >
               <p
-                className="m-0 text-[#D5D5D5]"
+                className="m-0 text-[#D5D5D5] text-right max-w-[clamp(260px,24vw,520px)]"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 500,
@@ -1335,22 +1348,24 @@ export default function LorientalisGrowPage() {
           />
         </div>
 
-        {/* Variety of Teas: Two Full-bleed Horizontal Banner Rows */}
+        {/* Variety of Teas: Two Rows with green background ONLY around text (90% circle height, vertically centered) */}
         <div className="w-full flex flex-col gap-[clamp(48px,9.375vw,150px)] select-none">
           {/* ROW 1: Green Tea & CTC Tea */}
-          <div
-            className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)] px-[clamp(16px,3.125vw,75px)]"
-            style={{
-              backgroundColor: "rgba(67, 88, 57, 0.32)",
-              paddingTop: "clamp(24px, 2.8vw, 54px)",
-              paddingBottom: "clamp(24px, 2.8vw, 54px)",
-            }}
-          >
-            <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 relative">
-              {/* Green Tea Narrative (Left) */}
-              <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left">
+          <div className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)]">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-between relative pb-[clamp(24px,2.5vw,48px)]">
+              {/* Green Tea Narrative (Left Green Box) */}
+              <div
+                className="w-full lg:flex-1 flex items-center justify-start z-0 py-4 lg:py-0"
+                style={{
+                  minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
+                  backgroundColor: "rgba(67, 88, 57, 0.35)",
+                  paddingLeft: "clamp(16px, 3.125vw, 75px)",
+                  paddingRight: "clamp(16px, 2.5vw, 40px)",
+                  marginRight: "calc(-1 * clamp(15px, 2vw, 35px))",
+                }}
+              >
                 <p
-                  className="m-0 text-[#D5D5D5]"
+                  className="m-0 text-[#D5D5D5] text-left max-w-[clamp(260px,24vw,520px)]"
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 500,
@@ -1363,23 +1378,23 @@ export default function LorientalisGrowPage() {
                 </p>
               </div>
 
-              {/* Center: Green Tea & CTC Tea Empty Circles 232x232 with Labels */}
-              <div className="flex items-start justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0">
+              {/* Center: Green Tea & CTC Tea Empty Circles 232x232 with Labels below */}
+              <div className="flex items-center justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0 z-10 relative my-6 lg:my-0">
                 {/* Green Tea Circle */}
-                <div className="flex flex-col items-center">
+                <div className="relative flex flex-col items-center">
                   <div
                     className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
                     style={{
                       width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                       height: "clamp(150px, 18.125vw, 360px)",
                       aspectRatio: "1 / 1",
-                      backgroundColor: "#435839",
-                      border: "1px solid rgba(213, 213, 213, 0.25)",
+                      backgroundColor: "#000000",
+                      border: "1px solid rgba(213, 213, 213, 0.3)",
                       boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                     }}
                   />
                   <span
-                    className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                    className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 500,
@@ -1393,20 +1408,20 @@ export default function LorientalisGrowPage() {
                 </div>
 
                 {/* CTC Tea Circle */}
-                <div className="flex flex-col items-center">
+                <div className="relative flex flex-col items-center">
                   <div
                     className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
                     style={{
                       width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                       height: "clamp(150px, 18.125vw, 360px)",
                       aspectRatio: "1 / 1",
-                      backgroundColor: "#435839",
-                      border: "1px solid rgba(213, 213, 213, 0.25)",
+                      backgroundColor: "#000000",
+                      border: "1px solid rgba(213, 213, 213, 0.3)",
                       boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                     }}
                   />
                   <span
-                    className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                    className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 500,
@@ -1420,10 +1435,19 @@ export default function LorientalisGrowPage() {
                 </div>
               </div>
 
-              {/* CTC Tea Narrative (Right) */}
-              <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left lg:text-right">
+              {/* CTC Tea Narrative (Right Green Box) */}
+              <div
+                className="w-full lg:flex-1 flex items-center justify-end z-0 py-4 lg:py-0"
+                style={{
+                  minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
+                  backgroundColor: "rgba(67, 88, 57, 0.35)",
+                  paddingRight: "clamp(16px, 3.125vw, 75px)",
+                  paddingLeft: "clamp(16px, 2.5vw, 40px)",
+                  marginLeft: "calc(-1 * clamp(15px, 2vw, 35px))",
+                }}
+              >
                 <p
-                  className="m-0 text-[#D5D5D5]"
+                  className="m-0 text-[#D5D5D5] text-right max-w-[clamp(260px,24vw,520px)]"
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 500,
@@ -1439,19 +1463,21 @@ export default function LorientalisGrowPage() {
           </div>
 
           {/* ROW 2: Black Tea & Orthodox Tea */}
-          <div
-            className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)] px-[clamp(16px,3.125vw,75px)]"
-            style={{
-              backgroundColor: "rgba(67, 88, 57, 0.32)",
-              paddingTop: "clamp(24px, 2.8vw, 54px)",
-              paddingBottom: "clamp(24px, 2.8vw, 54px)",
-            }}
-          >
-            <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 relative">
-              {/* Black Tea Narrative (Left) */}
-              <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left">
+          <div className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)]">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-between relative pb-[clamp(24px,2.5vw,48px)]">
+              {/* Black Tea Narrative (Left Green Box) */}
+              <div
+                className="w-full lg:flex-1 flex items-center justify-start z-0 py-4 lg:py-0"
+                style={{
+                  minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
+                  backgroundColor: "rgba(67, 88, 57, 0.35)",
+                  paddingLeft: "clamp(16px, 3.125vw, 75px)",
+                  paddingRight: "clamp(16px, 2.5vw, 40px)",
+                  marginRight: "calc(-1 * clamp(15px, 2vw, 35px))",
+                }}
+              >
                 <p
-                  className="m-0 text-[#D5D5D5]"
+                  className="m-0 text-[#D5D5D5] text-left max-w-[clamp(260px,24vw,520px)]"
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 500,
@@ -1464,23 +1490,23 @@ export default function LorientalisGrowPage() {
                 </p>
               </div>
 
-              {/* Center: Black Tea & Orthodox Tea Empty Circles 232x232 with Labels */}
-              <div className="flex items-start justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0">
+              {/* Center: Black Tea & Orthodox Tea Empty Circles 232x232 with Labels below */}
+              <div className="flex items-center justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0 z-10 relative my-6 lg:my-0">
                 {/* Black Tea Circle */}
-                <div className="flex flex-col items-center">
+                <div className="relative flex flex-col items-center">
                   <div
                     className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
                     style={{
                       width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                       height: "clamp(150px, 18.125vw, 360px)",
                       aspectRatio: "1 / 1",
-                      backgroundColor: "#435839",
-                      border: "1px solid rgba(213, 213, 213, 0.25)",
+                      backgroundColor: "#000000",
+                      border: "1px solid rgba(213, 213, 213, 0.3)",
                       boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                     }}
                   />
                   <span
-                    className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                    className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 500,
@@ -1494,20 +1520,20 @@ export default function LorientalisGrowPage() {
                 </div>
 
                 {/* Orthodox Tea Circle */}
-                <div className="flex flex-col items-center">
+                <div className="relative flex flex-col items-center">
                   <div
                     className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
                     style={{
                       width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                       height: "clamp(150px, 18.125vw, 360px)",
                       aspectRatio: "1 / 1",
-                      backgroundColor: "#435839",
-                      border: "1px solid rgba(213, 213, 213, 0.25)",
+                      backgroundColor: "#000000",
+                      border: "1px solid rgba(213, 213, 213, 0.3)",
                       boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                     }}
                   />
                   <span
-                    className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                    className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 500,
@@ -1521,10 +1547,19 @@ export default function LorientalisGrowPage() {
                 </div>
               </div>
 
-              {/* Orthodox Tea Narrative (Right) */}
-              <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left lg:text-right">
+              {/* Orthodox Tea Narrative (Right Green Box) */}
+              <div
+                className="w-full lg:flex-1 flex items-center justify-end z-0 py-4 lg:py-0"
+                style={{
+                  minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
+                  backgroundColor: "rgba(67, 88, 57, 0.35)",
+                  paddingRight: "clamp(16px, 3.125vw, 75px)",
+                  paddingLeft: "clamp(16px, 2.5vw, 40px)",
+                  marginLeft: "calc(-1 * clamp(15px, 2vw, 35px))",
+                }}
+              >
                 <p
-                  className="m-0 text-[#D5D5D5]"
+                  className="m-0 text-[#D5D5D5] text-right max-w-[clamp(260px,24vw,520px)]"
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 500,
