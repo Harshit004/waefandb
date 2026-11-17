@@ -269,6 +269,11 @@ export default function LorientalisGrowPage() {
             priority
             unoptimized
             className="object-cover object-center pointer-events-none"
+            style={{
+              imageRendering: "-webkit-optimize-contrast",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
           />
         </div>
 
@@ -359,6 +364,11 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     priority
                     className="object-cover pointer-events-none"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
                   />
                 </div>
                 <div
@@ -405,6 +415,11 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     priority
                     className="object-cover pointer-events-none"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
                   />
                 </div>
                 <div
@@ -509,6 +524,11 @@ export default function LorientalisGrowPage() {
                 unoptimized
                 sizes="(max-width: 768px) 100vw, 862px"
                 className="object-cover pointer-events-none"
+                style={{
+                  imageRendering: "-webkit-optimize-contrast",
+                  transform: "translateZ(0)",
+                  backfaceVisibility: "hidden",
+                }}
               />
             </div>
           </div>
@@ -652,6 +672,11 @@ export default function LorientalisGrowPage() {
                   unoptimized
                   sizes="(max-width: 768px) 50vw, 515px"
                   className="object-cover pointer-events-none"
+                  style={{
+                    imageRendering: "-webkit-optimize-contrast",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                  }}
                 />
               </div>
 
@@ -693,6 +718,11 @@ export default function LorientalisGrowPage() {
                   unoptimized
                   sizes="(max-width: 768px) 50vw, 515px"
                   className="object-cover pointer-events-none"
+                  style={{
+                    imageRendering: "-webkit-optimize-contrast",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                  }}
                 />
               </div>
 
@@ -760,6 +790,11 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     sizes="(max-width: 1280px) 100vw, 2095px"
                     className="object-cover"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
                   />
                 </div>
               </div>
@@ -785,6 +820,11 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     sizes="(max-width: 1280px) 100vw, 2095px"
                     className="object-cover"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
                   />
                 </div>
               </div>
@@ -919,6 +959,11 @@ export default function LorientalisGrowPage() {
             priority
             unoptimized
             className="object-cover pointer-events-none"
+            style={{
+              imageRendering: "-webkit-optimize-contrast",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
           />
         </div>
 
@@ -1034,101 +1079,104 @@ export default function LorientalisGrowPage() {
         {/* 110px gap at 1280px */}
         <div className="h-[clamp(55px,8.594vw,198px)]" />
 
-        {/* 4-Item Row: Light Text | Light Roast Circle | Medium Roast Circle | Medium Text */}
+        {/* Full-bleed Green Banner Row: Light Roast & Medium Roast */}
         <div
-          className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-[clamp(24px,3.125vw,60px)] select-none mb-[clamp(36px,4.688vw,108px)]"
+          className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)] px-[clamp(16px,3.125vw,75px)] select-none mb-[clamp(80px,13.438vw,310px)]"
+          style={{
+            backgroundColor: "rgba(67, 88, 57, 0.32)",
+            paddingTop: "clamp(24px, 2.8vw, 54px)",
+            paddingBottom: "clamp(24px, 2.8vw, 54px)",
+          }}
         >
-          {/* Light Roast Narrative (Left) */}
-          <div className="w-full lg:w-[clamp(240px,23.047vw,530px)] shrink-0 text-left">
-            <p
-              className="m-0 text-[#C4C4C4] font-normal"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(13px, 1.172vw, 22px)",
-                lineHeight: "150%",
-              }}
-            >
-              Light Brown With A Subtle Roasted Taste, Suited To Milder Cups. It Yields The Most Acidic Coffee. The Beans Have A Matte Surface Because The Oils Stay Inside.
-            </p>
-          </div>
-
-          {/* Center Group: Two Bean Circles Side-by-Side */}
-          <div className="flex items-center gap-[clamp(24px,3.9vw,80px)] shrink-0">
-            {/* Circle 1: Light Roast */}
-            <div className="flex flex-col items-center gap-3">
-              <div
-                className="relative overflow-hidden rounded-full shadow-2xl border border-white/10 shrink-0"
-                style={{
-                  width: "clamp(110px, 13.906vw, 320px)", // 178px at 1280px, responsive on larger screens
-                  height: "clamp(110px, 13.906vw, 320px)",
-                  aspectRatio: "1 / 1",
-                }}
-              >
-                <Image
-                  src="/images/lorientalis/roast-light-circle.png"
-                  alt="Light Roast Coffee Beans"
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 140px, 320px"
-                  className="object-cover pointer-events-none"
-                />
-              </div>
-              <span
-                className="text-[#D5D5D5] text-center"
+          <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 relative">
+            {/* Light Roast Narrative (Left) */}
+            <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left">
+              <p
+                className="m-0 text-[#D5D5D5]"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
-                  fontSize: "clamp(12px, 1.094vw, 22px)",
+                  fontWeight: 500,
+                  fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
                   lineHeight: "120%",
+                  letterSpacing: "0%",
                 }}
               >
-                Light Roast Coffee
-              </span>
+                Light Brown With A Subtle Roasted Taste, Suited To Milder Cups. It Yields The Most Acidic Coffee. The Beans Have A Matte Surface Because The Oils Stay Inside.
+              </p>
             </div>
 
-            {/* Circle 2: Medium Roast */}
-            <div className="flex flex-col items-center gap-3">
-              <div
-                className="relative overflow-hidden rounded-full shadow-2xl border border-white/10 shrink-0"
-                style={{
-                  width: "clamp(110px, 13.906vw, 320px)", // 178px at 1280px, responsive on larger screens
-                  height: "clamp(110px, 13.906vw, 320px)",
-                  aspectRatio: "1 / 1",
-                }}
-              >
-                <Image
-                  src="/images/lorientalis/roast-medium-circle.png"
-                  alt="Medium Roast Coffee Beans"
-                  fill
-                  unoptimized
-                  sizes="(max-width: 768px) 140px, 320px"
-                  className="object-cover pointer-events-none"
+            {/* Center: Two Empty Circles 232x232 with Labels */}
+            <div className="flex items-start justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0">
+              {/* Circle 1: Light Roast */}
+              <div className="flex flex-col items-center">
+                <div
+                  className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                  style={{
+                    width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
+                    height: "clamp(150px, 18.125vw, 360px)",
+                    aspectRatio: "1 / 1",
+                    backgroundColor: "#435839",
+                    border: "1px solid rgba(213, 213, 213, 0.25)",
+                    boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
+                  }}
                 />
+                <span
+                  className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(13px, 1.25vw, 24px)", // 16px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Light Roast Coffee
+                </span>
               </div>
-              <span
-                className="text-[#D5D5D5] text-center"
+
+              {/* Circle 2: Medium Roast */}
+              <div className="flex flex-col items-center">
+                <div
+                  className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                  style={{
+                    width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
+                    height: "clamp(150px, 18.125vw, 360px)",
+                    aspectRatio: "1 / 1",
+                    backgroundColor: "#435839",
+                    border: "1px solid rgba(213, 213, 213, 0.25)",
+                    boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
+                  }}
+                />
+                <span
+                  className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(13px, 1.25vw, 24px)", // 16px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Medium Roast Coffee
+                </span>
+              </div>
+            </div>
+
+            {/* Medium Roast Narrative (Right) */}
+            <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left lg:text-right">
+              <p
+                className="m-0 text-[#D5D5D5]"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
-                  fontSize: "clamp(12px, 1.094vw, 22px)",
+                  fontWeight: 500,
+                  fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
                   lineHeight: "120%",
+                  letterSpacing: "0%",
                 }}
               >
-                Medium Roast Coffee
-              </span>
+                Medium Brown With A Stronger Flavour And A Non-Oily Surface. Often Called &quot;American Roast&quot; Or The Breakfast Blend, It Is The Safest Crowd-Pleaser For High-Footfall Spaces.
+              </p>
             </div>
-          </div>
-
-          {/* Medium Roast Narrative (Right) */}
-          <div className="w-full lg:w-[clamp(240px,23.047vw,530px)] shrink-0 text-left">
-            <p
-              className="m-0 text-[#C4C4C4] font-normal"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(13px, 1.172vw, 22px)",
-                lineHeight: "150%",
-              }}
-            >
-              Medium Brown With A Stronger Flavour And A Non-Oily Surface. Often Called &quot;American Roast&quot; Or The Breakfast Blend. It Is The Safest Crowd-Pleaser For High-Footfall Spaces.
-            </p>
           </div>
         </div>
 
@@ -1147,6 +1195,11 @@ export default function LorientalisGrowPage() {
               unoptimized
               sizes="(max-width: 1280px) 100vw, 2160px"
               className="object-cover pointer-events-none"
+              style={{
+                imageRendering: "-webkit-optimize-contrast",
+                transform: "translateZ(0)",
+                backfaceVisibility: "hidden",
+              }}
             />
           </div>
           <p
@@ -1193,6 +1246,11 @@ export default function LorientalisGrowPage() {
             priority
             unoptimized
             className="object-cover pointer-events-none"
+            style={{
+              imageRendering: "-webkit-optimize-contrast",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
           />
         </div>
       </section>
@@ -1363,6 +1421,11 @@ export default function LorientalisGrowPage() {
             priority
             unoptimized
             className="object-cover pointer-events-none"
+            style={{
+              imageRendering: "-webkit-optimize-contrast",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
           />
         </div>
       </section>
@@ -1403,114 +1466,208 @@ export default function LorientalisGrowPage() {
           />
         </div>
 
-        {/* 2x2 Grid of Tea Categories */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 select-none">
-          {/* Card 1: Green Tea */}
-          <div className="p-6 sm:p-8 rounded-[2px] bg-neutral-950 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <p
-              className="m-0 text-[#C4C4C4] text-[12px] sm:text-[13.5px] leading-[160%] flex-1"
-              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-            >
-              Unoxidised, Because Heat Is Applied Early To Halt The Enzymes. Fresh, Grassy And Light, With A Clean Finish. A Strong Fit For Wellness-Led Menus And Premium Hospitality.
-            </p>
-            <div className="flex flex-col items-center gap-2 shrink-0">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-emerald-500/30 shadow-xl">
-                <VisualPlaceholder
-                  label="Green Tea"
-                  aspectRatio="1/1"
-                  theme="tea"
-                  iconType="tea"
-                  className="p-1 border-0 bg-gradient-to-br from-[#2D5A3C] to-[#12281A]"
-                />
+        {/* Variety of Teas: Two Full-bleed Horizontal Banner Rows */}
+        <div className="w-full flex flex-col gap-[clamp(48px,9.375vw,150px)] select-none">
+          {/* ROW 1: Green Tea & CTC Tea */}
+          <div
+            className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)] px-[clamp(16px,3.125vw,75px)]"
+            style={{
+              backgroundColor: "rgba(67, 88, 57, 0.32)",
+              paddingTop: "clamp(24px, 2.8vw, 54px)",
+              paddingBottom: "clamp(24px, 2.8vw, 54px)",
+            }}
+          >
+            <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 relative">
+              {/* Green Tea Narrative (Left) */}
+              <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left">
+                <p
+                  className="m-0 text-[#D5D5D5]"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Unoxidised, Because Heat Is Applied Early To Halt The Enzymes. Fresh, Grassy And Light, With A Clean Finish. A Strong Fit For Wellness-Led Menus And Premium Hospitality.
+                </p>
               </div>
-              <span
-                className="text-[12px] sm:text-[13px] text-white/80"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Green Tea
-              </span>
+
+              {/* Center: Green Tea & CTC Tea Empty Circles 232x232 with Labels */}
+              <div className="flex items-start justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0">
+                {/* Green Tea Circle */}
+                <div className="flex flex-col items-center">
+                  <div
+                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                    style={{
+                      width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
+                      height: "clamp(150px, 18.125vw, 360px)",
+                      aspectRatio: "1 / 1",
+                      backgroundColor: "#435839",
+                      border: "1px solid rgba(213, 213, 213, 0.25)",
+                      boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
+                    }}
+                  />
+                  <span
+                    className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 500,
+                      fontSize: "clamp(13px, 1.25vw, 24px)", // 16px at 1280px
+                      lineHeight: "120%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Green Tea
+                  </span>
+                </div>
+
+                {/* CTC Tea Circle */}
+                <div className="flex flex-col items-center">
+                  <div
+                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                    style={{
+                      width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
+                      height: "clamp(150px, 18.125vw, 360px)",
+                      aspectRatio: "1 / 1",
+                      backgroundColor: "#435839",
+                      border: "1px solid rgba(213, 213, 213, 0.25)",
+                      boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
+                    }}
+                  />
+                  <span
+                    className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 500,
+                      fontSize: "clamp(13px, 1.25vw, 24px)", // 16px at 1280px
+                      lineHeight: "120%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    CTC Tea
+                  </span>
+                </div>
+              </div>
+
+              {/* CTC Tea Narrative (Right) */}
+              <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left lg:text-right">
+                <p
+                  className="m-0 text-[#D5D5D5]"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Crush, Tear, Curl Is A Machine Method For Black Tea Where Leaves Pass Through Toothed Rollers, Emerging As Small Pellets. It Brews Fast, Strong, And Consistent. Reviews Show Higher Theaflavin And Thearubigin In CTC Teas Than Orthodox Ones.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Card 2: CTC Tea */}
-          <div className="p-6 sm:p-8 rounded-[2px] bg-neutral-950 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex flex-col items-center gap-2 shrink-0 order-2 sm:order-1">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-amber-700/30 shadow-xl">
-                <VisualPlaceholder
-                  label="CTC Tea"
-                  aspectRatio="1/1"
-                  theme="coffee"
-                  iconType="tea"
-                  className="p-1 border-0 bg-gradient-to-br from-[#4A2514] to-[#1C0E07]"
-                />
+          {/* ROW 2: Black Tea & Orthodox Tea */}
+          <div
+            className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)] px-[clamp(16px,3.125vw,75px)]"
+            style={{
+              backgroundColor: "rgba(67, 88, 57, 0.32)",
+              paddingTop: "clamp(24px, 2.8vw, 54px)",
+              paddingBottom: "clamp(24px, 2.8vw, 54px)",
+            }}
+          >
+            <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 relative">
+              {/* Black Tea Narrative (Left) */}
+              <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left">
+                <p
+                  className="m-0 text-[#D5D5D5]"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Fully Oxidised For A Deeper Colour And A Bolder, Malty Character. It Is The Most Familiar Choice For Breakfast Service And For Pairing With Milk.
+                </p>
               </div>
-              <span
-                className="text-[12px] sm:text-[13px] text-white/80"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                CTC Tea
-              </span>
-            </div>
-            <p
-              className="m-0 text-[#C4C4C4] text-[12px] sm:text-[13.5px] leading-[160%] flex-1 order-1 sm:order-2"
-              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-            >
-              Crush, Tear, Curl Is A Machine Method For Black Tea Where Leaves Pass Through Toothed Rollers, Emerging As Small Pellets. It Brews Fast, Strong, And Consistent. Reviews Show Higher Theaflavin And Thearubigin In CTC Teas Than Orthodox Ones.
-            </p>
-          </div>
 
-          {/* Card 3: Black Tea */}
-          <div className="p-6 sm:p-8 rounded-[2px] bg-neutral-950 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <p
-              className="m-0 text-[#C4C4C4] text-[12px] sm:text-[13.5px] leading-[160%] flex-1"
-              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-            >
-              Fully Oxidised For A Deeper Colour And A Bolder, Malty Character. It Is The Most Familiar Choice For Breakfast Service And For Pairing With Milk.
-            </p>
-            <div className="flex flex-col items-center gap-2 shrink-0">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-neutral-700/40 shadow-xl">
-                <VisualPlaceholder
-                  label="Black Tea"
-                  aspectRatio="1/1"
-                  theme="dark"
-                  iconType="tea"
-                  className="p-1 border-0 bg-gradient-to-br from-[#262626] to-[#0A0A0A]"
-                />
-              </div>
-              <span
-                className="text-[12px] sm:text-[13px] text-white/80"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Black Tea
-              </span>
-            </div>
-          </div>
+              {/* Center: Black Tea & Orthodox Tea Empty Circles 232x232 with Labels */}
+              <div className="flex items-start justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0">
+                {/* Black Tea Circle */}
+                <div className="flex flex-col items-center">
+                  <div
+                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                    style={{
+                      width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
+                      height: "clamp(150px, 18.125vw, 360px)",
+                      aspectRatio: "1 / 1",
+                      backgroundColor: "#435839",
+                      border: "1px solid rgba(213, 213, 213, 0.25)",
+                      boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
+                    }}
+                  />
+                  <span
+                    className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 500,
+                      fontSize: "clamp(13px, 1.25vw, 24px)", // 16px at 1280px
+                      lineHeight: "120%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Black Tea
+                  </span>
+                </div>
 
-          {/* Card 4: Orthodox Tea */}
-          <div className="p-6 sm:p-8 rounded-[2px] bg-neutral-950 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex flex-col items-center gap-2 shrink-0 order-2 sm:order-1">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-emerald-900/40 shadow-xl">
-                <VisualPlaceholder
-                  label="Orthodox Tea"
-                  aspectRatio="1/1"
-                  theme="tea"
-                  iconType="tea"
-                  className="p-1 border-0 bg-gradient-to-br from-[#1C3626] to-[#08120C]"
-                />
+                {/* Orthodox Tea Circle */}
+                <div className="flex flex-col items-center">
+                  <div
+                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                    style={{
+                      width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
+                      height: "clamp(150px, 18.125vw, 360px)",
+                      aspectRatio: "1 / 1",
+                      backgroundColor: "#435839",
+                      border: "1px solid rgba(213, 213, 213, 0.25)",
+                      boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
+                    }}
+                  />
+                  <span
+                    className="mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 500,
+                      fontSize: "clamp(13px, 1.25vw, 24px)", // 16px at 1280px
+                      lineHeight: "120%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Orthodox Tea
+                  </span>
+                </div>
               </div>
-              <span
-                className="text-[12px] sm:text-[13px] text-white/80"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Orthodox Tea
-              </span>
+
+              {/* Orthodox Tea Narrative (Right) */}
+              <div className="w-full lg:w-[clamp(240px,26vw,480px)] shrink-0 text-left lg:text-right">
+                <p
+                  className="m-0 text-[#D5D5D5]"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Processed In The Traditional Sequence Of Plucking, Withering, Rolling, Oxidation And Drying [9], With The Leaf Kept Whole Or In Large Pieces. It Gives A More Nuanced, Layered Cup And Suits Premium And Speciality Service.
+                </p>
+              </div>
             </div>
-            <p
-              className="m-0 text-[#C4C4C4] text-[12px] sm:text-[13.5px] leading-[160%] flex-1 order-1 sm:order-2"
-              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-            >
-              Processed In The Traditional Sequence Of Plucking, Withering, Rolling, Oxidation And Drying [9]. With The Leaf Kept Whole Or In Large Pieces. It Gives A More Nuanced, Layered Cup And Suits Premium And Speciality Service.
-            </p>
           </div>
         </div>
       </section>
