@@ -195,9 +195,6 @@ export default function LorientalisGrowPage() {
   // State for Varieties Carousel in Section 3
   const [carouselIndex, setCarouselIndex] = useState<number>(0);
 
-  // State for Roast Spectrum in Section 5
-  const [activeRoast, setActiveRoast] = useState<"dark" | "medium" | "light">("medium");
-
   // State for Tea Processing Step in Section 7
   const [activeTeaStep, setActiveTeaStep] = useState(0);
 
@@ -927,206 +924,293 @@ export default function LorientalisGrowPage() {
           paddingRight: "clamp(16px, 3.125vw, 40px)",
         }}
       >
-        {/* Section Heading Row with horizontal line */}
-        {/* Line aligned at 99% of heading height starting from top */}
-        <div className="w-full flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-10 sm:mb-14 select-none">
-          <div className="flex items-start flex-1">
-            <h2
-              className="m-0 text-white font-normal whitespace-nowrap"
-              style={{
-                fontFamily: "var(--font-monschone), serif",
-                fontSize: "clamp(30px, 3.6vw, 54px)",
-                lineHeight: "100%",
-              }}
-            >
-              Know your roasts
-            </h2>
-            <div
-              className="flex-1 ml-6 sm:ml-8 h-px bg-gradient-to-r from-white/30 via-white/10 to-transparent"
-              style={{
-                marginTop: "calc(clamp(30px, 3.6vw, 54px) * 0.99)",
-              }}
-            />
-          </div>
-
-          {/* Right Sub-narrative */}
-          <p
-            className="m-0 text-[#A0A0A0] text-left sm:text-right text-[12px] sm:text-[13.5px] max-w-[420px] leading-[150%] sm:pt-[clamp(2px,0.5vw,8px)]"
-            style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-          >
-            There Is No Single Perfect Roast, Only The Right One For Your Guest And Your Menu. Three Things Are Worth Knowing
-          </p>
-        </div>
-
-        {/* Panoramic Roast Gradient Asset Banner */}
-        <div
-          className="w-full rounded-[2px] overflow-hidden shadow-2xl border border-white/10 select-none mb-6"
-          style={{
-            aspectRatio: "21/6",
-            minHeight: "clamp(180px, 20vw, 320px)",
-          }}
-        >
-          <VisualPlaceholder
-            label="Asset Placeholder: Coffee Bean Roast Spectrum Gradient"
-            sublabel="Panoramic spectrum of roasted beans transitioning seamlessly from pitch-black French/Italian roast on left, to chocolate Vienna/City roast in middle, to cinnamon light roast on right"
-            theme="roast"
-            iconType="beans"
-            className="h-full border-0 bg-gradient-to-r from-[#0C0604] via-[#3D1E10] to-[#9E6C47]"
-          />
-        </div>
-
-        {/* Roast Spectrum Selector Bar & Tabs */}
-        {/* 172px gap to Most common varieties below */}
-        <div className="w-full flex flex-col items-center gap-5 select-none mb-[clamp(80px,13.438vw,172px)]">
-          {/* Continuous gradient horizontal slider indicator */}
-          <div className="w-full h-1.5 rounded-full bg-gradient-to-r from-[#1A0A05] via-[#A85A2A] to-[#D6B086] relative">
-            <div
-              className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white shadow-lg border-2 border-black transition-all duration-300"
-              style={{
-                left:
-                  activeRoast === "dark"
-                    ? "16%"
-                    : activeRoast === "medium"
-                    ? "50%"
-                    : "84%",
-                transform: "translate(-50%, -50%)",
-              }}
-            />
-          </div>
-
-          {/* 3 Pills: Dark Roast | Medium Roast | Light Roast */}
-          <div className="flex items-center justify-between w-full max-w-[800px] gap-3">
-            <button
-              type="button"
-              onClick={() => setActiveRoast("dark")}
-              className={`px-4 sm:px-6 py-2 rounded-full border text-[11px] sm:text-[13px] font-medium tracking-wide transition-all cursor-pointer ${
-                activeRoast === "dark"
-                  ? "border-white bg-white/15 text-white"
-                  : "border-white/20 text-white/60 hover:text-white hover:border-white/40"
-              }`}
-              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-            >
-              Dark Roast Coffee
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveRoast("medium")}
-              className={`px-4 sm:px-6 py-2 rounded-full border text-[11px] sm:text-[13px] font-medium tracking-wide transition-all cursor-pointer ${
-                activeRoast === "medium"
-                  ? "border-white bg-white/15 text-white"
-                  : "border-white/20 text-white/60 hover:text-white hover:border-white/40"
-              }`}
-              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-            >
-              Medium Roast Coffee
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveRoast("light")}
-              className={`px-4 sm:px-6 py-2 rounded-full border text-[11px] sm:text-[13px] font-medium tracking-wide transition-all cursor-pointer ${
-                activeRoast === "light"
-                  ? "border-white bg-white/15 text-white"
-                  : "border-white/20 text-white/60 hover:text-white hover:border-white/40"
-              }`}
-              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-            >
-              Light Roast Coffee
-            </button>
-          </div>
-        </div>
-
-        {/* 2 Circular Highlight Cards: Light Roast & Medium Roast */}
-        <div className="w-full flex flex-col select-none mb-14 sm:mb-18">
-          <h3
-            className="m-0 text-white font-normal text-center mb-10"
+        {/* Section Heading Row with horizontal line at 99% of heading height */}
+        {/* Under the title 58px gap */}
+        <div className="w-full flex items-start gap-4 mb-[clamp(30px,4.531vw,58px)] select-none">
+          <h2
+            className="m-0 text-white font-normal whitespace-nowrap"
             style={{
-              fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "clamp(20px, 2.2vw, 32px)",
+              fontFamily: "var(--font-monschone), serif",
+              fontSize: "clamp(30px, 3.6vw, 54px)",
               lineHeight: "100%",
             }}
           >
-            The Most Common Varieties Of Coffee.
-          </h3>
+            Know your roasts
+          </h2>
+          <div
+            className="h-[1px] shrink-0"
+            style={{
+              width: "clamp(120px, 16.797vw, 215px)",
+              background:
+                "linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
+              marginTop: "calc(clamp(30px, 3.6vw, 54px) * 0.99)",
+            }}
+          />
+        </div>
 
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-center max-w-[1100px] mx-auto">
-            {/* Light Roast Detail Card */}
-            <div className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-[2px] bg-neutral-950 border border-white/10">
-              <p
-                className="m-0 text-[#C4C4C4] text-[12px] sm:text-[13.5px] leading-[160%] flex-1"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Light Brown With A Subtle Roasted Taste, Suited To Milder Cups. It Yields The Most Acidic Coffee. The Beans Have A Matte Surface Because The Oils Stay Inside.
-              </p>
-              <div className="flex flex-col items-center gap-2 shrink-0">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-amber-200/30 shadow-xl">
-                  <VisualPlaceholder
-                    label="Light Roast"
-                    aspectRatio="1/1"
-                    theme="roast"
-                    iconType="beans"
-                    className="p-1 border-0 bg-gradient-to-br from-[#966743] to-[#5C391E]"
-                  />
-                </div>
-                <span
-                  className="text-[11px] sm:text-[12px] text-white/70"
-                  style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-                >
-                  Light Roast Coffee
-                </span>
-              </div>
+        {/* Narrative text right-aligned + 71px gap below */}
+        <div className="w-full flex justify-end mb-[clamp(36px,5.547vw,71px)] select-none">
+          <p
+            className="m-0 select-none text-right"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 500,
+              fontSize: "clamp(14px, 1.406vw, 18px)", // 18px at 1280px
+              lineHeight: "120%",
+              letterSpacing: "0%",
+              textAlign: "right",
+              color: "#D5D5D5",
+              maxWidth: "clamp(320px, 42vw, 540px)",
+            }}
+          >
+            There is no single perfect roast, only the right one for your guest and your menu. Three things are worth knowing.
+          </p>
+        </div>
+
+        {/* 1200x400 Panoramic Roast Spectrum Image */}
+        <div
+          className="relative w-full max-w-[1200px] mx-auto overflow-hidden rounded-[2px] select-none"
+          style={{
+            aspectRatio: "1200 / 400",
+          }}
+        >
+          <Image
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/c0aa6785-736b-407a-d36b-2daff6ea3f00/public"
+            alt="Coffee Bean Roast Spectrum: Dark Roast to Light Roast"
+            fill
+            sizes="(max-width: 1280px) 100vw, 1200px"
+            priority
+            className="object-cover pointer-events-none"
+          />
+        </div>
+
+        {/* 25px gap */}
+        <div className="h-[clamp(16px,1.953vw,25px)]" />
+
+        {/* Static Roast Indicator Bar */}
+        <div className="w-full max-w-[1200px] mx-auto select-none">
+          {/* Dots and Connecting Gradient Line */}
+          <div className="relative w-full h-[clamp(14px,1.5vw,18px)] flex items-center">
+            {/* Gradient connecting line */}
+            <div
+              className="absolute h-[2px] top-1/2 -translate-y-1/2"
+              style={{
+                left: "clamp(48px, 6.5%, 78px)",
+                right: "clamp(48px, 6.5%, 78px)",
+                background:
+                  "linear-gradient(90deg, #B3473A 0%, #D89C46 30%, #E5C24C 50%, #B5BE51 75%, #A8BA54 100%)",
+              }}
+            />
+
+            {/* Left Dot: Dark Roast */}
+            <div
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-[clamp(12px,1.25vw,16px)] h-[clamp(12px,1.25vw,16px)] rounded-full bg-white border border-[#222222] shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+              style={{ left: "clamp(48px, 6.5%, 78px)" }}
+            />
+
+            {/* Center Dot: Medium Roast */}
+            <div
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-[clamp(12px,1.25vw,16px)] h-[clamp(12px,1.25vw,16px)] rounded-full bg-white border border-[#222222] shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+              style={{ left: "50%" }}
+            />
+
+            {/* Right Dot: Light Roast */}
+            <div
+              className="absolute top-1/2 -translate-y-1/2 translate-x-1/2 w-[clamp(12px,1.25vw,16px)] h-[clamp(12px,1.25vw,16px)] rounded-full bg-white border border-[#222222] shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+              style={{ right: "clamp(48px, 6.5%, 78px)" }}
+            />
+          </div>
+
+          {/* Labels Row */}
+          <div className="relative w-full mt-[clamp(10px,1.25vw,16px)] h-[clamp(28px,3vw,38px)]">
+            {/* Dark Roast Pill */}
+            <div
+              className="absolute top-0 -translate-x-1/2 px-[clamp(8px,1vw,14px)] py-[clamp(3px,0.4vw,6px)] rounded-[4px] whitespace-nowrap"
+              style={{
+                left: "clamp(48px, 6.5%, 78px)",
+                backgroundColor: "rgba(255, 255, 255, 0.13)", // #FFFFFF21
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(12px, 1.25vw, 16px)", // 16px at 1280px
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                color: "#D5D5D5",
+              }}
+            >
+              Dark Roast Coffee
             </div>
 
-            {/* Medium Roast Detail Card */}
-            <div className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-[2px] bg-neutral-950 border border-white/10">
-              <div className="flex flex-col items-center gap-2 shrink-0 order-2 sm:order-1">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-amber-600/30 shadow-xl">
-                  <VisualPlaceholder
-                    label="Medium Roast"
-                    aspectRatio="1/1"
-                    theme="roast"
-                    iconType="beans"
-                    className="p-1 border-0 bg-gradient-to-br from-[#5E3219] to-[#261208]"
-                  />
-                </div>
-                <span
-                  className="text-[11px] sm:text-[12px] text-white/70"
-                  style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-                >
-                  Medium Roast Coffee
-                </span>
-              </div>
-              <p
-                className="m-0 text-[#C4C4C4] text-[12px] sm:text-[13.5px] leading-[160%] flex-1 order-1 sm:order-2"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Medium Brown With A Stronger Flavour And A Non-Oily Surface. Often Called &quot;American Roast&quot; Or The Breakfast Blend. It Is The Safest Crowd-Pleaser For High-Footfall Spaces.
-              </p>
+            {/* Medium Roast Pill */}
+            <div
+              className="absolute top-0 -translate-x-1/2 px-[clamp(8px,1vw,14px)] py-[clamp(3px,0.4vw,6px)] rounded-[4px] whitespace-nowrap"
+              style={{
+                left: "50%",
+                backgroundColor: "rgba(255, 255, 255, 0.13)", // #FFFFFF21
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(12px, 1.25vw, 16px)", // 16px at 1280px
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                color: "#D5D5D5",
+              }}
+            >
+              Medium Roast Coffee
             </div>
+
+            {/* Light Roast Pill */}
+            <div
+              className="absolute top-0 translate-x-1/2 px-[clamp(8px,1vw,14px)] py-[clamp(3px,0.4vw,6px)] rounded-[4px] whitespace-nowrap"
+              style={{
+                right: "clamp(48px, 6.5%, 78px)",
+                backgroundColor: "rgba(255, 255, 255, 0.13)", // #FFFFFF21
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(12px, 1.25vw, 16px)", // 16px at 1280px
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                color: "#D5D5D5",
+              }}
+            >
+              Light Roast Coffee
+            </div>
+          </div>
+        </div>
+
+        {/* 172px gap */}
+        <div className="h-[clamp(80px,13.438vw,172px)]" />
+
+        {/* The most common varieties of coffee. */}
+        <h3
+          className="m-0 text-white font-normal text-center select-none"
+          style={{
+            fontFamily: "var(--font-manrope), sans-serif",
+            fontWeight: 400,
+            fontSize: "clamp(22px, 2.813vw, 36px)", // 36px at 1280px
+            lineHeight: "120%",
+            letterSpacing: "0%",
+          }}
+        >
+          The Most Common Varieties Of Coffee.
+        </h3>
+
+        {/* 110px gap */}
+        <div className="h-[clamp(55px,8.594vw,110px)]" />
+
+        {/* 4-Item Row: Light Text | Light Roast Circle | Medium Roast Circle | Medium Text */}
+        <div className="w-full max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-[clamp(24px,3.125vw,40px)] select-none mb-[clamp(36px,4.688vw,60px)]">
+          {/* Light Roast Narrative (Left) */}
+          <div className="w-full lg:w-[clamp(240px,23vw,295px)] shrink-0 text-left">
+            <p
+              className="m-0 text-[#C4C4C4] font-normal"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontSize: "clamp(13px, 1.1vw, 15px)",
+                lineHeight: "150%",
+              }}
+            >
+              Light Brown With A Subtle Roasted Taste, Suited To Milder Cups. It Yields The Most Acidic Coffee. The Beans Have A Matte Surface Because The Oils Stay Inside.
+            </p>
+          </div>
+
+          {/* Center Group: Two Bean Circles Side-by-Side */}
+          <div className="flex items-center gap-[clamp(24px,3.9vw,50px)] shrink-0">
+            {/* Circle 1: Light Roast */}
+            <div className="flex flex-col items-center gap-3">
+              <div
+                className="relative overflow-hidden rounded-full shadow-2xl border border-white/10 shrink-0"
+                style={{
+                  width: "clamp(110px, 13.9vw, 178px)",
+                  height: "clamp(110px, 13.9vw, 178px)",
+                }}
+              >
+                <Image
+                  src="/images/lorientalis/roast-light-circle.png"
+                  alt="Light Roast Coffee Beans"
+                  fill
+                  sizes="(max-width: 768px) 140px, 178px"
+                  className="object-cover pointer-events-none"
+                />
+              </div>
+              <span
+                className="text-[#D5D5D5] text-center"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontSize: "clamp(12px, 1.094vw, 14px)",
+                  lineHeight: "120%",
+                }}
+              >
+                Light Roast Coffee
+              </span>
+            </div>
+
+            {/* Circle 2: Medium Roast */}
+            <div className="flex flex-col items-center gap-3">
+              <div
+                className="relative overflow-hidden rounded-full shadow-2xl border border-white/10 shrink-0"
+                style={{
+                  width: "clamp(110px, 13.9vw, 178px)",
+                  height: "clamp(110px, 13.9vw, 178px)",
+                }}
+              >
+                <Image
+                  src="/images/lorientalis/roast-medium-circle.png"
+                  alt="Medium Roast Coffee Beans"
+                  fill
+                  sizes="(max-width: 768px) 140px, 178px"
+                  className="object-cover pointer-events-none"
+                />
+              </div>
+              <span
+                className="text-[#D5D5D5] text-center"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontSize: "clamp(12px, 1.094vw, 14px)",
+                  lineHeight: "120%",
+                }}
+              >
+                Medium Roast Coffee
+              </span>
+            </div>
+          </div>
+
+          {/* Medium Roast Narrative (Right) */}
+          <div className="w-full lg:w-[clamp(240px,23vw,295px)] shrink-0 text-left">
+            <p
+              className="m-0 text-[#C4C4C4] font-normal"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontSize: "clamp(13px, 1.1vw, 15px)",
+                lineHeight: "150%",
+              }}
+            >
+              Medium Brown With A Stronger Flavour And A Non-Oily Surface. Often Called &quot;American Roast&quot; Or The Breakfast Blend. It Is The Safest Crowd-Pleaser For High-Footfall Spaces.
+            </p>
           </div>
         </div>
 
         {/* Full-bleed Dark Roast Banner */}
-        <div className="w-full flex flex-col select-none">
+        <div className="w-full max-w-[1200px] mx-auto flex flex-col select-none">
           <div
-            className="w-full rounded-[2px] overflow-hidden shadow-2xl border border-white/10 mb-4"
+            className="relative w-full rounded-[2px] overflow-hidden shadow-2xl mb-4"
             style={{
-              aspectRatio: "21/8",
-              minHeight: "clamp(220px, 24vw, 360px)",
+              aspectRatio: "1200 / 260",
             }}
           >
-            <VisualPlaceholder
-              label="Asset Placeholder: Glistening Dark Roast Coffee Beans"
-              sublabel="Close-up of deep charcoal-brown roasted coffee beans with glistening natural lipid oils and dark French/Italian sheen"
-              theme="coffee"
-              iconType="beans"
-              className="h-full border-0 bg-gradient-to-b from-[#1C0E07] via-[#0D0603] to-black"
+            <Image
+              src="/images/lorientalis/roast-dark-banner.png"
+              alt="Glistening Dark Roast Coffee Beans"
+              fill
+              sizes="(max-width: 1280px) 100vw, 1200px"
+              className="object-cover pointer-events-none"
             />
           </div>
           <p
-            className="m-0 text-[#B0B0B0] text-[12px] sm:text-[13.5px] leading-[160%] max-w-[1000px]"
-            style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+            className="m-0 text-[#B0B0B0] max-w-[1000px]"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontSize: "clamp(13px, 1.172vw, 15px)",
+              lineHeight: "150%",
+            }}
           >
             <strong className="text-white font-medium">Dark Roast Coffee</strong> &ndash; Shiny Black Beans With An Oily Surface And Pronounced Bitterness. It Is The Least Acidic Of The Three. Dark Roasts Range From Slightly Dark To Charred, And The Names Are Often Used Interchangeably.
           </p>
