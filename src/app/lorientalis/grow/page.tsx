@@ -1256,49 +1256,20 @@ export default function LorientalisGrowPage() {
         }}
       >
         <div
-          className="relative w-full rounded-[2px] overflow-hidden shadow-2xl border border-[#274B35]/50 flex flex-col justify-end p-8 sm:p-12 lg:p-16 select-none bg-gradient-to-b from-[#1A3826] via-[#102418] to-[#08120C]"
+          className="relative w-full mx-auto overflow-hidden rounded-[2px] shadow-2xl select-none"
           style={{
-            aspectRatio: "21/9",
-            minHeight: "clamp(300px, 34vw, 780px)",
+            maxWidth: "clamp(320px, 93.75vw, 2400px)", // 1200px at 1280px (93.75vw)
+            aspectRatio: "1200 / 717",
           }}
         >
-          {/* Background Topographic Mountain Estate Texture */}
-          <div className="absolute inset-0 opacity-30 pointer-events-none">
-            <svg
-              className="w-full h-full"
-              viewBox="0 0 1000 500"
-              preserveAspectRatio="none"
-              fill="none"
-              stroke="#48A663"
-              strokeWidth={1}
-            >
-              <path d="M0,150 Q250,90 500,160 T1000,120" />
-              <path d="M0,220 Q250,180 500,240 T1000,200" />
-              <path d="M0,300 Q250,270 500,320 T1000,290" />
-              <path d="M0,380 Q250,350 500,400 T1000,370" />
-            </svg>
-          </div>
-
-          {/* Center Teacup on Saucer Placeholder Graphic */}
-          <div className="relative z-10 flex flex-col items-center text-center mx-auto my-auto py-6">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-red-500/40 bg-gradient-to-br from-[#8A2B1A] to-[#40120B] shadow-2xl flex items-center justify-center mb-6">
-              <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full border border-amber-300/30 bg-gradient-to-tr from-[#A8321D] to-[#E05C38] flex items-center justify-center">
-                <div className="w-6 h-6 rounded-full bg-white/20 blur-[1px]" />
-              </div>
-            </div>
-
-            <h2
-              className="m-0 text-white font-normal"
-              style={{
-                fontFamily: "var(--font-monschone), serif",
-                fontSize: "clamp(28px, 3.4vw, 68px)",
-                lineHeight: "100%",
-                textShadow: "0 2px 10px rgba(0,0,0,0.6)",
-              }}
-            >
-              Discover Your Perfect Tea
-            </h2>
-          </div>
+          <Image
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/0847d1da-7556-49c7-9444-c8247984ce00/public"
+            alt="Discover Your Perfect Tea"
+            fill
+            sizes="(max-width: 1280px) 100vw, 2400px"
+            priority
+            className="object-cover pointer-events-none"
+          />
         </div>
       </section>
 
@@ -1306,13 +1277,13 @@ export default function LorientalisGrowPage() {
           SECTION 7: TEA PROCESSING - CONTROLLED DEHYDRATION & OXIDATION
           ========================================================================= */}
       {/* 186px gap from Discover Your Perfect Tea banner (via #tea pb) */}
-      {/* 108px gap to Another big image (pb-[clamp(54px,8.438vw,194px)]) */}
+      {/* 107px gap to Amber Teacup on botanical volume (pb-[clamp(54px,8.359vw,192px)]) */}
       <section
         id="tea-processing"
         className="w-full flex flex-col justify-center overflow-hidden"
         style={{
           paddingTop: 0,
-          paddingBottom: "clamp(54px, 8.438vw, 194px)", // 108px at 1280px, responsive on larger screens
+          paddingBottom: "clamp(54px, 8.359vw, 192px)", // 107px at 1280px, responsive on larger screens
           paddingLeft: "clamp(16px, 3.125vw, 75px)",
           paddingRight: "clamp(16px, 3.125vw, 75px)",
         }}
@@ -1441,7 +1412,7 @@ export default function LorientalisGrowPage() {
       {/* =========================================================================
           SECTION 8: TEA RITUAL PHOTOGRAPHIC FEATURE BANNER
           ========================================================================= */}
-      {/* 108px gap from Tea Processing (via #tea-processing pb) */}
+      {/* 107px gap from Tea Processing (via #tea-processing pb) */}
       {/* 160px gap to Varieties of tea (pb-[clamp(80px,12.5vw,288px)]) */}
       <section
         id="tea-ritual"
@@ -1454,18 +1425,19 @@ export default function LorientalisGrowPage() {
         }}
       >
         <div
-          className="w-full rounded-[2px] overflow-hidden shadow-2xl border border-white/10 select-none"
+          className="relative w-full mx-auto overflow-hidden rounded-[2px] shadow-2xl select-none"
           style={{
-            aspectRatio: "21/8",
-            minHeight: "clamp(260px, 28vw, 680px)",
+            maxWidth: "clamp(320px, 93.594vw, 2396px)", // 1198px at 1280px (93.594vw)
+            aspectRatio: "1198 / 493",
           }}
         >
-          <VisualPlaceholder
-            label="Asset Placeholder: Amber Teacup on Open Botanical Volume"
-            sublabel="A fluted amber glass cup filled with steaming golden tea, resting on an open book in warm natural morning sunlight with dried tea herbs"
-            theme="roast"
-            iconType="cup"
-            className="h-full border-0 bg-gradient-to-r from-[#3B1E12] via-[#5C2E17] to-[#1F0E08]"
+          <Image
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f4bff6a7-6b59-4c1e-8248-ffe46fc1f500/public"
+            alt="Amber teacup on open botanical volume"
+            fill
+            sizes="(max-width: 1280px) 100vw, 2396px"
+            priority
+            className="object-cover pointer-events-none"
           />
         </div>
       </section>
