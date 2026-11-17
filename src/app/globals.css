@@ -109,5 +109,40 @@ img {
   }
 }
 
+.variety-box-left-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(67, 88, 57, 0.35);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (min-width: 1024px) {
+  .variety-box-left-bg {
+    right: calc(-1 * clamp(75px, 9.063vw, 180px));
+  }
+}
+
+.variety-box-right-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(67, 88, 57, 0.35);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (min-width: 1024px) {
+  .variety-box-right-bg {
+    left: calc(-1 * clamp(75px, 9.063vw, 180px));
+  }
+}
+
+
 
 

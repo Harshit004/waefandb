@@ -921,27 +921,32 @@ export default function LorientalisGrowPage() {
           <div className="w-full flex flex-col lg:flex-row items-center justify-between relative pb-[clamp(24px,2.5vw,48px)]">
             {/* Left Column: Green Text Box (Light Roast) */}
             <div
-              className="w-full lg:flex-1 flex items-center justify-start z-0 py-4 lg:py-0"
+              className="w-full lg:flex-1 relative flex items-center justify-start z-0 py-4 lg:py-0"
               style={{
                 minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
-                backgroundColor: "rgba(67, 88, 57, 0.35)",
-                paddingLeft: "clamp(16px, 3.125vw, 75px)",
-                paddingRight: "clamp(16px, 2.5vw, 40px)",
-                marginRight: "calc(-1 * clamp(15px, 2vw, 35px))",
               }}
             >
-              <p
-                className="m-0 text-[#D5D5D5] text-left max-w-[clamp(260px,24vw,520px)]"
+              <div className="variety-box-left-bg" />
+              <div
+                className="relative z-10 w-full"
                 style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontWeight: 500,
-                  fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
-                  lineHeight: "120%",
-                  letterSpacing: "0%",
+                  paddingLeft: "clamp(16px, 3.125vw, 75px)",
+                  paddingRight: "clamp(16px, 2.5vw, 40px)",
                 }}
               >
-                Light Brown With A Subtle Roasted Taste, Suited To Milder Cups. It Yields The Most Acidic Coffee. The Beans Have A Matte Surface Because The Oils Stay Inside.
-              </p>
+                <p
+                  className="m-0 text-[#D5D5D5] text-left max-w-[clamp(260px,24vw,520px)]"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Light Brown With A Subtle Roasted Taste, Suited To Milder Cups. It Yields The Most Acidic Coffee. The Beans Have A Matte Surface Because The Oils Stay Inside.
+                </p>
+              </div>
             </div>
 
             {/* Center: Two Empty Circles 232x232 with Labels below */}
@@ -1003,27 +1008,32 @@ export default function LorientalisGrowPage() {
 
             {/* Right Column: Green Text Box (Medium Roast) */}
             <div
-              className="w-full lg:flex-1 flex items-center justify-end z-0 py-4 lg:py-0"
+              className="w-full lg:flex-1 relative flex items-center justify-end z-0 py-4 lg:py-0"
               style={{
                 minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
-                backgroundColor: "rgba(67, 88, 57, 0.35)",
-                paddingRight: "clamp(16px, 3.125vw, 75px)",
-                paddingLeft: "clamp(16px, 2.5vw, 40px)",
-                marginLeft: "calc(-1 * clamp(15px, 2vw, 35px))",
               }}
             >
-              <p
-                className="m-0 text-[#D5D5D5] text-right max-w-[clamp(260px,24vw,520px)]"
+              <div className="variety-box-right-bg" />
+              <div
+                className="relative z-10 w-full flex justify-end"
                 style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontWeight: 500,
-                  fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
-                  lineHeight: "120%",
-                  letterSpacing: "0%",
+                  paddingRight: "clamp(16px, 3.125vw, 75px)",
+                  paddingLeft: "clamp(16px, 2.5vw, 40px)",
                 }}
               >
-                Medium Brown With A Stronger Flavour And A Non-Oily Surface. Often Called &quot;American Roast&quot; Or The Breakfast Blend, It Is The Safest Crowd-Pleaser For High-Footfall Spaces.
-              </p>
+                <p
+                  className="m-0 text-[#D5D5D5] text-right max-w-[clamp(260px,24vw,520px)]"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Medium Brown With A Stronger Flavour And A Non-Oily Surface. Often Called &quot;American Roast&quot; Or The Breakfast Blend, It Is The Safest Crowd-Pleaser For High-Footfall Spaces.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1381,27 +1391,32 @@ export default function LorientalisGrowPage() {
             <div className="w-full flex flex-col lg:flex-row items-center justify-between relative pb-[clamp(24px,2.5vw,48px)]">
               {/* Green Tea Narrative (Left Green Box) */}
               <div
-                className="w-full lg:flex-1 flex items-center justify-start z-0 py-4 lg:py-0"
+                className="w-full lg:flex-1 relative flex items-center justify-start z-0 py-4 lg:py-0"
                 style={{
                   minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
-                  backgroundColor: "rgba(67, 88, 57, 0.35)",
-                  paddingLeft: "clamp(16px, 3.125vw, 75px)",
-                  paddingRight: "clamp(16px, 2.5vw, 40px)",
-                  marginRight: "calc(-1 * clamp(15px, 2vw, 35px))",
                 }}
               >
-                <p
-                  className="m-0 text-[#D5D5D5] text-left max-w-[clamp(260px,24vw,520px)]"
+                <div className="variety-box-left-bg" />
+                <div
+                  className="relative z-10 w-full"
                   style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 500,
-                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
-                    lineHeight: "120%",
-                    letterSpacing: "0%",
+                    paddingLeft: "clamp(16px, 3.125vw, 75px)",
+                    paddingRight: "clamp(16px, 2.5vw, 40px)",
                   }}
                 >
-                  Unoxidised, Because Heat Is Applied Early To Halt The Enzymes. Fresh, Grassy And Light, With A Clean Finish. A Strong Fit For Wellness-Led Menus And Premium Hospitality.
-                </p>
+                  <p
+                    className="m-0 text-[#D5D5D5] text-left max-w-[clamp(260px,24vw,520px)]"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 500,
+                      fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                      lineHeight: "120%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Unoxidised, Because Heat Is Applied Early To Halt The Enzymes. Fresh, Grassy And Light, With A Clean Finish. A Strong Fit For Wellness-Led Menus And Premium Hospitality.
+                  </p>
+                </div>
               </div>
 
               {/* Center: Green Tea & CTC Tea Empty Circles 232x232 with Labels below */}
@@ -1463,27 +1478,32 @@ export default function LorientalisGrowPage() {
 
               {/* CTC Tea Narrative (Right Green Box) */}
               <div
-                className="w-full lg:flex-1 flex items-center justify-end z-0 py-4 lg:py-0"
+                className="w-full lg:flex-1 relative flex items-center justify-end z-0 py-4 lg:py-0"
                 style={{
                   minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
-                  backgroundColor: "rgba(67, 88, 57, 0.35)",
-                  paddingRight: "clamp(16px, 3.125vw, 75px)",
-                  paddingLeft: "clamp(16px, 2.5vw, 40px)",
-                  marginLeft: "calc(-1 * clamp(15px, 2vw, 35px))",
                 }}
               >
-                <p
-                  className="m-0 text-[#D5D5D5] text-right max-w-[clamp(260px,24vw,520px)]"
+                <div className="variety-box-right-bg" />
+                <div
+                  className="relative z-10 w-full flex justify-end"
                   style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 500,
-                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
-                    lineHeight: "120%",
-                    letterSpacing: "0%",
+                    paddingRight: "clamp(16px, 3.125vw, 75px)",
+                    paddingLeft: "clamp(16px, 2.5vw, 40px)",
                   }}
                 >
-                  Crush, Tear, Curl Is A Machine Method For Black Tea Where Leaves Pass Through Toothed Rollers, Emerging As Small Pellets. It Brews Fast, Strong, And Consistent. Reviews Show Higher Theaflavin And Thearubigin In CTC Teas Than Orthodox Ones.
-                </p>
+                  <p
+                    className="m-0 text-[#D5D5D5] text-right max-w-[clamp(260px,24vw,520px)]"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 500,
+                      fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                      lineHeight: "120%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Crush, Tear, Curl Is A Machine Method For Black Tea Where Leaves Pass Through Toothed Rollers, Emerging As Small Pellets. It Brews Fast, Strong, And Consistent. Reviews Show Higher Theaflavin And Thearubigin In CTC Teas Than Orthodox Ones.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -1493,27 +1513,32 @@ export default function LorientalisGrowPage() {
             <div className="w-full flex flex-col lg:flex-row items-center justify-between relative pb-[clamp(24px,2.5vw,48px)]">
               {/* Black Tea Narrative (Left Green Box) */}
               <div
-                className="w-full lg:flex-1 flex items-center justify-start z-0 py-4 lg:py-0"
+                className="w-full lg:flex-1 relative flex items-center justify-start z-0 py-4 lg:py-0"
                 style={{
                   minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
-                  backgroundColor: "rgba(67, 88, 57, 0.35)",
-                  paddingLeft: "clamp(16px, 3.125vw, 75px)",
-                  paddingRight: "clamp(16px, 2.5vw, 40px)",
-                  marginRight: "calc(-1 * clamp(15px, 2vw, 35px))",
                 }}
               >
-                <p
-                  className="m-0 text-[#D5D5D5] text-left max-w-[clamp(260px,24vw,520px)]"
+                <div className="variety-box-left-bg" />
+                <div
+                  className="relative z-10 w-full"
                   style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 500,
-                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
-                    lineHeight: "120%",
-                    letterSpacing: "0%",
+                    paddingLeft: "clamp(16px, 3.125vw, 75px)",
+                    paddingRight: "clamp(16px, 2.5vw, 40px)",
                   }}
                 >
-                  Fully Oxidised For A Deeper Colour And A Bolder, Malty Character. It Is The Most Familiar Choice For Breakfast Service And For Pairing With Milk.
-                </p>
+                  <p
+                    className="m-0 text-[#D5D5D5] text-left max-w-[clamp(260px,24vw,520px)]"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 500,
+                      fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                      lineHeight: "120%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Fully Oxidised For A Deeper Colour And A Bolder, Malty Character. It Is The Most Familiar Choice For Breakfast Service And For Pairing With Milk.
+                  </p>
+                </div>
               </div>
 
               {/* Center: Black Tea & Orthodox Tea Empty Circles 232x232 with Labels below */}
@@ -1575,27 +1600,32 @@ export default function LorientalisGrowPage() {
 
               {/* Orthodox Tea Narrative (Right Green Box) */}
               <div
-                className="w-full lg:flex-1 flex items-center justify-end z-0 py-4 lg:py-0"
+                className="w-full lg:flex-1 relative flex items-center justify-end z-0 py-4 lg:py-0"
                 style={{
                   minHeight: "clamp(135px, 16.313vw, 324px)", // 90% of 232px circle = 208.8px at 1280px
-                  backgroundColor: "rgba(67, 88, 57, 0.35)",
-                  paddingRight: "clamp(16px, 3.125vw, 75px)",
-                  paddingLeft: "clamp(16px, 2.5vw, 40px)",
-                  marginLeft: "calc(-1 * clamp(15px, 2vw, 35px))",
                 }}
               >
-                <p
-                  className="m-0 text-[#D5D5D5] text-right max-w-[clamp(260px,24vw,520px)]"
+                <div className="variety-box-right-bg" />
+                <div
+                  className="relative z-10 w-full flex justify-end"
                   style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 500,
-                    fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
-                    lineHeight: "120%",
-                    letterSpacing: "0%",
+                    paddingRight: "clamp(16px, 3.125vw, 75px)",
+                    paddingLeft: "clamp(16px, 2.5vw, 40px)",
                   }}
                 >
-                  Processed In The Traditional Sequence Of Plucking, Withering, Rolling, Oxidation And Drying [9], With The Leaf Kept Whole Or In Large Pieces. It Gives A More Nuanced, Layered Cup And Suits Premium And Speciality Service.
-                </p>
+                  <p
+                    className="m-0 text-[#D5D5D5] text-right max-w-[clamp(260px,24vw,520px)]"
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 500,
+                      fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                      lineHeight: "120%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Processed In The Traditional Sequence Of Plucking, Withering, Rolling, Oxidation And Drying [9], With The Leaf Kept Whole Or In Large Pieces. It Gives A More Nuanced, Layered Cup And Suits Premium And Speciality Service.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
