@@ -208,19 +208,19 @@ export default function LorientalisGrowPage() {
     {
       title: "Withering & Rolling",
       tag: "Step 02",
-      desc: "Fresh leaves are spread across shaded bamboo troughs where airflow reduces internal moisture by up to 50%. The leaves are then gently rolled to rupture cell walls, dispersing essential oils and preparing enzymes for uniform character development.",
+      desc: "Fresh Leaves Are Spread Across Shaded Bamboo Troughs Where Airflow Reduces Internal Moisture By Up To 50%. The Leaves Are Then Gently Rolled To Rupture Cell Walls, Dispersing Essential Oils And Preparing Enzymes For Uniform Character Development.",
       aspectLabel: "Withering Leaves on Bamboo Trays & Traditional Hand-Rolling",
     },
     {
       title: "Oxidation (Fermentation)",
       tag: "Step 03",
-      desc: "Leaves rest in temperature and humidity controlled oxidation rooms. Oxygen reacts with catechins and theaflavins, transforming green leaf pigments into deep coppery tones and unlocking complex floral, honey, or malty aroma compounds.",
+      desc: "Leaves Rest In Temperature And Humidity Controlled Oxidation Rooms. Oxygen Reacts With Catechins And Theaflavins, Transforming Green Leaf Pigments Into Deep Coppery Tones And Unlocking Complex Floral, Honey, Or Malty Aroma Compounds.",
       aspectLabel: "Controlled Oxidation Tables with Coppery Brown Leaves",
     },
     {
       title: "Firing & Sorting",
       tag: "Step 04",
-      desc: "Careful hot-air baking halts enzymatic action at the precise sensory peak. The tea is dried down to 3% moisture for shelf stability, then meticulously graded by leaf size from whole Orthodox leaves to dense CTC granules.",
+      desc: "Careful Hot-Air Baking Halts Enzymatic Action At The Precise Sensory Peak. The Tea Is Dried Down To 3% Moisture For Shelf Stability, Then Meticulously Graded By Leaf Size From Whole Orthodox Leaves To Dense CTC Granules.",
       aspectLabel: "Charcoal & Hot Air Roaster with Finished Black Leaf Grading",
     },
   ];
@@ -269,11 +269,6 @@ export default function LorientalisGrowPage() {
             priority
             unoptimized
             className="object-cover object-center pointer-events-none"
-            style={{
-              imageRendering: "-webkit-optimize-contrast",
-              transform: "translateZ(0)",
-              backfaceVisibility: "hidden",
-            }}
           />
         </div>
 
@@ -364,11 +359,6 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     priority
                     className="object-cover pointer-events-none"
-                    style={{
-                      imageRendering: "-webkit-optimize-contrast",
-                      transform: "translateZ(0)",
-                      backfaceVisibility: "hidden",
-                    }}
                   />
                 </div>
                 <div
@@ -415,11 +405,6 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     priority
                     className="object-cover pointer-events-none"
-                    style={{
-                      imageRendering: "-webkit-optimize-contrast",
-                      transform: "translateZ(0)",
-                      backfaceVisibility: "hidden",
-                    }}
                   />
                 </div>
                 <div
@@ -524,11 +509,6 @@ export default function LorientalisGrowPage() {
                 unoptimized
                 sizes="(max-width: 768px) 100vw, 862px"
                 className="object-cover pointer-events-none"
-                style={{
-                  imageRendering: "-webkit-optimize-contrast",
-                  transform: "translateZ(0)",
-                  backfaceVisibility: "hidden",
-                }}
               />
             </div>
           </div>
@@ -628,7 +608,7 @@ export default function LorientalisGrowPage() {
                 textAlign: "right",
               }}
             >
-              The most common varieties of coffee.
+              The Most Common Varieties Of Coffee.
             </h3>
 
             {/* 68px gap then description at 1280px */}
@@ -646,7 +626,7 @@ export default function LorientalisGrowPage() {
                 textAlign: "right",
               }}
             >
-              Arabica and robusta dominate commercial coffee worldwide. Less common species such as liberica and excelsa are gaining ground with specialty buyers.
+              Arabica And Robusta Dominate Commercial Coffee Worldwide. Less Common Species Such As Liberica And Excelsa Are Gaining Ground With Specialty Buyers.
             </p>
           </div>
 
@@ -672,11 +652,6 @@ export default function LorientalisGrowPage() {
                   unoptimized
                   sizes="(max-width: 768px) 50vw, 515px"
                   className="object-cover pointer-events-none"
-                  style={{
-                    imageRendering: "-webkit-optimize-contrast",
-                    transform: "translateZ(0)",
-                    backfaceVisibility: "hidden",
-                  }}
                 />
               </div>
 
@@ -718,11 +693,6 @@ export default function LorientalisGrowPage() {
                   unoptimized
                   sizes="(max-width: 768px) 50vw, 515px"
                   className="object-cover pointer-events-none"
-                  style={{
-                    imageRendering: "-webkit-optimize-contrast",
-                    transform: "translateZ(0)",
-                    backfaceVisibility: "hidden",
-                  }}
                 />
               </div>
 
@@ -790,11 +760,6 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     sizes="(max-width: 1280px) 100vw, 2095px"
                     className="object-cover"
-                    style={{
-                      imageRendering: "-webkit-optimize-contrast",
-                      transform: "translateZ(0)",
-                      backfaceVisibility: "hidden",
-                    }}
                   />
                 </div>
               </div>
@@ -820,11 +785,6 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     sizes="(max-width: 1280px) 100vw, 2095px"
                     className="object-cover"
-                    style={{
-                      imageRendering: "-webkit-optimize-contrast",
-                      transform: "translateZ(0)",
-                      backfaceVisibility: "hidden",
-                    }}
                   />
                 </div>
               </div>
@@ -940,15 +900,14 @@ export default function LorientalisGrowPage() {
               maxWidth: "clamp(320px, 37.969vw, 875px)", // 486px at 1280px
             }}
           >
-            There is no single perfect roast, only the right one for your guest and your menu. Three things are worth knowing.
+            There Is No Single Perfect Roast, Only The Right One For Your Guest And Your Menu. Three Things Are Worth Knowing.
           </p>
         </div>
 
         {/* 1200x400 Panoramic Roast Spectrum Image (maintaining 1200/400 ratio) */}
         <div
-          className="relative w-full mx-auto overflow-hidden rounded-[2px] select-none"
+          className="relative w-full overflow-hidden rounded-[2px] select-none"
           style={{
-            maxWidth: "clamp(320px, 93.75vw, 2160px)",
             aspectRatio: "1200 / 400",
           }}
         >
@@ -960,11 +919,6 @@ export default function LorientalisGrowPage() {
             priority
             unoptimized
             className="object-cover pointer-events-none"
-            style={{
-              imageRendering: "-webkit-optimize-contrast",
-              transform: "translateZ(0)",
-              backfaceVisibility: "hidden",
-            }}
           />
         </div>
 
@@ -972,12 +926,7 @@ export default function LorientalisGrowPage() {
         <div className="h-[clamp(16px,1.953vw,45px)]" />
 
         {/* Static Roast Indicator Bar */}
-        <div
-          className="w-full mx-auto select-none"
-          style={{
-            maxWidth: "clamp(320px, 93.75vw, 2160px)",
-          }}
-        >
+        <div className="w-full select-none">
           {/* Dots and Connecting Gradient Line */}
           <div className="relative w-full h-[clamp(14px,1.5vw,32px)] flex items-center">
             {/* Gradient connecting line */}
@@ -1087,10 +1036,7 @@ export default function LorientalisGrowPage() {
 
         {/* 4-Item Row: Light Text | Light Roast Circle | Medium Roast Circle | Medium Text */}
         <div
-          className="w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-[clamp(24px,3.125vw,60px)] select-none mb-[clamp(36px,4.688vw,108px)]"
-          style={{
-            maxWidth: "clamp(320px, 93.75vw, 2160px)",
-          }}
+          className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-[clamp(24px,3.125vw,60px)] select-none mb-[clamp(36px,4.688vw,108px)]"
         >
           {/* Light Roast Narrative (Left) */}
           <div className="w-full lg:w-[clamp(240px,23.047vw,530px)] shrink-0 text-left">
@@ -1125,11 +1071,6 @@ export default function LorientalisGrowPage() {
                   unoptimized
                   sizes="(max-width: 768px) 140px, 320px"
                   className="object-cover pointer-events-none"
-                  style={{
-                    imageRendering: "-webkit-optimize-contrast",
-                    transform: "translateZ(0)",
-                    backfaceVisibility: "hidden",
-                  }}
                 />
               </div>
               <span
@@ -1161,11 +1102,6 @@ export default function LorientalisGrowPage() {
                   unoptimized
                   sizes="(max-width: 768px) 140px, 320px"
                   className="object-cover pointer-events-none"
-                  style={{
-                    imageRendering: "-webkit-optimize-contrast",
-                    transform: "translateZ(0)",
-                    backfaceVisibility: "hidden",
-                  }}
                 />
               </div>
               <span
@@ -1197,12 +1133,7 @@ export default function LorientalisGrowPage() {
         </div>
 
         {/* Full-bleed Dark Roast Banner (maintaining ratio) */}
-        <div
-          className="w-full mx-auto flex flex-col select-none"
-          style={{
-            maxWidth: "clamp(320px, 93.75vw, 2160px)",
-          }}
-        >
+        <div className="w-full flex flex-col select-none">
           <div
             className="relative w-full rounded-[2px] overflow-hidden shadow-2xl mb-4"
             style={{
@@ -1216,11 +1147,6 @@ export default function LorientalisGrowPage() {
               unoptimized
               sizes="(max-width: 1280px) 100vw, 2160px"
               className="object-cover pointer-events-none"
-              style={{
-                imageRendering: "-webkit-optimize-contrast",
-                transform: "translateZ(0)",
-                backfaceVisibility: "hidden",
-              }}
             />
           </div>
           <p
@@ -1267,11 +1193,6 @@ export default function LorientalisGrowPage() {
             priority
             unoptimized
             className="object-cover pointer-events-none"
-            style={{
-              imageRendering: "-webkit-optimize-contrast",
-              transform: "translateZ(0)",
-              backfaceVisibility: "hidden",
-            }}
           />
         </div>
       </section>
@@ -1442,11 +1363,6 @@ export default function LorientalisGrowPage() {
             priority
             unoptimized
             className="object-cover pointer-events-none"
-            style={{
-              imageRendering: "-webkit-optimize-contrast",
-              transform: "translateZ(0)",
-              backfaceVisibility: "hidden",
-            }}
           />
         </div>
       </section>
