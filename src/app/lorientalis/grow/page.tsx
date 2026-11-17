@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import Image from "next/image";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
@@ -34,6 +35,27 @@ export default function LorientalisGrowPage() {
       alt: "Tea Processing Step 4: Firing & Sorting",
     },
   ];
+
+  // Preload all carousel images immediately to eliminate blank gap / flash on sliding
+  const carouselPreloadUrls = [
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/64a6dc17-fe78-4a88-e444-ba509b264e00/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6505f8ad-dade-44b8-383e-7e6acc0e4700/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6be53395-3d41-48b2-7f85-f649fe63bb00/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f8309fa5-4306-4291-4e84-10504334ec00/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/00120c15-7f88-4cee-15bc-2b2f090dde00/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/932a60a4-e676-4b9e-9352-93e9a70b4600/public",
+  ];
+
+  carouselPreloadUrls.forEach((url) => {
+    ReactDOM.preload(url, { as: "image" });
+  });
+
+  useEffect(() => {
+    carouselPreloadUrls.forEach((url) => {
+      const img = new window.Image();
+      img.src = url;
+    });
+  }, []);
 
   const handleScrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -587,7 +609,7 @@ export default function LorientalisGrowPage() {
               >
                 {/* Slide 1 Image (1164x595 at 1280px, maintaining ratio) */}
                 <div
-                  className="relative overflow-hidden rounded-[4px] w-full"
+                  className="relative overflow-hidden rounded-[4px] w-full bg-[#18261C]"
                   style={{
                     aspectRatio: "1164 / 595",
                   }}
@@ -597,6 +619,7 @@ export default function LorientalisGrowPage() {
                     alt="Arabica Botanical and Chemical Terroir Slide"
                     fill
                     priority
+                    loading="eager"
                     unoptimized
                     sizes="(max-width: 1280px) 100vw, 2095px"
                     className="object-cover"
@@ -618,7 +641,7 @@ export default function LorientalisGrowPage() {
               >
                 {/* Slide 2 Image (1164x595 at 1280px, maintaining ratio) */}
                 <div
-                  className="relative overflow-hidden rounded-[4px] w-full"
+                  className="relative overflow-hidden rounded-[4px] w-full bg-[#18261C]"
                   style={{
                     aspectRatio: "1164 / 595",
                   }}
@@ -627,6 +650,8 @@ export default function LorientalisGrowPage() {
                     src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6505f8ad-dade-44b8-383e-7e6acc0e4700/public"
                     alt="Robusta Botanical and Chemical Terroir Slide"
                     fill
+                    priority
+                    loading="eager"
                     unoptimized
                     sizes="(max-width: 1280px) 100vw, 2095px"
                     className="object-cover"
@@ -1195,7 +1220,7 @@ export default function LorientalisGrowPage() {
                   }}
                 >
                   <div
-                    className="relative overflow-hidden rounded-[4px] w-full"
+                    className="relative overflow-hidden rounded-[4px] w-full bg-[#162319]"
                     style={{
                       aspectRatio: "719 / 524",
                     }}
@@ -1205,7 +1230,8 @@ export default function LorientalisGrowPage() {
                       alt={card.alt}
                       fill
                       unoptimized
-                      priority={idx === 0}
+                      priority
+                      loading="eager"
                       sizes="(max-width: 1280px) 60vw, 1295px"
                       className="object-cover"
                       style={{
