@@ -5,223 +5,33 @@ import Image from "next/image";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
 
-/**
- * Reusable visual placeholder component tailored for L'Orientalis Grow page.
- * Offers custom botanical / coffee / tea gradient atmospheres, icons, and aspect ratios.
- */
-function VisualPlaceholder({
-  label,
-  sublabel,
-  aspectRatio,
-  minHeight,
-  theme = "dark",
-  iconType = "image",
-  className = "",
-  children,
-}: {
-  label: string;
-  sublabel?: string;
-  aspectRatio?: string;
-  minHeight?: string;
-  theme?: "dark" | "coffee" | "tea" | "green" | "roast";
-  iconType?: "image" | "coffee" | "tea" | "branch" | "cup" | "molecule" | "beans";
-  className?: string;
-  children?: React.ReactNode;
-}) {
-  const gradientMap = {
-    dark: "from-[#111111] via-[#090909] to-[#040404]",
-    coffee: "from-[#2C1910] via-[#1A0E08] to-[#0D0704]",
-    tea: "from-[#142A1E] via-[#0C1A12] to-[#060D09]",
-    green: "from-[#1B3B28] via-[#102418] to-[#08120C]",
-    roast: "from-[#2B1B14] via-[#180E09] to-[#0A0503]",
-  };
-
-  const borderMap = {
-    dark: "border-neutral-800/80 hover:border-neutral-700",
-    coffee: "border-[#4A2E1D]/50 hover:border-[#6B422A]",
-    tea: "border-[#274B35]/50 hover:border-[#3E7453]",
-    green: "border-[#2E5B3D]/50 hover:border-[#46865A]",
-    roast: "border-[#4F2D19]/50 hover:border-[#733F23]",
-  };
-
-  const accentColorMap = {
-    dark: "#737373",
-    coffee: "#C2895B",
-    tea: "#5FA777",
-    green: "#48A663",
-    roast: "#D48B47",
-  };
-
-  return (
-    <div
-      className={`relative w-full rounded-[2px] border ${borderMap[theme]} bg-gradient-to-br ${gradientMap[theme]} overflow-hidden flex flex-col items-center justify-center p-6 text-center select-none group transition-all duration-300 ${className}`}
-      style={{
-        aspectRatio: aspectRatio || undefined,
-        minHeight: minHeight || undefined,
-      }}
-    >
-      {/* Ambient background glow */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity duration-500"
-        style={{
-          background: `radial-gradient(circle at 50% 40%, ${accentColorMap[theme]}25 0%, transparent 70%)`,
-        }}
-      />
-
-      {children ? (
-        <div className="relative z-10 w-full h-full flex flex-col justify-between">
-          {children}
-        </div>
-      ) : (
-        <>
-          {/* Decorative Icon badge */}
-          <div
-            className="relative z-10 w-11 h-11 rounded-full flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-105 shadow-xl"
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.45)",
-              border: `1px solid ${accentColorMap[theme]}40`,
-            }}
-          >
-            {iconType === "tea" && (
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke={accentColorMap[theme]}
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 21a9 9 0 009-9c0-4.97-4.03-9-9-9s-9 4.03-9 9a9 9 0 009 9z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 3v18M3 12h18"
-                />
-              </svg>
-            )}
-            {iconType === "coffee" && (
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke={accentColorMap[theme]}
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"
-                />
-              </svg>
-            )}
-            {iconType === "cup" && (
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke={accentColorMap[theme]}
-                strokeWidth={1.5}
-              >
-                <circle cx="12" cy="12" r="9" />
-                <circle cx="12" cy="12" r="5" />
-              </svg>
-            )}
-            {iconType === "beans" && (
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke={accentColorMap[theme]}
-                strokeWidth={1.5}
-              >
-                <ellipse cx="12" cy="12" rx="6" ry="9" transform="rotate(30 12 12)" />
-                <path
-                  d="M10 6c2 3 0 9 4 12"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-            {iconType === "branch" && (
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke={accentColorMap[theme]}
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 20c8-2 12-6 16-16M9 15c-3-1-5-4-5-7 3 0 6 2 7 5M15 9c1-3 4-5 7-5 0 3-2 6-5 7"
-                />
-              </svg>
-            )}
-            {iconType === "image" && (
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke={accentColorMap[theme]}
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-            )}
-          </div>
-
-          <p className="relative z-10 text-xs sm:text-sm font-medium text-white/90 tracking-wide max-w-[280px]">
-            {label}
-          </p>
-          {sublabel && (
-            <p className="relative z-10 text-[10px] sm:text-xs text-white/50 mt-1 max-w-[240px]">
-              {sublabel}
-            </p>
-          )}
-        </>
-      )}
-    </div>
-  );
-}
-
 export default function LorientalisGrowPage() {
   // State for Varieties Carousel in Section 3
   const [carouselIndex, setCarouselIndex] = useState<number>(0);
 
-  // State for Tea Processing Step in Section 7
-  const [activeTeaStep, setActiveTeaStep] = useState(0);
+  // State for Tea Processing Carousel in Section 7
+  const [teaCarouselIndex, setTeaCarouselIndex] = useState<number>(0);
 
-  const teaProcessingSteps = [
+  const teaCarouselCards = [
     {
       title: "Plucking",
-      tag: "Step 01",
-      desc: "Harvesters Pick Young Growth Off The Bushes. They Usually Stick To The Classic 'Two Leaves And A Bud' Standard: These Tender Top Shoots Hold The Densest Concentration Of Natural Sugars And Aromatic Oils. Hand-Picking Matters Here Because Rough Handling Can Bruise The Leaves Prematurely And Spoil The Flavour Before Processing Even Starts.",
-      aspectLabel: "Harvester in Garden Plucking Tender Leaf Shoots",
+      src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6be53395-3d41-48b2-7f85-f649fe63bb00/public",
+      alt: "Tea Processing Step 1: Plucking",
     },
     {
       title: "Withering & Rolling",
-      tag: "Step 02",
-      desc: "Fresh Leaves Are Spread Across Shaded Bamboo Troughs Where Airflow Reduces Internal Moisture By Up To 50%. The Leaves Are Then Gently Rolled To Rupture Cell Walls, Dispersing Essential Oils And Preparing Enzymes For Uniform Character Development.",
-      aspectLabel: "Withering Leaves on Bamboo Trays & Traditional Hand-Rolling",
+      src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f8309fa5-4306-4291-4e84-10504334ec00/public",
+      alt: "Tea Processing Step 2: Withering & Rolling",
     },
     {
-      title: "Oxidation (Fermentation)",
-      tag: "Step 03",
-      desc: "Leaves Rest In Temperature And Humidity Controlled Oxidation Rooms. Oxygen Reacts With Catechins And Theaflavins, Transforming Green Leaf Pigments Into Deep Coppery Tones And Unlocking Complex Floral, Honey, Or Malty Aroma Compounds.",
-      aspectLabel: "Controlled Oxidation Tables with Coppery Brown Leaves",
+      title: "Oxidation",
+      src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/00120c15-7f88-4cee-15bc-2b2f090dde00/public",
+      alt: "Tea Processing Step 3: Oxidation",
     },
     {
       title: "Firing & Sorting",
-      tag: "Step 04",
-      desc: "Careful Hot-Air Baking Halts Enzymatic Action At The Precise Sensory Peak. The Tea Is Dried Down To 3% Moisture For Shelf Stability, Then Meticulously Graded By Leaf Size From Whole Orthodox Leaves To Dense CTC Granules.",
-      aspectLabel: "Charcoal & Hot Air Roaster with Finished Black Leaf Grading",
+      src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/932a60a4-e676-4b9e-9352-93e9a70b4600/public",
+      alt: "Tea Processing Step 4: Firing & Sorting",
     },
   ];
 
@@ -1272,7 +1082,13 @@ export default function LorientalisGrowPage() {
       >
         {/* Heading Row with horizontal line leading to "Tea Processing" on right */}
         {/* Line aligned at 99% of heading height starting from top */}
-        <div className="w-full flex items-start justify-end mb-8 sm:mb-12 select-none">
+        {/* 64px gap after title: clamp(28px, 5vw, 115px) */}
+        <div
+          className="w-full flex items-start justify-end select-none"
+          style={{
+            marginBottom: "clamp(28px, 5vw, 115px)",
+          }}
+        >
           <div
             className="flex-1 mr-6 sm:mr-8 h-px bg-gradient-to-l from-white/30 via-white/10 to-transparent"
             style={{
@@ -1291,103 +1107,156 @@ export default function LorientalisGrowPage() {
           </h2>
         </div>
 
-        {/* Narrative Intro */}
-        <div className="w-full max-w-[1200px] mb-10 sm:mb-14 select-none">
-          <h3
-            className="m-0 text-white font-normal text-[16px] sm:text-[clamp(16px,1.406vw,28px)] mb-3"
-            style={{ fontFamily: "var(--font-manrope), sans-serif", lineHeight: "100%" }}
+        {/* Narrative Block with 1 line gap, justified, Title Case, #D5D5D5 */}
+        {/* 100px gap below narrative: clamp(44px, 7.813vw, 180px) */}
+        <div
+          className="w-full select-none"
+          style={{
+            marginBottom: "clamp(44px, 7.813vw, 180px)",
+          }}
+        >
+          <p
+            className="m-0"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 500,
+              fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+              lineHeight: "120%",
+              letterSpacing: "0%",
+              textAlign: "justify",
+              color: "#D5D5D5",
+              marginBottom: "1.2em", // 1 line gap
+            }}
           >
             Tea Processing Is Just Controlled Dehydration And Oxidation.
-          </h3>
+          </p>
           <p
-            className="m-0 text-[#A0A0A0] text-[13px] sm:text-[clamp(13px,1.133vw,22px)] leading-[160%]"
-            style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+            className="m-0"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 500,
+              fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+              lineHeight: "120%",
+              letterSpacing: "0%",
+              textAlign: "justify",
+              color: "#D5D5D5",
+            }}
           >
             All Teas Come From A Single Plant Species: Camellia Sinensis. Whether That Harvest Ends Up As A Crisp Green, A Roasty Oolong, Or A Heavy Black Tea Comes Down To How Much Heat, Air, And Pressure Workers Apply To The Leaf.
           </p>
         </div>
 
-        {/* Processing Step Feature Card & Adjacent Preview */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 select-none">
-          {/* Active Card with Frosted Glass Text Overlay */}
-          <div className="md:col-span-7 relative rounded-[2px] overflow-hidden border border-white/15 min-h-[360px] sm:min-h-[420px] bg-gradient-to-br from-[#1C2E22] to-[#0A120D] p-6 sm:p-10 flex flex-col justify-end">
-            <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3 py-1 rounded bg-black/60 border border-white/10">
-              <span className="text-[11px] font-mono uppercase text-[#48A663]">
-                {teaProcessingSteps[activeTeaStep].tag}
-              </span>
+        {/* =========================================================================
+            TEA PROCESSING CAROUSEL (719x524 cards, 116px gap at 1280px)
+            ========================================================================= */}
+        <div
+          className="relative select-none overflow-hidden"
+          style={{
+            marginLeft: "calc(-1 * clamp(16px, 3.125vw, 75px))",
+            marginRight: "calc(-1 * clamp(16px, 3.125vw, 75px))",
+            width: "calc(100% + 2 * clamp(16px, 3.125vw, 75px))",
+          }}
+        >
+          {/* Slides Track with smooth translation */}
+          <div className="w-full overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-out gap-[clamp(16px,9.063vw,208px)]"
+              style={{
+                transform:
+                  teaCarouselIndex === 0
+                    ? "translateX(clamp(16px, 3.125vw, 75px))"
+                    : teaCarouselIndex === 1
+                    ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 1 * (clamp(280px, 56.172vw, 1295px) + clamp(16px, 9.063vw, 208px))))"
+                    : teaCarouselIndex === 2
+                    ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 2 * (clamp(280px, 56.172vw, 1295px) + clamp(16px, 9.063vw, 208px))))"
+                    : "translateX(calc(100vw - clamp(16px, 3.125vw, 75px) - (4 * clamp(280px, 56.172vw, 1295px) + 3 * clamp(16px, 9.063vw, 208px))))",
+              }}
+            >
+              {teaCarouselCards.map((card, idx) => (
+                <div
+                  key={card.alt}
+                  onClick={() => setTeaCarouselIndex(idx)}
+                  className="shrink-0 flex flex-col cursor-pointer"
+                  style={{
+                    width: "clamp(280px, 56.172vw, 1295px)",
+                  }}
+                >
+                  <div
+                    className="relative overflow-hidden rounded-[4px] w-full"
+                    style={{
+                      aspectRatio: "719 / 524",
+                    }}
+                  >
+                    <Image
+                      src={card.src}
+                      alt={card.alt}
+                      fill
+                      unoptimized
+                      priority={idx === 0}
+                      sizes="(max-width: 1280px) 60vw, 1295px"
+                      className="object-cover"
+                      style={{
+                        imageRendering: "-webkit-optimize-contrast",
+                        transform: "translateZ(0)",
+                        backfaceVisibility: "hidden",
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
-
-            {/* Translucent Glass Text Overlay */}
-            <div className="relative z-10 p-6 sm:p-8 rounded-[2px] bg-black/65 backdrop-blur-md border border-white/10 max-w-[560px]">
-              <h4
-                className="m-0 text-white text-xl sm:text-2xl font-medium mb-3"
-                style={{ fontFamily: "var(--font-monschone), serif", lineHeight: "100%" }}
-              >
-                {teaProcessingSteps[activeTeaStep].title}
-              </h4>
-              <p
-                className="m-0 text-[#CFCFCF] text-[12px] sm:text-[13.5px] leading-[160%]"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                {teaProcessingSteps[activeTeaStep].desc}
-              </p>
-            </div>
-          </div>
-
-          {/* Right Preview Card */}
-          <div className="md:col-span-5 relative rounded-[2px] overflow-hidden border border-white/15 min-h-[360px] sm:min-h-[420px]">
-            <VisualPlaceholder
-              label="Asset: Fresh Harvested Leaves in Hands & Drying Basket"
-              sublabel="Hand-sorted coarse whole Camellia sinensis leaves prepared for artisanal batch drying"
-              theme="tea"
-              iconType="tea"
-              className="h-full border-0 bg-gradient-to-b from-[#203628] via-[#122218] to-[#080F0B]"
-            />
           </div>
         </div>
 
-        {/* Step Carousel Navigation Controls */}
-        <div className="w-full flex items-center justify-between mt-6">
-          <div className="flex items-center gap-2">
-            {teaProcessingSteps.map((step, idx) => (
-              <button
-                key={step.title}
-                type="button"
-                onClick={() => setActiveTeaStep(idx)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  activeTeaStep === idx ? "w-8 bg-[#48A663]" : "w-3 bg-white/20"
-                }`}
-                aria-label={`Go to step ${idx + 1}`}
+        {/* Navigation Arrows (same as coffee carousel: 24x24, 30px apart, 77px gap above) */}
+        <div className="w-full flex items-center justify-end mt-[clamp(36px,6.016vw,138px)] gap-[clamp(20px,2.344vw,54px)]">
+          {/* Left / Previous Arrow */}
+          <button
+            type="button"
+            onClick={() => setTeaCarouselIndex((prev) => Math.max(0, prev - 1))}
+            aria-label="Previous Slide"
+            className="w-[clamp(24px,1.875vw,44px)] h-[clamp(24px,1.875vw,44px)] flex items-center justify-center p-0 bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-80"
+          >
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19 12H5M5 12L11 6M5 12L11 18"
+                stroke={teaCarouselIndex > 0 ? "#FFFFFF" : "#383636"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
-            ))}
-          </div>
+            </svg>
+          </button>
 
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() =>
-                setActiveTeaStep((prev) =>
-                  prev === 0 ? teaProcessingSteps.length - 1 : prev - 1
-                )
-              }
-              aria-label="Previous tea processing step"
-              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer"
+          {/* Right / Next Arrow */}
+          <button
+            type="button"
+            onClick={() => setTeaCarouselIndex((prev) => Math.min(3, prev + 1))}
+            aria-label="Next Slide"
+            className="w-[clamp(24px,1.875vw,44px)] h-[clamp(24px,1.875vw,44px)] flex items-center justify-center p-0 bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-80"
+          >
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              &larr;
-            </button>
-            <button
-              type="button"
-              onClick={() =>
-                setActiveTeaStep((prev) =>
-                  prev === teaProcessingSteps.length - 1 ? 0 : prev + 1
-                )
-              }
-              aria-label="Next tea processing step"
-              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer"
-            >
-              &rarr;
-            </button>
-          </div>
+              <path
+                d="M5 12H19M19 12L13 6M19 12L13 18"
+                stroke={teaCarouselIndex < 3 ? "#FFFFFF" : "#383636"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
         </div>
       </section>
 
