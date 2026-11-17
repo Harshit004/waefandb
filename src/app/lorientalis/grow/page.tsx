@@ -269,6 +269,11 @@ export default function LorientalisGrowPage() {
             priority
             unoptimized
             className="object-cover object-center pointer-events-none"
+            style={{
+              imageRendering: "-webkit-optimize-contrast",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
           />
         </div>
 
@@ -359,6 +364,11 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     priority
                     className="object-cover pointer-events-none"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
                   />
                 </div>
                 <div
@@ -405,6 +415,11 @@ export default function LorientalisGrowPage() {
                     unoptimized
                     priority
                     className="object-cover pointer-events-none"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
                   />
                 </div>
                 <div
@@ -506,10 +521,13 @@ export default function LorientalisGrowPage() {
                 alt="Coffee Plant with Ripe Cherries and White Blossoms"
                 fill
                 priority
+                unoptimized
                 sizes="(max-width: 768px) 100vw, 862px"
                 className="object-cover pointer-events-none"
                 style={{
                   imageRendering: "-webkit-optimize-contrast",
+                  transform: "translateZ(0)",
+                  backfaceVisibility: "hidden",
                 }}
               />
             </div>
@@ -651,8 +669,14 @@ export default function LorientalisGrowPage() {
                   src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9aeae92b-105c-42e1-f632-1958a2da6100/public"
                   alt="Arabica Coffee Bean"
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 50vw, 515px"
                   className="object-cover pointer-events-none"
+                  style={{
+                    imageRendering: "-webkit-optimize-contrast",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                  }}
                 />
               </div>
 
@@ -691,8 +715,14 @@ export default function LorientalisGrowPage() {
                   src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/31a67572-d486-4ee8-a505-e705955e8f00/public"
                   alt="Robusta Coffee Bean"
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 50vw, 515px"
                   className="object-cover pointer-events-none"
+                  style={{
+                    imageRendering: "-webkit-optimize-contrast",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                  }}
                 />
               </div>
 
@@ -719,7 +749,14 @@ export default function LorientalisGrowPage() {
         {/* =========================================================================
             CAROUSEL SECTION (1164x595 at 1280px, maintaining 1164/595 ratio)
             ========================================================================= */}
-        <div className="w-full flex flex-col select-none overflow-hidden">
+        <div
+          className="relative select-none overflow-hidden"
+          style={{
+            marginLeft: "calc(-1 * clamp(16px, 3.125vw, 75px))",
+            marginRight: "calc(-1 * clamp(16px, 3.125vw, 75px))",
+            width: "calc(100% + 2 * clamp(16px, 3.125vw, 75px))",
+          }}
+        >
           {/* Slides Track with smooth translation */}
           <div className="w-full overflow-hidden">
             <div
@@ -727,8 +764,8 @@ export default function LorientalisGrowPage() {
               style={{
                 transform:
                   carouselIndex === 0
-                    ? "translateX(0)"
-                    : "translateX(calc(-1 * (clamp(300px, 90.938vw, 2095px) + clamp(20px, 2.5vw, 54px))))",
+                    ? "translateX(clamp(16px, 3.125vw, 75px))"
+                    : "translateX(calc(100vw - clamp(16px, 3.125vw, 75px) - (2 * clamp(300px, 90.938vw, 2095px) + clamp(20px, 2.5vw, 54px))))",
               }}
             >
               {/* SLIDE 1: ARABICA */}
@@ -738,44 +775,6 @@ export default function LorientalisGrowPage() {
                   width: "clamp(300px, 90.938vw, 2095px)",
                 }}
               >
-                {/* Slide 1 Header */}
-                <div className="w-full flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-4 mb-3 sm:mb-5">
-                  <div className="flex items-center gap-3 shrink-0">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      className="shrink-0 w-[clamp(24px,2.031vw,46px)] h-[clamp(24px,2.031vw,46px)]"
-                    >
-                      <ellipse cx="8" cy="12" rx="4.5" ry="6.5" transform="rotate(-20 8 12)" strokeLinecap="round" />
-                      <path d="M6 7C8 10 7 14 9 17" strokeLinecap="round" />
-                      <ellipse cx="16" cy="12" rx="4.5" ry="6.5" transform="rotate(20 16 12)" strokeLinecap="round" />
-                      <path d="M15 7C17 10 16 14 18 17" strokeLinecap="round" />
-                    </svg>
-                    <span
-                      className="text-white font-normal"
-                      style={{
-                        fontFamily: "var(--font-manrope), sans-serif",
-                        fontSize: "clamp(20px, 2.031vw, 46px)", // 26px at 1280px, responsive on larger screens
-                        lineHeight: "100%",
-                      }}
-                    >
-                      Arabica
-                    </span>
-                  </div>
-
-                  <p
-                    className="m-0 text-[#DBDBDB] text-[13px] sm:text-[clamp(13px,1.133vw,24px)] leading-[150%] text-left sm:text-right"
-                    style={{
-                      fontFamily: "var(--font-manrope), sans-serif",
-                      maxWidth: "clamp(450px, 45.313vw, 1040px)",
-                    }}
-                  >
-                    Coffea Arabica Is Descended From The Original Coffee Trees Discovered In Ethiopia. These Trees Produce Fine, Mild, Aromatic Coffees That Bring The Highest Prices On The World Market.
-                  </p>
-                </div>
-
                 {/* Slide 1 Image (1164x595 at 1280px, maintaining ratio) */}
                 <div
                   className="relative overflow-hidden rounded-[4px] w-full"
@@ -788,8 +787,14 @@ export default function LorientalisGrowPage() {
                     alt="Arabica Botanical and Chemical Terroir Slide"
                     fill
                     priority
+                    unoptimized
                     sizes="(max-width: 1280px) 100vw, 2095px"
                     className="object-cover"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
                   />
                 </div>
               </div>
@@ -801,44 +806,6 @@ export default function LorientalisGrowPage() {
                   width: "clamp(300px, 90.938vw, 2095px)",
                 }}
               >
-                {/* Slide 2 Header */}
-                <div className="w-full flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-4 mb-3 sm:mb-5">
-                  <div className="flex items-center gap-3 shrink-0">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      className="shrink-0 w-[clamp(24px,2.031vw,46px)] h-[clamp(24px,2.031vw,46px)]"
-                    >
-                      <ellipse cx="8" cy="12" rx="4.5" ry="6.5" transform="rotate(-20 8 12)" strokeLinecap="round" />
-                      <path d="M6 7C8 10 7 14 9 17" strokeLinecap="round" />
-                      <ellipse cx="16" cy="12" rx="4.5" ry="6.5" transform="rotate(20 16 12)" strokeLinecap="round" />
-                      <path d="M15 7C17 10 16 14 18 17" strokeLinecap="round" />
-                    </svg>
-                    <span
-                      className="text-white font-normal"
-                      style={{
-                        fontFamily: "var(--font-manrope), sans-serif",
-                        fontSize: "clamp(20px, 2.031vw, 46px)", // 26px at 1280px, responsive on larger screens
-                        lineHeight: "100%",
-                      }}
-                    >
-                      Robusta
-                    </span>
-                  </div>
-
-                  <p
-                    className="m-0 text-[#DBDBDB] text-[13px] sm:text-[clamp(13px,1.133vw,24px)] leading-[150%] text-left sm:text-right"
-                    style={{
-                      fontFamily: "var(--font-manrope), sans-serif",
-                      maxWidth: "clamp(450px, 45.313vw, 1040px)",
-                    }}
-                  >
-                    Coffea Canephora, Commonly Known As Robusta, Is Native To Central And Western Sub-Saharan Africa. It Is Hardier, Yields More, And Contains Roughly Twice The Caffeine Of Arabica.
-                  </p>
-                </div>
-
                 {/* Slide 2 Image (1164x595 at 1280px, maintaining ratio) */}
                 <div
                   className="relative overflow-hidden rounded-[4px] w-full"
@@ -850,13 +817,20 @@ export default function LorientalisGrowPage() {
                     src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6505f8ad-dade-44b8-383e-7e6acc0e4700/public"
                     alt="Robusta Botanical and Chemical Terroir Slide"
                     fill
+                    unoptimized
                     sizes="(max-width: 1280px) 100vw, 2095px"
                     className="object-cover"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
                   />
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
           {/* 77px gap then 2 navigation arrows 24x24 30px apart at 1280px */}
           {/* when inactive 2px solid #383636, when active: 2px solid #FFFFFF */}
@@ -909,7 +883,6 @@ export default function LorientalisGrowPage() {
               </svg>
             </button>
           </div>
-        </div>
       </section>
 
       {/* =========================================================================
@@ -985,7 +958,13 @@ export default function LorientalisGrowPage() {
             fill
             sizes="(max-width: 1280px) 100vw, 2160px"
             priority
+            unoptimized
             className="object-cover pointer-events-none"
+            style={{
+              imageRendering: "-webkit-optimize-contrast",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
           />
         </div>
 
@@ -1143,8 +1122,14 @@ export default function LorientalisGrowPage() {
                   src="/images/lorientalis/roast-light-circle.png"
                   alt="Light Roast Coffee Beans"
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 140px, 320px"
                   className="object-cover pointer-events-none"
+                  style={{
+                    imageRendering: "-webkit-optimize-contrast",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                  }}
                 />
               </div>
               <span
@@ -1173,8 +1158,14 @@ export default function LorientalisGrowPage() {
                   src="/images/lorientalis/roast-medium-circle.png"
                   alt="Medium Roast Coffee Beans"
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 140px, 320px"
                   className="object-cover pointer-events-none"
+                  style={{
+                    imageRendering: "-webkit-optimize-contrast",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                  }}
                 />
               </div>
               <span
@@ -1222,8 +1213,14 @@ export default function LorientalisGrowPage() {
               src="/images/lorientalis/roast-dark-banner.png"
               alt="Glistening Dark Roast Coffee Beans"
               fill
+              unoptimized
               sizes="(max-width: 1280px) 100vw, 2160px"
               className="object-cover pointer-events-none"
+              style={{
+                imageRendering: "-webkit-optimize-contrast",
+                transform: "translateZ(0)",
+                backfaceVisibility: "hidden",
+              }}
             />
           </div>
           <p
@@ -1268,7 +1265,13 @@ export default function LorientalisGrowPage() {
             fill
             sizes="(max-width: 1280px) 100vw, 2400px"
             priority
+            unoptimized
             className="object-cover pointer-events-none"
+            style={{
+              imageRendering: "-webkit-optimize-contrast",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
           />
         </div>
       </section>
@@ -1437,7 +1440,13 @@ export default function LorientalisGrowPage() {
             fill
             sizes="(max-width: 1280px) 100vw, 2396px"
             priority
+            unoptimized
             className="object-cover pointer-events-none"
+            style={{
+              imageRendering: "-webkit-optimize-contrast",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
           />
         </div>
       </section>
