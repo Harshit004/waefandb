@@ -192,8 +192,8 @@ function VisualPlaceholder({
 }
 
 export default function LorientalisGrowPage() {
-  // State for Arabica / Robusta tabs in Section 4
-  const [activeSpecies, setActiveSpecies] = useState<"arabica" | "robusta">("arabica");
+  // State for Varieties Carousel in Section 3
+  const [carouselIndex, setCarouselIndex] = useState<number>(0);
 
   // State for Roast Spectrum in Section 5
   const [activeRoast, setActiveRoast] = useState<"dark" | "medium" | "light">("medium");
@@ -507,8 +507,11 @@ export default function LorientalisGrowPage() {
                 alt="Coffee Plant with Ripe Cherries and White Blossoms"
                 fill
                 priority
-                unoptimized
+                sizes="(max-width: 768px) 100vw, 479px"
                 className="object-cover pointer-events-none"
+                style={{
+                  imageRendering: "-webkit-optimize-contrast",
+                }}
               />
             </div>
           </div>
@@ -569,8 +572,9 @@ export default function LorientalisGrowPage() {
         }}
       >
         {/* Section Heading Row with Line on Left leading to "Varieties" on Right */}
+        {/* after the title 93px gap */}
         {/* Line aligned at 99% of heading height starting from top */}
-        <div className="w-full flex items-start justify-end mb-10 sm:mb-14 select-none">
+        <div className="w-full flex items-start justify-end mb-[clamp(48px,7.266vw,93px)] select-none">
           <div
             className="flex-1 mr-6 sm:mr-8 h-px bg-gradient-to-l from-white/30 via-white/10 to-transparent"
             style={{
@@ -589,261 +593,319 @@ export default function LorientalisGrowPage() {
           </h2>
         </div>
 
-        {/* Content Row: Description on Left, Arabica & Robusta Green Cards on Right */}
-        {/* 172px gap to the Carousel below */}
-        <div className="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-8 lg:gap-14 select-none mb-[clamp(80px,13.438vw,172px)]">
-          {/* Left: Heading & Description */}
-          <div className="max-w-[500px]">
+        {/* Content Row: Left Column Narrative + Right Column 2 Bean Cards */}
+        {/* left and right section have 60px gap between them */}
+        {/* 172px under it, the carousel */}
+        <div className="w-full flex flex-col lg:flex-row items-start lg:items-end justify-between gap-[clamp(28px,4.688vw,60px)] select-none mb-[clamp(80px,13.438vw,172px)]">
+          {/* Left Column */}
+          <div className="w-full lg:max-w-[480px] flex flex-col items-start lg:items-end text-left lg:text-right">
+            {/* The most common varieties of coffee */}
             <h3
-              className="m-0 text-white font-normal mb-4"
+              className="m-0 text-white font-normal"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(20px, 2.1vw, 30px)",
-                lineHeight: "130%",
+                fontWeight: 400,
+                fontSize: "clamp(22px, 2.813vw, 36px)", // 36px at 1280px
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                textAlign: "right",
               }}
             >
-              The Most Common Varieties Of Coffee.
+              The most common varieties of coffee.
             </h3>
+
+            {/* 68px gap then description */}
+            <div className="h-[clamp(32px,5.313vw,68px)]" />
+
+            {/* Arabica and robusta dominate... */}
             <p
-              className="m-0 text-[#A0A0A0] font-normal leading-[160%]"
+              className="m-0 text-[#DBDBDB] font-normal"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "clamp(13px, 1.05vw, 15px)",
+                fontWeight: 400,
+                fontSize: "clamp(14px, 1.406vw, 18px)", // 18px at 1280px
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                textAlign: "right",
               }}
             >
-              Arabica And Robusta Dominate Commercial Coffee Worldwide. Less Common Species Such As Liberica And Excelsa Are Gaining Ground With Specialty Buyers.
+              Arabica and robusta dominate commercial coffee worldwide. Less common species such as liberica and excelsa are gaining ground with specialty buyers.
             </p>
           </div>
 
-          {/* Right: Two Green Bean Cards (Arabica & Robusta) */}
-          <div className="flex items-center gap-5 sm:gap-7 shrink-0">
+          {/* Right Column: Two Bean Cards (286x255) with 60px gap between them */}
+          <div className="flex items-start gap-[clamp(24px,4.688vw,60px)] shrink-0 self-center lg:self-end">
             {/* Arabica Card */}
-            <button
-              type="button"
-              onClick={() => setActiveSpecies("arabica")}
-              className={`flex flex-col items-center gap-2 group cursor-pointer text-left transition-transform duration-300 ${
-                activeSpecies === "arabica" ? "scale-105" : "opacity-80 hover:opacity-100"
-              }`}
+            <div
+              onClick={() => setCarouselIndex(0)}
+              className="flex flex-col items-start cursor-pointer group"
             >
               <div
-                className={`rounded-[4px] overflow-hidden border p-3 flex flex-col items-center justify-center transition-all duration-300 ${
-                  activeSpecies === "arabica"
-                    ? "border-[#48A663] bg-[#163821] shadow-lg shadow-[#163821]/50"
-                    : "border-white/10 bg-[#102418] hover:border-white/30"
-                }`}
+                className="relative overflow-hidden rounded-[14px] bg-[#223B2A] transition-transform duration-300 group-hover:scale-[1.02]"
                 style={{
-                  width: "clamp(110px, 11.5vw, 160px)",
-                  height: "clamp(110px, 11.5vw, 160px)",
+                  width: "clamp(180px, 22.344vw, 286px)", // 286px at 1280px
+                  height: "clamp(160px, 19.922vw, 255px)", // 255px at 1280px
+                  aspectRatio: "286 / 255",
                 }}
               >
-                <VisualPlaceholder
-                  label="Arabica Bean"
-                  sublabel="S-Curve Center Cut"
-                  aspectRatio="1/1"
-                  theme="green"
-                  iconType="beans"
-                  className="w-full h-full p-1 border-0 bg-transparent"
+                <Image
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/9aeae92b-105c-42e1-f632-1958a2da6100/public"
+                  alt="Arabica Coffee Bean"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 286px"
+                  className="object-cover pointer-events-none"
                 />
               </div>
-              <span
-                className={`text-[13px] sm:text-[14px] font-medium transition-colors ${
-                  activeSpecies === "arabica" ? "text-white" : "text-white/70"
-                }`}
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Arabica
-              </span>
-            </button>
+
+              {/* under it 6px gap, then vertical line 10px gap then its label */}
+              <div className="flex items-center mt-[6px]">
+                <div className="w-[1px] h-[clamp(24px,2.5vw,32px)] bg-[#DBDBDB] shrink-0" />
+                <span
+                  className="ml-[10px] text-[#DBDBDB] transition-colors group-hover:text-white"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 700,
+                    fontSize: "clamp(18px, 1.875vw, 24px)", // 24px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Arabica
+                </span>
+              </div>
+            </div>
 
             {/* Robusta Card */}
-            <button
-              type="button"
-              onClick={() => setActiveSpecies("robusta")}
-              className={`flex flex-col items-center gap-2 group cursor-pointer text-left transition-transform duration-300 ${
-                activeSpecies === "robusta" ? "scale-105" : "opacity-80 hover:opacity-100"
-              }`}
+            <div
+              onClick={() => setCarouselIndex(1)}
+              className="flex flex-col items-start cursor-pointer group"
             >
               <div
-                className={`rounded-[4px] overflow-hidden border p-3 flex flex-col items-center justify-center transition-all duration-300 ${
-                  activeSpecies === "robusta"
-                    ? "border-[#48A663] bg-[#163821] shadow-lg shadow-[#163821]/50"
-                    : "border-white/10 bg-[#102418] hover:border-white/30"
-                }`}
+                className="relative overflow-hidden rounded-[14px] bg-[#223B2A] transition-transform duration-300 group-hover:scale-[1.02]"
                 style={{
-                  width: "clamp(110px, 11.5vw, 160px)",
-                  height: "clamp(110px, 11.5vw, 160px)",
+                  width: "clamp(180px, 22.344vw, 286px)", // 286px at 1280px
+                  height: "clamp(160px, 19.922vw, 255px)", // 255px at 1280px
+                  aspectRatio: "286 / 255",
                 }}
               >
-                <VisualPlaceholder
-                  label="Robusta Bean"
-                  sublabel="Straight Center Cut"
-                  aspectRatio="1/1"
-                  theme="green"
-                  iconType="beans"
-                  className="w-full h-full p-1 border-0 bg-transparent"
+                <Image
+                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/31a67572-d486-4ee8-a505-e705955e8f00/public"
+                  alt="Robusta Coffee Bean"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 286px"
+                  className="object-cover pointer-events-none"
                 />
               </div>
-              <span
-                className={`text-[13px] sm:text-[14px] font-medium transition-colors ${
-                  activeSpecies === "robusta" ? "text-white" : "text-white/70"
-                }`}
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-              >
-                Robusta
-              </span>
-            </button>
+
+              {/* under it 6px gap, then vertical line 10px gap then its label */}
+              <div className="flex items-center mt-[6px]">
+                <div className="w-[1px] h-[clamp(24px,2.5vw,32px)] bg-[#DBDBDB] shrink-0" />
+                <span
+                  className="ml-[10px] text-[#DBDBDB] transition-colors group-hover:text-white"
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 700,
+                    fontSize: "clamp(18px, 1.875vw, 24px)", // 24px at 1280px
+                    lineHeight: "120%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Robusta
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* =========================================================================
-            SECTION 4: SPECIES DEEP-DIVE BANNER (ARABICA / ROBUSTA INTERACTIVE)
+            CAROUSEL SECTION (1164x595)
             ========================================================================= */}
-        <div className="w-full select-none">
-          {/* Header Row above the banner */}
-          <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-3 border-b border-white/10">
-            {/* Species Badge */}
-            <div className="flex items-center gap-2.5">
-              <span className="text-[#48A663] text-lg font-bold">☕</span>
-              <h4
-                className="m-0 text-white font-medium text-[18px] sm:text-[20px]"
-                style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+        <div className="w-full flex flex-col select-none overflow-hidden">
+          {/* Slides Track with smooth translation */}
+          <div className="w-full overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-out gap-[clamp(20px,2.5vw,32px)]"
+              style={{
+                transform:
+                  carouselIndex === 0
+                    ? "translateX(0)"
+                    : "translateX(calc(-1 * (clamp(300px, 86vw, 1164px) + clamp(20px, 2.5vw, 32px))))",
+              }}
+            >
+              {/* SLIDE 1: ARABICA */}
+              <div
+                className="shrink-0 flex flex-col"
+                style={{
+                  width: "clamp(300px, 86vw, 1164px)",
+                }}
               >
-                {activeSpecies === "arabica" ? "Arabica" : "Robusta"}
-              </h4>
-            </div>
+                {/* Slide 1 Header */}
+                <div className="w-full flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-4 mb-3 sm:mb-5">
+                  <div className="flex items-center gap-3 shrink-0">
+                    <svg
+                      width="26"
+                      height="26"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="1.5"
+                      className="shrink-0"
+                    >
+                      <ellipse cx="8" cy="12" rx="4.5" ry="6.5" transform="rotate(-20 8 12)" strokeLinecap="round" />
+                      <path d="M6 7C8 10 7 14 9 17" strokeLinecap="round" />
+                      <ellipse cx="16" cy="12" rx="4.5" ry="6.5" transform="rotate(20 16 12)" strokeLinecap="round" />
+                      <path d="M15 7C17 10 16 14 18 17" strokeLinecap="round" />
+                    </svg>
+                    <span
+                      className="text-white font-normal"
+                      style={{
+                        fontFamily: "var(--font-manrope), sans-serif",
+                        fontSize: "clamp(20px, 2vw, 26px)",
+                        lineHeight: "100%",
+                      }}
+                    >
+                      Arabica
+                    </span>
+                  </div>
 
-            {/* Description quote */}
-            <p
-              className="m-0 text-[#B5B5B5] max-w-[620px] text-[12px] sm:text-[13.5px] leading-[150%]"
-              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-            >
-              {activeSpecies === "arabica"
-                ? "Coffee Arabica Is Descended From The Original Coffee Trees Discovered In Ethiopia. These Trees Produce Fine, Mild, Aromatic Coffees That Bring The Highest Prices On The World Market."
-                : "Coffea Canephora (Robusta) is hardy, high-yielding, and native to central and western sub-Saharan Africa. It produces bold, full-bodied coffee with almost double the caffeine of Arabica and exceptional crema density."}
-            </p>
-          </div>
-
-          {/* Large Dual-Panel Green Feature Banner */}
-          <div className="w-full grid grid-cols-1 lg:grid-cols-12 rounded-[4px] border border-[#274B35]/60 overflow-hidden bg-[#112418] shadow-2xl">
-            {/* Left Panel: Macro Botanical Photography with Chemical Molecular Line Art Overlay */}
-            <div className="lg:col-span-6 relative min-h-[300px] sm:min-h-[360px] p-6 sm:p-8 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-[#1B3E29] to-[#0A170F]">
-              {/* Chemical Structure Line Overlay (HO, CO2H, OH caffeine bonds) */}
-              <div className="absolute inset-0 opacity-25 pointer-events-none flex items-center justify-center p-4">
-                <svg
-                  className="w-full h-full max-w-[340px]"
-                  viewBox="0 0 200 160"
-                  fill="none"
-                  stroke="#48A663"
-                  strokeWidth={1.5}
-                >
-                  <polygon points="100,20 140,43 140,89 100,112 60,89 60,43" />
-                  <polygon points="140,43 180,66 180,112 140,89" />
-                  <line x1="60" y1="89" x2="30" y2="106" />
-                  <line x1="100" y1="112" x2="100" y2="140" />
-                  <text x="20" y="120" fill="#48A663" fontSize="10" fontFamily="sans-serif">
-                    HO
-                  </text>
-                  <text x="95" y="155" fill="#48A663" fontSize="10" fontFamily="sans-serif">
-                    CO₂H
-                  </text>
-                  <text x="175" y="60" fill="#48A663" fontSize="10" fontFamily="sans-serif">
-                    OH
-                  </text>
-                  <text x="50" y="30" fill="#48A663" fontSize="10" fontFamily="sans-serif">
-                    CH₃
-                  </text>
-                </svg>
-              </div>
-
-              {/* Placeholder Label inside */}
-              <div className="relative z-10 flex flex-col justify-between h-full">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-black/40 border border-white/10 w-fit">
-                  <span className="w-2 h-2 rounded-full bg-[#48A663] animate-pulse" />
-                  <span className="text-[11px] uppercase tracking-wider text-white/70">
-                    Phytochemical Terroir Analysis
-                  </span>
-                </div>
-
-                <div className="mt-20">
-                  <span className="text-white text-base sm:text-lg font-medium block">
-                    {activeSpecies === "arabica"
-                      ? "Coffea Arabica Foliage & Ripe Clusters"
-                      : "Coffea Canephora Dense Yield Stems"}
-                  </span>
-                  <span className="text-white/60 text-xs">
-                    Natural trigonelline, chlorogenic acid & sucrose molecular composition
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Panel: Varieties list & Worldwide production stat */}
-            <div className="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between bg-gradient-to-b from-[#13281B] to-[#0A160F] border-t lg:border-t-0 lg:border-l border-[#274B35]/40">
-              {/* Popular Varieties Sub-block */}
-              <div>
-                <span
-                  className="text-white/60 text-xs uppercase tracking-widest block mb-2"
-                  style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-                >
-                  Popular Varieties
-                </span>
-                <p
-                  className="m-0 text-white text-base sm:text-lg font-medium"
-                  style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-                >
-                  {activeSpecies === "arabica"
-                    ? "Bourbon, Caturra, Geisha, Yirgacheffe, Typica"
-                    : "Conilon, Java, Nana, Kouillou, Niaouli"}
-                </p>
-              </div>
-
-              {/* Big Stat Callout Block */}
-              <div className="mt-8 sm:mt-12 pt-6 border-t border-white/10">
-                <span
-                  className="text-white/60 text-xs uppercase tracking-widest block mb-2"
-                  style={{ fontFamily: "var(--font-manrope), sans-serif" }}
-                >
-                  Percentage Of Coffee Produced Globally
-                </span>
-                <p className="m-0 text-white">
-                  <span className="text-sm text-white/80 mr-2 font-normal">
-                    Approximately
-                  </span>
-                  <span
-                    className="font-bold text-3xl sm:text-4xl text-[#48A663] mr-2"
-                    style={{ fontFamily: "var(--font-monschone), serif" }}
+                  <p
+                    className="m-0 text-[#DBDBDB] max-w-[580px] text-[13px] sm:text-[14.5px] leading-[150%] text-left sm:text-right"
+                    style={{ fontFamily: "var(--font-manrope), sans-serif" }}
                   >
-                    {activeSpecies === "arabica" ? "57%" : "43%"}
-                  </span>
-                  <span className="text-sm text-white/80 font-normal">
-                    Of The World&apos;s Coffee Production*
-                  </span>
-                </p>
+                    Coffea Arabica Is Descended From The Original Coffee Trees Discovered In Ethiopia. These Trees Produce Fine, Mild, Aromatic Coffees That Bring The Highest Prices On The World Market.
+                  </p>
+                </div>
+
+                {/* Slide 1 Image (1164x595) */}
+                <div
+                  className="relative overflow-hidden rounded-[4px] w-full"
+                  style={{
+                    aspectRatio: "1164 / 595",
+                  }}
+                >
+                  <Image
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/64a6dc17-fe78-4a88-e444-ba509b264e00/public"
+                    alt="Arabica Botanical and Chemical Terroir Slide"
+                    fill
+                    priority
+                    sizes="(max-width: 1280px) 100vw, 1164px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* SLIDE 2: ROBUSTA */}
+              <div
+                className="shrink-0 flex flex-col"
+                style={{
+                  width: "clamp(300px, 86vw, 1164px)",
+                }}
+              >
+                {/* Slide 2 Header */}
+                <div className="w-full flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-4 mb-3 sm:mb-5">
+                  <div className="flex items-center gap-3 shrink-0">
+                    <svg
+                      width="26"
+                      height="26"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="1.5"
+                      className="shrink-0"
+                    >
+                      <ellipse cx="8" cy="12" rx="4.5" ry="6.5" transform="rotate(-20 8 12)" strokeLinecap="round" />
+                      <path d="M6 7C8 10 7 14 9 17" strokeLinecap="round" />
+                      <ellipse cx="16" cy="12" rx="4.5" ry="6.5" transform="rotate(20 16 12)" strokeLinecap="round" />
+                      <path d="M15 7C17 10 16 14 18 17" strokeLinecap="round" />
+                    </svg>
+                    <span
+                      className="text-white font-normal"
+                      style={{
+                        fontFamily: "var(--font-manrope), sans-serif",
+                        fontSize: "clamp(20px, 2vw, 26px)",
+                        lineHeight: "100%",
+                      }}
+                    >
+                      Robusta
+                    </span>
+                  </div>
+
+                  <p
+                    className="m-0 text-[#DBDBDB] max-w-[580px] text-[13px] sm:text-[14.5px] leading-[150%] text-left sm:text-right"
+                    style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+                  >
+                    Coffea Canephora, Commonly Known As Robusta, Is Native To Central And Western Sub-Saharan Africa. It Is Hardier, Yields More, And Contains Roughly Twice The Caffeine Of Arabica.
+                  </p>
+                </div>
+
+                {/* Slide 2 Image (1164x595) */}
+                <div
+                  className="relative overflow-hidden rounded-[4px] w-full"
+                  style={{
+                    aspectRatio: "1164 / 595",
+                  }}
+                >
+                  <Image
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6505f8ad-dade-44b8-383e-7e6acc0e4700/public"
+                    alt="Robusta Botanical and Chemical Terroir Slide"
+                    fill
+                    sizes="(max-width: 1280px) 100vw, 1164px"
+                    className="object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Slider Arrow Controls */}
-          <div className="w-full flex items-center justify-end gap-3 mt-4">
+          {/* 77px gap then 2 navigation arrows 24x24 30px apart */}
+          {/* when inactive 2px solid #383636, when active: 2px solid #FFFFFF */}
+          <div className="w-full flex items-center justify-end mt-[clamp(36px,6.016vw,77px)] gap-[30px]">
+            {/* Left / Previous Arrow */}
             <button
               type="button"
-              onClick={() =>
-                setActiveSpecies(activeSpecies === "arabica" ? "robusta" : "arabica")
-              }
-              aria-label="Previous Species"
-              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer"
+              onClick={() => setCarouselIndex(0)}
+              aria-label="Previous Slide"
+              className="w-[24px] h-[24px] flex items-center justify-center p-0 bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-80"
             >
-              &larr;
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19 12H5M5 12L11 6M5 12L11 18"
+                  stroke={carouselIndex === 1 ? "#FFFFFF" : "#383636"}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
+
+            {/* Right / Next Arrow */}
             <button
               type="button"
-              onClick={() =>
-                setActiveSpecies(activeSpecies === "arabica" ? "robusta" : "arabica")
-              }
-              aria-label="Next Species"
-              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer"
+              onClick={() => setCarouselIndex(1)}
+              aria-label="Next Slide"
+              className="w-[24px] h-[24px] flex items-center justify-center p-0 bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-80"
             >
-              &rarr;
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 12H19M19 12L13 6M19 12L13 18"
+                  stroke={carouselIndex === 0 ? "#FFFFFF" : "#383636"}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
           </div>
         </div>
@@ -982,6 +1044,7 @@ export default function LorientalisGrowPage() {
             style={{
               fontFamily: "var(--font-manrope), sans-serif",
               fontSize: "clamp(20px, 2.2vw, 32px)",
+              lineHeight: "100%",
             }}
           >
             The Most Common Varieties Of Coffee.
@@ -1122,7 +1185,7 @@ export default function LorientalisGrowPage() {
               style={{
                 fontFamily: "var(--font-monschone), serif",
                 fontSize: "clamp(28px, 3.4vw, 48px)",
-                lineHeight: "110%",
+                lineHeight: "100%",
                 textShadow: "0 2px 10px rgba(0,0,0,0.6)",
               }}
             >
@@ -1172,7 +1235,7 @@ export default function LorientalisGrowPage() {
         <div className="w-full max-w-[820px] mb-10 sm:mb-14 select-none">
           <h3
             className="m-0 text-white font-normal text-[16px] sm:text-[18px] mb-3"
-            style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+            style={{ fontFamily: "var(--font-manrope), sans-serif", lineHeight: "100%" }}
           >
             Tea Processing Is Just Controlled Dehydration And Oxidation.
           </h3>
@@ -1198,7 +1261,7 @@ export default function LorientalisGrowPage() {
             <div className="relative z-10 p-6 sm:p-8 rounded-[2px] bg-black/65 backdrop-blur-md border border-white/10 max-w-[560px]">
               <h4
                 className="m-0 text-white text-xl sm:text-2xl font-medium mb-3"
-                style={{ fontFamily: "var(--font-monschone), serif" }}
+                style={{ fontFamily: "var(--font-monschone), serif", lineHeight: "100%" }}
               >
                 {teaProcessingSteps[activeTeaStep].title}
               </h4>
