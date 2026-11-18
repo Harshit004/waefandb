@@ -124,10 +124,11 @@ export default function LOrientalisHeader({
 
   const isSourcingActive = !!pathname?.includes("/sourcing");
   const isSustainabilityActive = !!pathname?.includes("/sustainability");
-  const isGrowActive =
+  const isGrowersActive =
+    !!pathname?.includes("/growers") ||
     !!pathname?.includes("/grow") ||
     (pathname === "/lorientalis" &&
-      (currentHash === "#conditions" || currentHash === "#grow" || isGrowSectionVisible));
+      (currentHash === "#conditions" || currentHash === "#growers" || currentHash === "#grow" || isGrowSectionVisible));
   const isContactActive = !!pathname?.includes("/contact");
 
   return (
@@ -193,16 +194,16 @@ export default function LOrientalisHeader({
         />
       </Link>
 
-      {/* Right Navigation: "Grow" & "Contact" */}
+      {/* Right Navigation: "Growers" & "Contact" */}
       <nav
         aria-label="Right Navigation"
         className="flex items-center gap-[7vw] z-10"
         style={{ gap: "7vw" }}
       >
         <NavLinkItem
-          href="/lorientalis/grow"
-          label="Grow"
-          isActive={isGrowActive}
+          href="/lorientalis/growers"
+          label="Growers"
+          isActive={isGrowersActive}
           onMouseEnter={onMouseEnterElement}
           onMouseLeave={onMouseLeaveElement}
         />

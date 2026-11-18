@@ -6,7 +6,7 @@ import Image from "next/image";
 import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
 
-export default function LorientalisGrowPage() {
+export default function LorientalisGrowersPage() {
   // State for Hero Background Carousel in Section 1
   // After delay: 800ms, Smart animate with Spring: { mass: 1, stiffness: 56.64, damping: 11.29 }
   const [heroIndex, setHeroIndex] = useState<number>(0);
@@ -15,19 +15,19 @@ export default function LorientalisGrowPage() {
   const heroSlides = [
     {
       src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/94da132b-c938-49ac-0ed3-1e2015466d00/public",
-      alt: "L'Orientalis Grow - Slide 1",
+      alt: "L'Orientalis Growers - Slide 1",
     },
     {
       src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3f3f97fb-9d1f-4ec5-8a18-daf7d15d8c00/public",
-      alt: "L'Orientalis Grow - Slide 2",
+      alt: "L'Orientalis Growers - Slide 2",
     },
     {
       src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/cfec52da-0073-415c-c87a-31256b04ab00/public",
-      alt: "L'Orientalis Grow - Slide 3",
+      alt: "L'Orientalis Growers - Slide 3",
     },
     {
       src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/94da132b-c938-49ac-0ed3-1e2015466d00/public",
-      alt: "L'Orientalis Grow - Slide 1 (Loop Clone)",
+      alt: "L'Orientalis Growers - Slide 1 (Loop Clone)",
     },
   ];
 

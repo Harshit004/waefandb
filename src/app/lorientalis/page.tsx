@@ -885,7 +885,7 @@ export default function LOrientalisPage() {
               Sugars And Acidity Long Before The Bean Ever Meets A Roaster. Most
               Origin Stories Stop At Geography.{" "}
               <Link
-                href="/lorientalis/grow#coffee"
+                href="/lorientalis/growers#coffee"
                 className="inline font-semibold text-[#7CC055] hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
@@ -1130,7 +1130,7 @@ export default function LOrientalisPage() {
               Sharp Diurnal Shifts, And Soil Chemistry That Few Other Regions Can
               Replicate.{" "}
               <Link
-                href="/lorientalis/grow#tea"
+                href="/lorientalis/growers#tea"
                 className="inline font-semibold text-[#7CC055] hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
