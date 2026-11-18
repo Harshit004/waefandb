@@ -9,6 +9,9 @@ export default function LorientalisSourcingPage() {
   // Hover state for Section 4B: Coffee Processing Methods (0 = Natural, 1 = Washed, 2 = Honey)
   const [activeCoffeeSlide, setActiveCoffeeSlide] = useState(0);
 
+  // Active Category state for Section 5: L'Orientalis Choice ("coffee" | "tea")
+  const [activeChoiceCategory, setActiveChoiceCategory] = useState<"coffee" | "tea">("coffee");
+
   return (
     <main className="relative w-full min-h-screen bg-black text-white overflow-x-clip selection:bg-[#365944] selection:text-white">
       {/* 1. L'ORIENTALIS HEADER (Fixed on scroll) */}
@@ -763,209 +766,521 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 5: THE TEA PRODUCTION PROCESS (148px gap from Section 4B)
+          SECTION 5: L'ORIENTALIS CHOICE (Coffee & Tea Portfolio)
           ========================================================================= */}
       <section
-        id="tea-process"
-        className="w-full flex flex-col items-center select-none"
+        id="lorientalis-choice"
+        className="relative w-full bg-black text-white select-none"
         style={{
-          marginTop: "clamp(70px, 10.28vw, 148px)",
+          marginTop: "clamp(80px, 12vw, 180px)",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
+          paddingBottom: "clamp(60px, 8vw, 120px)",
         }}
       >
-        {/* Main Section Heading: "THE TEA PRODUCTION PROCESS" */}
-        <h2
-          className="text-center font-normal tracking-[0.08em] uppercase select-none m-0"
-          style={{
-            fontFamily: "var(--font-monschone), serif",
-            fontSize: "clamp(32px, 4.444vw, 64px)",
-            lineHeight: "100%",
-            letterSpacing: "0%",
-          }}
-        >
-          <span className="text-white/40">THE </span>
-          <span className="text-white">TEA </span>
-          <span className="text-white/40">PRODUCTION PROCESS</span>
-        </h2>
-
-        {/* 137px gap then CTC TEA Block (w-full container spanning between Sourcing and Contact) */}
-        <div
-          className="w-full flex flex-col md:flex-row items-start justify-between"
-          style={{ marginTop: "clamp(56px, 9.51vw, 137px)" }}
-        >
-          {/* Left Column: 398 x 677 Harvester Woman Image */}
-          <div
-            className="relative w-full max-w-[398px] aspect-[398/677] rounded-[2px] overflow-hidden shadow-2xl select-none shrink-0"
+        {/* Top Header Group: Centered "LORIENTALIS CHOICE" Watermark & "As you like it" */}
+        <div className="w-full flex flex-col items-center text-center">
+          <h2
+            className="m-0 uppercase select-none tracking-[0.06em]"
             style={{
-              width: "clamp(280px, 27.64vw, 398px)",
-              height: "clamp(476px, 47.01vw, 677px)",
+              fontFamily: "var(--font-monschone), serif",
+              fontWeight: 400,
+              fontSize: "clamp(32px, 4.444vw, 64px)",
+              lineHeight: "100%",
+              color: "#A3A3A3",
             }}
           >
-            <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/51ca3f6a-9a8d-44ab-f3d5-747021c76800/public"
-              alt="Tea Plucker Woman"
-              fill
-              unoptimized
-              sizes="398px"
-              className="object-cover"
-            />
+            Lorientalis Choice
+          </h2>
+
+          <p
+            className="select-none text-white m-0"
+            style={{
+              marginTop: "clamp(12px, 1.5vw, 20px)",
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontWeight: 400,
+              fontSize: "clamp(14px, 1.25vw, 18px)",
+              lineHeight: "100%",
+              letterSpacing: "0%",
+            }}
+          >
+            As You Like It
+          </p>
+        </div>
+
+        {/* -------------------------------------------------------------------------
+            COFFEE CATEGORY
+            ------------------------------------------------------------------------- */}
+        <div id="coffee-choice" className="w-full">
+          {/* Right-aligned "COFFEE" Category Tag */}
+          <div
+            className="w-full flex justify-end"
+            style={{ marginTop: "clamp(32px, 4vw, 56px)" }}
+          >
+            <span
+              className="uppercase tracking-widest text-white select-none"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(14px, 1.25vw, 18px)",
+                lineHeight: "100%",
+                letterSpacing: "0.05em",
+              }}
+            >
+              Coffee
+            </span>
           </div>
 
-          {/* Right Column: CTC Tea Text + 156px gap + 301x302 Image */}
-          <div className="flex-1 flex flex-col justify-between self-stretch mt-8 md:mt-0 pl-0 md:pl-12">
-            {/* CTC Tea Description - width up to margin */}
-            <div className="select-none w-full">
-              <p className="m-0 leading-tight">
+          {/* Item 1: Speciality Coffee Beans (Left Serra Verde Image + Right Text & Organic Image) */}
+          <div
+            className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12"
+            style={{ marginTop: "clamp(24px, 3.5vw, 48px)" }}
+          >
+            {/* Left Column: Serra Verde Coffee Bag Image (400 x 630) */}
+            <div
+              className="relative rounded-[2px] overflow-hidden shadow-2xl select-none shrink-0"
+              style={{
+                width: "clamp(280px, 31.25vw, 400px)",
+                height: "clamp(441px, 49.21vw, 630px)",
+                aspectRatio: "400 / 630",
+              }}
+            >
+              <Image
+                src="/images/lorientalis/sourcing/coffee-speciality-serra-verde.png"
+                alt="Serra Verde Brazilian Coffee"
+                fill
+                unoptimized
+                sizes="(max-width: 1024px) 100vw, 400px"
+                className="object-cover"
+              />
+            </div>
+
+            {/* Right Column: Speciality Coffee Beans Text + Organic Bag Image */}
+            <div className="flex-1 flex flex-col justify-between self-stretch">
+              {/* Text Block */}
+              <div className="select-none w-full max-w-[700px]">
+                <p className="m-0 leading-tight">
+                  <span
+                    className="text-white"
+                    style={{
+                      fontFamily: "var(--font-monschone), serif",
+                      fontWeight: 400,
+                      fontSize: "clamp(26px, 2.9vw, 42px)",
+                      lineHeight: "105%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Speciality Coffee Beans
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 400,
+                      fontSize: "clamp(14px, 1.15vw, 17px)",
+                      lineHeight: "140%",
+                      letterSpacing: "0%",
+                      color: "#DBDBDB",
+                    }}
+                  >
+                    {" "} : Carefully Selected, Traceable Beans Roasted For Aroma, Sweetness And A Clean, Layered Finish. Made For Hotels, Lounges And Premium Spaces Where Coffee Is Part Of The Brand Experience.
+                  </span>
+                </p>
+              </div>
+
+              {/* Organic Coffee Bag Image (365 x 410, right aligned) */}
+              <div
+                className="w-full flex justify-end"
+                style={{ marginTop: "clamp(36px, 5vw, 64px)" }}
+              >
+                <div
+                  className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
+                  style={{
+                    width: "clamp(240px, 28.5vw, 365px)",
+                    height: "clamp(270px, 32vw, 410px)",
+                    aspectRatio: "365 / 410",
+                  }}
+                >
+                  <Image
+                    src="/images/lorientalis/sourcing/coffee-organic-beans.png"
+                    alt="Organic Coffee Beans and Hand Grinder"
+                    fill
+                    unoptimized
+                    sizes="365px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Item 2: Corporate Blends Text + Tribo Botanical Banner + Toggle */}
+          <div
+            className="w-full flex flex-col items-end"
+            style={{ marginTop: "clamp(60px, 8vw, 120px)" }}
+          >
+            {/* Corporate Blends Text Block (Right-aligned, max-w-[780px]) */}
+            <div className="select-none text-right max-w-[780px] w-full">
+              <p className="m-0 leading-tight text-right">
                 <span
                   className="text-white"
                   style={{
                     fontFamily: "var(--font-monschone), serif",
                     fontWeight: 400,
-                    fontSize: "clamp(28px, 3.333vw, 48px)",
-                    lineHeight: "100%",
+                    fontSize: "clamp(26px, 2.9vw, 42px)",
+                    lineHeight: "105%",
                     letterSpacing: "0%",
                   }}
                 >
-                  CTC Tea
+                  Corporate Blends
                 </span>
                 <span
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 400,
-                    fontSize: "clamp(15px, 1.25vw, 18px)",
-                    lineHeight: "130%",
+                    fontSize: "clamp(14px, 1.15vw, 17px)",
+                    lineHeight: "140%",
                     letterSpacing: "0%",
-                    color: "#FFFFFF73",
+                    color: "#DBDBDB",
                   }}
                 >
-                  {" "} : CTC (Crush, Tear, Curl) Makes Up Over 85% Of The Market.
-                  Leaves Are Mechanically Cut, Torn And Curled Into Uniform
-                  Granules For A Strong, Bold Cup With Higher Caffeine. It Suits
-                  High-Volume Service.
+                  {" "} : A Balanced Blend Of Arabica And Robusta, Built For Consistency Across Sites, Shifts And Machines. Every Employee And Visitor Gets The Same Dependable Cup, At A Value That Scales.
                 </span>
               </p>
             </div>
 
-            {/* 156px under it: Terraced Hills Image expanded by 20% (361x362, aligned right) */}
+            {/* Tribo Coffee Artwork Banner with Overlapping Pill Toggle */}
             <div
-              className="w-full flex justify-end"
-              style={{ marginTop: "clamp(48px, 10.83vw, 156px)" }}
+              className="relative w-full flex flex-col items-center"
+              style={{ marginTop: "clamp(28px, 4vw, 56px)" }}
             >
               <div
-                className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
+                className="relative w-full rounded-[2px] overflow-hidden shadow-2xl select-none"
                 style={{
-                  width: "clamp(240px, 25.08vw, 361px)",
-                  height: "clamp(240px, 25.16vw, 362px)",
-                  aspectRatio: "301 / 302",
+                  aspectRatio: "1200 / 395",
+                  maxHeight: "415px",
                 }}
               >
                 <Image
-                  src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3a7e85fd-e8d8-4385-b8ce-d6fa4d08d000/public"
-                  alt="Terraced Tea Hills"
+                  src="/images/lorientalis/sourcing/coffee-corporate-tribo-banner.png"
+                  alt="Tribo Coffee Botanical Blend Illustration"
                   fill
                   unoptimized
-                  sizes="361px"
+                  sizes="(max-width: 1280px) 100vw, 1200px"
                   className="object-cover"
                 />
               </div>
+
+              {/* Center Pill Switch: [ Tea | Coffee ] */}
+              <div
+                className="relative z-10 -mt-[22px] flex items-center bg-white rounded-full p-[3px] shadow-2xl select-none cursor-pointer"
+                style={{
+                  boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.6)",
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveChoiceCategory("tea");
+                    const el = document.getElementById("tea-choice");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className={`px-6 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                    activeChoiceCategory === "tea"
+                      ? "bg-[#1A3326] text-white shadow-sm"
+                      : "text-black hover:opacity-75"
+                  }`}
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                  }}
+                >
+                  Tea
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveChoiceCategory("coffee");
+                    const el = document.getElementById("coffee-choice");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className={`px-6 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                    activeChoiceCategory === "coffee"
+                      ? "bg-[#1A3326] text-white shadow-sm"
+                      : "text-black hover:opacity-75"
+                  }`}
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                  }}
+                >
+                  Coffee
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* 110px below it, Orthodox Tea Text (right aligned) */}
-        <div
-          className="w-full flex justify-end select-none"
-          style={{ marginTop: "clamp(48px, 7.63vw, 110px)" }}
-        >
-          <p className="m-0 text-right max-w-[760px] leading-tight">
-            <span
-              className="text-white"
+          {/* Item 3: Commercial Beans (Centered Title & Description) */}
+          <div
+            className="w-full flex flex-col items-center text-center select-none"
+            style={{ marginTop: "clamp(60px, 8vw, 100px)" }}
+          >
+            <h3
+              className="text-white select-none m-0 text-center"
               style={{
                 fontFamily: "var(--font-monschone), serif",
                 fontWeight: 400,
-                fontSize: "clamp(28px, 3.333vw, 48px)",
-                lineHeight: "100%",
+                fontSize: "clamp(30px, 3.6vw, 48px)",
+                lineHeight: "105%",
                 letterSpacing: "0%",
               }}
             >
-              Orthodox Tea
-            </span>
-            <span
+              Commercial Beans
+            </h3>
+
+            <p
+              className="text-center select-none m-0"
               style={{
+                marginTop: "clamp(12px, 1.8vw, 24px)",
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(15px, 1.25vw, 18px)",
-                lineHeight: "130%",
+                fontSize: "clamp(14px, 1.15vw, 17px)",
+                lineHeight: "140%",
                 letterSpacing: "0%",
-                color: "#FFFFFF73",
+                color: "#DBDBDB",
+                maxWidth: "clamp(560px, 68vw, 840px)",
               }}
             >
-              {" "} : Orthodox Tea Uses Traditional Or Manual Methods, Producing A
-              Delicate Cup With Less Caffeine. Sold As Loose Or Whole Leaf, It
-              Suits Premium Black Teas And Signature Menus.
-            </span>
-          </p>
-        </div>
-
-        {/* 102px below it: 1200 x 498 Green Tea Flush Image */}
-        <div
-          className="w-full flex justify-center"
-          style={{ marginTop: "clamp(48px, 7.08vw, 102px)" }}
-        >
-          <div
-            className="relative w-full aspect-[1200/498] rounded-[2px] overflow-hidden shadow-2xl select-none"
-          >
-            <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/ca262eda-b665-4ba1-3ef4-1baa5bf22e00/public"
-              alt="Vibrant Green Tea Flush Leaves"
-              fill
-              unoptimized
-              sizes="(max-width: 1200px) 100vw, 1440px"
-              className="object-cover"
-            />
+              Robust, Full-Bodied Beans Made For High-Volume Service. Strong Crema, Bold Character And Reliable Supply Keep Busy Cafés, Canteens And 24x7 Facilities Running Without Compromise.
+            </p>
           </div>
         </div>
 
-        {/* 72px gap then Green Tea Title & Description (centered per design) */}
-        <div
-          className="w-full flex flex-col items-center select-none"
-          style={{ marginTop: "clamp(36px, 5vw, 72px)" }}
-        >
-          <h3
-            className="text-center text-white m-0"
-            style={{
-              fontFamily: "var(--font-monschone), serif",
-              fontWeight: 400,
-              fontSize: "clamp(32px, 3.333vw, 48px)",
-              lineHeight: "100%",
-              letterSpacing: "0%",
-            }}
+        {/* -------------------------------------------------------------------------
+            TEA CATEGORY
+            ------------------------------------------------------------------------- */}
+        <div id="tea-choice" className="w-full">
+          {/* Right-aligned "TEA" Category Tag */}
+          <div
+            className="w-full flex justify-end"
+            style={{ marginTop: "clamp(70px, 9vw, 130px)" }}
           >
-            Green Tea
-          </h3>
+            <span
+              className="uppercase tracking-widest text-white select-none"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(14px, 1.25vw, 18px)",
+                lineHeight: "100%",
+                letterSpacing: "0.05em",
+              }}
+            >
+              Tea
+            </span>
+          </div>
 
-          <p
-            className="text-center m-0 max-w-[940px]"
-            style={{
-              marginTop: "25px",
-              fontFamily: "var(--font-manrope), sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(15px, 1.25vw, 18px)",
-              lineHeight: "130%",
-              letterSpacing: "0%",
-              color: "#FFFFFF73",
-            }}
+          {/* Item 1: Bombay cutting (Left Bamboo Scoop Image + Right Text & Greenfield Image) */}
+          <div
+            className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12"
+            style={{ marginTop: "clamp(24px, 3.5vw, 48px)" }}
           >
-            Green Tea Is Made From Unoxidized Leaves And Is One Of The Least Processed Types Of Tea, Which Helps Retain Its Natural Antioxidants And Beneficial Polyphenols. It Offers A Fresh, Light Flavor With Subtle Grassy Notes And A Gentle Caffeine Boost, Making It A Popular Choice For A Healthy, Refreshing Drink.
-          </p>
+            {/* Left Column: Tea Scoop Image (400 x 670) */}
+            <div
+              className="relative rounded-[2px] overflow-hidden shadow-2xl select-none shrink-0"
+              style={{
+                width: "clamp(280px, 31.25vw, 400px)",
+                height: "clamp(469px, 52.34vw, 670px)",
+                aspectRatio: "400 / 670",
+              }}
+            >
+              <Image
+                src="/images/lorientalis/sourcing/tea-bombay-scoop.png"
+                alt="Whole Loose Leaf Tea in Bamboo Scoop"
+                fill
+                unoptimized
+                sizes="(max-width: 1024px) 100vw, 400px"
+                className="object-cover"
+              />
+            </div>
+
+            {/* Right Column: Bombay cutting Text + Greenfield Box Image */}
+            <div className="flex-1 flex flex-col justify-between self-stretch">
+              {/* Text Block */}
+              <div className="select-none w-full max-w-[700px]">
+                <p className="m-0 leading-tight">
+                  <span
+                    className="text-white"
+                    style={{
+                      fontFamily: "var(--font-monschone), serif",
+                      fontWeight: 400,
+                      fontSize: "clamp(26px, 2.9vw, 42px)",
+                      lineHeight: "105%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    Bombay cutting
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 400,
+                      fontSize: "clamp(14px, 1.15vw, 17px)",
+                      lineHeight: "140%",
+                      letterSpacing: "0%",
+                      color: "#DBDBDB",
+                    }}
+                  >
+                    {" "} : The City's Famous Kadak Cup: Strong, Brisk And Unapologetically Bold. Built For High-Footfall Pantries And Canteens Where Speed, Strength And Consistency Matter Most.
+                  </span>
+                </p>
+              </div>
+
+              {/* Greenfield Fine Ceylon Image (365 x 400, right aligned) */}
+              <div
+                className="w-full flex justify-end"
+                style={{ marginTop: "clamp(36px, 5vw, 64px)" }}
+              >
+                <div
+                  className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
+                  style={{
+                    width: "clamp(240px, 28.5vw, 365px)",
+                    height: "clamp(263px, 31.25vw, 400px)",
+                    aspectRatio: "365 / 400",
+                  }}
+                >
+                  <Image
+                    src="/images/lorientalis/sourcing/tea-greenfield-box.png"
+                    alt="Greenfield Fine Ceylon Black Tea Box"
+                    fill
+                    unoptimized
+                    sizes="365px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Item 2: Madras Masala Text + Archen Flat-Lay Banner */}
+          <div
+            className="w-full flex flex-col items-end"
+            style={{ marginTop: "clamp(60px, 8vw, 120px)" }}
+          >
+            {/* Madras Masala Text Block (Right-aligned, max-w-[780px]) */}
+            <div className="select-none text-right max-w-[780px] w-full">
+              <p className="m-0 leading-tight text-right">
+                <span
+                  className="text-white"
+                  style={{
+                    fontFamily: "var(--font-monschone), serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(26px, 2.9vw, 42px)",
+                    lineHeight: "105%",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  Madras Masala
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-manrope), sans-serif",
+                    fontWeight: 400,
+                    fontSize: "clamp(14px, 1.15vw, 17px)",
+                    lineHeight: "140%",
+                    letterSpacing: "0%",
+                    color: "#DBDBDB",
+                  }}
+                >
+                  {" "} : Robust Tea Layered With Warming Spices For A Fragrant, Comforting Cup. A Distinctive Chai For Offices, Guesthouses And Hospitality Spaces That Want A Signature, Flavour-Forward Offering.
+                </span>
+              </p>
+            </div>
+
+            {/* Flat-Lay Amber Tea Banner */}
+            <div
+              className="relative w-full rounded-[2px] overflow-hidden shadow-2xl select-none"
+              style={{
+                marginTop: "clamp(28px, 4vw, 56px)",
+                aspectRatio: "1200 / 420",
+                maxHeight: "420px",
+              }}
+            >
+              <Image
+                src="/images/lorientalis/sourcing/tea-madras-flatlay-banner.png"
+                alt="Madras Masala Tea Flat Lay with Cup and Archen Canisters"
+                fill
+                unoptimized
+                sizes="(max-width: 1280px) 100vw, 1200px"
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Item 3 & 4: Delhi Darbar (Left) & Calcutta Street (Right) */}
+          <div
+            className="w-full flex flex-col md:flex-row items-start justify-between gap-8 md:gap-16"
+            style={{ marginTop: "clamp(60px, 8vw, 110px)" }}
+          >
+            {/* Left: Delhi Darbar */}
+            <div className="flex-1 max-w-[480px] select-none text-left">
+              <h3
+                className="m-0 text-white"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(28px, 3.4vw, 48px)",
+                  lineHeight: "105%",
+                  letterSpacing: "0%",
+                }}
+              >
+                Delhi Darbar
+              </h3>
+
+              <p
+                className="m-0"
+                style={{
+                  marginTop: "clamp(12px, 1.6vw, 20px)",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(14px, 1.15vw, 17px)",
+                  lineHeight: "140%",
+                  letterSpacing: "0%",
+                  color: "#DBDBDB",
+                }}
+              >
+                A Rich, Full-Bodied Blend With Deep Colour And A Milk-Friendly Character. Made For Spaces That Serve Classic Indian Chai With A Touch Of Royalty.
+              </p>
+            </div>
+
+            {/* Right: Calcutta Street */}
+            <div className="flex-1 max-w-[480px] select-none text-left md:text-right self-stretch flex flex-col items-start md:items-end">
+              <h3
+                className="m-0 text-white"
+                style={{
+                  fontFamily: "var(--font-monschone), serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(28px, 3.4vw, 48px)",
+                  lineHeight: "105%",
+                  letterSpacing: "0%",
+                }}
+              >
+                Calcutta Street
+              </h3>
+
+              <p
+                className="m-0 text-left md:text-right"
+                style={{
+                  marginTop: "clamp(12px, 1.6vw, 20px)",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(14px, 1.15vw, 17px)",
+                  lineHeight: "140%",
+                  letterSpacing: "0%",
+                  color: "#DBDBDB",
+                }}
+              >
+                A Brisk, Malty-Bright Cup With A Lively Liquor And A Clean Finish. Reliable Across Large-Volume Service, From Corporate Cafeterias To Transit Hubs And Campuses.
+              </p>
+            </div>
+          </div>
         </div>
-
-        {/* 111px gap then footer */}
-        <div
-          className="w-full"
-          style={{ height: "clamp(48px, 7.7vw, 111px)" }}
-        />
       </section>
 
       {/* L'ORIENTALIS FOOTER */}
