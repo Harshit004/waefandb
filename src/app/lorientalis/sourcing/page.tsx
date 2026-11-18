@@ -323,21 +323,21 @@ export default function LorientalisSourcingPage() {
         className="w-full h-screen max-h-screen flex flex-col items-center justify-between text-center select-none overflow-hidden"
         style={{
           height: "100vh",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
-          paddingTop: "clamp(24px, 3.5vh, 48px)",
-          paddingBottom: "clamp(20px, 3vh, 40px)",
+          paddingLeft: "clamp(16px, 2.778vw, 40px)",
+          paddingRight: "clamp(16px, 2.778vw, 40px)",
+          paddingTop: "clamp(16px, 2.2vh, 28px)",
+          paddingBottom: "clamp(12px, 1.8vh, 24px)",
           boxSizing: "border-box",
         }}
       >
         {/* Top Header Group */}
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center shrink-0">
           <h3
             className="text-white select-none m-0 text-center"
             style={{
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
-              fontSize: "clamp(22px, 3.2vh, 40px)",
+              fontSize: "clamp(20px, 2.8vh, 36px)",
               lineHeight: "100%",
               letterSpacing: "0%",
             }}
@@ -348,10 +348,10 @@ export default function LorientalisSourcingPage() {
           <h2
             className="text-white select-none m-0 text-center"
             style={{
-              marginTop: "clamp(8px, 1.5vh, 20px)",
+              marginTop: "clamp(6px, 1vh, 12px)",
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
-              fontSize: "clamp(46px, 6.8vh, 92px)",
+              fontSize: "clamp(38px, 5.8vh, 80px)",
               lineHeight: "100%",
               letterSpacing: "0%",
             }}
@@ -361,15 +361,20 @@ export default function LorientalisSourcingPage() {
         </div>
 
         {/* Carrier Portrait (493 x 667) & Overlapping Narrative */}
-        <div className="relative w-full flex flex-col items-center justify-end">
-          {/* Centered Carrier Portrait (493 x 667) */}
+        <div
+          className="relative w-full flex-1 flex flex-col items-center justify-end"
+          style={{
+            marginTop: "clamp(8px, 1.8vh, 22px)", // Space between from bean to brew and image decreased to half
+          }}
+        >
+          {/* Centered Carrier Portrait (Height and width increased by the reclaimed space) */}
           <div
-            className="relative rounded-[2px] overflow-hidden select-none shadow-2xl"
+            className="relative rounded-[2px] overflow-hidden select-none shadow-2xl shrink-0"
             style={{
-              height: "clamp(420px, 60vh, 667px)",
-              width: "calc(clamp(420px, 60vh, 667px) * 493 / 667)",
+              height: "clamp(460px, 69vh, 760px)",
+              width: "calc(clamp(460px, 69vh, 760px) * 493 / 667)",
               aspectRatio: "493 / 667",
-              maxWidth: "493px",
+              maxWidth: "calc(clamp(460px, 69vh, 760px) * 493 / 667)",
             }}
           >
             <Image
@@ -377,25 +382,25 @@ export default function LorientalisSourcingPage() {
               alt="Mountain Harvest Carrier with Woven Basket"
               fill
               unoptimized
-              sizes="(max-width: 768px) 100vw, 493px"
+              sizes="(max-width: 768px) 100vw, 560px"
               className="object-cover"
             />
           </div>
 
           {/* Overlapping Text Box (centered with image) */}
           <div
-            className="relative z-10 -mt-[clamp(24px, 3.5vh, 40px)] px-4 w-full flex justify-center text-center select-none"
+            className="relative z-10 -mt-[clamp(24px, 3.5vh, 44px)] px-4 w-full flex justify-center text-center select-none"
           >
             <p
               className="m-0 text-center"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(13px, 1.7vh, 18px)",
+                fontSize: "clamp(12px, 1.5vh, 17px)",
                 lineHeight: "135%",
                 letterSpacing: "0%",
                 color: "#DBDBDB",
-                maxWidth: "clamp(560px, 70vw, 882px)",
+                maxWidth: "clamp(480px, 65vw, 840px)",
               }}
             >
               Once Harvested, Coffee Cherries Must Be Processed Quickly To
@@ -772,9 +777,9 @@ export default function LorientalisSourcingPage() {
         id="lorientalis-choice"
         className="relative w-full bg-black text-white select-none"
         style={{
-          marginTop: "clamp(80px, 12vw, 180px)",
-          paddingLeft: "2.778vw",
-          paddingRight: "2.778vw",
+          marginTop: "clamp(60px, 10vw, 160px)",
+          paddingLeft: "clamp(16px, 2.778vw, 40px)",
+          paddingRight: "clamp(16px, 2.778vw, 40px)",
           paddingBottom: "clamp(60px, 8vw, 120px)",
         }}
       >
@@ -785,7 +790,7 @@ export default function LorientalisSourcingPage() {
             style={{
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
-              fontSize: "clamp(32px, 4.444vw, 64px)",
+              fontSize: "clamp(28px, 4.444vw, 64px)",
               lineHeight: "100%",
               color: "#A3A3A3",
             }}
@@ -796,10 +801,10 @@ export default function LorientalisSourcingPage() {
           <p
             className="select-none text-white m-0"
             style={{
-              marginTop: "clamp(12px, 1.5vw, 20px)",
+              marginTop: "clamp(10px, 1.4vw, 20px)",
               fontFamily: "var(--font-manrope), sans-serif",
               fontWeight: 400,
-              fontSize: "clamp(14px, 1.25vw, 18px)",
+              fontSize: "clamp(13px, 1.25vw, 18px)",
               lineHeight: "100%",
               letterSpacing: "0%",
             }}
@@ -815,14 +820,14 @@ export default function LorientalisSourcingPage() {
           {/* Right-aligned "COFFEE" Category Tag */}
           <div
             className="w-full flex justify-end"
-            style={{ marginTop: "clamp(32px, 4vw, 56px)" }}
+            style={{ marginTop: "clamp(24px, 3.5vw, 56px)" }}
           >
             <span
               className="uppercase tracking-widest text-white select-none"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 500,
-                fontSize: "clamp(14px, 1.25vw, 18px)",
+                fontSize: "clamp(13px, 1.25vw, 18px)",
                 lineHeight: "100%",
                 letterSpacing: "0.05em",
               }}
@@ -833,16 +838,20 @@ export default function LorientalisSourcingPage() {
 
           {/* Item 1: Speciality Coffee Beans (Left Serra Verde Image + Right Text & Organic Image) */}
           <div
-            className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12"
-            style={{ marginTop: "clamp(24px, 3.5vw, 48px)" }}
+            className="w-full flex flex-col lg:flex-row items-start justify-between"
+            style={{
+              marginTop: "clamp(20px, 3vw, 48px)",
+              gap: "clamp(20px, 3.5vw, 48px)",
+            }}
           >
             {/* Left Column: Serra Verde Coffee Bag Image (400 x 630) */}
             <div
               className="relative rounded-[2px] overflow-hidden shadow-2xl select-none shrink-0"
               style={{
-                width: "clamp(280px, 31.25vw, 400px)",
-                height: "clamp(441px, 49.21vw, 630px)",
+                width: "clamp(220px, 27.78vw, 400px)",
+                height: "clamp(346px, 43.75vw, 630px)",
                 aspectRatio: "400 / 630",
+                maxWidth: "clamp(220px, 27.78vw, 400px)",
               }}
             >
               <Image
@@ -858,14 +867,17 @@ export default function LorientalisSourcingPage() {
             {/* Right Column: Speciality Coffee Beans Text + Organic Bag Image */}
             <div className="flex-1 flex flex-col justify-between self-stretch">
               {/* Text Block */}
-              <div className="select-none w-full max-w-[700px]">
+              <div
+                className="select-none w-full"
+                style={{ maxWidth: "clamp(320px, 48.6vw, 700px)" }}
+              >
                 <p className="m-0 leading-tight">
                   <span
                     className="text-white"
                     style={{
                       fontFamily: "var(--font-monschone), serif",
                       fontWeight: 400,
-                      fontSize: "clamp(26px, 2.9vw, 42px)",
+                      fontSize: "clamp(22px, 2.9vw, 42px)",
                       lineHeight: "105%",
                       letterSpacing: "0%",
                     }}
@@ -876,7 +888,7 @@ export default function LorientalisSourcingPage() {
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 400,
-                      fontSize: "clamp(14px, 1.15vw, 17px)",
+                      fontSize: "clamp(12px, 1.15vw, 17px)",
                       lineHeight: "140%",
                       letterSpacing: "0%",
                       color: "#DBDBDB",
@@ -890,14 +902,15 @@ export default function LorientalisSourcingPage() {
               {/* Organic Coffee Bag Image (365 x 410, right aligned) */}
               <div
                 className="w-full flex justify-end"
-                style={{ marginTop: "clamp(36px, 5vw, 64px)" }}
+                style={{ marginTop: "clamp(24px, 4vw, 64px)" }}
               >
                 <div
                   className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
                   style={{
-                    width: "clamp(240px, 28.5vw, 365px)",
-                    height: "clamp(270px, 32vw, 410px)",
+                    width: "clamp(180px, 25.35vw, 365px)",
+                    height: "clamp(202px, 28.47vw, 410px)",
                     aspectRatio: "365 / 410",
+                    maxWidth: "clamp(180px, 25.35vw, 365px)",
                   }}
                 >
                   <Image
@@ -916,17 +929,20 @@ export default function LorientalisSourcingPage() {
           {/* Item 2: Corporate Blends Text + Tribo Botanical Banner + Toggle */}
           <div
             className="w-full flex flex-col items-end"
-            style={{ marginTop: "clamp(60px, 8vw, 120px)" }}
+            style={{ marginTop: "clamp(48px, 7vw, 120px)" }}
           >
             {/* Corporate Blends Text Block (Right-aligned, max-w-[780px]) */}
-            <div className="select-none text-right max-w-[780px] w-full">
+            <div
+              className="select-none text-right w-full"
+              style={{ maxWidth: "clamp(320px, 54.17vw, 780px)" }}
+            >
               <p className="m-0 leading-tight text-right">
                 <span
                   className="text-white"
                   style={{
                     fontFamily: "var(--font-monschone), serif",
                     fontWeight: 400,
-                    fontSize: "clamp(26px, 2.9vw, 42px)",
+                    fontSize: "clamp(22px, 2.9vw, 42px)",
                     lineHeight: "105%",
                     letterSpacing: "0%",
                   }}
@@ -937,7 +953,7 @@ export default function LorientalisSourcingPage() {
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 400,
-                    fontSize: "clamp(14px, 1.15vw, 17px)",
+                    fontSize: "clamp(12px, 1.15vw, 17px)",
                     lineHeight: "140%",
                     letterSpacing: "0%",
                     color: "#DBDBDB",
@@ -951,13 +967,13 @@ export default function LorientalisSourcingPage() {
             {/* Tribo Coffee Artwork Banner with Overlapping Pill Toggle */}
             <div
               className="relative w-full flex flex-col items-center"
-              style={{ marginTop: "clamp(28px, 4vw, 56px)" }}
+              style={{ marginTop: "clamp(20px, 3.5vw, 56px)" }}
             >
               <div
                 className="relative w-full rounded-[2px] overflow-hidden shadow-2xl select-none"
                 style={{
                   aspectRatio: "1200 / 395",
-                  maxHeight: "415px",
+                  maxHeight: "clamp(180px, 32.9vw, 415px)",
                 }}
               >
                 <Image
@@ -972,8 +988,10 @@ export default function LorientalisSourcingPage() {
 
               {/* Center Pill Switch: [ Tea | Coffee ] */}
               <div
-                className="relative z-10 -mt-[22px] flex items-center bg-white rounded-full p-[3px] shadow-2xl select-none cursor-pointer"
+                className="relative z-10 flex items-center bg-white rounded-full shadow-2xl select-none cursor-pointer"
                 style={{
+                  marginTop: "clamp(-22px, -1.8vw, -14px)",
+                  padding: "clamp(2px, 0.3vw, 4px)",
                   boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.6)",
                 }}
               >
@@ -984,13 +1002,18 @@ export default function LorientalisSourcingPage() {
                     const el = document.getElementById("tea-choice");
                     if (el) el.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className={`px-6 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                  className={`rounded-full font-medium transition-all duration-300 ${
                     activeChoiceCategory === "tea"
                       ? "bg-[#1A3326] text-white shadow-sm"
                       : "text-black hover:opacity-75"
                   }`}
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
+                    fontSize: "clamp(11px, 0.97vw, 14px)",
+                    paddingLeft: "clamp(14px, 1.8vw, 28px)",
+                    paddingRight: "clamp(14px, 1.8vw, 28px)",
+                    paddingTop: "clamp(4px, 0.4vw, 7px)",
+                    paddingBottom: "clamp(4px, 0.4vw, 7px)",
                   }}
                 >
                   Tea
@@ -1002,13 +1025,18 @@ export default function LorientalisSourcingPage() {
                     const el = document.getElementById("coffee-choice");
                     if (el) el.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className={`px-6 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                  className={`rounded-full font-medium transition-all duration-300 ${
                     activeChoiceCategory === "coffee"
                       ? "bg-[#1A3326] text-white shadow-sm"
                       : "text-black hover:opacity-75"
                   }`}
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
+                    fontSize: "clamp(11px, 0.97vw, 14px)",
+                    paddingLeft: "clamp(14px, 1.8vw, 28px)",
+                    paddingRight: "clamp(14px, 1.8vw, 28px)",
+                    paddingTop: "clamp(4px, 0.4vw, 7px)",
+                    paddingBottom: "clamp(4px, 0.4vw, 7px)",
                   }}
                 >
                   Coffee
@@ -1020,14 +1048,14 @@ export default function LorientalisSourcingPage() {
           {/* Item 3: Commercial Beans (Centered Title & Description) */}
           <div
             className="w-full flex flex-col items-center text-center select-none"
-            style={{ marginTop: "clamp(60px, 8vw, 100px)" }}
+            style={{ marginTop: "clamp(48px, 7vw, 100px)" }}
           >
             <h3
               className="text-white select-none m-0 text-center"
               style={{
                 fontFamily: "var(--font-monschone), serif",
                 fontWeight: 400,
-                fontSize: "clamp(30px, 3.6vw, 48px)",
+                fontSize: "clamp(24px, 3.5vw, 48px)",
                 lineHeight: "105%",
                 letterSpacing: "0%",
               }}
@@ -1038,14 +1066,14 @@ export default function LorientalisSourcingPage() {
             <p
               className="text-center select-none m-0"
               style={{
-                marginTop: "clamp(12px, 1.8vw, 24px)",
+                marginTop: "clamp(10px, 1.5vw, 24px)",
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(14px, 1.15vw, 17px)",
+                fontSize: "clamp(12px, 1.15vw, 17px)",
                 lineHeight: "140%",
                 letterSpacing: "0%",
                 color: "#DBDBDB",
-                maxWidth: "clamp(560px, 68vw, 840px)",
+                maxWidth: "clamp(300px, 58.33vw, 840px)",
               }}
             >
               Robust, Full-Bodied Beans Made For High-Volume Service. Strong Crema, Bold Character And Reliable Supply Keep Busy Cafés, Canteens And 24x7 Facilities Running Without Compromise.
@@ -1060,14 +1088,14 @@ export default function LorientalisSourcingPage() {
           {/* Right-aligned "TEA" Category Tag */}
           <div
             className="w-full flex justify-end"
-            style={{ marginTop: "clamp(70px, 9vw, 130px)" }}
+            style={{ marginTop: "clamp(48px, 8vw, 130px)" }}
           >
             <span
               className="uppercase tracking-widest text-white select-none"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 500,
-                fontSize: "clamp(14px, 1.25vw, 18px)",
+                fontSize: "clamp(13px, 1.25vw, 18px)",
                 lineHeight: "100%",
                 letterSpacing: "0.05em",
               }}
@@ -1078,16 +1106,20 @@ export default function LorientalisSourcingPage() {
 
           {/* Item 1: Bombay cutting (Left Bamboo Scoop Image + Right Text & Greenfield Image) */}
           <div
-            className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12"
-            style={{ marginTop: "clamp(24px, 3.5vw, 48px)" }}
+            className="w-full flex flex-col lg:flex-row items-start justify-between"
+            style={{
+              marginTop: "clamp(20px, 3vw, 48px)",
+              gap: "clamp(20px, 3.5vw, 48px)",
+            }}
           >
             {/* Left Column: Tea Scoop Image (400 x 670) */}
             <div
               className="relative rounded-[2px] overflow-hidden shadow-2xl select-none shrink-0"
               style={{
-                width: "clamp(280px, 31.25vw, 400px)",
-                height: "clamp(469px, 52.34vw, 670px)",
+                width: "clamp(220px, 27.78vw, 400px)",
+                height: "clamp(368px, 46.53vw, 670px)",
                 aspectRatio: "400 / 670",
+                maxWidth: "clamp(220px, 27.78vw, 400px)",
               }}
             >
               <Image
@@ -1103,14 +1135,17 @@ export default function LorientalisSourcingPage() {
             {/* Right Column: Bombay cutting Text + Greenfield Box Image */}
             <div className="flex-1 flex flex-col justify-between self-stretch">
               {/* Text Block */}
-              <div className="select-none w-full max-w-[700px]">
+              <div
+                className="select-none w-full"
+                style={{ maxWidth: "clamp(320px, 48.6vw, 700px)" }}
+              >
                 <p className="m-0 leading-tight">
                   <span
                     className="text-white"
                     style={{
                       fontFamily: "var(--font-monschone), serif",
                       fontWeight: 400,
-                      fontSize: "clamp(26px, 2.9vw, 42px)",
+                      fontSize: "clamp(22px, 2.9vw, 42px)",
                       lineHeight: "105%",
                       letterSpacing: "0%",
                     }}
@@ -1121,7 +1156,7 @@ export default function LorientalisSourcingPage() {
                     style={{
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontWeight: 400,
-                      fontSize: "clamp(14px, 1.15vw, 17px)",
+                      fontSize: "clamp(12px, 1.15vw, 17px)",
                       lineHeight: "140%",
                       letterSpacing: "0%",
                       color: "#DBDBDB",
@@ -1135,14 +1170,15 @@ export default function LorientalisSourcingPage() {
               {/* Greenfield Fine Ceylon Image (365 x 400, right aligned) */}
               <div
                 className="w-full flex justify-end"
-                style={{ marginTop: "clamp(36px, 5vw, 64px)" }}
+                style={{ marginTop: "clamp(24px, 4vw, 64px)" }}
               >
                 <div
                   className="relative rounded-[2px] overflow-hidden shadow-2xl shrink-0"
                   style={{
-                    width: "clamp(240px, 28.5vw, 365px)",
-                    height: "clamp(263px, 31.25vw, 400px)",
+                    width: "clamp(180px, 25.35vw, 365px)",
+                    height: "clamp(197px, 27.78vw, 400px)",
                     aspectRatio: "365 / 400",
+                    maxWidth: "clamp(180px, 25.35vw, 365px)",
                   }}
                 >
                   <Image
@@ -1161,17 +1197,20 @@ export default function LorientalisSourcingPage() {
           {/* Item 2: Madras Masala Text + Archen Flat-Lay Banner */}
           <div
             className="w-full flex flex-col items-end"
-            style={{ marginTop: "clamp(60px, 8vw, 120px)" }}
+            style={{ marginTop: "clamp(48px, 7vw, 120px)" }}
           >
             {/* Madras Masala Text Block (Right-aligned, max-w-[780px]) */}
-            <div className="select-none text-right max-w-[780px] w-full">
+            <div
+              className="select-none text-right w-full"
+              style={{ maxWidth: "clamp(320px, 54.17vw, 780px)" }}
+            >
               <p className="m-0 leading-tight text-right">
                 <span
                   className="text-white"
                   style={{
                     fontFamily: "var(--font-monschone), serif",
                     fontWeight: 400,
-                    fontSize: "clamp(26px, 2.9vw, 42px)",
+                    fontSize: "clamp(22px, 2.9vw, 42px)",
                     lineHeight: "105%",
                     letterSpacing: "0%",
                   }}
@@ -1182,7 +1221,7 @@ export default function LorientalisSourcingPage() {
                   style={{
                     fontFamily: "var(--font-manrope), sans-serif",
                     fontWeight: 400,
-                    fontSize: "clamp(14px, 1.15vw, 17px)",
+                    fontSize: "clamp(12px, 1.15vw, 17px)",
                     lineHeight: "140%",
                     letterSpacing: "0%",
                     color: "#DBDBDB",
@@ -1197,9 +1236,9 @@ export default function LorientalisSourcingPage() {
             <div
               className="relative w-full rounded-[2px] overflow-hidden shadow-2xl select-none"
               style={{
-                marginTop: "clamp(28px, 4vw, 56px)",
+                marginTop: "clamp(20px, 3.5vw, 56px)",
                 aspectRatio: "1200 / 420",
-                maxHeight: "420px",
+                maxHeight: "clamp(180px, 35vw, 420px)",
               }}
             >
               <Image
@@ -1215,17 +1254,23 @@ export default function LorientalisSourcingPage() {
 
           {/* Item 3 & 4: Delhi Darbar (Left) & Calcutta Street (Right) */}
           <div
-            className="w-full flex flex-col md:flex-row items-start justify-between gap-8 md:gap-16"
-            style={{ marginTop: "clamp(60px, 8vw, 110px)" }}
+            className="w-full flex flex-col md:flex-row items-start justify-between"
+            style={{
+              marginTop: "clamp(48px, 7.5vw, 110px)",
+              gap: "clamp(24px, 5vw, 64px)",
+            }}
           >
             {/* Left: Delhi Darbar */}
-            <div className="flex-1 max-w-[480px] select-none text-left">
+            <div
+              className="flex-1 select-none text-left"
+              style={{ maxWidth: "clamp(280px, 33.33vw, 480px)" }}
+            >
               <h3
                 className="m-0 text-white"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
                   fontWeight: 400,
-                  fontSize: "clamp(28px, 3.4vw, 48px)",
+                  fontSize: "clamp(22px, 3.2vw, 44px)",
                   lineHeight: "105%",
                   letterSpacing: "0%",
                 }}
@@ -1236,10 +1281,10 @@ export default function LorientalisSourcingPage() {
               <p
                 className="m-0"
                 style={{
-                  marginTop: "clamp(12px, 1.6vw, 20px)",
+                  marginTop: "clamp(10px, 1.4vw, 20px)",
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 400,
-                  fontSize: "clamp(14px, 1.15vw, 17px)",
+                  fontSize: "clamp(12px, 1.15vw, 17px)",
                   lineHeight: "140%",
                   letterSpacing: "0%",
                   color: "#DBDBDB",
@@ -1250,13 +1295,16 @@ export default function LorientalisSourcingPage() {
             </div>
 
             {/* Right: Calcutta Street */}
-            <div className="flex-1 max-w-[480px] select-none text-left md:text-right self-stretch flex flex-col items-start md:items-end">
+            <div
+              className="flex-1 select-none text-left md:text-right self-stretch flex flex-col items-start md:items-end"
+              style={{ maxWidth: "clamp(280px, 33.33vw, 480px)" }}
+            >
               <h3
                 className="m-0 text-white"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
                   fontWeight: 400,
-                  fontSize: "clamp(28px, 3.4vw, 48px)",
+                  fontSize: "clamp(22px, 3.2vw, 44px)",
                   lineHeight: "105%",
                   letterSpacing: "0%",
                 }}
@@ -1267,10 +1315,10 @@ export default function LorientalisSourcingPage() {
               <p
                 className="m-0 text-left md:text-right"
                 style={{
-                  marginTop: "clamp(12px, 1.6vw, 20px)",
+                  marginTop: "clamp(10px, 1.4vw, 20px)",
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 400,
-                  fontSize: "clamp(14px, 1.15vw, 17px)",
+                  fontSize: "clamp(12px, 1.15vw, 17px)",
                   lineHeight: "140%",
                   letterSpacing: "0%",
                   color: "#DBDBDB",
