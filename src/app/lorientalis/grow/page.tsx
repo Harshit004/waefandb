@@ -49,8 +49,8 @@ export default function LorientalisGrowPage() {
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f49876c7-d404-49ce-ae41-96eafae25100/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1817607b-7d3f-40fd-240b-00e7494aa000/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/a1889dbf-09ab-4d34-ff69-72146f980600/public",
-    "/images/lorientalis/roast-light-circle.png",
-    "/images/lorientalis/roast-medium-circle.png",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/ee6b4282-18d0-4e52-bcb4-4dea1cc54500/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/ae223981-b9eb-4ef8-192b-2e0d1b6f6f00/public",
   ];
 
   carouselPreloadUrls.forEach((url) => {
@@ -976,7 +976,7 @@ export default function LorientalisGrowPage() {
                   }}
                 >
                   <Image
-                    src="/images/lorientalis/roast-light-circle.png"
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/ee6b4282-18d0-4e52-bcb4-4dea1cc54500/public"
                     alt="Light Roast Coffee"
                     fill
                     unoptimized
@@ -1017,7 +1017,7 @@ export default function LorientalisGrowPage() {
                   }}
                 >
                   <Image
-                    src="/images/lorientalis/roast-medium-circle.png"
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/ae223981-b9eb-4ef8-192b-2e0d1b6f6f00/public"
                     alt="Medium Roast Coffee"
                     fill
                     unoptimized
