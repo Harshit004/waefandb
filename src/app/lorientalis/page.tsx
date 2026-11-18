@@ -557,7 +557,11 @@ export default function LOrientalisPage() {
               }}
             >
               {/* Beverage Botanicals */}
-              <h1
+              <ScrollLetterHighlight
+                as="h1"
+                lines={["Beverage Botanicals"]}
+                baseColor="#717171"
+                highlightColor="#FFFFFF"
                 className="select-none"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
@@ -566,11 +570,8 @@ export default function LOrientalisPage() {
                   fontSize: "clamp(32px, 3.889vw, 56px)",
                   lineHeight: "100%",
                   letterSpacing: "0%",
-                  color: "#FFFFFF",
                 }}
-              >
-                Beverage Botanicals
-              </h1>
+              />
 
               {/* On right: L’orientalis Tea & Coffee */}
               <span
@@ -700,8 +701,12 @@ export default function LOrientalisPage() {
         {/* TOP ROW: OUR STORY (Left) & HEADLINE (Right) */}
         <div className="relative z-10 w-full flex flex-col md:flex-row justify-between items-start gap-8">
           {/* Top Left: OUR STORY */}
-          <h2
-            className="uppercase select-none text-[#717171]"
+          <ScrollLetterHighlight
+            as="h2"
+            lines={["OUR STORY"]}
+            baseColor="#717171"
+            highlightColor="#FFFFFF"
+            className="uppercase select-none"
             style={{
               fontFamily: "var(--font-manrope), sans-serif",
               fontWeight: 600,
@@ -711,11 +716,8 @@ export default function LOrientalisPage() {
               letterSpacing: "0%",
               verticalAlign: "bottom",
               textTransform: "uppercase",
-              color: "#717171",
             }}
-          >
-            OUR STORY
-          </h2>
+          />
 
           {/* Top Right: Headline */}
           <div
@@ -830,24 +832,30 @@ export default function LOrientalisPage() {
           <div className="flex flex-col justify-center flex-1 w-full max-w-[650px] lg:max-w-none">
             {/* Headline and COFFEE label */}
             <div className="flex items-start justify-between gap-6 w-full">
-              <h3
+              <ScrollLetterHighlight
+                as="h3"
+                lines={[
+                  "Grown in the",
+                  "Shadow of the",
+                  "Eastern Hills",
+                ]}
+                baseColor="#717171"
+                highlightColor="#FFFFFF"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
                   fontWeight: 400,
                   fontSize: "clamp(32px, 3.472vw, 50px)", // 50px at 1440px
                   lineHeight: "clamp(38px, 4.028vw, 58px)", // 58px at 1440px
                   letterSpacing: "0%",
-                  color: "#FFFFFF",
                 }}
-              >
-                Grown in the
-                <br />
-                Shadow of the
-                <br />
-                Eastern Hills
-              </h3>
+              />
 
-              <span
+              <ScrollLetterHighlight
+                as="span"
+                lines={["COFFEE"]}
+                baseColor="#717171"
+                highlightColor="#FFFFFF"
+                className="shrink-0 mt-1 select-none uppercase tracking-wider"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 600,
@@ -855,12 +863,8 @@ export default function LOrientalisPage() {
                   lineHeight: "100%",
                   letterSpacing: "0%",
                   textAlign: "right",
-                  color: "#FFFFFF",
                 }}
-                className="shrink-0 mt-1 select-none uppercase tracking-wider"
-              >
-                COFFEE
-              </span>
+              />
             </div>
 
             {/* Paragraph & Read more without underline */}
@@ -1072,7 +1076,12 @@ export default function LOrientalisPage() {
           <div className="flex flex-col justify-center flex-1 w-full max-w-[650px] lg:max-w-none">
             {/* TEA label on left and Headline on right */}
             <div className="flex items-start justify-between gap-6 w-full">
-              <span
+              <ScrollLetterHighlight
+                as="span"
+                lines={["TEA"]}
+                baseColor="#717171"
+                highlightColor="#FFFFFF"
+                className="shrink-0 mt-1 select-none uppercase tracking-wider"
                 style={{
                   fontFamily: "var(--font-manrope), sans-serif",
                   fontWeight: 600,
@@ -1080,14 +1089,18 @@ export default function LOrientalisPage() {
                   lineHeight: "100%",
                   letterSpacing: "0%",
                   textAlign: "left",
-                  color: "#FFFFFF",
                 }}
-                className="shrink-0 mt-1 select-none uppercase tracking-wider"
-              >
-                TEA
-              </span>
+              />
 
-              <h3
+              <ScrollLetterHighlight
+                as="h3"
+                lines={[
+                  "Born in the",
+                  "Eastern Tea Belt",
+                ]}
+                baseColor="#717171"
+                highlightColor="#FFFFFF"
+                className="text-right"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
                   fontWeight: 400,
@@ -1095,14 +1108,8 @@ export default function LOrientalisPage() {
                   lineHeight: "clamp(38px, 4.028vw, 58px)", // 58px at 1440px
                   letterSpacing: "0%",
                   textAlign: "right",
-                  color: "#FFFFFF",
                 }}
-                className="text-right"
-              >
-                Born in the
-                <br />
-                Eastern Tea Belt
-              </h3>
+              />
             </div>
 
             {/* Paragraph & Read more without underline */}
@@ -1197,7 +1204,12 @@ export default function LOrientalisPage() {
         <span id="grow" className="sr-only" />
         {/* SECTION HEADER: The Growing Conditions. (Text align right) */}
         <div className="w-full flex justify-end">
-          <h2
+          <ScrollLetterHighlight
+            as="h2"
+            lines={["The Growing Conditions."]}
+            baseColor="#717171"
+            highlightColor="#FFFFFF"
+            className="text-right"
             style={{
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
@@ -1206,11 +1218,7 @@ export default function LOrientalisPage() {
               letterSpacing: "0%",
               textAlign: "right",
             }}
-          >
-            <span className="text-[#717171]">The </span>
-            <span className="text-white">Growing </span>
-            <span className="text-[#717171]">Conditions.</span>
-          </h2>
+          />
         </div>
 
         {/* 82px GAP */}
@@ -1272,18 +1280,19 @@ export default function LOrientalisPage() {
 
                 {/* Bottom black text card */}
                 <div className="w-full flex-1 bg-black flex flex-col justify-between pt-6 pb-2 px-1">
-                  <h3
+                  <ScrollLetterHighlight
+                    as="h3"
+                    lines={["26°N 92°E"]}
+                    baseColor="#717171"
+                    highlightColor="#FFFFFF"
                     style={{
                       fontFamily: "var(--font-monschone), serif",
                       fontWeight: 400,
                       fontSize: "clamp(32px, 3.333vw, 48px)", // 48px at 1440px
                       lineHeight: "100%",
                       letterSpacing: "0%",
-                      color: "#FFFFFF",
                     }}
-                  >
-                    26°N 92°E
-                  </h3>
+                  />
 
                   <p
                     className="mt-6 lg:mt-0 mb-[40px] text-white relative z-30 transition-transform duration-700 ease-out group-hover:-translate-y-[40px]"
@@ -1392,8 +1401,12 @@ export default function LOrientalisPage() {
             >
               26°N 92°E
             </h2>
-            <span
-              className="mt-3 text-white"
+            <ScrollLetterHighlight
+              as="span"
+              lines={["SINGLE ORIGIN – 3 State"]}
+              baseColor="#717171"
+              highlightColor="#FFFFFF"
+              className="mt-3 block"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 500,
@@ -1402,9 +1415,7 @@ export default function LOrientalisPage() {
                 letterSpacing: "0.04em",
                 textTransform: "uppercase",
               }}
-            >
-              SINGLE ORIGIN – 3 State
-            </span>
+            />
           </div>
 
           {/* BOTTOM RIGHT: Growing Districts description */}
@@ -1432,13 +1443,7 @@ export default function LOrientalisPage() {
       {/* 140PX GAP ABOVE */}
       <div className="w-full h-[140px]" />
 
-      {/* FARMERS ANIMATED HORIZONTAL CAROUSEL SECTION */}
-      <FarmersCarouselSection />
-
-      {/* 140PX GAP BELOW CAROUSEL */}
-      <div className="w-full h-[140px]" />
-
-      {/* AS YOU LIKE IT SECTION */}
+      {/* AS YOU LIKE IT SECTION (TEA & COFFEE SECTION COMES FIRST) */}
       <section
         id="as-you-like-it"
         className="relative w-full bg-black text-white overflow-hidden py-[clamp(60px,5vw,90px)]"
@@ -1483,8 +1488,12 @@ export default function LOrientalisPage() {
           <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-12">
             {/* LEFT SIDE: Title & Description */}
             <div className="flex flex-col items-start max-w-[540px]">
-              <h2
-                className="text-white select-none"
+              <ScrollLetterHighlight
+                as="h2"
+                lines={["As you like it"]}
+                baseColor="#717171"
+                highlightColor="#FFFFFF"
+                className="select-none"
                 style={{
                   fontFamily: "var(--font-monschone), serif",
                   fontWeight: 400,
@@ -1492,9 +1501,7 @@ export default function LOrientalisPage() {
                   lineHeight: "clamp(44px, 4.028vw, 58px)",
                   letterSpacing: "0%",
                 }}
-              >
-                As you like it
-              </h2>
+              />
 
               {/* 46px gap */}
               <div className="w-full h-[46px]" />
@@ -1661,7 +1668,13 @@ export default function LOrientalisPage() {
         </div>
       </section>
 
-      {/* 140PX GAP BELOW */}
+      {/* 140PX GAP BETWEEN SECTIONS */}
+      <div className="w-full h-[140px]" />
+
+      {/* FARMERS ANIMATED HORIZONTAL CAROUSEL SECTION */}
+      <FarmersCarouselSection />
+
+      {/* 140PX GAP BELOW CAROUSEL */}
       <div className="w-full h-[140px]" />
 
       {/* L'ORIENTALIS FOOTER COMPONENT */}

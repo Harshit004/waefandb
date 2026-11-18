@@ -313,15 +313,18 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 4: THE JOURNEY OF COFFEE: FROM BEAN TO BREW (0px gap above, 36px, 170px, 493x667 image + 882x66 text)
+          SECTION 4: THE JOURNEY OF COFFEE: FROM BEAN TO BREW (Clamped to fit screen vertically)
           ========================================================================= */}
       <section
         id="journey-coffee"
-        className="w-full flex flex-col items-center text-center select-none"
+        className="w-full min-h-screen flex flex-col items-center justify-center text-center select-none"
         style={{
-          marginTop: 0,
+          minHeight: "100vh",
           paddingLeft: "2.778vw",
           paddingRight: "2.778vw",
+          paddingTop: "clamp(20px, 3vh, 48px)",
+          paddingBottom: "clamp(20px, 3vh, 48px)",
+          boxSizing: "border-box",
         }}
       >
         <h3
@@ -329,7 +332,7 @@ export default function LorientalisSourcingPage() {
           style={{
             fontFamily: "var(--font-monschone), serif",
             fontWeight: 400,
-            fontSize: "clamp(24px, 2.778vw, 40px)",
+            fontSize: "clamp(18px, 2.5vh, 32px)",
             lineHeight: "100%",
             letterSpacing: "0%",
           }}
@@ -337,14 +340,14 @@ export default function LorientalisSourcingPage() {
           The Journey of Coffee:
         </h3>
 
-        {/* 36px gap then From Bean to Brew */}
+        {/* Clamped gap then From Bean to Brew */}
         <h2
           className="text-white select-none m-0 text-center"
           style={{
-            marginTop: "36px",
+            marginTop: "clamp(8px, 1.8vh, 24px)",
             fontFamily: "var(--font-monschone), serif",
             fontWeight: 400,
-            fontSize: "clamp(48px, 6.667vw, 96px)",
+            fontSize: "clamp(32px, 5.5vh, 68px)",
             lineHeight: "100%",
             letterSpacing: "0%",
           }}
@@ -352,19 +355,21 @@ export default function LorientalisSourcingPage() {
           From Bean to Brew
         </h2>
 
-        {/* 170px gap then 493x667 image with overlapping 882x66 text */}
+        {/* Clamped gap then 493x667 image with overlapping text */}
         <div
           className="relative w-full flex flex-col items-center"
           style={{
-            marginTop: "clamp(70px, 11.8vw, 170px)",
+            marginTop: "clamp(16px, 3.5vh, 44px)",
           }}
         >
           {/* Centered Carrier Portrait (493 x 667) */}
           <div
-            className="relative w-full max-w-[493px] aspect-[493/667] rounded-[2px] overflow-hidden select-none shadow-2xl"
+            className="relative rounded-[2px] overflow-hidden select-none shadow-2xl"
             style={{
-              width: "clamp(300px, 34.236vw, 493px)",
-              height: "clamp(406px, 46.319vw, 667px)",
+              height: "clamp(240px, 38vh, 460px)",
+              width: "calc(clamp(240px, 38vh, 460px) * 493 / 667)",
+              aspectRatio: "493 / 667",
+              maxWidth: "493px",
             }}
           >
             <Image
@@ -377,19 +382,20 @@ export default function LorientalisSourcingPage() {
             />
           </div>
 
-          {/* Overlapping Text Box (882 x 66, centered with image) */}
+          {/* Overlapping Text Box (centered with image) */}
           <div
-            className="relative z-10 -mt-[33px] px-4 w-full max-w-[882px] flex justify-center text-center select-none"
+            className="relative z-10 -mt-[clamp(16px, 2.5vh, 32px)] px-4 w-full flex justify-center text-center select-none"
           >
             <p
               className="m-0 text-center"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(14px, 1.25vw, 18px)",
-                lineHeight: "120%",
+                fontSize: "clamp(12px, 1.5vh, 16px)",
+                lineHeight: "135%",
                 letterSpacing: "0%",
                 color: "#DBDBDB",
+                maxWidth: "clamp(360px, 58vw, 840px)",
               }}
             >
               Once harvested, coffee cherries must be processed quickly to

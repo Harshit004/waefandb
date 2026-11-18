@@ -10,6 +10,7 @@ interface ScrollLetterHighlightProps {
   highlightColor?: string; // highlighted color (default: "#FFFFFF")
   startThreshold?: number; // viewport ratio when animation starts (default: 0.85)
   endThreshold?: number; // viewport ratio when animation finishes (default: 0.25)
+  as?: "h1" | "h2" | "h3" | "h4" | "p" | "div" | "span";
 }
 
 function parseHexColor(hex: string): [number, number, number] {
@@ -35,8 +36,9 @@ export default function ScrollLetterHighlight({
   highlightColor = "#FFFFFF",
   startThreshold = 0.85,
   endThreshold = 0.25,
+  as: Component = "div",
 }: ScrollLetterHighlightProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
   const [smoothProgress, setSmoothProgress] = useState(0);
@@ -173,8 +175,8 @@ export default function ScrollLetterHighlight({
   };
 
   return (
-    <div ref={containerRef} className={className} style={style}>
-      <p className="space-y-0" aria-label={accessibleText}>
+    <Component ref={containerRef as any} className={className} style={style}>
+      <span className="block space-y-0" aria-label={accessibleText}>
         {linesData.map((line, lIdx) => (
           <span key={lIdx} className="block" aria-hidden="true">
             {line.words.map((word, wIdx) => (
@@ -205,8 +207,8 @@ export default function ScrollLetterHighlight({
             ))}
           </span>
         ))}
-      </p>
-    </div>
+      </span>
+    </Component>
   );
 }
 
