@@ -45,6 +45,12 @@ export default function LorientalisGrowPage() {
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/00120c15-7f88-4cee-15bc-2b2f090dde00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/932a60a4-e676-4b9e-9352-93e9a70b4600/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/19a872e6-ab1a-4e13-5418-e4696516b200/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1b7c6f5b-d55b-4628-bb7f-e298bf350000/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f49876c7-d404-49ce-ae41-96eafae25100/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1817607b-7d3f-40fd-240b-00e7494aa000/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/a1889dbf-09ab-4d34-ff69-72146f980600/public",
+    "/images/lorientalis/roast-light-circle.png",
+    "/images/lorientalis/roast-medium-circle.png",
   ];
 
   carouselPreloadUrls.forEach((url) => {
@@ -955,21 +961,35 @@ export default function LorientalisGrowPage() {
               </div>
             </div>
 
-            {/* Center: Two Empty Circles 232x232 with Labels below */}
+            {/* Center: Two Circles 232x232 with Labels below */}
             <div className="flex items-center justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0 z-10 relative my-6 lg:my-0">
               {/* Circle 1: Light Roast */}
               <div className="relative flex flex-col items-center">
                 <div
-                  className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                  className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02] relative overflow-hidden"
                   style={{
                     width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                     height: "clamp(150px, 18.125vw, 360px)",
                     aspectRatio: "1 / 1",
                     backgroundColor: "#000000",
-                    border: "1px solid rgba(213, 213, 213, 0.3)",
                     boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                   }}
-                />
+                >
+                  <Image
+                    src="/images/lorientalis/roast-light-circle.png"
+                    alt="Light Roast Coffee"
+                    fill
+                    unoptimized
+                    priority
+                    sizes="(max-width: 1280px) 232px, 360px"
+                    className="object-cover pointer-events-none"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
+                  />
+                </div>
                 <span
                   className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                   style={{
@@ -987,16 +1007,30 @@ export default function LorientalisGrowPage() {
               {/* Circle 2: Medium Roast */}
               <div className="relative flex flex-col items-center">
                 <div
-                  className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                  className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02] relative overflow-hidden"
                   style={{
                     width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                     height: "clamp(150px, 18.125vw, 360px)",
                     aspectRatio: "1 / 1",
                     backgroundColor: "#000000",
-                    border: "1px solid rgba(213, 213, 213, 0.3)",
                     boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                   }}
-                />
+                >
+                  <Image
+                    src="/images/lorientalis/roast-medium-circle.png"
+                    alt="Medium Roast Coffee"
+                    fill
+                    unoptimized
+                    priority
+                    sizes="(max-width: 1280px) 232px, 360px"
+                    className="object-cover pointer-events-none"
+                    style={{
+                      imageRendering: "-webkit-optimize-contrast",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
+                  />
+                </div>
                 <span
                   className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                   style={{
@@ -1459,21 +1493,35 @@ export default function LorientalisGrowPage() {
                 </div>
               </div>
 
-              {/* Center: Green Tea & CTC Tea Empty Circles 232x232 with Labels below */}
+              {/* Center: Green Tea & CTC Tea Circles 232x232 with Labels below */}
               <div className="flex items-center justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0 z-10 relative my-6 lg:my-0">
                 {/* Green Tea Circle */}
                 <div className="relative flex flex-col items-center">
                   <div
-                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02] relative overflow-hidden"
                     style={{
                       width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                       height: "clamp(150px, 18.125vw, 360px)",
                       aspectRatio: "1 / 1",
                       backgroundColor: "#000000",
-                      border: "1px solid rgba(213, 213, 213, 0.3)",
                       boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                     }}
-                  />
+                  >
+                    <Image
+                      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1b7c6f5b-d55b-4628-bb7f-e298bf350000/public"
+                      alt="Green Tea"
+                      fill
+                      unoptimized
+                      priority
+                      sizes="(max-width: 1280px) 232px, 360px"
+                      className="object-cover pointer-events-none"
+                      style={{
+                        imageRendering: "-webkit-optimize-contrast",
+                        transform: "translateZ(0)",
+                        backfaceVisibility: "hidden",
+                      }}
+                    />
+                  </div>
                   <span
                     className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                     style={{
@@ -1491,16 +1539,30 @@ export default function LorientalisGrowPage() {
                 {/* CTC Tea Circle */}
                 <div className="relative flex flex-col items-center">
                   <div
-                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02] relative overflow-hidden"
                     style={{
                       width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                       height: "clamp(150px, 18.125vw, 360px)",
                       aspectRatio: "1 / 1",
                       backgroundColor: "#000000",
-                      border: "1px solid rgba(213, 213, 213, 0.3)",
                       boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                     }}
-                  />
+                  >
+                    <Image
+                      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f49876c7-d404-49ce-ae41-96eafae25100/public"
+                      alt="CTC Tea"
+                      fill
+                      unoptimized
+                      priority
+                      sizes="(max-width: 1280px) 232px, 360px"
+                      className="object-cover pointer-events-none"
+                      style={{
+                        imageRendering: "-webkit-optimize-contrast",
+                        transform: "translateZ(0)",
+                        backfaceVisibility: "hidden",
+                      }}
+                    />
+                  </div>
                   <span
                     className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                     style={{
@@ -1581,21 +1643,35 @@ export default function LorientalisGrowPage() {
                 </div>
               </div>
 
-              {/* Center: Black Tea & Orthodox Tea Empty Circles 232x232 with Labels below */}
+              {/* Center: Black Tea & Orthodox Tea Circles 232x232 with Labels below */}
               <div className="flex items-center justify-center gap-[clamp(20px,4.375vw,80px)] shrink-0 z-10 relative my-6 lg:my-0">
                 {/* Black Tea Circle */}
                 <div className="relative flex flex-col items-center">
                   <div
-                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02] relative overflow-hidden"
                     style={{
                       width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                       height: "clamp(150px, 18.125vw, 360px)",
                       aspectRatio: "1 / 1",
                       backgroundColor: "#000000",
-                      border: "1px solid rgba(213, 213, 213, 0.3)",
                       boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                     }}
-                  />
+                  >
+                    <Image
+                      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1817607b-7d3f-40fd-240b-00e7494aa000/public"
+                      alt="Black Tea"
+                      fill
+                      unoptimized
+                      priority
+                      sizes="(max-width: 1280px) 232px, 360px"
+                      className="object-cover pointer-events-none"
+                      style={{
+                        imageRendering: "-webkit-optimize-contrast",
+                        transform: "translateZ(0)",
+                        backfaceVisibility: "hidden",
+                      }}
+                    />
+                  </div>
                   <span
                     className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                     style={{
@@ -1613,16 +1689,30 @@ export default function LorientalisGrowPage() {
                 {/* Orthodox Tea Circle */}
                 <div className="relative flex flex-col items-center">
                   <div
-                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02]"
+                    className="rounded-full shrink-0 shadow-2xl transition-transform hover:scale-[1.02] relative overflow-hidden"
                     style={{
                       width: "clamp(150px, 18.125vw, 360px)", // 232px at 1280px
                       height: "clamp(150px, 18.125vw, 360px)",
                       aspectRatio: "1 / 1",
                       backgroundColor: "#000000",
-                      border: "1px solid rgba(213, 213, 213, 0.3)",
                       boxShadow: "0 8px 30px rgba(0, 0, 0, 0.5)",
                     }}
-                  />
+                  >
+                    <Image
+                      src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/a1889dbf-09ab-4d34-ff69-72146f980600/public"
+                      alt="Orthodox Tea"
+                      fill
+                      unoptimized
+                      priority
+                      sizes="(max-width: 1280px) 232px, 360px"
+                      className="object-cover pointer-events-none"
+                      style={{
+                        imageRendering: "-webkit-optimize-contrast",
+                        transform: "translateZ(0)",
+                        backfaceVisibility: "hidden",
+                      }}
+                    />
+                  </div>
                   <span
                     className="absolute top-full mt-[clamp(10px,1.172vw,24px)] text-[#D5D5D5] text-center whitespace-nowrap"
                     style={{
