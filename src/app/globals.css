@@ -155,6 +155,44 @@ img {
   z-index: 0;
 }
 
+/* =========================================================================
+   PROJECTWIDE BODY TEXT & PARAGRAPH TITLE CASE
+   ========================================================================= */
+p,
+p span:not(.normal-case):not(.lowercase):not(.uppercase),
+p a:not(.normal-case):not(.lowercase):not(.uppercase),
+p em:not(.normal-case):not(.lowercase):not(.uppercase),
+p strong:not(.normal-case):not(.lowercase):not(.uppercase),
+.body-text,
+.body-copy,
+.title-case-body {
+  text-transform: capitalize;
+}
+
+/* Explicit exemption classes */
+.normal-case,
+.normal-case * {
+  text-transform: none !important;
+}
+
+.lowercase,
+.lowercase * {
+  text-transform: lowercase !important;
+}
+
+.uppercase,
+.uppercase * {
+  text-transform: uppercase !important;
+}
+
+input,
+textarea,
+pre,
+code {
+  text-transform: none;
+}
+
+
 
 
 

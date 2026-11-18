@@ -140,7 +140,7 @@ export default function LOrientalisFooter({
                   href="/privacy-policy"
                   className="text-white/80 hover:text-white transition-colors duration-200"
                 >
-                  Privacy policy
+                  Privacy Policy
                 </Link>
               </li>
               <li>
@@ -148,7 +148,7 @@ export default function LOrientalisFooter({
                   href="/terms-of-use"
                   className="text-white/80 hover:text-white transition-colors duration-200"
                 >
-                  Term of use
+                  Terms Of Use
                 </Link>
               </li>
               <li>
@@ -228,7 +228,7 @@ export default function LOrientalisFooter({
                   lineHeight: "140%",
                 }}
               >
-                Subscribe to our newsletter
+                Subscribe To Our Newsletter
               </h3>
 
               <form onSubmit={handleSubscribe} className="w-full flex flex-col">
@@ -278,7 +278,7 @@ export default function LOrientalisFooter({
                       fontWeight: 400,
                     }}
                   >
-                    I accept the terms and conditions and privacy policy
+                    I Accept The Terms And Conditions And Privacy Policy
                   </span>
                 </label>
 

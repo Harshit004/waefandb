@@ -111,7 +111,7 @@ export default function Home() {
         "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/5af2ef198ed6c47fdb0fe9ae934ff12b/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F5af2ef198ed6c47fdb0fe9ae934ff12b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&muted=true&loop=true&controls=false&preload=auto",
       cursorIcon:
         "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/fef200f0-0314-4809-ee31-4e460271d000/public",
-      desc: "Where Himalayan terroir meets the cup  L’ORIENTALIS brings extraordinary botanicals, origins and flavour into focus.",
+      desc: "Where Himalayan Terroir Meets The Cup  L’ORIENTALIS Brings Extraordinary Botanicals, Origins And Flavour Into Focus.",
       scale: undefined,
       href: "/lorientalis",
     },
@@ -122,7 +122,7 @@ export default function Home() {
         "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/06f1fd10797ff51f37e920d1fa3024c4/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2F06f1fd10797ff51f37e920d1fa3024c4%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&muted=true&loop=true&controls=false&preload=auto",
       cursorIcon:
         "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/90634b6f-b31d-424e-7883-8fd6a4db1500/public",
-      desc: "Brumatic turns precision into craft, giving every botanical the engineering control to reveal its fullest character.",
+      desc: "Brumatic Turns Precision Into Craft, Giving Every Botanical The Engineering Control To Reveal Its Fullest Character.",
       scale: 2.66062,
     },
     {
@@ -131,7 +131,7 @@ export default function Home() {
         "https://customer-nqls4utgv1ytiyat.cloudflarestream.com/a21247027c6b5e37d2ed35f814704c77/iframe?poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Fa21247027c6b5e37d2ed35f814704c77%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&muted=true&loop=true&controls=false&preload=auto",
       cursorIcon:
         "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/e17c8663-c1a9-4c60-46b0-45186e10fd00/public",
-      desc: "PRÊT À BOIRE brings botanicals, precision and human craft together transforming every pour into an experience worth remembering.",
+      desc: "PRÊT À BOIRE Brings Botanicals, Precision And Human Craft Together Transforming Every Pour Into An Experience Worth Remembering.",
       scale: undefined,
     },
   ];

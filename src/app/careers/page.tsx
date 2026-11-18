@@ -52,9 +52,9 @@ export default function CareersPage() {
                 lineHeight: "1.45",
               }}
             >
-              Join WAE and help shape future-ready beverage solutions
+              Join WAE And Help Shape Future-Ready Beverage Solutions
               <br />
-              for premium workplaces, hospitality and lifestyle spaces...
+              For Premium Workplaces, Hospitality And Lifestyle Spaces...
             </p>
 
             <button
@@ -362,10 +362,10 @@ export default function CareersPage() {
                 lineHeight: "1.55",
               }}
             >
-              At WAE F&B, you&apos;ll work across the full beverage journey, from responsible
-              water sourcing to crafted tea and coffee experiences. You&apos;ll learn from
-              experienced teams, work with leading brands and premium clients, and grow
-              into roles that shape how people pause, perform and connect every day.
+              At WAE F&B, You&apos;ll Work Across The Full Beverage Journey, From Responsible
+              Water Sourcing To Crafted Tea And Coffee Experiences. You&apos;ll Learn From
+              Experienced Teams, Work With Leading Brands And Premium Clients, And Grow
+              Into Roles That Shape How People Pause, Perform And Connect Every Day.
             </p>
           </div>
         </div>

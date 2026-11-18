@@ -226,7 +226,7 @@ export default function LorientalisSustainabilityPage() {
               marginBottom: "clamp(24px, 2.5vw, 36px)",
             }}
           >
-            Responsible sourcing for tea and coffee, built into every cup we serve your spaces.
+            Responsible Sourcing For Tea And Coffee, Built Into Every Cup We Serve Your Spaces.
           </p>
 
           {/* Sustainable Future Together Badge Image (131x40) */}

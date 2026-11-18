@@ -278,7 +278,7 @@ export default function LorientalisContactPage() {
             margin: 0,
           }}
         >
-          Whether you are planning a hotel menu, stocking a workplace pantry or building a premium beverage programme, we would like to hear from you. Tell us about your venues, your volumes and your timelines, and our sourcing team will respond with a plan built around your needs.
+          Whether You Are Planning A Hotel Menu, Stocking A Workplace Pantry Or Building A Premium Beverage Programme, We Would Like To Hear From You. Tell Us About Your Venues, Your Volumes And Your Timelines, And Our Sourcing Team Will Respond With A Plan Built Around Your Needs.
         </p>
       </section>
 
@@ -347,7 +347,7 @@ export default function LorientalisContactPage() {
                 margin: "12px 0 0 0",
               }}
             >
-              We respond to business enquiries within two working days.
+              We Respond To Business Enquiries Within Two Working Days.
             </p>
           </div>
 

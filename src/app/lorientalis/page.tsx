@@ -18,9 +18,9 @@ const FARMER_STORIES = [
     altMain: "Farmer sorting harvested tea leaves",
     altSub: "Fresh green tea leaves in bamboo basket",
     text1:
-      "We don't procure from this corridor. We partner with the communities who have worked these gardens for generations — whose generational mastery shapes every batch long before it reaches us.",
+      "We Don't Procure From This Corridor. We Partner With The Communities Who Have Worked These Gardens For Generations — Whose Generational Mastery Shapes Every Batch Long Before It Reaches Us.",
     text2:
-      "From precision plucking at dawn to artisanal leaf selection, the hands behind each harvest carry traditions that give every cup its distinct character and origin fidelity.",
+      "From Precision Plucking At Dawn To Artisanal Leaf Selection, The Hands Behind Each Harvest Carry Traditions That Give Every Cup Its Distinct Character And Origin Fidelity.",
   },
   {
     id: "farmer-2",
@@ -31,9 +31,9 @@ const FARMER_STORIES = [
     altMain: "Tea estate workers with bicycles along harvest trail",
     altSub: "Sunlit vibrant Camellia sinensis foliage",
     text1:
-      "Every basket carried down these garden rows represents a relationship, not a transaction. The women who walk these paths at dawn — some on foot, some by bicycle, baskets balanced with practiced ease — are the reason our sourcing model exists at all: built on fair, direct engagement with the communities who grow what we sell.",
+      "Every Basket Carried Down These Garden Rows Represents A Relationship, Not A Transaction. The Women Who Walk These Paths At Dawn — Some On Foot, Some By Bicycle, Baskets Balanced With Practiced Ease — Are The Reason Our Sourcing Model Exists At All: Built On Fair, Direct Engagement With The Communities Who Grow What We Sell.",
     text2:
-      "This is what community-first procurement looks like in practice — long-term commitments to growers, transparent pricing, and sourcing decisions made with farming communities, not for them.",
+      "This Is What Community-First Procurement Looks Like In Practice — Long-Term Commitments To Growers, Transparent Pricing, And Sourcing Decisions Made With Farming Communities, Not For Them.",
   },
   {
     id: "farmer-3",
@@ -44,9 +44,9 @@ const FARMER_STORIES = [
     altMain: "Harvesting tea on steep eastern slope",
     altSub: "Hands holding freshly harvested coffee cherries",
     text1:
-      "The same hills nurturing tea are now home to a new crop taking root — coffee. Smallholder farmers across the region are diversifying, and in each ripe cherry lies the same story: a community investing in quality, resilience and a future beyond a single harvest.",
+      "The Same Hills Nurturing Tea Are Now Home To A New Crop Taking Root — Coffee. Smallholder Farmers Across The Region Are Diversifying, And In Each Ripe Cherry Lies The Same Story: A Community Investing In Quality, Resilience And A Future Beyond A Single Harvest.",
     text2:
-      "Supporting that shift — with fair procurement, consistent demand, and long-term partnership — is how we build a supply chain that grows stronger with the communities it depends on.",
+      "Supporting That Shift — With Fair Procurement, Consistent Demand, And Long-Term Partnership — Is How We Build A Supply Chain That Grows Stronger With The Communities It Depends On.",
   },
 ];
 
@@ -766,12 +766,12 @@ export default function LOrientalisPage() {
               color: "#FFFFFF",
             }}
           >
-            For years, WAE worked with the most fundamental ingredient in every
-            brewed beverage: WATER. We studied its chemistry, engineered its
-            purity, and calibrated its mineral balance — learning precisely how
-            it shapes extraction, aroma, acidity, sweetness and mouthfeel. Having
-            mastered the invisible ingredient, the move into speciality coffee
-            and tea was not diversification. It was a natural continuation.
+            For Years, WAE Worked With The Most Fundamental Ingredient In Every
+            Brewed Beverage: WATER. We Studied Its Chemistry, Engineered Its
+            Purity, And Calibrated Its Mineral Balance — Learning Precisely How
+            It Shapes Extraction, Aroma, Acidity, Sweetness And Mouthfeel. Having
+            Mastered The Invisible Ingredient, The Move Into Speciality Coffee
+            And Tea Was Not Diversification. It Was A Natural Continuation.
           </p>
         </div>
       </section>
@@ -880,10 +880,10 @@ export default function LOrientalisPage() {
                 verticalAlign: "bottom",
               }}
             >
-              Our coffee is cultivated across altitudes where cool nights and
-              mineral-rich soil slow the cherry&apos;s ripening — concentrating
-              sugars and acidity long before the bean ever meets a roaster. Most
-              origin stories stop at geography.{" "}
+              Our Coffee Is Cultivated Across Altitudes Where Cool Nights And
+              Mineral-Rich Soil Slow The Cherry&apos;s Ripening — Concentrating
+              Sugars And Acidity Long Before The Bean Ever Meets A Roaster. Most
+              Origin Stories Stop At Geography.{" "}
               <Link
                 href="/lorientalis/grow#coffee"
                 className="inline font-semibold text-[#7CC055] hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
@@ -1125,10 +1125,10 @@ export default function LOrientalisPage() {
                 verticalAlign: "bottom",
               }}
             >
-              The eastern tea-growing corridor is one of the most complex and
-              nuanced environments for Camellia sinensis — fog-fed mornings,
-              sharp diurnal shifts, and soil chemistry that few other regions can
-              replicate.{" "}
+              The Eastern Tea-Growing Corridor Is One Of The Most Complex And
+              Nuanced Environments For Camellia Sinensis — Fog-Fed Mornings,
+              Sharp Diurnal Shifts, And Soil Chemistry That Few Other Regions Can
+              Replicate.{" "}
               <Link
                 href="/lorientalis/grow#tea"
                 className="inline font-semibold text-[#7CC055] hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
@@ -1305,7 +1305,7 @@ export default function LOrientalisPage() {
                       verticalAlign: "bottom",
                     }}
                   >
-                    The precise conditions where tea &amp; coffee thrive. .
+                    The Precise Conditions Where Tea &amp; Coffee Thrive.
                   </p>
                 </div>
               </div>
@@ -1346,8 +1346,8 @@ export default function LOrientalisPage() {
                       verticalAlign: "bottom",
                     }}
                   >
-                    The eastern tea-growing corridor is one of the most complex and
-                    nuanced environments for Camellia sinensis.
+                    The Eastern Tea-Growing Corridor Is One Of The Most Complex And
+                    Nuanced Environments For Camellia Sinensis.
                   </p>
                 </div>
               </div>
@@ -1432,9 +1432,9 @@ export default function LOrientalisPage() {
                 verticalAlign: "bottom",
               }}
             >
-              L&apos;ORIENTALIS sources exclusively from these growing<br />
-              districts — each district contributing a distinct altitude,<br />
-              microclimate and flavour signature.
+              L&apos;ORIENTALIS Sources Exclusively From These Growing<br />
+              Districts — Each District Contributing A Distinct Altitude,<br />
+              Microclimate And Flavour Signature.
             </p>
           </div>
         </div>
@@ -1517,8 +1517,8 @@ export default function LOrientalisPage() {
                   maxWidth: "480px",
                 }}
               >
-                Consistent, full-bodied profiles built for volume without compromising
-                on origin integrity. Roasted for reliability, cup after cup.
+                Consistent, Full-Bodied Profiles Built For Volume Without Compromising
+                On Origin Integrity. Roasted For Reliability, Cup After Cup.
               </p>
             </div>
 

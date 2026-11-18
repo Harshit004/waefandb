@@ -404,12 +404,12 @@ export default function GetInTouchPage() {
             fontWeight: 400,
           }}
         >
-          Interested in crafting a refined, high-quality beverage programme for
-          your space? Pretaboir&eacute; brings together precision, consistency,
-          and elevated taste designed for modern workplaces and premium
-          environments. Connect with us to explore how Pretaboir&eacute; can
-          transform your coffee offering into a seamless, sophisticated
-          experience tailored to your brand.
+          Interested In Crafting A Refined, High-Quality Beverage Programme For
+          Your Space? Pretaboir&eacute; Brings Together Precision, Consistency,
+          And Elevated Taste Designed For Modern Workplaces And Premium
+          Environments. Connect With Us To Explore How Pretaboir&eacute; Can
+          Transform Your Coffee Offering Into A Seamless, Sophisticated
+          Experience Tailored To Your Brand.
         </p>
 
         {/* FORM SECTION: exactly 134px below content paragraph */}

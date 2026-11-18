@@ -135,10 +135,10 @@ export default function AboutUsPage() {
                 textAlign: "justify",
               }}
             >
-              WAE&apos;s beverage initiative extends its engineering standard
-              beyond water — bringing tea and coffee into the same system of
-              quality, consistency and reliability, for premium spaces that
-              expect more from every serve.
+              WAE&apos;s Beverage Initiative Extends Its Engineering Standard
+              Beyond Water — Bringing Tea And Coffee Into The Same System Of
+              Quality, Consistency And Reliability, For Premium Spaces That
+              Expect More From Every Serve.
             </p>
           </div>
         </div>
@@ -222,11 +222,11 @@ export default function AboutUsPage() {
                 letterSpacing: "0%",
               }}
             >
-              sourcing, brewing and serving them with the same rigour applied to
-              purity, consistency and performance. For hotels, offices,
-              airports and premium hospitality spaces, this means one partner,
-              already trusted for water, now delivering a complete beverage
-              standard.
+              Sourcing, Brewing And Serving Them With The Same Rigour Applied To
+              Purity, Consistency And Performance. For Hotels, Offices,
+              Airports And Premium Hospitality Spaces, This Means One Partner,
+              Already Trusted For Water, Now Delivering A Complete Beverage
+              Standard.
             </p>
           </div>
 
@@ -272,8 +272,8 @@ export default function AboutUsPage() {
                 letterSpacing: "0%",
               }}
             >
-              Having built its reputation on water infrastructure, WAE now
-              extends that same discipline to tea and coffee -
+              Having Built Its Reputation On Water Infrastructure, WAE Now
+              Extends That Same Discipline To Tea And Coffee -
             </p>
 
             {/* Bottom Espresso Machine Image (303x428) */}
@@ -349,11 +349,11 @@ export default function AboutUsPage() {
                   textAlign: "right",
                 }}
               >
-                WAE traces every ingredient back to where it began - the
+                WAE Traces Every Ingredient Back To Where It Began - The
                 <br className="hidden md:inline" />
-                estates, growers and terrains that give tea and coffee their
+                Estates, Growers And Terrains That Give Tea And Coffee Their
                 <br className="hidden md:inline" />
-                character, held to the same standard WAE applies to water.
+                Character, Held To The Same Standard WAE Applies To Water.
               </p>
             </div>
           </div>
@@ -386,9 +386,9 @@ export default function AboutUsPage() {
                   textAlign: "right",
                 }}
               >
-                Sourced from tea gardens selected for altitude,
+                Sourced From Tea Gardens Selected For Altitude,
                 <br className="hidden md:inline" />
-                soil and season, not volume.
+                Soil And Season, Not Volume.
               </p>
             </div>
 
@@ -457,9 +457,9 @@ export default function AboutUsPage() {
                   textAlign: "left",
                 }}
               >
-                Harvested at peak ripeness, from growers WAE
+                Harvested At Peak Ripeness, From Growers WAE
                 <br className="hidden md:inline" />
-                works with directly and repeatedly.
+                Works With Directly And Repeatedly.
               </p>
             </div>
           </div>

@@ -55,7 +55,7 @@ export default function LorientalisSourcingPage() {
                 letterSpacing: "0%",
               }}
             >
-              Above the Tropic of Cancer, North-East hills grow our botanicals.
+              Above The Tropic Of Cancer, North-East Hills Grow Our Botanicals.
             </p>
           </div>
 
@@ -170,7 +170,7 @@ export default function LorientalisSourcingPage() {
               color: "#DBDBDB",
             }}
           >
-            Three states, one origin: Meghalaya, Assam, Nagaland, where mist, altitude and shade shape our cup.
+            Three States, One Origin: Meghalaya, Assam, Nagaland, Where Mist, Altitude And Shade Shape Our Cup.
           </p>
         </div>
       </section>
@@ -398,11 +398,11 @@ export default function LorientalisSourcingPage() {
                 maxWidth: "clamp(360px, 58vw, 840px)",
               }}
             >
-              Once harvested, coffee cherries must be processed quickly to
-              prevent spoilage. Today there are two contrasting methods, one
-              centuries old and one technology-led, along with hybrids of both.
-              The method shapes the cup, and the care taken shapes its
-              consistency.
+              Once Harvested, Coffee Cherries Must Be Processed Quickly To
+              Prevent Spoilage. Today There Are Two Contrasting Methods, One
+              Centuries Old And One Technology-Led, Along With Hybrids Of Both.
+              The Method Shapes The Cup, And The Care Taken Shapes Its
+              Consistency.
             </p>
           </div>
         </div>
@@ -842,10 +842,10 @@ export default function LorientalisSourcingPage() {
                     color: "#FFFFFF73",
                   }}
                 >
-                  {" "} : CTC (Crush, Tear, Curl) makes up over 85% of the market.
-                  Leaves are mechanically cut, torn and curled into uniform
-                  granules for a strong, bold cup with higher caffeine. It suits
-                  high-volume service.
+                  {" "} : CTC (Crush, Tear, Curl) Makes Up Over 85% Of The Market.
+                  Leaves Are Mechanically Cut, Torn And Curled Into Uniform
+                  Granules For A Strong, Bold Cup With Higher Caffeine. It Suits
+                  High-Volume Service.
                 </span>
               </p>
             </div>
@@ -904,9 +904,9 @@ export default function LorientalisSourcingPage() {
                 color: "#FFFFFF73",
               }}
             >
-              {" "} : Orthodox tea uses traditional or manual methods, producing a
-              delicate cup with less caffeine. Sold as loose or whole leaf, it
-              suits premium black teas and signature menus.
+              {" "} : Orthodox Tea Uses Traditional Or Manual Methods, Producing A
+              Delicate Cup With Less Caffeine. Sold As Loose Or Whole Leaf, It
+              Suits Premium Black Teas And Signature Menus.
             </span>
           </p>
         </div>
@@ -960,7 +960,7 @@ export default function LorientalisSourcingPage() {
               color: "#FFFFFF73",
             }}
           >
-            Green tea is made from unoxidized leaves and is one of the least processed types of tea, which helps retain its natural antioxidants and beneficial polyphenols. It offers a fresh, light flavor with subtle grassy notes and a gentle caffeine boost, making it a popular choice for a healthy, refreshing drink.
+            Green Tea Is Made From Unoxidized Leaves And Is One Of The Least Processed Types Of Tea, Which Helps Retain Its Natural Antioxidants And Beneficial Polyphenols. It Offers A Fresh, Light Flavor With Subtle Grassy Notes And A Gentle Caffeine Boost, Making It A Popular Choice For A Healthy, Refreshing Drink.
           </p>
         </div>
 
