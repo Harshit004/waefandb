@@ -36,7 +36,7 @@ export default function LorientalisGrowPage() {
     },
   ];
 
-  // Preload all carousel images immediately to eliminate blank gap / flash on sliding
+  // Preload all carousel and key images immediately to eliminate blank gap / flash
   const carouselPreloadUrls = [
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/64a6dc17-fe78-4a88-e444-ba509b264e00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6505f8ad-dade-44b8-383e-7e6acc0e4700/public",
@@ -44,6 +44,7 @@ export default function LorientalisGrowPage() {
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f8309fa5-4306-4291-4e84-10504334ec00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/00120c15-7f88-4cee-15bc-2b2f090dde00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/932a60a4-e676-4b9e-9352-93e9a70b4600/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/19a872e6-ab1a-4e13-5418-e4696516b200/public",
   ];
 
   carouselPreloadUrls.forEach((url) => {
@@ -916,9 +917,14 @@ export default function LorientalisGrowPage() {
 
         {/* Varieties Row: Light Roast & Medium Roast with green background ONLY around text (90% circle height, vertically centered) */}
         <div
-          className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)] select-none mb-[clamp(80px,13.438vw,310px)]"
+          className="w-[calc(100%+2*clamp(16px,3.125vw,75px))] -mx-[clamp(16px,3.125vw,75px)] select-none"
         >
-          <div className="w-full flex flex-col lg:flex-row items-center justify-between relative pb-[clamp(24px,2.5vw,48px)]">
+          <div
+            className="w-full flex flex-col lg:flex-row items-center justify-between relative"
+            style={{
+              paddingBottom: "calc(clamp(10px, 1.172vw, 24px) + clamp(13px, 1.25vw, 24px) * 1.2)",
+            }}
+          >
             {/* Left Column: Green Text Box (Light Roast) */}
             <div
               className="w-full lg:flex-1 relative flex items-center justify-start z-0 py-4 lg:py-0"
@@ -1038,19 +1044,27 @@ export default function LorientalisGrowPage() {
           </div>
         </div>
 
-        {/* Full-bleed Dark Roast Banner (maintaining ratio) */}
-        <div className="w-full flex flex-col select-none">
+        {/* 114px gap after roast labels */}
+        <div className="h-[clamp(65px,8.906vw,160px)] select-none" />
+
+        {/* Dark Roast Section with 1200x347 Image and Gradient Background */}
+        <div className="relative w-full flex flex-col select-none">
+          {/* Gradient background starting at 50% of image height and extending behind the text */}
+          <div className="dark-roast-gradient-bg" />
+
+          {/* 1200x347 Dark Roast Image */}
           <div
-            className="relative w-full rounded-[2px] overflow-hidden shadow-2xl mb-4"
+            className="relative w-full overflow-hidden rounded-[2px] shadow-2xl z-10"
             style={{
-              aspectRatio: "1200 / 260",
+              aspectRatio: "1200 / 347",
             }}
           >
             <Image
-              src="/images/lorientalis/roast-dark-banner.png"
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/19a872e6-ab1a-4e13-5418-e4696516b200/public"
               alt="Glistening Dark Roast Coffee Beans"
               fill
               unoptimized
+              priority
               sizes="(max-width: 1280px) 100vw, 2160px"
               className="object-cover pointer-events-none"
               style={{
@@ -1060,17 +1074,43 @@ export default function LorientalisGrowPage() {
               }}
             />
           </div>
-          <p
-            className="m-0 text-[#B0B0B0]"
-            style={{
-              fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "clamp(13px, 1.172vw, 22px)",
-              lineHeight: "150%",
-              maxWidth: "clamp(600px, 78.125vw, 1800px)",
-            }}
-          >
-            <strong className="text-white font-medium">Dark Roast Coffee</strong> &ndash; Shiny Black Beans With An Oily Surface And Pronounced Bitterness. It Is The Least Acidic Of The Three. Dark Roasts Range From Slightly Dark To Charred, And The Names Are Often Used Interchangeably.
-          </p>
+
+          {/* 54px gap below image */}
+          <div className="h-[clamp(30px,4.219vw,80px)]" />
+
+          {/* Dark Roast Narrative Text */}
+          <div className="relative z-10 w-full">
+            <p
+              className="m-0 select-none"
+              style={{
+                fontFamily: "var(--font-manrope), sans-serif",
+                fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px
+                lineHeight: "120%",
+                letterSpacing: "0%",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 800,
+                  color: "#FFFFFF",
+                  textTransform: "capitalize",
+                }}
+              >
+                Dark Roast Coffee
+              </span>
+              <span
+                className="text-[#D5D5D5]"
+                style={{
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 500,
+                  textTransform: "capitalize",
+                }}
+              >
+                {" "}&ndash; Shiny Black Beans With An Oily Surface And Pronounced Bitterness. It Is The Least Acidic Of The Three. Dark Roasts Range From Slightly Dark To Charred, And The Names Are Often Used Interchangeably.
+              </span>
+            </p>
+          </div>
         </div>
       </section>
 
