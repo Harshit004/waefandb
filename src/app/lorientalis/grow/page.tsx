@@ -7,6 +7,30 @@ import LOrientalisHeader from "@/components/LOrientalisHeader";
 import LOrientalisFooter from "@/components/LOrientalisFooter";
 
 export default function LorientalisGrowPage() {
+  // State for Hero Background Carousel in Section 1
+  // After delay: 800ms, Smart animate with Spring: { mass: 1, stiffness: 56.64, damping: 11.29 }
+  const [heroIndex, setHeroIndex] = useState<number>(0);
+  const [isHeroTransitioning, setIsHeroTransitioning] = useState<boolean>(true);
+
+  const heroSlides = [
+    {
+      src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/94da132b-c938-49ac-0ed3-1e2015466d00/public",
+      alt: "L'Orientalis Grow - Slide 1",
+    },
+    {
+      src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3f3f97fb-9d1f-4ec5-8a18-daf7d15d8c00/public",
+      alt: "L'Orientalis Grow - Slide 2",
+    },
+    {
+      src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/cfec52da-0073-415c-c87a-31256b04ab00/public",
+      alt: "L'Orientalis Grow - Slide 3",
+    },
+    {
+      src: "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/94da132b-c938-49ac-0ed3-1e2015466d00/public",
+      alt: "L'Orientalis Grow - Slide 1 (Loop Clone)",
+    },
+  ];
+
   // State for Varieties Carousel in Section 3
   const [carouselIndex, setCarouselIndex] = useState<number>(0);
 
@@ -38,6 +62,10 @@ export default function LorientalisGrowPage() {
 
   // Preload all carousel and key images immediately to eliminate blank gap / flash
   const carouselPreloadUrls = [
+    // Hero carousel slides
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/94da132b-c938-49ac-0ed3-1e2015466d00/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3f3f97fb-9d1f-4ec5-8a18-daf7d15d8c00/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/cfec52da-0073-415c-c87a-31256b04ab00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/64a6dc17-fe78-4a88-e444-ba509b264e00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6505f8ad-dade-44b8-383e-7e6acc0e4700/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6be53395-3d41-48b2-7f85-f649fe63bb00/public",
@@ -63,6 +91,36 @@ export default function LorientalisGrowPage() {
       img.src = url;
     });
   }, []);
+
+  // Auto-advancing Hero Carousel:
+  // After delay: animation-delay: 800ms;
+  // Change to: "next frame";
+  // Animate: Smart animate; Spring: { mass: 1, stiffness: 56.64, damping: 11.29 };
+  useEffect(() => {
+    if (!isHeroTransitioning) {
+      const raf = requestAnimationFrame(() => {
+        setIsHeroTransitioning(true);
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+
+    // When reaching the loop clone (last slide), snap back to 0 without transition after spring settles (950ms)
+    if (heroIndex === heroSlides.length - 1) {
+      const snapTimer = setTimeout(() => {
+        setIsHeroTransitioning(false);
+        setHeroIndex(0);
+      }, 950);
+      return () => clearTimeout(snapTimer);
+    }
+
+    // Delay: 800ms on first mount / after snap, or 950ms transition + 800ms delay on subsequent frames
+    const delay = heroIndex === 0 ? 800 : 1750;
+    const timer = setTimeout(() => {
+      setHeroIndex((prev) => prev + 1);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [heroIndex, isHeroTransitioning, heroSlides.length]);
 
   const handleScrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -99,21 +157,37 @@ export default function LorientalisGrowPage() {
           />
         </div>
 
-        {/* HERO ARTWORK LAYER: Spans end-to-end top-to-bottom left-to-right in intact ratio of dimensions */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
-          <Image
-            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/94da132b-c938-49ac-0ed3-1e2015466d00/public"
-            alt="L'Orientalis Grow"
-            fill
-            priority
-            unoptimized
-            className="object-cover object-center pointer-events-none"
+        {/* HERO ARTWORK CAROUSEL LAYER: Spans end-to-end top-to-bottom left-to-right with Smart Animate spring physics */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
+          <div
+            id="hero-carousel-track"
+            className="flex w-full h-full"
             style={{
-              imageRendering: "-webkit-optimize-contrast",
-              transform: "translateZ(0)",
-              backfaceVisibility: "hidden",
+              transform: `translateX(-${heroIndex * 100}%)`,
+              transition: isHeroTransitioning
+                ? "transform 950ms linear(0, 0.0585 5%, 0.1924 10%, 0.355 15%, 0.5164 20%, 0.6599 25%, 0.7778 30%, 0.8687 35%, 0.9344 40%, 0.9788 45%, 1.0063 50%, 1.0212 55%, 1.0275 60%, 1.0281 65%, 1.0254 70%, 1.0212 75%, 1.0165 80%, 1.0121 85%, 1.0083 90%, 1.0052 95%, 1 100%)"
+                : "none",
+              willChange: "transform",
             }}
-          />
+          >
+            {heroSlides.map((slide, idx) => (
+              <div key={idx} className="w-full h-full relative shrink-0">
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  fill
+                  priority={idx === 0}
+                  unoptimized
+                  className="object-cover object-center pointer-events-none"
+                  style={{
+                    imageRendering: "-webkit-optimize-contrast",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Cards */}
@@ -674,57 +748,57 @@ export default function LorientalisGrowPage() {
           </div>
         </div>
 
-          {/* 77px gap then 2 navigation arrows 24x24 30px apart at 1280px */}
-          {/* when inactive 2px solid #383636, when active: 2px solid #FFFFFF */}
-          <div className="w-full flex items-center justify-end mt-[clamp(36px,6.016vw,138px)] gap-[clamp(20px,2.344vw,54px)]">
-            {/* Left / Previous Arrow */}
-            <button
-              type="button"
-              onClick={() => setCarouselIndex(0)}
-              aria-label="Previous Slide"
-              className="w-[clamp(24px,1.875vw,44px)] h-[clamp(24px,1.875vw,44px)] flex items-center justify-center p-0 bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-80"
+        {/* 77px gap then 2 navigation arrows 24x24 30px apart at 1280px */}
+        {/* when inactive 2px solid #383636, when active: 2px solid #FFFFFF */}
+        <div className="w-full flex items-center justify-end mt-[clamp(36px,6.016vw,138px)] gap-[clamp(20px,2.344vw,54px)]">
+          {/* Left / Previous Arrow */}
+          <button
+            type="button"
+            onClick={() => setCarouselIndex(0)}
+            aria-label="Previous Slide"
+            className="w-[clamp(24px,1.875vw,44px)] h-[clamp(24px,1.875vw,44px)] flex items-center justify-center p-0 bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-80"
+          >
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19 12H5M5 12L11 6M5 12L11 18"
-                  stroke={carouselIndex === 1 ? "#FFFFFF" : "#383636"}
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
+              <path
+                d="M19 12H5M5 12L11 6M5 12L11 18"
+                stroke={carouselIndex === 1 ? "#FFFFFF" : "#383636"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
 
-            {/* Right / Next Arrow */}
-            <button
-              type="button"
-              onClick={() => setCarouselIndex(1)}
-              aria-label="Next Slide"
-              className="w-[clamp(24px,1.875vw,44px)] h-[clamp(24px,1.875vw,44px)] flex items-center justify-center p-0 bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-80"
+          {/* Right / Next Arrow */}
+          <button
+            type="button"
+            onClick={() => setCarouselIndex(1)}
+            aria-label="Next Slide"
+            className="w-[clamp(24px,1.875vw,44px)] h-[clamp(24px,1.875vw,44px)] flex items-center justify-center p-0 bg-transparent border-0 cursor-pointer transition-opacity hover:opacity-80"
+          >
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5 12H19M19 12L13 6M19 12L13 18"
-                  stroke={carouselIndex === 0 ? "#FFFFFF" : "#383636"}
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d="M5 12H19M19 12L13 6M19 12L13 18"
+                stroke={carouselIndex === 0 ? "#FFFFFF" : "#383636"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </section>
 
       {/* =========================================================================
@@ -1288,10 +1362,10 @@ export default function LorientalisGrowPage() {
                   teaCarouselIndex === 0
                     ? "translateX(clamp(16px, 3.125vw, 75px))"
                     : teaCarouselIndex === 1
-                    ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 1 * (clamp(280px, 56.172vw, 1295px) + clamp(16px, 9.063vw, 208px))))"
-                    : teaCarouselIndex === 2
-                    ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 2 * (clamp(280px, 56.172vw, 1295px) + clamp(16px, 9.063vw, 208px))))"
-                    : "translateX(calc(100vw - clamp(16px, 3.125vw, 75px) - (4 * clamp(280px, 56.172vw, 1295px) + 3 * clamp(16px, 9.063vw, 208px))))",
+                      ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 1 * (clamp(280px, 56.172vw, 1295px) + clamp(16px, 9.063vw, 208px))))"
+                      : teaCarouselIndex === 2
+                        ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 2 * (clamp(280px, 56.172vw, 1295px) + clamp(16px, 9.063vw, 208px))))"
+                        : "translateX(calc(100vw - clamp(16px, 3.125vw, 75px) - (4 * clamp(280px, 56.172vw, 1295px) + 3 * clamp(16px, 9.063vw, 208px))))",
               }}
             >
               {teaCarouselCards.map((card, idx) => (
