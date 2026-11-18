@@ -316,17 +316,17 @@ export default function LorientalisSourcingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 4: THE JOURNEY OF COFFEE: FROM BEAN TO BREW (Fits screen end to end without overflow)
+          SECTION 4: THE JOURNEY OF COFFEE: FROM BEAN TO BREW (Fits screen dynamically)
           ========================================================================= */}
       <section
         id="journey-coffee"
         className="w-full h-screen max-h-screen flex flex-col items-center justify-between text-center select-none overflow-hidden"
         style={{
-          height: "100vh",
+          height: "100dvh",
           paddingLeft: "clamp(16px, 2.778vw, 40px)",
           paddingRight: "clamp(16px, 2.778vw, 40px)",
-          paddingTop: "clamp(16px, 2.2vh, 28px)",
-          paddingBottom: "clamp(12px, 1.8vh, 24px)",
+          paddingTop: "clamp(14px, 2vh, 26px)",
+          paddingBottom: "clamp(12px, 1.8vh, 22px)",
           boxSizing: "border-box",
         }}
       >
@@ -337,7 +337,7 @@ export default function LorientalisSourcingPage() {
             style={{
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
-              fontSize: "clamp(20px, 2.8vh, 36px)",
+              fontSize: "clamp(18px, 2.4vh, 32px)",
               lineHeight: "100%",
               letterSpacing: "0%",
             }}
@@ -348,10 +348,10 @@ export default function LorientalisSourcingPage() {
           <h2
             className="text-white select-none m-0 text-center"
             style={{
-              marginTop: "clamp(6px, 1vh, 12px)",
+              marginTop: "clamp(4px, 0.8vh, 10px)",
               fontFamily: "var(--font-monschone), serif",
               fontWeight: 400,
-              fontSize: "clamp(38px, 5.8vh, 80px)",
+              fontSize: "clamp(34px, 5vh, 68px)",
               lineHeight: "100%",
               letterSpacing: "0%",
             }}
@@ -364,17 +364,17 @@ export default function LorientalisSourcingPage() {
         <div
           className="relative w-full flex-1 flex flex-col items-center justify-end"
           style={{
-            marginTop: "clamp(8px, 1.8vh, 22px)", // Space between from bean to brew and image decreased to half
+            marginTop: "clamp(6px, 1.6vh, 20px)",
           }}
         >
-          {/* Centered Carrier Portrait (Height and width increased by the reclaimed space) */}
+          {/* Centered Carrier Portrait (Dynamic screen fit adhering to 493/667 ratio) */}
           <div
             className="relative rounded-[2px] overflow-hidden select-none shadow-2xl shrink-0"
             style={{
-              height: "clamp(460px, 69vh, 760px)",
-              width: "calc(clamp(460px, 69vh, 760px) * 493 / 667)",
+              height: "clamp(260px, calc(100dvh - clamp(160px, 26vh, 230px)), 580px)",
+              width: "calc(clamp(260px, calc(100dvh - clamp(160px, 26vh, 230px)), 580px) * 493 / 667)",
               aspectRatio: "493 / 667",
-              maxWidth: "calc(clamp(460px, 69vh, 760px) * 493 / 667)",
+              maxWidth: "calc(clamp(260px, calc(100dvh - clamp(160px, 26vh, 230px)), 580px) * 493 / 667)",
             }}
           >
             <Image
@@ -382,22 +382,22 @@ export default function LorientalisSourcingPage() {
               alt="Mountain Harvest Carrier with Woven Basket"
               fill
               unoptimized
-              sizes="(max-width: 768px) 100vw, 560px"
+              sizes="(max-width: 768px) 100vw, 493px"
               className="object-cover"
             />
           </div>
 
           {/* Overlapping Text Box (centered with image) */}
           <div
-            className="relative z-10 -mt-[clamp(24px, 3.5vh, 44px)] px-4 w-full flex justify-center text-center select-none"
+            className="relative z-10 -mt-[clamp(18px, 2.8vh, 36px)] px-4 w-full flex justify-center text-center select-none"
           >
             <p
               className="m-0 text-center"
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(12px, 1.5vh, 17px)",
-                lineHeight: "135%",
+                fontSize: "clamp(14px, 1.25vw, 18px)",
+                lineHeight: "140%",
                 letterSpacing: "0%",
                 color: "#DBDBDB",
                 maxWidth: "clamp(480px, 65vw, 840px)",
