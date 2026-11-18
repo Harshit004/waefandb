@@ -93,7 +93,7 @@ export default function LorientalisGrowPage() {
   }, []);
 
   // Auto-advancing Hero Carousel:
-  // After delay: animation-delay: 800ms;
+  // 2 seconds per frame
   // Change to: "next frame";
   // Animate: Smart animate; Spring: { mass: 1, stiffness: 56.64, damping: 11.29 };
   useEffect(() => {
@@ -113,8 +113,8 @@ export default function LorientalisGrowPage() {
       return () => clearTimeout(snapTimer);
     }
 
-    // Delay: 800ms on first mount / after snap, or 950ms transition + 800ms delay on subsequent frames
-    const delay = heroIndex === 0 ? 800 : 1750;
+    // Delay: 2000ms (2s) on first mount / after snap, or 950ms transition + 2000ms delay (2950ms) on subsequent frames
+    const delay = heroIndex === 0 ? 2000 : 2950;
     const timer = setTimeout(() => {
       setHeroIndex((prev) => prev + 1);
     }, delay);

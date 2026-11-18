@@ -270,13 +270,13 @@ function FarmersCarouselSection() {
     window.addEventListener("resize", onScroll, { passive: true });
     updateTarget();
 
-    // Silky fluid exponential interpolation loop with lambda = 7 for luxurious deceleration
+    // Silky fluid exponential interpolation loop with lambda = 9 for responsive feel at faster speed
     let lastTime = performance.now();
     const tick = (now: number) => {
       const dt = Math.min((now - lastTime) / 1000, 0.1);
       lastTime = now;
 
-      const lambda = 7;
+      const lambda = 9;
       const factor = 1 - Math.exp(-lambda * dt);
       const target = targetProgressRef.current;
       const current = currentProgressRef.current;
@@ -339,7 +339,7 @@ function FarmersCarouselSection() {
     <section
       id="farmers"
       ref={carouselContainerRef}
-      className="relative w-full h-[3600vh] bg-black text-white"
+      className="relative w-full h-[2400vh] bg-black text-white"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center bg-black">
         {/* HORIZONTAL CAROUSEL TRACK */}
