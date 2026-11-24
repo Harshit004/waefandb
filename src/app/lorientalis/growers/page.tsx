@@ -145,7 +145,7 @@ export default function LorientalisGrowersPage() {
           ========================================================================= */}
       <section
         id="grow-hero"
-        className="relative w-full h-[100dvh] flex flex-col justify-end overflow-hidden bg-black select-none"
+        className="relative w-full min-h-[calc(100dvh+100px)] flex flex-col justify-end bg-black select-none pb-[100px]"
       >
         {/* Background ambient lighting */}
         <div className="absolute inset-0 pointer-events-none">
@@ -864,13 +864,12 @@ export default function LorientalisGrowersPage() {
             </p>
           </div>
 
-          {/* 1200x400 Panoramic Roast Spectrum Image (maintaining 1200/400 ratio and constrained to fit viewport) */}
+          {/* Panoramic Roast Spectrum Image (spreading as wide as the light medium and dark roast line below it) */}
           <div
-            className="relative w-full overflow-hidden rounded-[2px] select-none mx-auto"
+            className="relative overflow-hidden rounded-[2px] select-none mx-auto"
             style={{
-              aspectRatio: "1200 / 400",
-              maxHeight: "clamp(180px, 42vh, 440px)",
-              width: "min(100%, calc(clamp(180px, 42vh, 440px) * 1200 / 400))",
+              height: "clamp(180px, 42vh, 440px)",
+              width: "calc(100% - 2 * clamp(48px, 6.5%, 140px))",
             }}
           >
             <Image
