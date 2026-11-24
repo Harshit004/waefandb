@@ -67,11 +67,12 @@ export default function LorientalisGrowersPage() {
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/3f3f97fb-9d1f-4ec5-8a18-daf7d15d8c00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/cfec52da-0073-415c-c87a-31256b04ab00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/64a6dc17-fe78-4a88-e444-ba509b264e00/public",
-    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6505f8ad-dade-44b8-383e-7e6acc0e4700/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/c8085dcf-1acb-4463-85b4-a510e2baf100/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6be53395-3d41-48b2-7f85-f649fe63bb00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f8309fa5-4306-4291-4e84-10504334ec00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/00120c15-7f88-4cee-15bc-2b2f090dde00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/932a60a4-e676-4b9e-9352-93e9a70b4600/public",
+    "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1bfd75cf-105b-431a-867f-6db10392da00/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/19a872e6-ab1a-4e13-5418-e4696516b200/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1b7c6f5b-d55b-4628-bb7f-e298bf350000/public",
     "https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/f49876c7-d404-49ce-ae41-96eafae25100/public",
@@ -190,9 +191,9 @@ export default function LorientalisGrowersPage() {
           </div>
         </div>
 
-        {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Cards */}
+        {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Cards (pushed upwards by 100px) */}
         <div
-          className="relative z-30 w-full flex flex-col md:flex-row items-start md:items-end select-none pb-[clamp(18px,3.8vh,60px)] gap-6 md:gap-0"
+          className="relative z-30 w-full flex flex-col md:flex-row items-start md:items-end select-none pb-[clamp(18px,3.8vh,60px)] -translate-y-[100px] gap-6 md:gap-0"
           style={{
             paddingLeft: "clamp(14px, 2.778vw, 80px)",
             paddingRight: "clamp(14px, 2.778vw, 80px)",
@@ -678,21 +679,22 @@ export default function LorientalisGrowersPage() {
                 transform:
                   carouselIndex === 0
                     ? "translateX(clamp(16px, 3.125vw, 75px))"
-                    : "translateX(calc(100vw - clamp(16px, 3.125vw, 75px) - (2 * clamp(300px, 90.938vw, 2095px) + clamp(20px, 2.5vw, 54px))))",
+                    : "translateX(calc(100vw - clamp(16px, 3.125vw, 75px) - (2 * clamp(300px, min(90.938vw, calc((100vh - 160px) * 1164 / 595)), 2095px) + clamp(20px, 2.5vw, 54px))))",
               }}
             >
               {/* SLIDE 1: ARABICA */}
               <div
                 className="shrink-0 flex flex-col"
                 style={{
-                  width: "clamp(300px, 90.938vw, 2095px)",
+                  width: "clamp(300px, min(90.938vw, calc((100vh - 160px) * 1164 / 595)), 2095px)",
                 }}
               >
-                {/* Slide 1 Image (1164x595 at 1280px, maintaining ratio) */}
+                {/* Slide 1 Image (1164x595 at 1280px, maintaining ratio, constrained to viewport) */}
                 <div
-                  className="relative overflow-hidden rounded-[4px] w-full bg-[#18261C]"
+                  className="relative overflow-hidden rounded-[4px] w-full"
                   style={{
                     aspectRatio: "1164 / 595",
+                    maxHeight: "calc(100vh - 160px)",
                   }}
                 >
                   <Image
@@ -717,18 +719,19 @@ export default function LorientalisGrowersPage() {
               <div
                 className="shrink-0 flex flex-col"
                 style={{
-                  width: "clamp(300px, 90.938vw, 2095px)",
+                  width: "clamp(300px, min(90.938vw, calc((100vh - 160px) * 1164 / 595)), 2095px)",
                 }}
               >
-                {/* Slide 2 Image (1164x595 at 1280px, maintaining ratio) */}
+                {/* Slide 2 Image (1164x595 at 1280px, maintaining ratio, constrained to viewport) */}
                 <div
-                  className="relative overflow-hidden rounded-[4px] w-full bg-[#18261C]"
+                  className="relative overflow-hidden rounded-[4px] w-full"
                   style={{
                     aspectRatio: "1164 / 595",
+                    maxHeight: "calc(100vh - 160px)",
                   }}
                 >
                   <Image
-                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/6505f8ad-dade-44b8-383e-7e6acc0e4700/public"
+                    src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/c8085dcf-1acb-4463-85b4-a510e2baf100/public"
                     alt="Robusta Botanical and Chemical Terroir Slide"
                     fill
                     priority
@@ -748,9 +751,9 @@ export default function LorientalisGrowersPage() {
           </div>
         </div>
 
-        {/* 77px gap then 2 navigation arrows 24x24 30px apart at 1280px */}
+        {/* 77px gap then 2 navigation arrows 24x24 30px apart at 1280px (responsive to fit viewport) */}
         {/* when inactive 2px solid #383636, when active: 2px solid #FFFFFF */}
-        <div className="w-full flex items-center justify-end mt-[clamp(36px,6.016vw,138px)] gap-[clamp(20px,2.344vw,54px)]">
+        <div className="w-full flex items-center justify-end mt-[clamp(20px,2.5vw,48px)] gap-[clamp(20px,2.344vw,54px)]">
           {/* Left / Previous Arrow */}
           <button
             type="button"
@@ -817,160 +820,161 @@ export default function LorientalisGrowersPage() {
           paddingRight: "clamp(16px, 3.125vw, 75px)",
         }}
       >
-        {/* Section Heading Row with horizontal line at 99% of heading height */}
-        {/* Under the title 58px gap at 1280px */}
-        <div className="w-full flex items-start gap-4 mb-[clamp(30px,4.531vw,104px)] select-none">
-          <h2
-            className="m-0 text-white font-normal whitespace-nowrap"
-            style={{
-              fontFamily: "var(--font-monschone), serif",
-              fontSize: "clamp(30px, 4.219vw, 98px)", // 54px at 1280px, responsive on larger screens
-              lineHeight: "100%",
-            }}
-          >
-            Know your roasts
-          </h2>
-          <div
-            className="h-[1px] shrink-0"
-            style={{
-              width: "clamp(120px, 16.797vw, 387px)", // 215px at 1280px, responsive on larger screens
-              background:
-                "linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
-              marginTop: "calc(clamp(30px, 4.219vw, 98px) * 0.99)",
-            }}
-          />
-        </div>
-
-        {/* Narrative text right-aligned + 71px gap below at 1280px */}
-        <div className="w-full flex justify-end mb-[clamp(36px,5.547vw,128px)] select-none">
-          <p
-            className="m-0 select-none text-right"
-            style={{
-              fontFamily: "var(--font-manrope), sans-serif",
-              fontWeight: 500,
-              fontSize: "clamp(14px, 1.406vw, 28px)", // 18px at 1280px, responsive on larger screens
-              lineHeight: "120%",
-              letterSpacing: "0%",
-              textAlign: "right",
-              color: "#D5D5D5",
-              maxWidth: "clamp(320px, 37.969vw, 875px)", // 486px at 1280px
-            }}
-          >
-            There Is No Single Perfect Roast, Only The Right One For Your Guest And Your Menu. Three Things Are Worth Knowing.
-          </p>
-        </div>
-
-        {/* 1200x400 Panoramic Roast Spectrum Image (maintaining 1200/400 ratio) */}
-        <div
-          className="relative w-full overflow-hidden rounded-[2px] select-none"
-          style={{
-            aspectRatio: "1200 / 400",
-          }}
-        >
-          <Image
-            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/c0aa6785-736b-407a-d36b-2daff6ea3f00/public"
-            alt="Coffee Bean Roast Spectrum: Dark Roast to Light Roast"
-            fill
-            sizes="(max-width: 1280px) 100vw, 2160px"
-            priority
-            unoptimized
-            className="object-cover pointer-events-none"
-            style={{
-              imageRendering: "-webkit-optimize-contrast",
-              transform: "translateZ(0)",
-              backfaceVisibility: "hidden",
-            }}
-          />
-        </div>
-
-        {/* 25px gap at 1280px */}
-        <div className="h-[clamp(16px,1.953vw,45px)]" />
-
-        {/* Static Roast Indicator Bar */}
-        <div className="w-full select-none">
-          {/* Dots and Connecting Gradient Line */}
-          <div className="relative w-full h-[clamp(14px,1.5vw,32px)] flex items-center">
-            {/* Gradient connecting line */}
-            <div
-              className="absolute h-[clamp(2px,0.2vw,4px)] top-1/2 -translate-y-1/2"
+        {/* Know Your Roasts Viewport-Fitting Section */}
+        <div className="w-full min-h-[100dvh] max-h-[100dvh] flex flex-col justify-between py-[clamp(16px,2.5vh,44px)] select-none">
+          {/* Section Heading Row with horizontal line at 99% of heading height */}
+          <div className="w-full flex items-start gap-4 select-none">
+            <h2
+              className="m-0 text-white font-normal whitespace-nowrap"
               style={{
-                left: "clamp(48px, 6.5%, 140px)",
-                right: "clamp(48px, 6.5%, 140px)",
-                background:
-                  "linear-gradient(90deg, #B3473A 0%, #D89C46 30%, #E5C24C 50%, #B5BE51 75%, #A8BA54 100%)",
+                fontFamily: "var(--font-monschone), serif",
+                fontSize: "clamp(28px, 3.8vw, 64px)",
+                lineHeight: "100%",
               }}
-            />
-
-            {/* Left Dot: Dark Roast */}
+            >
+              Know your roasts
+            </h2>
             <div
-              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-[clamp(12px,1.25vw,28px)] h-[clamp(12px,1.25vw,28px)] rounded-full bg-white border border-[#222222] shadow-[0_0_8px_rgba(255,255,255,0.7)]"
-              style={{ left: "clamp(48px, 6.5%, 140px)" }}
-            />
-
-            {/* Center Dot: Medium Roast */}
-            <div
-              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-[clamp(12px,1.25vw,28px)] h-[clamp(12px,1.25vw,28px)] rounded-full bg-white border border-[#222222] shadow-[0_0_8px_rgba(255,255,255,0.7)]"
-              style={{ left: "50%" }}
-            />
-
-            {/* Right Dot: Light Roast */}
-            <div
-              className="absolute top-1/2 -translate-y-1/2 translate-x-1/2 w-[clamp(12px,1.25vw,28px)] h-[clamp(12px,1.25vw,28px)] rounded-full bg-white border border-[#222222] shadow-[0_0_8px_rgba(255,255,255,0.7)]"
-              style={{ right: "clamp(48px, 6.5%, 140px)" }}
+              className="h-[1px] shrink-0"
+              style={{
+                width: "clamp(120px, 16.797vw, 387px)",
+                background:
+                  "linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
+                marginTop: "calc(clamp(28px, 3.8vw, 64px) * 0.99)",
+              }}
             />
           </div>
 
-          {/* Labels Row */}
-          <div className="relative w-full mt-[clamp(10px,1.25vw,24px)] h-[clamp(28px,3vw,56px)]">
-            {/* Dark Roast Pill */}
-            <div
-              className="absolute top-0 -translate-x-1/2 px-[clamp(8px,1.25vw,24px)] py-[clamp(3px,0.469vw,10px)] rounded-[4px] whitespace-nowrap"
+          {/* Narrative text right-aligned */}
+          <div className="w-full flex justify-end select-none my-1 sm:my-2">
+            <p
+              className="m-0 select-none text-right"
               style={{
-                left: "clamp(48px, 6.5%, 140px)",
-                backgroundColor: "rgba(255, 255, 255, 0.13)", // #FFFFFF21
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontWeight: 500,
-                fontSize: "clamp(12px, 1.25vw, 24px)", // 16px at 1280px, responsive on larger screens
+                fontSize: "clamp(13px, 1.25vw, 18px)",
                 lineHeight: "120%",
                 letterSpacing: "0%",
+                textAlign: "right",
                 color: "#D5D5D5",
+                maxWidth: "clamp(320px, 37.969vw, 875px)",
               }}
             >
-              Dark Roast Coffee
+              There Is No Single Perfect Roast, Only The Right One For Your Guest And Your Menu. Three Things Are Worth Knowing.
+            </p>
+          </div>
+
+          {/* 1200x400 Panoramic Roast Spectrum Image (maintaining 1200/400 ratio and constrained to fit viewport) */}
+          <div
+            className="relative w-full overflow-hidden rounded-[2px] select-none mx-auto"
+            style={{
+              aspectRatio: "1200 / 400",
+              maxHeight: "clamp(180px, 42vh, 440px)",
+              width: "min(100%, calc(clamp(180px, 42vh, 440px) * 1200 / 400))",
+            }}
+          >
+            <Image
+              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/c0aa6785-736b-407a-d36b-2daff6ea3f00/public"
+              alt="Coffee Bean Roast Spectrum: Dark Roast to Light Roast"
+              fill
+              sizes="(max-width: 1280px) 100vw, 2160px"
+              priority
+              unoptimized
+              className="object-cover pointer-events-none"
+              style={{
+                imageRendering: "-webkit-optimize-contrast",
+                transform: "translateZ(0)",
+                backfaceVisibility: "hidden",
+              }}
+            />
+          </div>
+
+          {/* Static Roast Indicator Bar */}
+          <div className="w-full select-none mt-1 sm:mt-2">
+            {/* Dots and Connecting Gradient Line */}
+            <div className="relative w-full h-[clamp(14px,1.5vw,32px)] flex items-center">
+              {/* Gradient connecting line */}
+              <div
+                className="absolute h-[clamp(2px,0.2vw,4px)] top-1/2 -translate-y-1/2"
+                style={{
+                  left: "clamp(48px, 6.5%, 140px)",
+                  right: "clamp(48px, 6.5%, 140px)",
+                  background:
+                    "linear-gradient(90deg, #B3473A 0%, #D89C46 30%, #E5C24C 50%, #B5BE51 75%, #A8BA54 100%)",
+                }}
+              />
+
+              {/* Left Dot: Dark Roast */}
+              <div
+                className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-[clamp(12px,1.25vw,28px)] h-[clamp(12px,1.25vw,28px)] rounded-full bg-white border border-[#222222] shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+                style={{ left: "clamp(48px, 6.5%, 140px)" }}
+              />
+
+              {/* Center Dot: Medium Roast */}
+              <div
+                className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-[clamp(12px,1.25vw,28px)] h-[clamp(12px,1.25vw,28px)] rounded-full bg-white border border-[#222222] shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+                style={{ left: "50%" }}
+              />
+
+              {/* Right Dot: Light Roast */}
+              <div
+                className="absolute top-1/2 -translate-y-1/2 translate-x-1/2 w-[clamp(12px,1.25vw,28px)] h-[clamp(12px,1.25vw,28px)] rounded-full bg-white border border-[#222222] shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+                style={{ right: "clamp(48px, 6.5%, 140px)" }}
+              />
             </div>
 
-            {/* Medium Roast Pill */}
-            <div
-              className="absolute top-0 -translate-x-1/2 px-[clamp(8px,1.25vw,24px)] py-[clamp(3px,0.469vw,10px)] rounded-[4px] whitespace-nowrap"
-              style={{
-                left: "50%",
-                backgroundColor: "rgba(255, 255, 255, 0.13)", // #FFFFFF21
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontWeight: 500,
-                fontSize: "clamp(12px, 1.25vw, 24px)", // 16px at 1280px, responsive on larger screens
-                lineHeight: "120%",
-                letterSpacing: "0%",
-                color: "#D5D5D5",
-              }}
-            >
-              Medium Roast Coffee
-            </div>
+            {/* Labels Row */}
+            <div className="relative w-full mt-[clamp(8px,1vw,20px)] h-[clamp(28px,3vw,56px)]">
+              {/* Dark Roast Pill */}
+              <div
+                className="absolute top-0 -translate-x-1/2 px-[clamp(8px,1.25vw,24px)] py-[clamp(3px,0.469vw,10px)] rounded-[4px] whitespace-nowrap"
+                style={{
+                  left: "clamp(48px, 6.5%, 140px)",
+                  backgroundColor: "rgba(255, 255, 255, 0.13)", // #FFFFFF21
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(12px, 1.25vw, 24px)", // 16px at 1280px, responsive on larger screens
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  color: "#D5D5D5",
+                }}
+              >
+                Dark Roast Coffee
+              </div>
 
-            {/* Light Roast Pill */}
-            <div
-              className="absolute top-0 translate-x-1/2 px-[clamp(8px,1.25vw,24px)] py-[clamp(3px,0.469vw,10px)] rounded-[4px] whitespace-nowrap"
-              style={{
-                right: "clamp(48px, 6.5%, 140px)",
-                backgroundColor: "rgba(255, 255, 255, 0.13)", // #FFFFFF21
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontWeight: 500,
-                fontSize: "clamp(12px, 1.25vw, 24px)", // 16px at 1280px, responsive on larger screens
-                lineHeight: "120%",
-                letterSpacing: "0%",
-                color: "#D5D5D5",
-              }}
-            >
-              Light Roast Coffee
+              {/* Medium Roast Pill */}
+              <div
+                className="absolute top-0 -translate-x-1/2 px-[clamp(8px,1.25vw,24px)] py-[clamp(3px,0.469vw,10px)] rounded-[4px] whitespace-nowrap"
+                style={{
+                  left: "50%",
+                  backgroundColor: "rgba(255, 255, 255, 0.13)", // #FFFFFF21
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(12px, 1.25vw, 24px)", // 16px at 1280px, responsive on larger screens
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  color: "#D5D5D5",
+                }}
+              >
+                Medium Roast Coffee
+              </div>
+
+              {/* Light Roast Pill */}
+              <div
+                className="absolute top-0 translate-x-1/2 px-[clamp(8px,1.25vw,24px)] py-[clamp(3px,0.469vw,10px)] rounded-[4px] whitespace-nowrap"
+                style={{
+                  right: "clamp(48px, 6.5%, 140px)",
+                  backgroundColor: "rgba(255, 255, 255, 0.13)", // #FFFFFF21
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(12px, 1.25vw, 24px)", // 16px at 1280px, responsive on larger screens
+                  lineHeight: "120%",
+                  letterSpacing: "0%",
+                  color: "#D5D5D5",
+                }}
+              >
+                Light Roast Coffee
+              </div>
             </div>
           </div>
         </div>
@@ -1160,27 +1164,33 @@ export default function LorientalisGrowersPage() {
           {/* Gradient background starting at 50% of image height and extending behind the text */}
           <div className="dark-roast-gradient-bg" />
 
-          {/* 1200x347 Dark Roast Image */}
+          {/* 1200x347 Dark Roast Cloudflare Stream Video (exact same dimensions as previous image, cropped to fit 1200/347) */}
           <div
             className="relative w-full overflow-hidden rounded-[2px] shadow-2xl z-10"
             style={{
               aspectRatio: "1200 / 347",
             }}
           >
-            <Image
-              src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/19a872e6-ab1a-4e13-5418-e4696516b200/public"
-              alt="Glistening Dark Roast Coffee Beans"
-              fill
-              unoptimized
-              priority
-              sizes="(max-width: 1280px) 100vw, 2160px"
-              className="object-cover pointer-events-none"
+            <div
+              className="absolute left-0 right-0 top-1/2 -translate-y-1/2 w-full pointer-events-none"
               style={{
-                imageRendering: "-webkit-optimize-contrast",
-                transform: "translateZ(0)",
-                backfaceVisibility: "hidden",
+                paddingTop: "56.25%", // 16:9 aspect ratio cropped by 1200/347 parent container
               }}
-            />
+            >
+              <iframe
+                src="https://customer-nqls4utgv1ytiyat.cloudflarestream.com/be8cbae5d58a40f1c0982eb5579de278/iframe?muted=true&preload=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-nqls4utgv1ytiyat.cloudflarestream.com%2Fbe8cbae5d58a40f1c0982eb5579de278%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
+                style={{
+                  border: "none",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  height: "100%",
+                  width: "100%",
+                }}
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowFullScreen={true}
+              />
+            </div>
           </div>
 
           {/* 54px gap below image */}
@@ -1245,7 +1255,7 @@ export default function LorientalisGrowersPage() {
           }}
         >
           <Image
-            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/0847d1da-7556-49c7-9444-c8247984ce00/public"
+            src="https://imagedelivery.net/R9aLuI8McL_Ccm6jM8FkvA/1bfd75cf-105b-431a-867f-6db10392da00/public"
             alt="Discover Your Perfect Tea"
             fill
             sizes="(max-width: 1280px) 100vw, 2400px"
@@ -1362,10 +1372,10 @@ export default function LorientalisGrowersPage() {
                   teaCarouselIndex === 0
                     ? "translateX(clamp(16px, 3.125vw, 75px))"
                     : teaCarouselIndex === 1
-                      ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 1 * (clamp(280px, 56.172vw, 1295px) + clamp(16px, 9.063vw, 208px))))"
+                      ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 1 * (clamp(280px, min(56.172vw, calc((100vh - 160px) * 719 / 524)), 1295px) + clamp(16px, 9.063vw, 208px))))"
                       : teaCarouselIndex === 2
-                        ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 2 * (clamp(280px, 56.172vw, 1295px) + clamp(16px, 9.063vw, 208px))))"
-                        : "translateX(calc(100vw - clamp(16px, 3.125vw, 75px) - (4 * clamp(280px, 56.172vw, 1295px) + 3 * clamp(16px, 9.063vw, 208px))))",
+                        ? "translateX(calc(clamp(16px, 3.125vw, 75px) - 2 * (clamp(280px, min(56.172vw, calc((100vh - 160px) * 719 / 524)), 1295px) + clamp(16px, 9.063vw, 208px))))"
+                        : "translateX(calc(100vw - clamp(16px, 3.125vw, 75px) - (4 * clamp(280px, min(56.172vw, calc((100vh - 160px) * 719 / 524)), 1295px) + 3 * clamp(16px, 9.063vw, 208px))))",
               }}
             >
               {teaCarouselCards.map((card, idx) => (
@@ -1374,13 +1384,14 @@ export default function LorientalisGrowersPage() {
                   onClick={() => setTeaCarouselIndex(idx)}
                   className="shrink-0 flex flex-col cursor-pointer"
                   style={{
-                    width: "clamp(280px, 56.172vw, 1295px)",
+                    width: "clamp(280px, min(56.172vw, calc((100vh - 160px) * 719 / 524)), 1295px)",
                   }}
                 >
                   <div
-                    className="relative overflow-hidden rounded-[4px] w-full bg-[#162319]"
+                    className="relative overflow-hidden rounded-[4px] w-full"
                     style={{
                       aspectRatio: "719 / 524",
+                      maxHeight: "calc(100vh - 160px)",
                     }}
                   >
                     <Image
@@ -1405,8 +1416,8 @@ export default function LorientalisGrowersPage() {
           </div>
         </div>
 
-        {/* Navigation Arrows (same as coffee carousel: 24x24, 30px apart, 77px gap above) */}
-        <div className="w-full flex items-center justify-end mt-[clamp(36px,6.016vw,138px)] gap-[clamp(20px,2.344vw,54px)]">
+        {/* Navigation Arrows (same as coffee carousel: 24x24, 30px apart, responsive gap to fit viewport) */}
+        <div className="w-full flex items-center justify-end mt-[clamp(20px,2.5vw,48px)] gap-[clamp(20px,2.344vw,54px)]">
           {/* Left / Previous Arrow */}
           <button
             type="button"

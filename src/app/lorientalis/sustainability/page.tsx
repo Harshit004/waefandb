@@ -180,8 +180,8 @@ export default function LorientalisSustainabilityPage() {
           }}
         />
 
-        {/* Hero Content Block (Left-Aligned) */}
-        <div className="relative z-10 max-w-[850px] pt-24 sm:pt-28 pb-16 flex flex-col items-start">
+        {/* Hero Content Block (Left-Aligned, pushed upwards by 100px) */}
+        <div className="relative z-10 max-w-[850px] pt-24 sm:pt-28 pb-16 flex flex-col items-start -translate-y-[100px]">
           {/* Supporting a */}
           <span
             className="block text-[#DBDBDB] select-none font-normal"
