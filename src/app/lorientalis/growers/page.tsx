@@ -191,9 +191,9 @@ export default function LorientalisGrowersPage() {
           </div>
         </div>
 
-        {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Cards (pushed upwards by 100px) */}
+        {/* BOTTOM HERO LAYER: Know More button, Narrative Text & Coffee/Tea Cards (pushed downwards by 100px) */}
         <div
-          className="relative z-30 w-full flex flex-col md:flex-row items-start md:items-end select-none pb-[clamp(18px,3.8vh,60px)] -translate-y-[100px] gap-6 md:gap-0"
+          className="relative z-30 w-full flex flex-col md:flex-row items-start md:items-end select-none pb-[clamp(18px,3.8vh,60px)] translate-y-[100px] gap-6 md:gap-0"
           style={{
             paddingLeft: "clamp(14px, 2.778vw, 80px)",
             paddingRight: "clamp(14px, 2.778vw, 80px)",
